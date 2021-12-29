@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/22e28dba-9285-48fc-b585-0b60cb1530bd/resourceGroups/DppRecursos/providers/Microsoft.Web/sites/SitioDpp",
+    "appService.deploySubpath": "dist\\dpp"
+}
