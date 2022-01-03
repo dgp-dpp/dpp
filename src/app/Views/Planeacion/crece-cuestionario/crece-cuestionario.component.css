@@ -9,3 +9,10 @@ font-size: 2.3em;
     min-width: 100vh;
     min-height: 10vh;
 }
+hr{
+    height: 1em;
+    border-width: 300px;
+    max-width: 385px;
+    border-color: rgb(185, 13, 13);
+
+}
