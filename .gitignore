@@ -31,3 +31,7 @@
 .angular/cache/babel-webpack/fadfe7532c941cecd81929ce0d66d494.json
 .angular/cache/babel-webpack/fcd16304c7a2eb75e6231e5980d8e6fc.json
 node_modules/.cli-ngcc/d0283a096911af4a6d0b5ff1c48fdf954ee2baf2b5adbd0dc5c173a906657b18.lock
+node_modules/__ngcc_entry_points__.json
+.angular/cache
+node_modules/
+node_modules/__ngcc_entry_points__.json
