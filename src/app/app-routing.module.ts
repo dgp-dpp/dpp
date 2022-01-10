@@ -6,17 +6,20 @@ import { CreceComponent } from './Views/Planeacion/crece/crece.component';
 import { CreceCuestionarioComponent } from './Views/Planeacion/crece-cuestionario/crece-cuestionario.component';
 import { LoginComponent } from "./Views/login/login.component";
 import { RegisterComponent } from "./Views/register/register.component";
+import {CuestionariosComponent} from "./Views/Administracion/cuestionarios/cuestionarios.component";
 import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
+  {path: 'cuestionarios', component:CuestionariosComponent},
+  {path: 'usuarios', component:UsuariosComponent},
   { path: 'crece', component:CreceComponent },
   { path: 'home', component:HomeComponent},
-  { path: 'usuarios', component:UsuariosComponent},
   { path: 'crece_preguntas', component:CreceCuestionarioComponent},
   { path: "login", component: LoginComponent},
-{ path: "register", component: RegisterComponent, pathMatch: "full" },
-{path: '',   redirectTo: 'login', pathMatch: 'full' }
+  { path: "register", component: RegisterComponent, pathMatch: "full" },
+  
+  {path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

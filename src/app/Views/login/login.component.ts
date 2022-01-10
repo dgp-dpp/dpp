@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Toast, ToastrService } from 'ngx-toastr';
+import { FormBuilder, Validators } from '@angular/forms';
 
 // @Component({
 //   selector: 'app-register',
@@ -79,11 +81,20 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  loading =false;
   email: string ="";
   password: string= "";
+  //Forma de generar el formulario ReactiveFormsModule
+  //login: FormGroup;
+  //constructor(private fb: FormBuilder,private router:Router,private toastr: ToastrService){
+  //  this.login=this.fb.group({
+  //    usuario:['',Validators.required],
+  //    password:['',Validators.required]
+ //   });
+ // }
+
   
-  constructor(private route:ActivatedRoute, public userService: UserService, public router: Router, private modalService: NgbModal ) { }
+  constructor(private route:ActivatedRoute, public userService: UserService, public router: Router, private modalService: NgbModal,  public toastr: ToastrService,) { }
   
   // open() {
   //   const modalRef = this.modalService.open(RegisterContent);
@@ -107,7 +118,23 @@ export class LoginComponent implements OnInit {
     this.userService.login(usuario).subscribe( data => {
       console.log(data);
       this.userService.setToken(data.token);
-      this.router.navigate(['/home']);
+      this.loading=true;
+      setTimeout(() => {
+        if(this.email==="eve.holt@reqres.in" && this.password=="123"){
+          this.toastr.success("Usted se ha logeado correctamente");
+          this.router.navigate(['/home']);
+          this.loading=true;
+        }
+       else   
+       { 
+        this.toastr.error("Por favor ingresa las credenciales correctas",'Error');
+        this.email="";
+        this.password="";
+       }
+          
+      },3000);
+       
+      this.loading=false;
     },
       error => {
         console.log(error);
