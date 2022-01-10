@@ -81,3 +81,16 @@
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
     cursor: pointer;
   }
+
+  .containerP {
+    min-height: 100%;
+    position:inherit;
+}
+.footerP {
+  position:relative;
+  
+  bottom: 0%;
+  right: 0%;
+  left: 0%;
+  
+}
