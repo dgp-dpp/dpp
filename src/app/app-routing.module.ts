@@ -8,6 +8,7 @@ import { LoginComponent } from "./Views/login/login.component";
 import { RegisterComponent } from "./Views/register/register.component";
 import {CuestionariosComponent} from "./Views/Administracion/cuestionarios/cuestionarios.component";
 import { AppComponent } from './app.component';
+import { CarruselComponent } from './Views/Home/carrusel/carrusel.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'crece_preguntas', component:CreceCuestionarioComponent},
   { path: "login", component: LoginComponent},
   { path: "register", component: RegisterComponent, pathMatch: "full" },
-  
+  { path: "carrusel", component:CarruselComponent },
   {path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 

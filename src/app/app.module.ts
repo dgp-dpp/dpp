@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CuestionariosComponent } from './Views/Administracion/cuestionarios/cuestionarios.component';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { CarruselComponent } from './Views/Home/carrusel/carrusel.component';
+import { PieComponent } from './Views/Home/pie/pie.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { LoadingComponent } from './shared/loading/loading.component';
     RegisterComponent,
     CuestionariosComponent,
     LoadingComponent,
+    CarruselComponent,
+    PieComponent,
   ],
   imports: [
     BrowserModule,
