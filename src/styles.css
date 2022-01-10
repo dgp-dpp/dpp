@@ -82,15 +82,32 @@
     cursor: pointer;
   }
 
-  .containerP {
+
+  footer {
+    position:sticky;
+    
+    bottom: 0;
+    height: 100%;
+    right: 0%;
+    left: 0%;
+    /*height: 50px;*/
+  }
+  
+  /*
+    .containerP {
     min-height: 100%;
     position:inherit;
 }
 .footerP {
-  position:relative;
-  
+ /* position:relative;
+  /
   bottom: 0%;
   right: 0%;
   left: 0%;
+  clear: both;
+
+  position:sticky;
+  /*height: 40px;
+  margin-top: -40px;
   
-}
+}*/
