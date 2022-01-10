@@ -8,7 +8,7 @@
     <div class="container-fluid">
   
       <a class="navbar-brand" routerLink="/home"
-      routerLinkActive="router-link-active">Sistema de Informacion DGP</a>
+      routerLinkActive="router-link-active">Sistema de Informacion DPP</a>
   
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,12 +21,24 @@
               routerLinkActive="router-link-active">Home</a>
   
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#" aria-current="page" routerLink="/usuarios"
-            routerLinkActive="router-link-active"
-            >Administracion</a>
-            <!-- <a class="nav-link active" aria-current="page" (click)="embedReport()">CRECE</a> -->
+          
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Administracion
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/cuestionarios" routerLinkActive="router-link-active">Cuestionarios</a></li>
+              <li><a class="dropdown-item" routerLink="/usuarios" routerLinkActive="router-link-active">Usuarios</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+  
+            </ul>
           </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">

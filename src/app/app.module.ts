@@ -16,6 +16,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { CuestionariosComponent } from './Views/Administracion/cuestionarios/cuestionarios.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { AppRoutingModule } from './app-routing.module';
     LoginComponent,
     CreceComponent,
     CreceCuestionarioComponent,
-    RegisterComponent
+    RegisterComponent,
+    CuestionariosComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
