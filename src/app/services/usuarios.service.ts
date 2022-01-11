@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class UsuariosService {
 
   // private myAppUrl = 'http://localhost:8080/';
-  private myAppUrl = 'http://localhost:45186/';
+  private myAppUrl = 'http://localhost:8080/WebApi/';
   
   private myApiUrl = 'api/Usuario/'
 
