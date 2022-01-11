@@ -19,6 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CuestionariosComponent } from './Views/Administracion/cuestionarios/cuestionarios.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CarruselComponent } from './Views/Home/carrusel/carrusel.component';
+import { PieComponent } from './Views/Home/pie/pie.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     RegisterComponent,
     CuestionariosComponent,
     LoadingComponent,
+    CarruselComponent,
+    PieComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy}//Correcion del rewrite
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
