@@ -35,7 +35,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 //     name="password"
 //     placeholder="Password"
 //     required="required"
-//   /> 
+//   />
 // </div>
 // <br>
 //   <!-- <input
@@ -53,14 +53,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 //   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 // </div>
 // `,
-// styleUrls: ["./login.component.css"]  
+// styleUrls: ["./login.component.css"]
 // })
-// export class RegisterContent { 
+// export class RegisterContent {
 //   email_register: string ="";
 //   password_register: string= "";
 //   cconfirmPassword:string="";
 //   passwordError: boolean = true;
-  
+
 
 //   constructor(public activeModal: NgbActiveModal, public userService: UserService, private route:ActivatedRoute ) {}
 //   register() {
@@ -93,9 +93,9 @@ export class LoginComponent implements OnInit {
  //   });
  // }
 
-  
+
   constructor(private route:ActivatedRoute, public userService: UserService, public router: Router, private modalService: NgbModal,  public toastr: ToastrService,) { }
-  
+
   // open() {
   //   const modalRef = this.modalService.open(RegisterContent);
   //   modalRef.componentInstance.name = 'World';
@@ -118,22 +118,22 @@ export class LoginComponent implements OnInit {
     this.userService.login(usuario).subscribe( data => {
       console.log(data);
       this.userService.setToken(data.token);
-      this.loading=true;
+      // this.loading=true;
       setTimeout(() => {
         if(this.email==="eve.holt@reqres.in" && this.password=="123"){
           this.toastr.success("Usted se ha logeado correctamente");
           this.router.navigate(['/carrusel']);
           this.loading=true;
         }
-       else   
-       { 
+       else
+       {
         this.toastr.error("Por favor ingresa las credenciales correctas",'Error');
         this.email="";
         this.password="";
        }
-          
+
       },3000);
-       
+
       this.loading=false;
     },
       error => {
