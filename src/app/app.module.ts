@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CuestionariosComponent } from './Views/Administracion/cuestionarios/cuestionarios.component';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -41,9 +42,11 @@ import { LoadingComponent } from './shared/loading/loading.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    
+
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

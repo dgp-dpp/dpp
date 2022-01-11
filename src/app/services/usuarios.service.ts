@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,14 +8,20 @@ import { Observable } from 'rxjs';
 export class UsuariosService {
 
   // private myAppUrl = 'http://localhost:8080/';
-  private myAppUrl = 'http://localhost:8080/WebApi/';
-  
+  private myAppUrl = 'http://172.31.141.148:8080/WebApi/';
+
   private myApiUrl = 'api/Usuario/'
 
   constructor(private http: HttpClient) { }
 
+
   getListUsuario(): Observable<any> {
-    return this.http.get(this.myAppUrl + this.myApiUrl);
+    let cabecera = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": "true"
+     });
+    return this.http.get(this.myAppUrl + this.myApiUrl,{ headers: cabecera });
   }
 
   deleteUsuario(id: number): Observable<any> {
