@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
       setTimeout(() => {
         if(this.email==="eve.holt@reqres.in" && this.password=="123"){
           this.toastr.success("Usted se ha logeado correctamente");
-          this.router.navigate(['/home']);
+          this.router.navigate(['/carrusel']);
           this.loading=true;
         }
        else
