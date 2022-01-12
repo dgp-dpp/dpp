@@ -3,43 +3,43 @@
     border: 1px solid #707070;
     height: 55px;
   }
-  
+
   .title {
     color: #fff;
     font: 700 22px/27px 'Segoe UI';
     margin: 13px 13px 13px 36px;
     text-align: left;
   }
-  
+
   .horizontal-rule {
     border: 1px solid #e0e0e0;
   }
-  
+
   .separator {
     height: 45px;
   }
-  
+
   .success {
     color: #107c41;
   }
-  
+
   .error {
     color: #d13438;
   }
-  
+
   .position {
     margin-top: 40vh !important;
   }
-  
+
   .embed-report {
     margin-top: 18px;
     text-align: center;
   }
-  
+
   #embed-action {
     margin-right: 0;
   }
-  
+
   .display-message {
     align-items: center;
     display: flex;
@@ -49,12 +49,12 @@
     margin-top: 8px;
     text-align: center;
   }
-  
+
   .controls {
     margin-top: 1%;
     text-align: center;
   }
-  
+
   button {
     background: #337ab7;
     border: 0;
@@ -65,7 +65,17 @@
     margin-right: 15px;
     width: 160px;
   }
-  
+
   button:hover {
     cursor: pointer;
   }
+  /* .header {
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+  }
+  .fixed{
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+  } */

@@ -1,1 +1,36 @@
-<p>pruebaspdf works!</p>
+<app-home></app-home>
+<br>
+<div class="container">
+  <p>Esta parte crea un <strong>PDF</strong> a partir de objetos <strong>HTML</strong> </p>
+  <div class="row">
+    <div class="col-md-8" id="htmlData">
+      <table class=" table table-striped">
+        <tr class="table-primary">
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+        <tr *ngFor="let user of USERS" class="table-secondary">
+          <th>{{user.id}}</th>
+          <th>{{user.name}}</th>
+          <th>{{user.email}}</th>
+          <th>{{user.phone}}</th>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+  <br>
+    <div class="col-md-4">
+      <button class="btn btn-success btn-block"(click)="openPDF()">Descargar Usuarios</button>&nbsp;
+      <br>
+      <br>
+      <p>Este boton descarga un archivo <strong>PDF</strong>  con la Libreria <strong>JSPDF</strong></p>
+      <button class="btn btn-success btn-block"(click)="openPDF2()">Descargar Hola Mundo</button>
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
+</div>

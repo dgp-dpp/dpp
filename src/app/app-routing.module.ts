@@ -9,6 +9,7 @@ import { RegisterComponent } from "./Views/register/register.component";
 import {CuestionariosComponent} from "./Views/Administracion/cuestionarios/cuestionarios.component";
 import { AppComponent } from './app.component';
 import { CarruselComponent } from './Views/Home/carrusel/carrusel.component';
+import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspdf.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent},
   { path: "register", component: RegisterComponent, pathMatch: "full" },
   { path: "carrusel", component:CarruselComponent },
+  { path: "pruebaspdf", component:PruebaspdfComponent},
   {path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
 
