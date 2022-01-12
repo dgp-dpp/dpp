@@ -21,6 +21,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CarruselComponent } from './Views/Home/carrusel/carrusel.component';
 import { PieComponent } from './Views/Home/pie/pie.component';
+import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspdf.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PieComponent } from './Views/Home/pie/pie.component';
     LoadingComponent,
     CarruselComponent,
     PieComponent,
+    PruebaspdfComponent,
   ],
   imports: [
     BrowserModule,
