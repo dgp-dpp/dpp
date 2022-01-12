@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+
+import {jsPDF} from 'jspdf';
 
 
 @Component({
