@@ -1,3 +1,16 @@
+/* html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+} */
+#carru {
+    margin: 0 auto;
+    padding-top: 0px;
+    height: 600px;
+    width: 100%;
+   
+    box-sizing: border-box;
+}
 .jumbotron{
     padding-top: 10px;
     padding-bottom: 10px;
@@ -7,3 +20,4 @@
     padding:1rem 2rem;
     border-radius: 100px;
 }
+

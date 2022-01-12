@@ -9,6 +9,9 @@ import { LoginComponent } from './Views/login/login.component';
 import { CreceComponent } from './Views/Planeacion/crece/crece.component';
 import { CreceCuestionarioComponent } from './Views/Planeacion/crece-cuestionario/crece-cuestionario.component';
 import { RegisterComponent } from './Views/register/register.component';
+import { CarruselComponent } from './Views/Home/carrusel/carrusel.component';
+import { PieComponent } from './Views/Home/pie/pie.component';
+import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspdf.component';
 
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,9 +22,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { CuestionariosComponent } from './Views/Administracion/cuestionarios/cuestionarios.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { CarruselComponent } from './Views/Home/carrusel/carrusel.component';
-import { PieComponent } from './Views/Home/pie/pie.component';
-import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspdf.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
+
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspd
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    PdfViewerModule
 
   ],
   providers: [

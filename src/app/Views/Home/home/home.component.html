@@ -19,35 +19,34 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLink="/carrusel"
-              routerLinkActive="router-link-active">Home</a>
+              routerLinkActive="router-link-active"><i class="bi bi-house-door" style="font-size: 1.3rem; color:black "></i> Home</a>
 
           </li>
 
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Administracion
+              aria-expanded="false"><i class="bi bi-gear-wide-connected" style="font-size: 1.4rem; color:black" ></i> Administracion
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/cuestionarios" routerLinkActive="router-link-active">Cuestionarios</a></li>
-              <li><a class="dropdown-item" routerLink="/usuarios" routerLinkActive="router-link-active">Usuarios</a></li>
+              <li><a class="dropdown-item" routerLink="/cuestionarios" routerLinkActive="router-link-active"><i class="bi bi-card-list" style="color:black;font-size:1.5rem;"></i> Cuestionarios</a></li>
+              <li><a class="dropdown-item" routerLink="/usuarios" routerLinkActive="router-link-active"><i class="bi bi-people-fill" style="font-size: 1.5em;"></i> Usuarios</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" routerLink="/pruebaspdf" routerLinkActive="router-link-active">Area de pruebas y diversion</a></li>
+              <li><a class="dropdown-item" routerLink="/pruebaspdf" routerLinkActive="router-link-active"><i class="bi bi-battery-charging" style="color: black; font-size:1.5rem;"></i> Area de pruebas y diversion</a></li>
 
             </ul>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Planeacion
+              aria-expanded="false"><i class="bi bi-calendar2-range" style="font-size: 1.3rem; color:black"></i> Planeacion
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active">CRECE Informe</a></li>
-              <li><a class="dropdown-item" routerLink="/crece_preguntas" routerLinkActive="router-link-active" href="#">CRECE Cuestionario</a></li>
+              <!-- <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i class="fa fa-bar-chart-o fa-spin" style="font-size:30px"></i> CRECE Informe</a></li> -->
+              <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i class="bi bi-bar-chart-fill" style="color:darkorange; font-size: 1.5rem;"></i> CRECE Informe</a></li>
+              <li><a class="dropdown-item" routerLink="/crece_preguntas" routerLinkActive="router-link-active"><i class="bi bi-person-lines-fill" style="font-size: 1.5rem;"></i> CRECE Cuestionario</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -60,9 +59,9 @@
           </li>
         </ul>
         <form class="d-flex">
-
-          <button class="btn btn-outline-success"  routerLink="/login"
-          routerLinkActive="router-link-active"type="submit">LOG OUT</button>
+          <a class="dropdown-item" routerLink="/login" routerLinkActive="router-link-active"><i align-text="center"  class="bi bi-box-arrow-right" style="color:black; font-size: 1.3rem;"></i> Salir</a>
+          <!-- <button class="btn btn-outline-success"  routerLink="/login"
+          routerLinkActive="router-link-active"type="submit">LOG OUT</button> -->
         </form>
       </div>
     </div>
