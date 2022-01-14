@@ -14,7 +14,7 @@ import { PieComponent } from './Views/Home/pie/pie.component';
 import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspdf.component';
 import { KendoComponent } from './Views/Administracion/kendo/kendo.component';
 import { CatalogoProgramasComponent } from './Views/Administracion/catalogo-programas/catalogo-programas.component';
-import { PruebaspdfviewerComponent } from './Views/Administracion/pruebaspdfviewer/pruebaspdfviewer.component';
+
 
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
@@ -48,7 +48,6 @@ import { GridModule, PDFModule } from '@progress/kendo-angular-grid';
     CarruselComponent,
     PieComponent,
     PruebaspdfComponent,
-    PruebaspdfviewerComponent,
     KendoComponent,
     CatalogoProgramasComponent,
   ],

@@ -10,7 +10,7 @@ import {CuestionariosComponent} from "./Views/Administracion/cuestionarios/cuest
 import { AppComponent } from './app.component';
 import { CarruselComponent } from './Views/Home/carrusel/carrusel.component';
 import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspdf.component';
-import { PruebaspdfviewerComponent } from './Views/Administracion/pruebaspdfviewer/pruebaspdfviewer.component';
+
 import { KendoComponent } from './Views/Administracion/kendo/kendo.component';
 import { CatalogoProgramasComponent } from './Views/Administracion/catalogo-programas/catalogo-programas.component';
 
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent, pathMatch: "full" },
   { path: "carrusel", component:CarruselComponent },
   { path: "pruebaspdf", component:PruebaspdfComponent},
-  { path: "pruebaspdfviewer", component:PruebaspdfviewerComponent},
+
   { path: "kendoui", component:KendoComponent},
   { path: "catalogo_pp", component:CatalogoProgramasComponent},
 
