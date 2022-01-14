@@ -5,26 +5,35 @@
         (valueChange)="handleFilterChange($event)">
         </kendo-dropdownlist>
     </p>
-    <kendo-grid [data]="gridItems | async" [pageSize]="pageSize" [skip]="skip" [pageable]="true"
-        (pageChange)="pageChange($event)" [sortable]="true" [sort]="sortDescriptor"
-        (sortChange)="handleSortChange($event)" [height]="400">
+    <kendo-grid [data]="gridItems | async" [pageSize]="pageSize"
+                [skip]="skip" 
+                [pageable]="true"
+                [sortable]="true" 
+                [sort]="sortDescriptor"
+                (sortChange)="handleSortChange($event)" 
+                [height]="500"
+                [columnMenu]="true"
+                [columnMenu]="{ filter: true}"
+                [columnMenu]="{ sort: true }"
+                [resizable]="true"
+                [kendoGridBinding]="gridView"
+                kendoGridSelectBy="IdPP"
+                [selectedKeys]="mySelection"
+                [filterable]="true">
         <ng-template kendoGridToolbarTemplate>
-            <!-- <input
-              placeholder="Search in all columns..."
-              kendoTextBox
-               (input)="onFilter($event.target.value)"
-            /> -->
             <kendo-grid-spacer></kendo-grid-spacer>
-            <button kendoGridExcelCommand type="button" icon="file-excel">
-              Export to Excel
+            <button kendoGridExcelCommand 
+                    type="button" 
+                    icon="file-excel">
+              Exportar a Excel
             </button>
-            <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
+            <button kendoGridPDFCommand icon="file-pdf">Exportar a PDF</button>
           </ng-template>
-        <kendo-grid-column field="IdPP" title="ID" [width]="10">
+        <kendo-grid-column [filterable]="false" [columnMenu]="false" field="IdPP" title="ID" [width]="15">
         </kendo-grid-column>
         <kendo-grid-column field="Eje" title="Nombre Eje" [width]="90">
         </kendo-grid-column>
-        <kendo-grid-column field="PP" title="PP" [width]="20">
+        <kendo-grid-column field="PP" title="PP" [width]="25">
         </kendo-grid-column>
         <kendo-grid-column field="NombrePP" title="Nombre PP" [width]="140">
         </kendo-grid-column>
@@ -37,10 +46,10 @@
         [landscape]="true"
       >
     <kendo-grid-pdf-margin
-          top="2cm"
-          left="1cm"
-          right="1cm"
-          bottom="2cm"
+          top="3cm"
+          left="2cm"
+          right="2cm"
+          bottom="3cm"
         ></kendo-grid-pdf-margin> 
         <ng-template
           kendoGridPDFTemplate
@@ -50,13 +59,17 @@
           <div class="page-template">
             <div class="header">
               <div style="float: right">
-                Page {{ pageNum }} of {{ totalPages }}
+                Pagina {{ pageNum }} de {{ totalPages }}
               </div>
-              Multi-page grid with automatic page breaking
+              Programas Presupuestarios 2022
             </div>
-            <div class="footer">Page {{ pageNum }} of {{ totalPages }}</div>
+            <div class="footer">Pagina {{ pageNum }} de {{ totalPages }}</div>
           </div>
         </ng-template>
       </kendo-grid-pdf>
+      <kendo-grid-excel 
+      fileName="Programas_Presupuestarios_2022.xlsx"
+      [fetchData]="allData"
+      ></kendo-grid-excel>
     </kendo-grid>
 </section>
