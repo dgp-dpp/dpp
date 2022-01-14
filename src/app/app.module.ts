@@ -12,6 +12,9 @@ import { RegisterComponent } from './Views/register/register.component';
 import { CarruselComponent } from './Views/Home/carrusel/carrusel.component';
 import { PieComponent } from './Views/Home/pie/pie.component';
 import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspdf.component';
+import { KendoComponent } from './Views/Administracion/kendo/kendo.component';
+import { CatalogoProgramasComponent } from './Views/Administracion/catalogo-programas/catalogo-programas.component';
+import { PruebaspdfviewerComponent } from './Views/Administracion/pruebaspdfviewer/pruebaspdfviewer.component';
 
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +26,11 @@ import { CuestionariosComponent } from './Views/Administracion/cuestionarios/cue
 import { LoadingComponent } from './shared/loading/loading.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { GridModule, PDFModule } from '@progress/kendo-angular-grid';
+
+
+
 
 
 
@@ -40,6 +48,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     CarruselComponent,
     PieComponent,
     PruebaspdfComponent,
+    PruebaspdfviewerComponent,
+    KendoComponent,
+    CatalogoProgramasComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +62,10 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    PdfViewerModule
+    PdfViewerModule,
+    DropDownsModule,
+    GridModule,
+    PDFModule
 
   ],
   providers: [
