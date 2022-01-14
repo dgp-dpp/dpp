@@ -20,17 +20,17 @@
             </button>
             <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
           </ng-template>
-        <kendo-grid-column field="IdPP" title="ID" [width]="50">
+        <kendo-grid-column field="IdPP" title="ID" [width]="10">
         </kendo-grid-column>
-        <kendo-grid-column field="Eje" title="Nombre Eje">
+        <kendo-grid-column field="Eje" title="Nombre Eje" [width]="90">
         </kendo-grid-column>
-        <kendo-grid-column field="PP" title="PP">
+        <kendo-grid-column field="PP" title="PP" [width]="20">
         </kendo-grid-column>
         <kendo-grid-column field="NombrePP" title="Nombre PP" [width]="140">
         </kendo-grid-column>
 
         <kendo-grid-pdf
-        fileName="Products.pdf"
+        fileName="Catalogo PP.pdf"
         [allPages]="true"
         paperSize="A4"
         [repeatHeaders]="true"
