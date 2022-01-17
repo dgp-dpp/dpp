@@ -8,20 +8,23 @@ import { Observable } from 'rxjs';
 export class UsuariosService {
 
   // private myAppUrl = 'http://localhost:8080/';
-  private myAppUrl = 'http://172.31.141.148:8080/WebApi/';
+  //private myAppUrl = 'http://172.31.141.148:8080/WebApi/';  //productivo
+  private myAppUrl = 'http://localhost:45186';
 
-  private myApiUrl = 'api/Usuario/'
 
+  private myApiUrl = '/WebApi/api/Usuario'
+Ñ
   constructor(private http: HttpClient) { }
 
 
   getListUsuario(): Observable<any> {
-    let cabecera = new HttpHeaders({
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": "true"
-     });
-    return this.http.get(this.myAppUrl + this.myApiUrl,{ headers: cabecera });
+    // let cabecera = new HttpHeaders({
+    //   "Content-Type": "application/json",
+    //   "Access-Control-Allow-Origin": "*",
+    //   "Access-Control-Allow-Credentials": "true"
+    //  });
+    // return this.http.get(this.myAppUrl + this.myApiUrl,{ headers: cabecera });
+    return this.http.get(this.myApiUrl);
   }
 
   deleteUsuario(id: number): Observable<any> {
