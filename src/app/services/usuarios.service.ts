@@ -7,13 +7,10 @@ import { Observable } from 'rxjs';
 })
 export class UsuariosService {
 
-  // private myAppUrl = 'http://localhost:8080/';
-  //private myAppUrl = 'http://172.31.141.148:8080/WebApi/';  //productivo
-  private myAppUrl = 'http://localhost:45186';
 
-
+  private myAppUrl = 'http://172.31.141.148:8080';  //productivo
   private myApiUrl = '/WebApi/api/Usuario'
-Ñ
+
   constructor(private http: HttpClient) { }
 
 
@@ -24,7 +21,7 @@ export class UsuariosService {
     //   "Access-Control-Allow-Credentials": "true"
     //  });
     // return this.http.get(this.myAppUrl + this.myApiUrl,{ headers: cabecera });
-    return this.http.get(this.myApiUrl);
+    return this.http.get(this.myAppUrl + this.myApiUrl);
   }
 
   deleteUsuario(id: number): Observable<any> {
