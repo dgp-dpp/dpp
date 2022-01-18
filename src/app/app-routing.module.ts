@@ -13,6 +13,7 @@ import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspd
 
 import { KendoComponent } from './Views/Administracion/kendo/kendo.component';
 import { CatalogoProgramasComponent } from './Views/Administracion/catalogo-programas/catalogo-programas.component';
+import { ChrtshighComponent } from './Views/Administracion/chrtshigh/chrtshigh.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,8 @@ const routes: Routes = [
 
   { path: "kendoui", component:KendoComponent},
   { path: "catalogo_pp", component:CatalogoProgramasComponent},
+  
+  { path: "chrtshigh", component:ChrtshighComponent},
 
   {path: '',   redirectTo: 'login', pathMatch: 'full' }
 ];
