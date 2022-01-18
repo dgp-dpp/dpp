@@ -49,6 +49,7 @@ import { ChrtshighComponent } from './Views/Administracion/highcharts/chrtshigh.
     PruebaspdfComponent,
     KendoComponent,
     CatalogoProgramasComponent,
+    ChrtshighComponent,
   ],
   imports: [
     BrowserModule,
