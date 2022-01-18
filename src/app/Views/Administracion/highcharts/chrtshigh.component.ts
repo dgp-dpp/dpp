@@ -17,6 +17,9 @@ export class ChrtshighComponent implements OnInit {
     this.pieChartBrowser();
   }
 
+
+  
+
   barChartPopulation() {
     HighCharts.chart('barChart', {
       chart: {
