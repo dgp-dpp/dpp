@@ -56,3 +56,5 @@
     text-align: center;
     color: #888;
   }
+  @import "~@progress/kendo-theme-bootstrap/dist/all.scss";
+  @import "~bootstrap/scss/bootstrap.scss";

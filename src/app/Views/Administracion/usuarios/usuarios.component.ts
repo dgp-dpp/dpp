@@ -6,7 +6,8 @@ import { UsuariosService } from '../../../services/usuarios.service';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  styleUrls: ['./usuarios.component.css'],
+  providers:[ UsuariosService]
 })
 export class UsuariosComponent implements OnInit {
 
@@ -14,34 +15,34 @@ export class UsuariosComponent implements OnInit {
   accion = 'Agregar';
   form: FormGroup;
   id: number | undefined;
-  
+
   obtenerUsuarios() {
     this._usuariosServices.getListUsuario().subscribe(_data => {
      this.listUsuarios = _data
       console.log(_data);
-      
-      // debugger
+
+      debugger
     }, error => {
       console.log(error);
     })
   }
-  
-  
-  
+
+
+
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private _usuariosServices: UsuariosService) {
-    
+
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]],
       area: ['', [Validators.required]],
     })
-   
+
    }
    ngOnInit(): void {
-    
+
     this.obtenerUsuarios();
     console.log(this.obtenerUsuarios());
   }
@@ -80,7 +81,7 @@ export class UsuariosComponent implements OnInit {
 
     }
 
-   
+
   }
 
   eliminarUsuario(id: number) {
