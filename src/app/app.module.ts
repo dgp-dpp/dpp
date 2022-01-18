@@ -34,7 +34,6 @@ import { ChrtshighComponent } from './Views/Administracion/highcharts/chrtshigh.
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
