@@ -13,7 +13,7 @@ import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspd
 
 import { KendoComponent } from './Views/Administracion/kendo/kendo.component';
 import { CatalogoProgramasComponent } from './Views/Administracion/catalogo-programas/catalogo-programas.component';
-import { ChrtshighComponent } from './Views/Administracion/chrtshigh/chrtshigh.component';
+import { ChrtshighComponent } from './Views/Administracion/highcharts/chrtshigh.component';
 
 
 const routes: Routes = [

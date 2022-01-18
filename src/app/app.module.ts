@@ -28,7 +28,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { GridModule, PDFModule } from '@progress/kendo-angular-grid';
-import { ChrtshighComponent } from './Views/Administracion/chrtshigh/chrtshigh.component';
+import { ChrtshighComponent } from './Views/Administracion/highcharts/chrtshigh.component';
 
 
 
