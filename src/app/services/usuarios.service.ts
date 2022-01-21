@@ -25,7 +25,7 @@ export class UsuariosService {
   }
 
   deleteUsuario(id: number): Observable<any> {
-    return this.http.delete(this.myAppUrl + this.myApiUrl + id)
+    return this.http.delete(this.myAppUrl + this.myApiUrl + "/"+id)
   }
 
   saveUsuario(usuario: any): Observable<any> {
@@ -33,6 +33,6 @@ export class UsuariosService {
   }
 
   updateUsuario(id: number, usuario: any): Observable<any> {
-    return this.http.put(this.myAppUrl + this.myApiUrl + id, usuario);
+    return this.http.put(this.myAppUrl + this.myApiUrl +"/" +id, usuario);
   }
 }

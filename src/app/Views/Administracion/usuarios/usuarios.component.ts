@@ -68,7 +68,7 @@ export class UsuariosComponent implements OnInit {
     }else {
 
       usuario.id = this.id;
-      // Editamos tarjeta
+      // Editamos usuario
       this._usuariosServices.updateUsuario(this.id,usuario).subscribe(_data => {
         this.form.reset();
         this.accion = 'Agregar';
