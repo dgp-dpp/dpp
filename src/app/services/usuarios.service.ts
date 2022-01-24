@@ -1,6 +1,6 @@
 import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,9 @@ export class UsuariosService {
     //   "Access-Control-Allow-Credentials": "true"
     //  });
     // return this.http.get(this.myAppUrl + this.myApiUrl,{ headers: cabecera });
-    return this.http.get(this.myAppUrl + this.myApiUrl);
+    return this.http.get(this.myAppUrl + this.myApiUrl).pipe(tap((data) => {
+      console.log(data)
+    }));
   }
 
   deleteUsuario(id: number): Observable<any> {
