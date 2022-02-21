@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 export class UsuariosService {
 
 
-  private myAppUrl = 'http://172.31.141.148:8080';  //productivo
+  private myAppUrl = 'http://172.31.141.176:8080';  //productivo
   private myApiUrl = '/WebApi/api/Usuario'
 
   constructor(private http: HttpClient) { }
