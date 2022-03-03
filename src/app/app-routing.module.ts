@@ -14,6 +14,8 @@ import { PruebaspdfComponent } from './Views/Administracion/pruebaspdf/pruebaspd
 import { KendoComponent } from './Views/Administracion/kendo/kendo.component';
 import { CatalogoProgramasComponent } from './Views/Administracion/catalogo-programas/catalogo-programas.component';
 import { ChrtshighComponent } from './Views/Administracion/highcharts/chrtshigh.component';
+import { Login2Component } from './Views/Administracion/login2/login2.component';
+import { PruebaExcelComponent } from './Views/Administracion/prueba-excel/prueba-excel.component';
 
 
 const routes: Routes = [
@@ -23,16 +25,18 @@ const routes: Routes = [
   { path: 'home', component:HomeComponent},
   { path: 'crece_preguntas', component:CreceCuestionarioComponent},
   { path: "login", component: LoginComponent},
+  { path: "login2", component: Login2Component},
   { path: "register", component: RegisterComponent, pathMatch: "full" },
   { path: "carrusel", component:CarruselComponent },
   { path: "pruebaspdf", component:PruebaspdfComponent},
+  { path: "pruebaExcel", component:PruebaExcelComponent},
 
   { path: "kendoui", component:KendoComponent},
   { path: "catalogo_pp", component:CatalogoProgramasComponent},
-  
+
   { path: "chrtshigh", component:ChrtshighComponent},
 
-  {path: '',   redirectTo: 'login', pathMatch: 'full' }
+  {path: '',   redirectTo: 'login2', pathMatch: 'full' }
 ];
 
 @NgModule({

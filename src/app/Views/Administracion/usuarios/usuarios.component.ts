@@ -58,7 +58,7 @@ export class UsuariosComponent implements OnInit {
     if(this.id == undefined) {
       // Agregamos una nueva tarjeta
         this._usuariosServices.saveUsuario(usuario).subscribe(_data => {
-          this.toastr.success('El usuario fue registrado con exito!', 'Usuario Registrado');
+          this.toastr.success('El usuario'+ usuario.nombre +' fue registrado con exito!', 'Usuario Registrado');
           this.obtenerUsuarios();
           this.form.reset();
         }, error => {
