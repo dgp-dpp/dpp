@@ -28,6 +28,7 @@ export class Login2Component implements OnInit {
 
   ngOnInit(): void {
   }
+
   log(): void{
     const usuario: any = {
       email: this.login.value.email,
@@ -36,15 +37,21 @@ export class Login2Component implements OnInit {
     this.loading = true;
     this.loginService.login(usuario).subscribe(data => {
       console.log(data);
+
       this.loading = false;
-      //this.loginService.setLocalStorage(data.email);
+
+      setTimeout(() => {
+      this.toastr.success("Usted se ha logeado correctamente");
+      this.loginService.setLocalStorage(data.token);
       this.router.navigate(['/carrusel']);
+      },1500);
     }, error => {
       console.log(error);
-      this.loading = false;
+
       this.toastr.error(error.error.message, 'Error');
       this.login.reset();
-    });
+      this.loading = false;
+    } );
 
   }
 }

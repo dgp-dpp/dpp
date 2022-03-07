@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,28 @@ export class LoginService {
    {
      return this.http.post(this.myAppUrl+this.myApiUrl,usuario);
 
+   }
+   //Almacenar el valor de Login
+   setLocalStorage(data):  void
+   {
+      localStorage.setItem('token',data);
+   }
+  //  //Recuperar el valor del login
+  //  getEmailUsuario():string
+  //  {
+  //     return localStorage.getItem('Nombre')
+  //  }
+  getTokenDecoded():any
+  {
+    const helper = new JwtHelperService();
+
+    const decodedToken = helper.decodeToken(localStorage.getItem('token'));
+     return decodedToken;
+
+  }
+
+   removeLocalStorage():void
+   {
+     localStorage.removeItem('token');
    }
 }
