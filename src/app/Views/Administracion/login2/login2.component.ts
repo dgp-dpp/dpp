@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login2',
@@ -17,7 +18,8 @@ export class Login2Component implements OnInit {
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private cookieService: CookieService
     ) {
       this.login = this.fb.group({
         email: ['', Validators.required],
@@ -43,6 +45,7 @@ export class Login2Component implements OnInit {
       setTimeout(() => {
       this.toastr.success("Usted se ha logeado correctamente");
       this.loginService.setLocalStorage(data.token);
+      this.cookieService.set('token_access',data.token,4,'/');
       this.router.navigate(['/carrusel']);
       },1500);
     }, error => {

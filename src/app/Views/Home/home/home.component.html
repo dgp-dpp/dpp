@@ -1,5 +1,5 @@
 <div class="sticky-sm-top">
-<div class="header ">
+  <div class="header ">
 
     <div class="title">Secretaria de Finanzas, Inversion y Administracion</div>
   </div>
@@ -10,48 +10,82 @@
 
     <div class="container-fluid">
 
-      <a class="navbar-brand" routerLink="/home"
-      routerLinkActive="router-link-active">Sistema de Informacion DPP</a>
+      <a class="navbar-brand" routerLink="/home" routerLinkActive="router-link-active">Sistema de Informacion DPP</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!-- NAV MENU -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLink="/carrusel"
-              routerLinkActive="router-link-active"><i class="bi bi-house-door" style="font-size: 1.3rem; color:black "></i> Home</a>
-
+              routerLinkActive="router-link-active"><i class="bi bi-house-door"
+                style="font-size: 1.3rem; color:black "></i> Home</a>
           </li>
-
-
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false"><i class="bi bi-gear-wide-connected" style="font-size: 1.4rem; color:black" ></i> Administracion
+              aria-expanded="false"><i class="bi bi-gear-wide-connected" style="font-size: 1.4rem; color:black"></i>
+              Administracion
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/cuestionarios" routerLinkActive="router-link-active"><i class="bi bi-card-list" style="color:black;font-size:1.5rem;"></i> Cuestionarios</a></li>
-              <li><a class="dropdown-item" routerLink="/usuarios" routerLinkActive="router-link-active"><i class="bi bi-people-fill" style="font-size: 1.5em;"></i> Usuarios</a></li>
+
+              <li><a class="dropdown-item" routerLink="/cuestionarios" routerLinkActive="router-link-active"><i
+                    class="bi bi-card-list" style="color:black;font-size:1.5rem;"></i> Cuestionarios &raquo;</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+
+                      <li><a class="dropdown-item" href="#">Submenu item 2 </a></li>
+                     </ul>
+              </li>
+
+
+
+              <li><a class="dropdown-item" routerLink="/usuarios" routerLinkActive="router-link-active"><i
+                    class="bi bi-people-fill" style="font-size: 1.5em;"></i> Usuarios</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" routerLink="/pruebaspdf" routerLinkActive="router-link-active"><i class="bi bi-battery-charging" style="color: black; font-size:1.5rem;"></i> Area de pruebas y diversion</a></li>
-              <li><a class="dropdown-item" routerLink="/kendoui" routerLinkActive="router-link-active"><i class="bi bi-battery-charging" style="color: black; font-size:1.5rem;"></i> Kendo UI</a></li>
-              <li><a class="dropdown-item" routerLink="/catalogo_pp" routerLinkActive="router-link-active"><i class="bi bi-collection" style="color: black; font-size:1.5rem;"></i> Catalogo PP</a></li>
-              <li><a class="dropdown-item" routerLink="/chrtshigh" routerLinkActive="router-link-active"><i class="bi bi-collection" style="color: black; font-size:1.5rem;"></i> Highcharts</a></li>
-              <li><a class="dropdown-item" routerLink="/pruebaExcel" routerLinkActive="router-link-active"><i class="bi bi-collection" style="color: black; font-size:1.5rem;"></i> Excel CRECE</a></li>
+              <li><a class="dropdown-item" routerLink="/pruebaspdf" routerLinkActive="router-link-active"><i
+                    class="bi bi-battery-charging" style="color: black; font-size:1.5rem;"></i> Area de pruebas y
+                  diversion</a></li>
+              <li><a class="dropdown-item" routerLink="/kendoui" routerLinkActive="router-link-active"><i
+                    class="bi bi-battery-charging" style="color: black; font-size:1.5rem;"></i> Kendo UI</a></li>
+              <li><a class="dropdown-item" routerLink="/catalogo_pp" routerLinkActive="router-link-active"><i
+                    class="bi bi-collection" style="color: black; font-size:1.5rem;"></i> Catalogo PP</a></li>
+              <li><a class="dropdown-item" routerLink="/chrtshigh" routerLinkActive="router-link-active"><i
+                    class="bi bi-collection" style="color: black; font-size:1.5rem;"></i> Highcharts</a></li>
+              <li><a class="dropdown-item" routerLink="/pruebaExcel" routerLinkActive="router-link-active"><i
+                    class="bi bi-collection" style="color: black; font-size:1.5rem;"></i> Excel CRECE</a></li>
+
             </ul>
           </li>
 
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false"><i class="bi bi-calendar2-range" style="font-size: 1.3rem; color:black"></i> Planeacion
+              aria-expanded="false"><i class="bi bi-card-checklist" style="font-size: 1.3rem; color:black"></i> CRECE
             </a>
             <ul class="dropdown-menu">
               <!-- <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i class="fa fa-bar-chart-o fa-spin" style="font-size:30px"></i> CRECE Informe</a></li> -->
-              <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i class="bi bi-bar-chart-fill" style="color:darkorange; font-size: 1.5rem;"></i> CRECE Informe</a></li>
-              <li><a class="dropdown-item" routerLink="/crece_preguntas" routerLinkActive="router-link-active"><i class="bi bi-person-lines-fill" style="font-size: 1.5rem;"></i> CRECE Cuestionario</a></li>
+
+              <li><a class="dropdown-item" routerLink="/crece_preguntas" routerLinkActive="router-link-active"><i
+                    class="bi bi-clipboard-check" style="font-size: 1.5rem;"></i> Formulario</a></li>
+              <li><a class="dropdown-item" routerLink="/crece-respuestas" routerLinkActive="router-link-active"><i
+                    class="bi bi-file-earmark-excel" style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i>
+                  Respuestas</a></li>
+              <li><a class="dropdown-item" routerLink="/crece-informe" routerLinkActive="router-link-active"><i
+                    class="bi bi-clipboard-plus" style="color:rgb(52, 49, 179); font-size: 1.5rem;"></i> Informe</a>
+              </li>
+              <li><a class="dropdown-item" routerLink="/crece-monitor-seguimiento"
+                  routerLinkActive="router-link-active"><i class="bi bi-file-earmark-excel"
+                    style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i> Monitor de Seguimiento</a></li>
+              <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i
+                    class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i> Tablero</a></li>
+              <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i
+                    class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i> Plan de Mejora</a>
+              </li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -59,12 +93,49 @@
 
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false"><i class="bi bi-arrow-down-up" style="font-size: 1.3rem; color:black"></i>
+              Reestructura
+            </a>
+            <ul class="dropdown-menu">
+              <!-- <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i class="fa fa-bar-chart-o fa-spin" style="font-size:30px"></i> CRECE Informe</a></li> -->
 
+              <li><a class="dropdown-item" routerLink="/presentacion" routerLinkActive="router-link-active"><i
+                    class="bi bi-file-earmark-ppt" style="color:rgb(233, 77, 15);font-size: 1.5rem;"></i>
+                  Presentaciòn</a></li>
+              <li><a class="dropdown-item" routerLink="/re-admin" routerLinkActive="router-link-active"><i
+                    class="bi bi-file-earmark-excel"
+                    style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i>Administrativa</a></li>
+              <li><a class="dropdown-item" routerLink="/re-progra" routerLinkActive="router-link-active"><i
+                    class="bi bi-file-earmark-excel" style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i>
+                  Programatica</a></li>
+              <li><a class="dropdown-item" routerLink="/formato" routerLinkActive="router-link-active"><i
+                    class="bi bi-file-earmark-excel" style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i>
+                  Formato</a></li>
+              <li><a class="dropdown-item" routerLink="/tabs-tablero/tablero-reestructura"
+                  routerLinkActive="router-link-active"><i class="bi bi-clipboard-data"
+                    style="color:darkorange; font-size: 1.5rem;"></i> Tablero</a></li>
+            </ul>
           </li>
+          <!-- INDICE DPP -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false"><i class="bi bi-graph-up-arrow" style="font-size: 1.3rem; color:black"></i>
+              Indice Dpp
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/indicedpp"
+                  routerLinkActive="router-link-active"><i class="bi bi-clipboard-data"
+                    style="color:darkorange; font-size: 1.5rem;"></i> Tablero</a></li>
+            </ul>
+          </li>
+
+
         </ul>
         <form class="d-flex">
-          <a class="dropdown-item" (click)="logout()" routerLinkActive="router-link-active"><i align-text="center"  class="bi bi-box-arrow-right" style="color:black; font-size: 1.3rem;"></i> Salir</a>
+          <a class="dropdown-item" (click)="logout()" routerLinkActive="router-link-active"><i align-text="center"
+              class="bi bi-box-arrow-right" style="color:black; font-size: 1.3rem;"></i> Salir</a>
           <!-- <button class="btn btn-outline-success"  routerLink="/login"
           routerLinkActive="router-link-active"type="submit">LOG OUT</button> -->
         </form>
@@ -72,6 +143,6 @@
     </div>
   </nav>
 </div>
-  <!--/nav 1-->
+<!--/nav 1-->
 
-    <!-- <router-outlet></router-outlet> -->
+<!-- <router-outlet></router-outlet> -->

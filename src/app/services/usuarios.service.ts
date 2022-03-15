@@ -24,7 +24,7 @@ private myApiUrl = '/BackEndApi/api/Usuario'
     //   "Access-Control-Allow-Credentials": "true"
     //  });
     // return this.http.get(this.myAppUrl + this.myApiUrl,{ headers: cabecera });
-    return this.http.get(this.myAppUrl + this.myApiUrl).pipe(tap((data) => {
+    return this.http.get(this.myAppUrl + this.myApiUrl+"/GetListUsuarios").pipe(tap((data) => {
       console.log(data)
     }));
   }

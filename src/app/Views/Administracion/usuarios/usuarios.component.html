@@ -1,7 +1,7 @@
 <app-home></app-home>
 <section id ="usuariosection">
     <div class="container m-5">
-        
+
         <div class="row">
             <div class="col-lg-6 offset-lg-0">
                 <div class="card">
@@ -35,7 +35,7 @@
                                         [class.red-icon]="this.form.get('email')?.invalid && this.form.get('email')?.touched"></i>
                                 </span>
                                 <input formControlName="email" maxlength="50" type="email" class="form-control"
-                                    placeholder="Email">    
+                                    placeholder="Email">
                             </div>
 
                             <div class="row">
@@ -76,12 +76,11 @@
                     <div class="card-body">
                         <h5 class="titulo">LISTADO DE USUARIOS</h5>
                         <table class="table">
-                            <tbody> 
+                            <tbody>
                                 <i class="fas fa-redo" (click)="obtenerUsuarios()"></i>
                                 <tr *ngFor="let usuario of listUsuarios">
                                     <td>{{ usuario.nombre }}</td>
                                     <td>{{ usuario.email}}</td>
-                                    <td>{{ usuario.password }}</td>
                                     <td>
                                         <i (click)="editarUsuario(usuario)" class="far fa-edit text-info"></i>
                                     </td>

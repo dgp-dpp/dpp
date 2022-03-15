@@ -37,6 +37,7 @@ export class LoginService {
     const helper = new JwtHelperService();
 
     const decodedToken = helper.decodeToken(localStorage.getItem('token'));
+
      return decodedToken;
 
   }
@@ -45,4 +46,14 @@ export class LoginService {
    {
      localStorage.removeItem('token');
    }
+
+   //
+  //  public isUserAdmin = (loginServices: string): boolean => {
+  //   const helper = new JwtHelperService();
+
+  //   const token = localStorage.getItem("token");
+  //   const decodedToken2 = this.loginServices.getTokenDecoded().role ;
+  //   const role = decodedToken2
+  //   return role === 'admin';
+  // }
 }

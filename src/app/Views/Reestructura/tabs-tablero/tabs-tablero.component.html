@@ -1,0 +1,31 @@
+<app-home></app-home>
+<section class="sectiondefault">
+  <ul class="nav nav-pills mb-3" id="myTab" role="tablist" style="padding-left: 5rem; padding-top: 1rem;">
+    <li  class="nav-item" >
+      <a class="nav-link active" id="dataStudio" type="button" data-bs-toggle="pill" [routerLink]="['/tabs-tablero/tablero-reestructura']"
+      routerLinkActive="router-link-active"><strong>Tablero
+        DataStudio</strong></a>
+    </li>
+    <li class="nav-item" style="padding-left: 1.5rem;">
+      <a class="nav-link active"  id="profile-tab" routerLink="/tabs-tablero/tablero-power" routerLinkActive="router-link-active" data-toggle="tab"  role="tab" aria-controls="profile"
+        ><strong>Tablero Power Bi</strong></a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+        aria-selected="false">Contact</a>
+    </li> -->
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="dataStudio" role="tabpanel" aria-labelledby="dataStudio-tab">
+
+    </div>
+    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+    </div>
+    <!-- <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+    </div> -->
+  </div>
+</section>
+<router-outlet></router-outlet>
+

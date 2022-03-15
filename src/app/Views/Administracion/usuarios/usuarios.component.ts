@@ -38,6 +38,7 @@ export class UsuariosComponent implements OnInit {
       email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]],
       area: ['', [Validators.required]],
+      rol: ['', [Validators.required]],
     })
 
    }
@@ -53,6 +54,7 @@ export class UsuariosComponent implements OnInit {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value,
       area: this.form.get('area')?.value,
+      rol: this.form.get('rol')?.value,
     }
 
     if(this.id == undefined) {
