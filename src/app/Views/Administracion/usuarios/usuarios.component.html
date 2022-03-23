@@ -36,8 +36,23 @@
                                 </span>
                                 <input formControlName="email" maxlength="50" type="email" class="form-control"
                                     placeholder="Email">
-                            </div>
 
+                            </div>
+                            <div class="input-group input-group-lg mb-3">
+
+                            <span class="input-group-text">
+                              <i class="fas fa-at"
+                                  [class.green-icon]="this.form.get('rol')?.valid"
+                                  [class.red-icon]="this.form.get('rol')?.invalid && this.form.get('rol')?.touched"></i>
+                          </span>
+                            <select class="form-select" placeholder="Rol" formControlName="rol" id="rol">
+                              <option selected>Seleccionar Rol</option>
+                              <option value="admin">Administrador</option>
+                              <option value="capturista">Capturista</option>
+                              <option value="revisor">Revisor</option>
+                        </select>
+                        </div>
+                        <br>
                             <div class="row">
                                 <div class="col-lg-7">
                                     <div class="input-group input-group-lg mb-3">
