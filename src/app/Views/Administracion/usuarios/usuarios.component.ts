@@ -58,7 +58,7 @@ export class UsuariosComponent implements OnInit {
     }
 
     if(this.id == undefined) {
-      // Agregamos una nueva tarjeta
+      // Agregamos una nuevo usuario
         this._usuariosServices.saveUsuario(usuario).subscribe(_data => {
           this.toastr.success('El usuario'+ usuario.nombre +' fue registrado con exito!', 'Usuario Registrado');
           this.obtenerUsuarios();
@@ -103,6 +103,7 @@ export class UsuariosComponent implements OnInit {
     this.form.patchValue({
       nombre: usuario.nombre,
       email: usuario.email,
+      rol:usuario.rol,
       pass: usuario.pass,
       area: usuario.area
     })

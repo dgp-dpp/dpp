@@ -48,6 +48,8 @@ import { TabsTableroComponent } from './Views/Reestructura/tabs-tablero/tabs-tab
 import { TableroPowerComponent } from './Views/Reestructura/tabs-tablero/tablero-power/tablero-power.component';
 import { IndiceDppComponent } from './Views/IndiceDpp/indice-dpp/indice-dpp.component';
 import { CookieService } from 'ngx-cookie-service';
+import { FormularioPacComponent } from './Views/Capacitacion/formulario-pac/formulario-pac.component';
+import { IntegradorComponent } from './Views/Capacitacion/integrador/integrador.component';
 
 
 
@@ -90,6 +92,8 @@ import { CookieService } from 'ngx-cookie-service';
     TabsTableroComponent,
     TableroPowerComponent,
     IndiceDppComponent,
+    FormularioPacComponent,
+    IntegradorComponent,
 
 
 

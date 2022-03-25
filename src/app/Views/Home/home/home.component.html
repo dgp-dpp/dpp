@@ -33,11 +33,11 @@
 
               <li><a class="dropdown-item" routerLink="/cuestionarios" routerLinkActive="router-link-active"><i
                     class="bi bi-card-list" style="color:black;font-size:1.5rem;"></i> Cuestionarios &raquo;</a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
 
-                      <li><a class="dropdown-item" href="#">Submenu item 2 </a></li>
-                     </ul>
+                  <li><a class="dropdown-item" href="#">Submenu item 2 </a></li>
+                </ul>
               </li>
 
 
@@ -125,19 +125,27 @@
               Indice Dpp
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/indicedpp"
-                  routerLinkActive="router-link-active"><i class="bi bi-clipboard-data"
-                    style="color:darkorange; font-size: 1.5rem;"></i> Tablero</a></li>
+              <li><a class="dropdown-item" routerLink="/indicedpp" routerLinkActive="router-link-active"><i
+                    class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i> Tablero</a></li>
             </ul>
           </li>
-
+          <!-- CAPACITACION-->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false"><i class="bi bi-book" style="font-size: 1.3rem; color:black"></i>
+              Capacitacion
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/integrador" routerLinkActive="router-link-active"><i
+                class="bi bi-file-earmark-excel" style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i> Integración PAC-GpR
+                  2022</a></li>
+            </ul>
+          </li>
 
         </ul>
         <form class="d-flex">
           <a class="dropdown-item" (click)="logout()" routerLinkActive="router-link-active"><i align-text="center"
               class="bi bi-box-arrow-right" style="color:black; font-size: 1.3rem;"></i> Salir</a>
-          <!-- <button class="btn btn-outline-success"  routerLink="/login"
-          routerLinkActive="router-link-active"type="submit">LOG OUT</button> -->
         </form>
       </div>
     </div>
