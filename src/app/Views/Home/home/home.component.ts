@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   logout(): void
   {
     this.loginServices.removeLocalStorage();
-    this.router.navigate(['/login2']);
+    this.router.navigate(['/login']);//login2
   }
 
 }

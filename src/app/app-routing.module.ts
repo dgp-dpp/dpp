@@ -72,7 +72,7 @@ const routes: Routes = [
 
   { path: "chrtshigh", component:ChrtshighComponent},
 
-  {path: '',   redirectTo: 'login2', pathMatch: 'full' }
+  {path: '',   redirectTo: 'login', pathMatch: 'full' }//login2
 ];
 
 @NgModule({
