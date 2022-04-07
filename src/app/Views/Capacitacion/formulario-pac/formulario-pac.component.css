@@ -1,0 +1,13 @@
+.k-textbox .send-button {
+  color: #ff6358;
+  width: 44px;
+}
+#sectiondefault {
+  margin: 0 auto;
+  padding-top: 20px;
+  height: 1000px;
+  width: 900px;
+
+
+  box-sizing: border-box;
+}

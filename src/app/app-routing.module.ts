@@ -29,8 +29,9 @@ import { TableroPowerComponent } from './Views/Reestructura/tabs-tablero/tablero
 
 import{AuthGuard} from './shared/guards/auth.guard'
 import { IndiceDppComponent } from './Views/IndiceDpp/indice-dpp/indice-dpp.component';
-import { FormularioPacComponent } from './Views/Capacitacion/formulario-pac/formulario-pac.component';
 import { IntegradorComponent } from './Views/Capacitacion/integrador/integrador.component';
+import { TableroComponent } from './Views/Capacitacion/tablero/tablero.component';
+import { FormularioPacComponent } from './Views/Capacitacion/formulario-pac/formulario-pac.component';
 
 const routes: Routes = [
 
@@ -63,8 +64,9 @@ const routes: Routes = [
     },
   ],
 },
-{path: "formulario-pac",component:FormularioPacComponent},
+{path: "formulario_pac",component:FormularioPacComponent},
 {path: "integrador",component:IntegradorComponent},
+{path: "tablero_pac",component:TableroComponent},
 
   {path: "indicedpp",component:IndiceDppComponent},
   { path: "kendoui", component:KendoComponent},

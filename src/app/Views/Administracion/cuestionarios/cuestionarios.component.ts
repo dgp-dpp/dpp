@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class CuestionariosComponent implements OnInit {
    Nombre: string;
+   Rol: string;
   constructor(private loginServices:LoginService) { }
 
   ngOnInit(): void {
@@ -16,6 +17,8 @@ export class CuestionariosComponent implements OnInit {
  getUsuario():void
  {
     this.Nombre = this.loginServices.getTokenDecoded().sub;
+    this.Rol= this.loginServices.getTokenDecoded().roles;
     console.log(this.loginServices.getTokenDecoded());
+
  }
 }
