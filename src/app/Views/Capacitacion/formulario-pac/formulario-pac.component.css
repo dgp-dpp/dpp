@@ -6,7 +6,20 @@
   margin: 0 auto;
   padding-top: 20px;
   height: 1000px;
-  width: 900px;
+  width: 100%;
+  padding-left: 100px;
+
+
+  box-sizing: border-box;
+}
+.my-custom-icon-class:before {
+  content: "e13a"; /* Adds a glyph using the Unicode character number */
+}
+#sectiongrid {
+  padding-top: 20px;
+  height: 1000px;
+  width: 100%;
+  padding-left: 1000px;
 
 
   box-sizing: border-box;

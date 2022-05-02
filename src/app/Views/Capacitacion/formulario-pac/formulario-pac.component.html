@@ -1,80 +1,229 @@
 <app-home></app-home>
-<section id="sectiondefault">
-  <div kendoTooltip filter="button" style="padding-top: 10px;">
-    <div style="padding: 1.5rem;">
-      <form class="k-form" [formGroup]="form">
-        <h2>Inscripcion Curso</h2>
-        <kendo-card width="400px" style="padding: 1.5rem;">
+<!-- <section id="sectiondefault"> -->
+<div class="container m-5">
+  <div class="row mt-4">
 
-          <div class="col-xs-12 col-sm-6 example-col">
-            <p></p>
-             <kendo-floatinglabel text="Siglas Dependencia">
-            <kendo-dropdownlist  formControlName="Siglas" [valuePrimitive]="true"  [data]="listCursos" textField="text"
-            valueField="value">
-            </kendo-dropdownlist>
-             </kendo-floatinglabel>
-          </div>
-          <p> </p>
+    <div class="col lg-3">
+      <div kendoTooltip filter="button" style="padding-top: 10px;">
+        <div style="padding: 0.2rem;">
+          <form class="k-form" [formGroup]="form" (ngSubmit)="guardarInscripcion()">
+            <h2>Inscripcion {{ selectedValue }}</h2>
 
-          <kendo-textbox formControlName="Nombre" [style.width.px]="350" [clearButton]="true" placeholder="Nombre"
-            #fullName required>
-            <ng-template kendoTextBoxPrefixTemplate>
-              <button title="Nombre del Participante" kendoButton fillMode="clear" icon="edit"></button>
 
-              <kendo-textbox-separator></kendo-textbox-separator>
-            </ng-template>
-            <!--
-        <ng-template kendoTextBoxSuffixTemplate>
-          <kendo-textbox-separator></kendo-textbox-separator>
-           <button kendoButton fillMode="clear" class="send-button">Send</button>
-        </ng-template>
-      </kendo-textbox> -->
-          </kendo-textbox>
 
-          <p> </p>
-          <kendo-textbox formControlName="Rfc" [style.width.px]="280" [clearButton]="true" placeholder="Rfc"
-          #Rfc required>
-          <ng-template kendoTextBoxPrefixTemplate>
-            <button title="Escribe tu correo Institucional" kendoButton fillMode="clear" icon="edit"></button>
-            <kendo-textbox-separator></kendo-textbox-separator>
-          </ng-template>
-        </kendo-textbox>
-        <p> </p>
-          <kendo-textbox formControlName="Email" [style.width.px]="280" [clearButton]="true" placeholder="Correo"
-            #Email required>
-            <ng-template kendoTextBoxPrefixTemplate>
-              <button title="Escribe tu correo Institucional" kendoButton fillMode="clear" icon="edit"></button>
-              <kendo-textbox-separator></kendo-textbox-separator>
-            </ng-template>
-          </kendo-textbox>
-          <p> </p>
-          <kendo-textbox formControlName="Puesto" [style.width.px]="280" [clearButton]="true" placeholder="Puesto"
-            #Puesto required>
-            <ng-template kendoTextBoxPrefixTemplate>
-              <button title="Escribe tu puesto como apararece en su Gafete" kendoButton fillMode="clear" icon="edit"></button>
-              <kendo-textbox-separator></kendo-textbox-separator>
-            </ng-template>
-          </kendo-textbox>
+            <kendo-card width="400px" style="padding: 1.5rem;">
 
-          <div class="col-xs-12 col-sm-6 example-col">
+              <!-- <div class="col-xs-12 col-sm-6 example-col"> -->
+              <p></p>
+              <kendo-floatinglabel text="Siglas Dependencia">
+                <kendo-autocomplete formControlName="Sigla" [data]="listDep" valueField="text" #Sigla required>
+                </kendo-autocomplete>
+              </kendo-floatinglabel>
+              <!-- </div> -->
+              <p> </p>
+              <kendo-formfield showHints="initial" showErrors="initial">
+                <kendo-textbox formControlName="Nombre" [style.width.px]="350" [clearButton]="true"
+                  placeholder="Nombre">
+                  <ng-template kendoTextBoxPrefixTemplate>
+                    <button title="Nombre del Participante" kendoButton fillMode="clear" icon="edit"></button>
 
-            <kendo-floatinglabel text="Curso">
-            <kendo-dropdownlist [data]="listItems" value="">
-            </kendo-dropdownlist>
-          </kendo-floatinglabel>
-          </div> <div class="col-xs-12 col-sm-6 example-col">
+                    <kendo-textbox-separator></kendo-textbox-separator>
+                  </ng-template>
+                            <!--
+                  <ng-template kendoTextBoxSuffixTemplate>
+                    <kendo-textbox-separator></kendo-textbox-separator>
+                    <button kendoButton fillMode="clear" class="send-button">Send</button>
+                  </ng-template>
+                </kendo-textbox> -->
+                </kendo-textbox>
+                <kendo-formhint align="start">Nombre(s) y Apellidos</kendo-formhint>
+                <kendo-formerror>Error: Nombre requerido</kendo-formerror>
+              </kendo-formfield>
 
-            <kendo-floatinglabel text="Bloque">
-            <kendo-dropdownlist [data]="listItems" value="">
-            </kendo-dropdownlist>
-          </kendo-floatinglabel>
-          </div>
-          <div style="padding-left:9rem;">
-            <p></p>
-            <button kendoButton icon="calendar">Enviar</button>
-          </div>
-        </kendo-card>
-      </form>
+              <kendo-formfield showHints="initial" showErrors="initial">
+                <kendo-textbox formControlName="Rfc" [style.width.px]="280" [clearButton]="true" placeholder="Rfc" #Rfc
+                  required>
+                  <ng-template kendoTextBoxPrefixTemplate>
+                    <button title="Escribe su RFC 13 caracteres" kendoButton fillMode="clear" icon="edit"></button>
+                    <kendo-textbox-separator></kendo-textbox-separator>
+                  </ng-template>
+                </kendo-textbox>
+                <kendo-formhint align="start">Escribe su RFC compuesto de 13 caracteres</kendo-formhint>
+                <kendo-formerror>Error: RFC requerido</kendo-formerror>
+              </kendo-formfield>
+
+              <kendo-formfield showHints="initial" showErrors="initial">
+                <kendo-textbox formControlName="Email" [style.width.px]="280" [clearButton]="true" placeholder="Email"
+                  #Email required>
+                  <ng-template kendoTextBoxPrefixTemplate>
+                    <button title="Escribe tu correo Institucional" kendoButton fillMode="clear" icon="edit"></button>
+                    <kendo-textbox-separator></kendo-textbox-separator>
+                  </ng-template>
+                </kendo-textbox>
+                <kendo-formhint align="start">Correo Electronico Institucional</kendo-formhint>
+                <kendo-formerror>Error: Formato de Correo no Valido</kendo-formerror>
+              </kendo-formfield>
+
+              <kendo-formfield showHints="initial" showErrors="initial">
+                <kendo-textbox formControlName="Puesto" [style.width.px]="280" [clearButton]="true" placeholder="Puesto"
+                  #Puesto required>
+                  <ng-template kendoTextBoxPrefixTemplate>
+                    <button title="Escribe tu puesto como apararece en su Gafete" kendoButton fillMode="clear"
+                      icon="edit"></button>
+                    <kendo-textbox-separator></kendo-textbox-separator>
+                  </ng-template>
+                </kendo-textbox>
+                <kendo-formhint align="start">Puesto o cargo</kendo-formhint>
+                <kendo-formerror>Error: Puesto requerido</kendo-formerror>
+              </kendo-formfield>
+
+              <kendo-formfield showHints="initial" showErrors="initial">
+                <kendo-textbox formControlName="Ur" [style.width.px]="280" [clearButton]="true" placeholder="Ur" #Ur
+                  required>
+                  <ng-template kendoTextBoxPrefixTemplate>
+                    <button title="Escribe UR" kendoButton fillMode="clear" icon="edit"></button>
+                    <kendo-textbox-separator></kendo-textbox-separator>
+                  </ng-template>
+                </kendo-textbox>
+                <kendo-formhint align="start">Unidad resposable</kendo-formhint>
+                <kendo-formerror>Error: Ur requerida</kendo-formerror>
+              </kendo-formfield>
+
+              <div class="col-xs-12 col-sm-6 example-col">
+
+                <kendo-floatinglabel text="Curso">
+                  <kendo-dropdownlist [(ngModel)]="selectedValue" formControlName="Curso" [valuePrimitive]="true"
+                    [data]="listCursos" textField="text" valueField="text" #Curso required>
+                  </kendo-dropdownlist>
+                </kendo-floatinglabel>
+              </div>
+              <div class="col-xs-12 col-sm-6 example-col">
+
+                <kendo-floatinglabel text="Bloque">
+                  <kendo-dropdownlist [data]="listBloque" formControlName="Bloque" value="" #Bloque required>
+                  </kendo-dropdownlist>
+                </kendo-floatinglabel>
+              </div>
+
+              <p></p>
+              <!-- <div class="col-xs-12 col-sm-6 example-col"> -->
+              <kendo-formfield showHints="initial" showErrors="initial">
+                <kendo-textbox formControlName="EmailAlterno" [style.width.px]="280" [clearButton]="true"
+                  placeholder="EmailAlterno">
+                  <ng-template kendoTextBoxPrefixTemplate>
+                    <button title="Correo alterno en caso que no cuente institucional" kendoButton fillMode="clear"
+                      icon="edit"></button>
+                    <kendo-textbox-separator></kendo-textbox-separator>
+                  </ng-template>
+                </kendo-textbox>
+                <kendo-formhint align="start">Correo alterno en caso de no contar con institucional</kendo-formhint>
+                <kendo-formerror>Error: Formato de correo no valido</kendo-formerror>
+              </kendo-formfield>
+              <!-- </div> -->
+              <p></p>
+              <div style="padding-left:9rem;">
+
+                <button kendoButton icon="redo">Enviar</button>
+              </div>
+            </kendo-card>
+
+          </form>
+        </div>
+      </div>
     </div>
+    <div class="col lg-3" style="padding: 1.5rem; ;padding-bottom: 2rem;padding-right: 3rem;">
+
+      <kendo-card width="750px" style="padding: 1.5rem;">
+        <i class="fas fa-redo" (click)="loadGridItems()"></i>
+        <!-- <kendo-dropdownlist [data]="dropDownItems" [defaultItem]="defaultItem" textField="text" valueField="text"
+        (valueChange)="handleFilterChange($event)">
+        </kendo-dropdownlist> -->
+ <p></p>
+    <kendo-grid [data]="listInscripcion"
+                [pageSize]="pageSize"
+                [skip]="skip"
+                [pageable]="true"
+                (pageChange)="pageChange($event)"
+                [sortable]="false"
+                [sort]="sortDescriptor"
+                (sortChange)="handleSortChange($event)"
+               [height]="400"
+               [resizable]="true"
+               [kendoGridBinding]="gridView"
+               kendoGridSelectBy="idInscripcion"
+                [selectedKeys]="mySelection"
+               >
+               <ng-template kendoGridToolbarTemplate>
+            <kendo-grid-spacer></kendo-grid-spacer>
+            <button kendoGridExcelCommand
+                    type="button"
+                    icon="file-excel"
+                    >
+              Exportar a Excel
+            </button>
+            <button kendoGridPDFCommand icon="file-pdf">Exportar a PDF</button>
+          </ng-template>
+
+      <kendo-grid-column field="idInscripcion" title="ID" [width]="50">
+      </kendo-grid-column>
+      <kendo-grid-column field="sigla" title="Sigla" [width]="80">
+      </kendo-grid-column>
+      <kendo-grid-column field="nombre" title="Nombre" [width]="140">
+      </kendo-grid-column>
+      <kendo-grid-column field="rfc" title="Rfc" [width]="140" format="{0:c}">
+      </kendo-grid-column>
+      <kendo-grid-column field="email" [width]="140" title="Email">
+      </kendo-grid-column>
+      <kendo-grid-column field="puesto" [width]="140" title="Puesto">
+      </kendo-grid-column>
+      <kendo-grid-column field="ur" [width]="45" title="Ur">
+      </kendo-grid-column>
+      <kendo-grid-column field="curso" [width]="70" title="Curso">
+      </kendo-grid-column>
+      <kendo-grid-column field="bloque" [width]="80" title="Bloque">
+      </kendo-grid-column>
+      <kendo-grid-column field="emailAlterno" [width]="140" title="Alterno">
+      </kendo-grid-column>
+
+      <kendo-grid-pdf
+      fileName="Participantes.pdf"
+      [allPages]="true"
+      paperSize="A4"
+      [repeatHeaders]="true"
+      [landscape]="true"
+    >
+  <kendo-grid-pdf-margin
+        top="3cm"
+        left="2cm"
+        right="2cm"
+        bottom="3cm"
+      ></kendo-grid-pdf-margin>
+      <ng-template
+        kendoGridPDFTemplate
+        let-pageNum="pageNum"
+        let-totalPages="totalPages"
+      >
+        <div class="page-template">
+          <div class="header">
+            <div style="float: right">
+              Pagina {{ pageNum }} de {{ totalPages }}
+            </div>
+            Lista de Participantes
+          </div>
+          <div class="footer">Pagina {{ pageNum }} de {{ totalPages }}</div>
+        </div>
+      </ng-template>
+    </kendo-grid-pdf>
+    <!-- Excel -->
+    <kendo-grid-excel
+    fileName="ListaParticipantes.xlsx"
+    [fetchData]="allData"
+    ></kendo-grid-excel>
+
+    </kendo-grid>
+      </kendo-card>
+    </div>
+
   </div>
-</section>
+</div>
+<!-- </section> -->

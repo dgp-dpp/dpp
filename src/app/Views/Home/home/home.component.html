@@ -140,13 +140,32 @@
 
 
               <li><a class="dropdown-item" routerLink="/formulario_pac" routerLinkActive="router-link-active"><i
-                class="bi bi-clipboard-plus" style="color:rgb(52, 49, 179); font-size: 1.5rem;"></i>
+                    class="bi bi-clipboard-plus" style="color:rgb(52, 49, 179); font-size: 1.5rem;"></i>
                   formulario PAC-GpR</a></li>
               <li><a class="dropdown-item" routerLink="/tablero_pac" routerLinkActive="router-link-active"><i
-                class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i>
+                    class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i>
                   tablero PAC-GpR</a></li>
             </ul>
+             <!-- CENSO-->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false"><i class="bi bi-person-workspace" style="font-size: 1.3rem; color:black"></i>
+              Censo GpR
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/censo" routerLinkActive="router-link-active"><i
+                    class="bi bi-clipboard-data" style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i>
+                 Censo</a></li>
+                 <li><a class="dropdown-item" routerLink="/censo-seguimiento" routerLinkActive="router-link-active"><i
+                  class="bi bi-clipboard-data" style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i>
+               Censo Seguimiento</a></li>
+               <li><a class="dropdown-item" routerLink="/censo-tablero" routerLinkActive="router-link-active"><i
+                class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i>
+             Censo Tablero</a></li>
+            </ul>
         </ul>
+
+
         <form class="d-flex">
           <a class="dropdown-item" (click)="logout()" routerLinkActive="router-link-active"><i align-text="center"
               class="bi bi-box-arrow-right" style="color:black; font-size: 1.3rem;"></i> Salir</a>

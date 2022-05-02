@@ -63,6 +63,9 @@ import { InputsModule } from "@progress/kendo-angular-inputs";
 import { LayoutModule } from "@progress/kendo-angular-layout";
 import { FloatingLabelModule } from "@progress/kendo-angular-label";
 import { TooltipsModule } from "@progress/kendo-angular-tooltip";
+import { CensoComponent } from './Views/CensoGpR/censo/censo.component';
+import { CensoSeguimientoComponent } from './Views/CensoGpR/censo-seguimiento/censo-seguimiento.component';
+import { CensoTableroComponent } from './Views/CensoGpR/censo-tablero/censo-tablero.component';
 
 
 export function tokenGetter() {
@@ -112,6 +115,9 @@ export function tokenGetter() {
     TableroComponent,
     IntegradorComponent,
     FormularioPacComponent,
+    CensoComponent,
+    CensoSeguimientoComponent,
+    CensoTableroComponent,
 
 
 

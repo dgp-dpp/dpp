@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { UsuariosComponent } from './Views/Administracion/usuarios/usuarios.component';
 import { HomeComponent } from './Views/Home/home/home.component';
 import { CreceComponent } from './Views/Planeacion/crece/crece.component';
@@ -32,6 +32,9 @@ import { IndiceDppComponent } from './Views/IndiceDpp/indice-dpp/indice-dpp.comp
 import { IntegradorComponent } from './Views/Capacitacion/integrador/integrador.component';
 import { TableroComponent } from './Views/Capacitacion/tablero/tablero.component';
 import { FormularioPacComponent } from './Views/Capacitacion/formulario-pac/formulario-pac.component';
+import { CensoComponent } from './Views/CensoGpR/censo/censo.component';
+import { CensoSeguimientoComponent } from './Views/CensoGpR/censo-seguimiento/censo-seguimiento.component';
+import { CensoTableroComponent } from './Views/CensoGpR/censo-tablero/censo-tablero.component';
 
 const routes: Routes = [
 
@@ -54,6 +57,9 @@ const routes: Routes = [
  {path:"presentacion", component:PresentacionComponent},
  {path:"re-admin", component:RestrucAdminComponent},
  {path:"re-progra", component:RestrucPrograComponent},
+ {path: "censo",component:CensoComponent},
+ {path:"censo-seguimiento",component:CensoSeguimientoComponent},
+ {path:"censo-tablero",component:CensoTableroComponent},
  {path: "tabs-tablero", component:TabsTableroComponent,
   children:[
     {
@@ -78,7 +84,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    {
+      enableTracing:true,
+      preloadingStrategy: PreloadAllModules
+    }
+    )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
