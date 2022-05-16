@@ -1,0 +1,6 @@
+<div class="container-upload">
+  <button [disabled]="disabled" [ngClass]="{'disabled': disabled}" class="btn btn-primary mb-3"
+    (click)="inputFile.click()">Subir Archivo
+    <input name="file" id="file" (change)="upload($event)" type="file" #inputFile hidden>
+  </button>
+</div>

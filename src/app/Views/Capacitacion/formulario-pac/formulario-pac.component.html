@@ -1,9 +1,9 @@
 <app-home></app-home>
-<!-- <section id="sectiondefault"> -->
-<div class="container m-5">
-  <div class="row mt-4">
+ <section id="sectiondefault">
+<div class="container-fluid">
+  <div class="row mt-6">
 
-    <div class="col lg-3">
+    <div class="col lg-6">
       <div kendoTooltip filter="button" style="padding-top: 10px;">
         <div style="padding: 0.2rem;">
           <form class="k-form" [formGroup]="form" (ngSubmit)="guardarInscripcion()">
@@ -131,8 +131,8 @@
         </div>
       </div>
     </div>
-    <div class="col lg-3" style="padding: 1.5rem; ;padding-bottom: 2rem;padding-right: 3rem;">
-
+    <!-- <div class="col auto" style="padding: 1.5rem; ;padding-bottom: 2rem;padding-right: 3rem;"> -->
+      <div class="col-md-9 ms-md-auto">
       <kendo-card width="750px" style="padding: 1.5rem;">
         <i class="fas fa-redo" (click)="loadGridItems()"></i>
         <!-- <kendo-dropdownlist [data]="dropDownItems" [defaultItem]="defaultItem" textField="text" valueField="text"
@@ -226,4 +226,4 @@
 
   </div>
 </div>
-<!-- </section> -->
+</section>

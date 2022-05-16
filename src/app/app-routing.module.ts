@@ -35,6 +35,7 @@ import { FormularioPacComponent } from './Views/Capacitacion/formulario-pac/form
 import { CensoComponent } from './Views/CensoGpR/censo/censo.component';
 import { CensoSeguimientoComponent } from './Views/CensoGpR/censo-seguimiento/censo-seguimiento.component';
 import { CensoTableroComponent } from './Views/CensoGpR/censo-tablero/censo-tablero.component';
+import { CreceFormualarioComponent } from './Views/Planeacion/crece-formulario/crece-formualario.component';
 
 const routes: Routes = [
 
@@ -77,6 +78,7 @@ const routes: Routes = [
   {path: "indicedpp",component:IndiceDppComponent},
   { path: "kendoui", component:KendoComponent},
   { path: "catalogo_pp", component:CatalogoProgramasComponent},
+  {path:"crece-formulario", component:CreceFormualarioComponent},
 
   { path: "chrtshigh", component:ChrtshighComponent},
 

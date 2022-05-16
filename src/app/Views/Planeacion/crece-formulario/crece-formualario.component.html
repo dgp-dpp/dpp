@@ -1,0 +1,590 @@
+<app-home></app-home>
+<section id="sectiondefault">
+
+  <div class="bd-callout bd-callout-info">CRECE PLANEACION
+  </div>
+  <h1> Bienvenido: <strong>{{Nombre}}</strong></h1>
+  <form class="k-form" [formGroup]="form" (ngSubmit)="guardarInscripcion()">
+    <fieldset class="k-form-fieldset">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <kendo-panelbar>
+              <kendo-panelbar-item icon="folder" title="CRECE DATOS GENERALES" [expanded]="true">
+                <!-- <ng-template kendoPanelBarItemTitle>
+              <h1>CRECE DATOS GENERALES</h1>
+            </ng-template> -->
+                <ng-template kendoPanelBarContent>
+                  <!-- <div  style="width: 100%;height: 600px;"> -->
+                  <!-- Kendo car -->
+                  <kendo-card width="390px" style="padding: 1rem; align-content: center;">
+
+                    <!-- <div class="col-xs-12 col-sm-6 example-col"> -->
+
+                    <kendo-floatinglabel text="Email" style="font-weight: bold;">
+                      <kendo-textbox style="font-weight: normal;" formControlName="Email" fillMode="outline"
+                        [readonly]="true">
+                      </kendo-textbox>
+                    </kendo-floatinglabel>
+                    <!-- </div> -->
+                    <p> </p>
+                    <kendo-floatinglabel text="Revision" style="font-weight: bold;">
+                      <kendo-formfield showHints="initial" showErrors="initial">
+                        <kendo-textbox style="font-weight: normal;" formControlName="Revision" [style.width.px]="350"
+                          [clearButton]="true" [readonly]="true" placeholder="Revision">
+                          <ng-template kendoTextBoxPrefixTemplate>
+                            <button
+                              title="Esta etiqueta nos sirve para identificar a que versión corresponde la calificación."
+                              kendoButton fillMode="clear" icon="edit"></button>
+
+                            <kendo-textbox-separator></kendo-textbox-separator>
+                          </ng-template>
+                          <!--
+                      <ng-template kendoTextBoxSuffixTemplate>
+                        <kendo-textbox-separator></kendo-textbox-separator>
+                        <button kendoButton fillMode="clear" class="send-button">Send</button>
+                      </ng-template>
+                    </kendo-textbox> -->
+                        </kendo-textbox>
+                        <kendo-formhint style="font-weight: normal;" align="start">Identifica a que versión corresponde
+                          la calificación.</kendo-formhint>
+                        <kendo-formerror>Error: Revision es requerido</kendo-formerror>
+                      </kendo-formfield>
+                    </kendo-floatinglabel>
+
+                    <kendo-floatinglabel text="Programa Presupuestario" style="font-weight: bold;">
+
+                      <kendo-dropdownlist style="font-weight: normal;" formControlName="Pp" [style.width.px]="280"
+                        [valuePrimitive]="true" placeholder="Programa Presupuestario" [data]="ProgramaPresupuestario"
+                        textField="text" valueField="text">
+                      </kendo-dropdownlist>
+                    </kendo-floatinglabel>
+                    <div class="col-xs-12 col-sm-6 example-col">
+
+                      <kendo-floatinglabel text="Dependencia" style="font-weight: bold;">
+                        <kendo-dropdownlist style="font-weight: normal;" [(ngModel)]="selectedValue"
+                          formControlName="Dependencia" [valuePrimitive]="true" [data]="listDep" textField="text"
+                          valueField="text">
+                        </kendo-dropdownlist>
+                      </kendo-floatinglabel>
+                    </div>
+
+
+                    <p></p>
+                    <kendo-formfield showHints="initial" showErrors="initial">
+                      <kendo-floatinglabel text="Fecha" style="font-weight: bold;">
+                        <kendo-datepicker style="font-weight: normal;" [(value)]="fecha" formControlName="Fecha">
+                        </kendo-datepicker>
+                      </kendo-floatinglabel>
+                      <kendo-formhint align="start"> use Alt+↓ para abrir el calendario, ← y → para navegar, ↑ para
+                        incrementar y ↓ para disminuir el valor</kendo-formhint>
+                      <kendo-formerror>Error: Fecha requerida</kendo-formerror>
+                    </kendo-formfield>
+                    <!-- <div class="col-xs-12 col-sm-6 example-col"> -->
+
+                    <!-- </div> -->
+                    <p></p>
+                    <div class="col-xs-12 col-sm-6 example-col">
+
+                      <kendo-floatinglabel text="Año de Actualizacion" style="font-weight: bold;">
+                        <kendo-dropdownlist style="font-weight: normal;" [data]="listYear" formControlName="Ano"
+                          [style.width.px]="350" value="" #Ano required>
+                          <ng-template kendoDropDownListPrefixTemplate>
+                            <button
+                              title="Esta etiqueta nos sirve para identificar a que versión corresponde la calificación."
+                              kendoButton fillMode="clear" icon="edit"></button>
+
+                            <kendo-textbox-separator></kendo-textbox-separator>
+                          </ng-template>
+                        </kendo-dropdownlist>
+
+                      </kendo-floatinglabel>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 example-col">
+
+                      <kendo-floatinglabel text="Dep/Ent Participantes" style="font-weight: bold;">
+                        <kendo-dropdownlist style="font-weight: normal;" [data]="listDepPar" formControlName="DepPar"
+                          [style.width.px]="350" value="" #DepPar required>
+                          <ng-template kendoDropDownListPrefixTemplate>
+                            <button title="" kendoButton fillMode="clear" icon="edit"></button>
+
+                            <kendo-textbox-separator></kendo-textbox-separator>
+                          </ng-template>
+                        </kendo-dropdownlist>
+
+                      </kendo-floatinglabel>
+                    </div>
+
+                  </kendo-card>
+                  <!--
+              </div> -->
+                </ng-template>
+              </kendo-panelbar-item>
+            </kendo-panelbar>
+          </div>
+          <br>
+
+          <p></p>
+          <div class="col-xs-12 col-sm-6 example-col">
+            <kendo-panelbar>
+              <kendo-panelbar-item icon="folder" title="Elementos Diagnóstico Particular">
+                <ng-template kendoPanelBarContent>
+                  <div style="padding-left: 1.5rem; padding-right: 1.5rem;  padding-left: 3rem;">
+                     <kendo-card width="690px" style="padding: 1rem; align-content: center;">
+
+                     <strong>Se Incluye? &nbsp;</strong>
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;" >
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">1.- Clave y Nombre del Programa Presupuestario &nbsp;&nbsp;
+                          </kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+
+                          <input required type="radio" class="custom-size" name="ClaveNombre" value="1" #si
+                            formControlName="ClaveNombre" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="ClaveNombre" value="0" #no
+                            formControlName="ClaveNombre" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                    <!-- Dependencia responsable del Programa Presupuestario &nbsp; -->
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">2.- Dependencia responsable del Programa Presupuestario
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="DepResPp" value="1" #si
+                            formControlName="DepResPp" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="DepResPp" value="0" #no
+                            formControlName="DepResPp" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Dependencias o Entidades participantes en el Programa Presupuestario &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">3.- Dependencias o Entidades participantes en el Programa Presupuestario
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="DepParPp" value="1" #si
+                            formControlName="DepParPp" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="DepParPp" value="0" #no
+                            formControlName="DepParPp" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Fecha de actualización del Diagnóstico Particular &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">4.- Fecha de actualización del Diagnóstico Particular
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="FechaADx" value="1" #si
+                            formControlName="FechaADx" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="FechaADx" value="0" #no
+                            formControlName="FechaADx" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Introducción &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">5.- Introducción
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="Intro" value="1" #si
+                            formControlName="Intro" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="Intro" value="0" #no
+                            formControlName="Intro" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Análisis de involucrados &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">6.- Análisis de involucrados
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="AnalisisInvolucrados" value="1" #si
+                            formControlName="AnalisisInvolucrados" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="AnalisisInvolucrados" value="0" #no
+                            formControlName="AnalisisInvolucrados" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Identificación/Definición del Problema &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">7.- Identificación/Definición del Problema
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="DefProblema" value="1" #si
+                            formControlName="DefProblema" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="DefProblema" value="0" #no
+                            formControlName="DefProblema" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Evolución del problema &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">8.- Evolución del problema
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="EvoProblema" value="1" #si
+                            formControlName="EvoProblema" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="EvoProblema" value="0" #no
+                            formControlName="EvoProblema" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Estado actual del problema &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">9.- Estado actual del problema
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="EstActualProblema" value="1" #si
+                            formControlName="EstActualProblema" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="EstActualProblema" value="0" #no
+                            formControlName="EstActualProblema" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Experiencias de Atención &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">10.- Experiencias de Atención
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="ExpAtencion" value="1" #si
+                            formControlName="ExpAtencion" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="ExpAtencion" value="0" #no
+                            formControlName="ExpAtencion" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Definición de los objetivos &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">11. -Definición de los objetivos
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="DefObjetivos" value="1" #si
+                            formControlName="DefObjetivos" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="DefObjetivos" value="0" #no
+                            formControlName="DefObjetivos" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                     <!-- Análisis de Corresponsabilidad &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">12.- Análisis de Corresponsabilidad
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="AnalisisCorrespon" value="1" #si
+                            formControlName="AnalisisCorrespon" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="AnalisisCorrespon" value="0" #no
+                            formControlName="AnalisisCorrespon" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                    <!-- Selección de Alternativa &nbsp; -->
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">13.- Selección de Alternativa
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="SelecAlterna" value="1" #si
+                            formControlName="SelecAlterna" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="SelecAlterna" value="0" #no
+                            formControlName="SelecAlterna" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+                    <!-- Estructura analítica del programa &nbsp; -->
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">14.- Estructura analítica del programa
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="EstructuraAnalitica" value="1" #si
+                            formControlName="EstructuraAnalitica" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="EstructuraAnalitica" value="0" #no
+                            formControlName="EstructuraAnalitica" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+                    <!-- Justificación de los objetivos de la intervención &nbsp; -->
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">15.- Justificación de los objetivos de la intervención
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="JustObj" value="1" #si
+                            formControlName="JustObj" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="JustObj" value="0" #no
+                            formControlName="JustObj" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+                    <!-- Identificación y cuantificación de la población &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">16.- Identificación y cuantificación de la población
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="IdentificacionCuanPob" value="1" #si
+                            formControlName="IdentificacionCuanPob" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="IdentificacionCuanPob" value="0" #no
+                            formControlName="IdentificacionCuanPob" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                    <!--  Identificación de las áreas de influencia &nbsp; -->
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">17.- Identificación de las áreas de influencia
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="IdenficacionAreaInfluencia" value="1" #si
+                            formControlName="IdenficacionAreaInfluencia" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="IdenficacionAreaInfluencia" value="0" #no
+                            formControlName="IdenficacionAreaInfluencia" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                    <!-- Relación con otros Programas Presupuestarios &nbsp; -->
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">18.- Relación con otros Programas Presupuestarios
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="RelOtrosPP" value="1" #si
+                            formControlName="RelOtrosPP" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="RelOtrosPP" value="0" #no
+                            formControlName="RelOtrosPP" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                    <!-- Elementos para la integración de un padrón de beneficiarios &nbsp; -->
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">19.- Elementos para la integración de un padrón de beneficiarios
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="ElementosPEB" value="1" #si
+                            formControlName="ElementosPEB" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="ElementosPEB" value="0" #no
+                            formControlName="ElementosPEB" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+                     <!-- MIR &nbsp; -->
+                     <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">20.- MIR
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="MIR" value="1" #si
+                            formControlName="MIR" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="MIR" value="0" #no
+                            formControlName="MIR" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                    <!--Evolución del Programa Presupuestario  &nbsp; -->
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">21,- Evolución del Programa Presupuestario
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="EvoPp" value="1" #si
+                            formControlName="EvoPp" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="EvoPp" value="0" #no
+                            formControlName="EvoPp" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+                    <!--Glosario de términos  &nbsp; -->
+                    <kendo-formfield orientation="horizontal" showErros="initial" style="background-color: darkgray;">
+                      <ul class="k-radio-list k-list-horizontal">
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label">22.- Glosario de términos
+                            &nbsp;&nbsp;</kendo-label>
+                          <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
+                          <input required type="radio" class="custom-size" name="Glosario" value="1" #si
+                            formControlName="Glosario" kendoRadioButton />
+                        </li>
+                        <li class="k-radio-item">
+                          <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
+                          <input required type="radio" class="custom-size" name="Glosario" value="0" #no
+                            formControlName="Glosario" kendoRadioButton />
+                        </li>
+                      </ul>
+                      <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                    </kendo-formfield>
+
+
+                    </kendo-card>
+                  </div>
+                </ng-template>
+              </kendo-panelbar-item>
+              <!-- Seccion  3 Evaluacion al DX Particular -->
+              <kendo-panelbar-item icon="folder" title="Evaluación al Diagnóstico Particular">
+                <ng-template kendoPanelBarContent>
+                  <div>
+
+                    <iframe
+                      src="https://docs.google.com/forms/d/e/1FAIpQLSedRrAcXFSfPV0ih4Dr8VhBSVvdHYLbgUub-p2sHg039nbkoQ/viewform"
+                      style="width: 100%;height: 1000px;"></iframe>
+                  </div>
+                </ng-template>
+              </kendo-panelbar-item>
+            </kendo-panelbar>
+
+          </div>
+
+
+        </div>
+        <p></p>
+        <div class="row">
+          <div class="col-md-6 ms-md-auto">
+
+            <button kendoButton icon="redo">Enviar</button>
+
+
+          </div>
+          <!-- <div class="col-auto">.col-auto</div> -->
+
+
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+</section>

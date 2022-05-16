@@ -52,6 +52,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtModule } from "@auth0/angular-jwt";
+
 //import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 //Kendo ui
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
@@ -63,9 +64,15 @@ import { InputsModule } from "@progress/kendo-angular-inputs";
 import { LayoutModule } from "@progress/kendo-angular-layout";
 import { FloatingLabelModule } from "@progress/kendo-angular-label";
 import { TooltipsModule } from "@progress/kendo-angular-tooltip";
+import { IntlModule } from "@progress/kendo-angular-intl";
+import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
 import { CensoComponent } from './Views/CensoGpR/censo/censo.component';
 import { CensoSeguimientoComponent } from './Views/CensoGpR/censo-seguimiento/censo-seguimiento.component';
 import { CensoTableroComponent } from './Views/CensoGpR/censo-tablero/censo-tablero.component';
+import { DownloadUploadService } from './services/download-upload.service';
+import { DownloadComponent } from './Views/Planeacion/crece-informe/download/download.component';
+import { UploadComponent } from './Views/Planeacion/crece-informe/upload/upload.component';
+import { CreceFormualarioComponent } from './Views/Planeacion/crece-formulario/crece-formualario.component';
 
 
 export function tokenGetter() {
@@ -118,6 +125,9 @@ export function tokenGetter() {
     CensoComponent,
     CensoSeguimientoComponent,
     CensoTableroComponent,
+    DownloadComponent,
+    UploadComponent,
+    CreceFormualarioComponent,
 
 
 
@@ -145,7 +155,9 @@ export function tokenGetter() {
     InputsModule,
     LayoutModule,
     FloatingLabelModule,
+    DateInputsModule,
     TooltipsModule,
+    IntlModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -158,9 +170,8 @@ export function tokenGetter() {
 
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
-    { provide: HTTP_INTERCEPTORS,
-      useClass: AddTokenInterceptor,
-       multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true },
+    DownloadUploadService,
     CookieService],
   bootstrap: [AppComponent]
 })

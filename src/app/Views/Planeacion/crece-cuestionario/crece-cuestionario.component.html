@@ -1,23 +1,58 @@
 <app-home></app-home>
 <section id="sectiondefault">
 
-    <div class="text-center">
-      <!-- <h1><strong>CRECE FORMULARIO</strong></h1> -->
+  <div class="text-center">
+    <!-- <h1><strong>CRECE FORMULARIO</strong></h1> -->
 
+  </div>
+  <div class="container min-vh-10">
+    <!-- <div class="row justify-content-center"> -->
+    <div class="col-md-12 pt-3">
+
+      <!-- <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfd54CK5s1zGlV5jaW6flqL5Lba170njsW2UpPDEciVEz8FIA/viewform?usp=pp_url"
+        style="width: 100%;height: 1000px;"></iframe> -->
+
+      <kendo-panelbar>
+        <kendo-panelbar-item  icon="folder" title="CRECE Ejercicio 2022"  >
+          <ng-template kendoPanelBarContent>
+            <div>
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfd54CK5s1zGlV5jaW6flqL5Lba170njsW2UpPDEciVEz8FIA/viewform?usp=pp_url"
+                style="width: 100%;height: 1000px;"></iframe>
+            </div>
+          </ng-template>
+         </kendo-panelbar-item>
+          <kendo-panelbar-item icon="folder"title="CRECE Ejercicio 2023" [expanded]="true">
+            <ng-template kendoPanelBarContent>
+              <div>
+
+                <iframe
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSedRrAcXFSfPV0ih4Dr8VhBSVvdHYLbgUub-p2sHg039nbkoQ/viewform"
+                  style="width: 100%;height: 1000px;"></iframe>
+              </div>
+            </ng-template>
+
+            <!-- </kendo-panelbar-item>
+              <kendo-panelbar-item title="Projects">
+                <kendo-panelbar-item title="New Business Plan"></kendo-panelbar-item>
+                <kendo-panelbar-item title="Sales Forecasts">
+                  <kendo-panelbar-item title="Q1 Forecast"></kendo-panelbar-item>
+                  <kendo-panelbar-item title="Q2 Forecast"></kendo-panelbar-item>
+                  <kendo-panelbar-item title="Q3 Forecast"></kendo-panelbar-item>
+                  <kendo-panelbar-item title="Q4 Forecast"></kendo-panelbar-item>
+                </kendo-panelbar-item>
+                <kendo-panelbar-item title="Sales Reports"></kendo-panelbar-item>
+              </kendo-panelbar-item>
+              <kendo-panelbar-item title="Programs">
+                <kendo-panelbar-item title="Monday"></kendo-panelbar-item>
+                <kendo-panelbar-item title="Tuesday"></kendo-panelbar-item>
+                <kendo-panelbar-item title="Wednesday"></kendo-panelbar-item>
+                <kendo-panelbar-item title="Thursday"></kendo-panelbar-item>
+                <kendo-panelbar-item title="Friday"></kendo-panelbar-item>
+              </kendo-panelbar-item> -->
+            </kendo-panelbar-item>
+      </kendo-panelbar>
     </div>
-    <div class="container min-vh-10">
-      <!-- <div class="row justify-content-center"> -->
-        <div class="col-md-12 pt-3">
-          <!-- <iframe  src="https://docs.google.com/spreadsheets/d/1oHcCZfbWSQ0WM2Tw-JAj4198g1-6MHKQF5ziwVFtwqc/edit#gid=1234221774"
-           style="width: 100%;height: 600px;border: 0;" ></iframe> -->
-          <!-- <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfd54CK5s1zGlV5jaW6flqL5Lba170njsW2UpPDEciVEz8FIA/viewform?embedded=true"
-            style="width: 100%;height: 600px;"></iframe> -->
-            <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfd54CK5s1zGlV5jaW6flqL5Lba170njsW2UpPDEciVEz8FIA/viewform?usp=pp_url"
-            style="width: 100%;height: 1000px;"></iframe>
-            https://drive.google.com/drive/folders/1fm7EqSFAmpzH6CTuPN_Hh-gKkteEi4BN?usp=sharing
-        <!-- </div> -->
-      </div>
-    </div>
+  </div>
 </section>

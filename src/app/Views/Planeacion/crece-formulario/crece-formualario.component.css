@@ -1,0 +1,60 @@
+h1{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+
+  align-content: center;
+
+  }
+
+  hr{
+      height: 0.2em;
+      border-width: 200px;
+      max-width: 250px;
+      border-color: rgb(185, 13, 13);
+  }
+  #crecesection {
+      margin: 0 auto;
+      padding-top: 0px;
+      height: 900px;
+      width: 100%;
+
+      box-sizing: border-box;
+  }
+  #sectiondefault {
+    margin: 0 auto;
+    padding-top: 5px;
+    height: 2200px;
+    width: 90%;
+    padding-right: 30px;
+
+    box-sizing: border-box;
+  }
+
+  .bd-callout-info {
+    border-left-color: #f70b0b;
+}
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #000000;
+    border-left-width: 0.25rem;
+    border-radius: 0.25rem;
+
+
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+input[type="radio"] {
+  margin-right: 30px;
+}
+.custom-size {
+  width: 14px;
+  height: 14px;
+}

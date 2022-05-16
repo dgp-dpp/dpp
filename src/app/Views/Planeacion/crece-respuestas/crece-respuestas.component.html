@@ -1,18 +1,35 @@
 <app-home></app-home>
 <section id="sectiondefault">
 
-    <div class="text-center">
-      <!-- <h1><strong>CRECE FORMULARIO</strong></h1> -->
 
-    </div>
-    <div class="container min-vh-10">
-      <!-- <div class="row justify-content-center"> -->
-        <div class="col-md-12 pt-3">
-          <iframe  src="https://docs.google.com/spreadsheets/d/1oHcCZfbWSQ0WM2Tw-JAj4198g1-6MHKQF5ziwVFtwqc/edit#gid=1234221774"
-           style="width: 100%;height: 600px;border: 0;" ></iframe>
+    <!-- <div class="container min-vh-10">
 
-        <!-- </div> -->
-      </div>
-    </div>
+        <div class="col-md-12 pt-3"> -->
+
+
+           <kendo-panelbar>
+           <kendo-panelbar-item  icon="folder" title="CRECE Ejercicio 2022"  >
+             <ng-template kendoPanelBarContent>
+               <div>
+                <iframe  src="https://docs.google.com/spreadsheets/d/1oHcCZfbWSQ0WM2Tw-JAj4198g1-6MHKQF5ziwVFtwqc/edit#gid=1234221774"
+                style="width: 100%;height: 600px;border: 0;" ></iframe>
+               </div>
+             </ng-template>
+            </kendo-panelbar-item>
+             <kendo-panelbar-item icon="folder"title="CRECE Ejercicio 2023" [expanded]="true">
+               <ng-template kendoPanelBarContent>
+                 <div>
+
+                   <iframe
+                     src="https://docs.google.com/spreadsheets/d/1_Oe164oVqGd-uc6raqwwsq1eIRE4wXVaVle3-GVw8Xg/edit?resourcekey#gid=1152821672"
+                     style="width: 100%;height: 600px;"></iframe>
+                 </div>
+               </ng-template>
+
+
+               </kendo-panelbar-item>
+         </kendo-panelbar>
+      <!-- </div>
+    </div> -->
 </section>
 

@@ -1,0 +1,34 @@
+h1{
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.3em;
+  }
+  .container{
+      display: flex;
+      justify-content: left;
+      align-items: left;
+      min-width: 100vh;
+      min-height: 10vh;
+  }
+  hr{
+      height: 0.2em;
+      border-width: 200px;
+      max-width: 250px;
+      border-color: rgb(185, 13, 13);
+  }
+  #crecesection {
+      margin: 0 auto;
+      padding-top: 0px;
+      height: 900px;
+      width: 100%;
+
+      box-sizing: border-box;
+  }
+  #sectiondefault {
+    margin: 0 auto;
+    padding-top: 20px;
+    height: 1100px;
+    width: 90%;
+    padding-right: 30px;
+
+    box-sizing: border-box;
+  }
