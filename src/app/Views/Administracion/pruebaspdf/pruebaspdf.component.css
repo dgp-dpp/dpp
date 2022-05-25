@@ -3,6 +3,15 @@
     padding-top: 0px;
     height: 700px;
     width: 100%;
-   
+
     box-sizing: border-box;
+}
+#sectionheader {
+  margin: 0 auto;
+  padding-top: 0px;
+  padding-left: 2rem;
+  height: 200px;
+  width: 100%;
+
+  box-sizing: border-box;
 }

@@ -36,6 +36,13 @@ import { IndiceDppComponent } from './Views/IndiceDpp/indice-dpp/indice-dpp.comp
 import { TableroComponent } from './Views/Capacitacion/tablero/tablero.component';
 import { IntegradorComponent } from './Views/Capacitacion/integrador/integrador.component';
 import { FormularioPacComponent } from './Views/Capacitacion/formulario-pac/formulario-pac.component';
+import { CensoComponent } from './Views/CensoGpR/censo/censo.component';
+import { CensoSeguimientoComponent } from './Views/CensoGpR/censo-seguimiento/censo-seguimiento.component';
+import { CensoTableroComponent } from './Views/CensoGpR/censo-tablero/censo-tablero.component';
+import { DownloadUploadService } from './services/download-upload.service';
+import { DownloadComponent } from './Views/Planeacion/crece-informe/download/download.component';
+import { UploadComponent } from './Views/Planeacion/crece-informe/upload/upload.component';
+import { CreceFormualarioComponent } from './Views/Planeacion/crece-formulario/crece-formualario.component';
 
 //Interceptors
 import {AddTokenInterceptor} from '../app/helpers/add-token.interceptor'
@@ -66,13 +73,7 @@ import { FloatingLabelModule } from "@progress/kendo-angular-label";
 import { TooltipsModule } from "@progress/kendo-angular-tooltip";
 import { IntlModule } from "@progress/kendo-angular-intl";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
-import { CensoComponent } from './Views/CensoGpR/censo/censo.component';
-import { CensoSeguimientoComponent } from './Views/CensoGpR/censo-seguimiento/censo-seguimiento.component';
-import { CensoTableroComponent } from './Views/CensoGpR/censo-tablero/censo-tablero.component';
-import { DownloadUploadService } from './services/download-upload.service';
-import { DownloadComponent } from './Views/Planeacion/crece-informe/download/download.component';
-import { UploadComponent } from './Views/Planeacion/crece-informe/upload/upload.component';
-import { CreceFormualarioComponent } from './Views/Planeacion/crece-formulario/crece-formualario.component';
+
 
 
 export function tokenGetter() {

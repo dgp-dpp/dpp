@@ -5,6 +5,13 @@ h1{
   align-content: center;
 
   }
+  h2{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+
+    align-content: center;
+
+    }
 
   hr{
       height: 0.2em;
@@ -48,9 +55,7 @@ h1{
     box-sizing: border-box;
 }
 
-div {
-    display: block;
-}
+
 input[type="radio"] {
   margin-right: 30px;
 }
