@@ -43,6 +43,8 @@ import { DownloadUploadService } from './services/download-upload.service';
 import { DownloadComponent } from './Views/Planeacion/crece-informe/download/download.component';
 import { UploadComponent } from './Views/Planeacion/crece-informe/upload/upload.component';
 import { CreceFormualarioComponent } from './Views/Planeacion/crece-formulario/crece-formualario.component';
+import { DirectorioGpRComponent } from './Views/CensoGpR/directorio-gp-r/directorio-gp-r.component';
+import { AvanceRestructuraComponent } from './Views/Reestructura/avance-restructura/avance-restructura.component';
 
 //Interceptors
 import {AddTokenInterceptor} from '../app/helpers/add-token.interceptor'
@@ -73,6 +75,7 @@ import { FloatingLabelModule } from "@progress/kendo-angular-label";
 import { TooltipsModule } from "@progress/kendo-angular-tooltip";
 import { IntlModule } from "@progress/kendo-angular-intl";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
+
 
 
 
@@ -129,6 +132,8 @@ export function tokenGetter() {
     DownloadComponent,
     UploadComponent,
     CreceFormualarioComponent,
+    DirectorioGpRComponent,
+    AvanceRestructuraComponent,
 
 
 

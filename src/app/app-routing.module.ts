@@ -36,6 +36,8 @@ import { CensoComponent } from './Views/CensoGpR/censo/censo.component';
 import { CensoSeguimientoComponent } from './Views/CensoGpR/censo-seguimiento/censo-seguimiento.component';
 import { CensoTableroComponent } from './Views/CensoGpR/censo-tablero/censo-tablero.component';
 import { CreceFormualarioComponent } from './Views/Planeacion/crece-formulario/crece-formualario.component';
+import { DirectorioGpRComponent } from './Views/CensoGpR/directorio-gp-r/directorio-gp-r.component';
+import { AvanceRestructuraComponent } from './Views/Reestructura/avance-restructura/avance-restructura.component';
 
 const routes: Routes = [
 
@@ -79,6 +81,9 @@ const routes: Routes = [
   { path: "kendoui", component:KendoComponent},
   { path: "catalogo_pp", component:CatalogoProgramasComponent},
   {path:"crece-formulario", component:CreceFormualarioComponent},
+  {path:"directorio", component:DirectorioGpRComponent},
+  {path:"avance-res", component:AvanceRestructuraComponent},
+
 
   { path: "chrtshigh", component:ChrtshighComponent},
 

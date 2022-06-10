@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectEvent, TabPosition } from '@progress/kendo-angular-layout';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
 
-import { bloques } from 'src/app/models/data.bloques';
-import { categories } from 'src/app/models/data.categories';
 import { pp } from 'src/app/models/data.pp';
 import { CatPpService } from 'src/app/services/cat-pp.service';
-import { CursosService } from 'src/app/services/cursos.service';
 import { DependenciasService } from 'src/app/services/dependencias.service';
-import { InscripcionesService } from 'src/app/services/inscripciones.service';
 import { LoginService } from 'src/app/services/login.service';
+import {CrecePlaneacionService} from 'src/app/services/crece-planeacion.service'
 
 @Component({
   selector: 'app-crece-formualario',
@@ -19,6 +16,9 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./crece-formualario.component.css']
 })
 export class CreceFormualarioComponent implements OnInit {
+//   @ViewChild('myForm') form: FormGroup;
+
+// send() { this.form.ngSubmit.emit(); }
   form: FormGroup;
   public selectedValue = "";
   Nombre: string;
@@ -27,6 +27,9 @@ export class CreceFormualarioComponent implements OnInit {
   public fecha: Date = new Date(2000, 2, 10);
   public position: TabPosition = "top";
   public textAreaValueDp4 ="";
+  public Dp4Calf: number;
+  public CalfDp4:string = "";
+  public PonDp4:number = 0;
   public textAreaValueDp5 ="";
   public textAreaValueDp6 ="";
   public textAreaValueDp7 ="";
@@ -70,275 +73,10 @@ export class CreceFormualarioComponent implements OnInit {
   public textAreaValueMir24="";
   public textAreaValueMir25="";
   public textAreaValueMir26="";
-
-
-
-
-
-public clearValue4(): void {
-  this.textAreaValueDp4 = "";
-}
-public clearValue5(): void {
-  this.textAreaValueDp5 = "";
-}
-public clearValue6(): void {
-  this.textAreaValueDp6 = "";
-}
-public clearValue7(): void {
-  this.textAreaValueDp7 = "";
-}
-
-public clearValue8(): void {
-  this.textAreaValueDp8 = "";
-}
-public clearValue9(): void {
-  this.textAreaValueDp9 = "";
-}
-public clearValue10(): void {
-  this.textAreaValueDp10 = "";
-}
-public clearValue11(): void {
-  this.textAreaValueDp11 = "";
-}
-public clearValue12(): void {
-  this.textAreaValueDp12 = "";
-}
-public clearValue13(): void {
-  this.textAreaValueDp13 = "";
-}
-public clearValue14(): void {
-  this.textAreaValueDp14 = "";
-}
-public clearValue15(): void {
-  this.textAreaValueDp15 = "";
-}
-public clearValue16(): void {
-  this.textAreaValueDp16 = "";
-}
-public clearValue17(): void {
-  this.textAreaValueDp17 = "";
-}
-public clearValue18(): void {
-  this.textAreaValueDp18 = "";
-}
-public clearValue19(): void {
-  this.textAreaValueDp19 = "";
-}
-public clearValue20(): void {
-  this.textAreaValueDp20 = "";
-}
-
-public clearValue21(): void {
-  this.textAreaValueMir1 = "";
-}
-public clearValue22(): void {
-  this.textAreaValueMir2 = "";
-}
-public clearValue23(): void {
-  this.textAreaValueMir3 = "";
-}
-public clearValue24(): void {
-  this.textAreaValueMir4 = "";
-}
-public clearValue25(): void {
-  this.textAreaValueMir5 = "";
-}
-public clearValue26(): void {
-  this.textAreaValueMir6 = "";
-}
-public clearValue27(): void {
-  this.textAreaValueMir7 = "";
-}
-public clearValue28(): void {
-  this.textAreaValueMir8 = "";
-}
-public clearValue29(): void {
-  this.textAreaValueMir9 = "";
-}
-public clearValue30(): void {
-  this.textAreaValueMir10 = "";
-}
-public clearValue31(): void {
-  this.textAreaValueMir11 = "";
-}
-public clearValue32(): void {
-  this.textAreaValueMir12 = "";
-}
-public clearValue33(): void {
-  this.textAreaValueMir13 = "";
-}
-public clearValue34(): void {
-  this.textAreaValueMir14 = "";
-}
-public clearValue35(): void {
-  this.textAreaValueMir15 = "";
-}
-public clearValue36(): void {
-  this.textAreaValueMir16 = "";
-}
-public clearValue37(): void {
-  this.textAreaValueMir17 = "";
-}
-public clearValue38(): void {
-  this.textAreaValueMir18 = "";
-}
-public clearValue39(): void {
-  this.textAreaValueMir19 = "";
-}
-public clearValue40(): void {
-  this.textAreaValueMir20 = "";
-}
-public clearValue41(): void {
-  this.textAreaValueMir21 = "";
-}
-public clearValue42(): void {
-  this.textAreaValueMir22 = "";
-}
-public clearValue43(): void {
-  this.textAreaValueMir23 = "";
-}
-public clearValue44(): void {
-  this.textAreaValueMir24 = "";
-}
-public clearValue45(): void {
-  this.textAreaValueMir25 = "";
-}
-public clearValue46(): void {
-  this.textAreaValueMir26 = "";
-}
-
-
-public sinrec4(): void {
-  this.textAreaValueDp4 = "Sin recomendaciones";
-}
-public sinrec5(): void {
-  this.textAreaValueDp5 = "Sin recomendaciones";
-}
-public sinrec6(): void {
-  this.textAreaValueDp6 = "Sin recomendaciones";
-}
-public sinrec7(): void {
-  this.textAreaValueDp7 = "Sin recomendaciones";
-}
-public sinrec8(): void {
-  this.textAreaValueDp8 = "Sin recomendaciones";
-}
-public sinrec9(): void {
-  this.textAreaValueDp9 = "Sin recomendaciones";
-}
-public sinrec10(): void {
-  this.textAreaValueDp10 = "Sin recomendaciones";
-}
-public sinrec11(): void {
-  this.textAreaValueDp11 = "Sin recomendaciones";
-}
-public sinrec12(): void {
-  this.textAreaValueDp12 = "Sin recomendaciones";
-}
-public sinrec13(): void {
-  this.textAreaValueDp13 = "Sin recomendaciones";
-}
-public sinrec14(): void {
-  this.textAreaValueDp14 = "Sin recomendaciones";
-}
-public sinrec15(): void {
-  this.textAreaValueDp15 = "Sin recomendaciones";
-}
-public sinrec16(): void {
-  this.textAreaValueDp16 = "Sin recomendaciones";
-}
-public sinrec17(): void {
-  this.textAreaValueDp17 = "Sin recomendaciones";
-}
-public sinrec18(): void {
-  this.textAreaValueDp18 = "Sin recomendaciones";
-}
-public sinrec19(): void {
-  this.textAreaValueDp19 = "Sin recomendaciones";
-}
-public sinrec20(): void {
-  this.textAreaValueDp20 = "Sin recomendaciones";
-}
-public sinrec21(): void {
-  this.textAreaValueMir1 = "Sin recomendaciones";
-}
-public sinrec22(): void {
-  this.textAreaValueMir2 = "Sin recomendaciones";
-}
-public sinrec23(): void {
-  this.textAreaValueMir3 = "Sin recomendaciones";
-}
-public sinrec24(): void {
-  this.textAreaValueMir4 = "Sin recomendaciones";
-}
-public sinrec25(): void {
-  this.textAreaValueMir5 = "Sin recomendaciones";
-}
-public sinrec26(): void {
-  this.textAreaValueMir6 = "Sin recomendaciones";
-}
-public sinrec27(): void {
-  this.textAreaValueMir7 = "Sin recomendaciones";
-}
-public sinrec28(): void {
-  this.textAreaValueMir8 = "Sin recomendaciones";
-}
-public sinrec29(): void {
-  this.textAreaValueMir9 = "Sin recomendaciones";
-}
-public sinrec30(): void {
-  this.textAreaValueMir10 = "Sin recomendaciones";
-}
-public sinrec31(): void {
-  this.textAreaValueMir11 = "Sin recomendaciones";
-}
-public sinrec32(): void {
-  this.textAreaValueMir12= "Sin recomendaciones";
-}
-public sinrec33(): void {
-  this.textAreaValueMir13 = "Sin recomendaciones";
-}
-public sinrec34(): void {
-  this.textAreaValueMir14 = "Sin recomendaciones";
-}
-public sinrec35(): void {
-  this.textAreaValueMir15 = "Sin recomendaciones";
-}
-public sinrec36(): void {
-  this.textAreaValueMir16 = "Sin recomendaciones";
-}
-public sinrec37(): void {
-  this.textAreaValueMir17 = "Sin recomendaciones";
-}
-public sinrec38(): void {
-  this.textAreaValueMir18 = "Sin recomendaciones";
-}
-public sinrec39(): void {
-  this.textAreaValueMir19 = "Sin recomendaciones";
-}
-public sinrec40(): void {
-  this.textAreaValueMir20 = "Sin recomendaciones";
-}
-public sinrec41(): void {
-  this.textAreaValueMir21 = "Sin recomendaciones";
-}
-public sinrec42(): void {
-  this.textAreaValueMir22 = "Sin recomendaciones";
-}
-public sinrec43(): void {
-  this.textAreaValueMir23= "Sin recomendaciones";
-}
-public sinrec44(): void {
-  this.textAreaValueMir24 = "Sin recomendaciones";
-}
-public sinrec45(): void {
-  this.textAreaValueMir25 = "Sin recomendaciones";
-}
-public sinrec46(): void {
-  this.textAreaValueMir26 = "Sin recomendaciones";
-}
-
-
+  public textAreaValueFMIR="";
+  public textAreaValueFDP="";
+  public textAreaValueAODP="";
+  public textAreaValueAOMIR="";
 
   public listCursos:  Array<{ value: number ;text: string}> = [];
   public listDep:  Array<{ text: string; value: number}> = [];
@@ -382,30 +120,6 @@ obtenerPp(){
   )
 }
 
-
-//Obtener Curso
-  obtenerCursos() {
-    this._cursosService.getListCursos().pipe(
-      map(response =>response.$values)
-    ).subscribe(_data => {
-      _data = _data.map(_curso=>{
-        const {idCurso, nombreCurso} = _curso;
-        return {
-
-          value: idCurso,
-          text: nombreCurso
-        }
-
-
-      });
-     this.listCursos = _data;
-      console.log(_data);
-
-
-    }, error => {
-      console.log(error);
-    })
-  }
 //Obtener Dependencias
   obtenerDependencias() {
     this._depService.GetListDep().pipe(
@@ -430,8 +144,8 @@ obtenerPp(){
 
 
   //Metodo para registrar las Inscripciones
-  guardarInscripcion() {
-    const inscripcion: any = {
+  GuardarCrece() {
+    const crece: any = {
       Email: this.form.get('Email')?.value,
       Revision: this.form.get('Revision')?.value,
       Pp: this.form.get('Pp')?.value,
@@ -439,13 +153,15 @@ obtenerPp(){
       Fecha: this.form.get('Fecha')?.value,
       Ano: this.form.get('Ano')?.value,
       DepPar: this.form.get('DepPar')?.value,
+      //Elementos
       ClaveNombre: this.form.get('ClaveNombre')?.value,
       DepResPp: this.form.get('DepResPp')?.value,
       DepParPp: this.form.get('DepParPp')?.value,
+      FechaADx: this.form.get('FechaADx')?.value,
       Intro: this.form.get('Intro')?.value,
       AnalisisInvolucrados: this.form.get('AnalisisInvolucrados')?.value,
       DefProblema: this.form.get('DefProblema')?.value,
-      AnalisisProblema: this.form.get('AnalisisProblema')?.value,
+      // AnalisisProblema: this.form.get('AnalisisProblema')?.value,
       EvoProblema: this.form.get('EvoProblema')?.value,
       EstActualProblema: this.form.get('EstActualProblema')?.value,
       ExpAtencion: this.form.get('ExpAtencion')?.value,
@@ -460,7 +176,6 @@ obtenerPp(){
       ElementosPEB: this.form.get('ElementosPEB')?.value,
       MIR: this.form.get('MIR')?.value,
       EvoPp:this.form.get('EvoPp')?.value,
-      CoberturaPp:this.form.get('CoberturaPp')?.value,
       Glosario:this.form.get('Glosario')?.value,
 
      //Evaluacion Dp
@@ -501,40 +216,72 @@ obtenerPp(){
       //MIr
       Mir1:this.form.get('Mir1')?.value,
       Mir1Esp:this.form.get('Mir1Esp')?.value,
-      Mir2:this.form.get('Mir1')?.value,
-      Mir2Esp:this.form.get('Mir1Esp')?.value,
-      Mir3:this.form.get('Mir1')?.value,
-      Mir3Esp:this.form.get('Mir1Esp')?.value,
-      Mir4:this.form.get('Mir1')?.value,
-      Mir4Esp:this.form.get('Mir1Esp')?.value,
-      Mir5:this.form.get('Mir1')?.value,
-      Mir5Esp:this.form.get('Mir1Esp')?.value,
-      Mir6:this.form.get('Mir1')?.value,
-      Mir6Esp:this.form.get('Mir1Esp')?.value,
-      Mir7:this.form.get('Mir1')?.value,
-      Mir7Esp:this.form.get('Mir1Esp')?.value,
-      Mir8:this.form.get('Mir1')?.value,
-      Mir8Esp:this.form.get('Mir1Esp')?.value,
-      Mir9:this.form.get('Mir1')?.value,
-      Mir9Esp:this.form.get('Mir1Esp')?.value,
-      Mir10:this.form.get('Mir1')?.value,
-      Mir10Esp:this.form.get('Mir1Esp')?.value,
-      Mir11:this.form.get('Mir1')?.value,
-      Mir11Esp:this.form.get('Mir1Esp')?.value,
-      Mir12:this.form.get('Mir1')?.value,
-      Mir12Esp:this.form.get('Mir1Esp')?.value,
-      Mir13:this.form.get('Mir1')?.value,
-      Mir13Esp:this.form.get('Mir1Esp')?.value,
-      Mir14:this.form.get('Mir1')?.value,
-      Mir14Esp:this.form.get('Mir1Esp')?.value,
-      Mir15:this.form.get('Mir1')?.value,
-      Mir15Esp:this.form.get('Mir1Esp')?.value,
+      Mir2:this.form.get('Mir2')?.value,
+      Mir2Esp:this.form.get('Mir2Esp')?.value,
+      Mir3:this.form.get('Mir3')?.value,
+      Mir3Esp:this.form.get('Mir3Esp')?.value,
+      Mir4:this.form.get('Mir4')?.value,
+      Mir4Esp:this.form.get('Mir4Esp')?.value,
+      Mir5:this.form.get('Mir5')?.value,
+      Mir5Esp:this.form.get('Mir5Esp')?.value,
+      Mir6:this.form.get('Mir6')?.value,
+      Mir6Esp:this.form.get('Mir6Esp')?.value,
+      Mir7:this.form.get('Mir7')?.value,
+      Mir7Esp:this.form.get('Mir7Esp')?.value,
+      Mir8:this.form.get('Mir8')?.value,
+      Mir8Esp:this.form.get('Mir8Esp')?.value,
+      Mir9:this.form.get('Mir9')?.value,
+      Mir9Esp:this.form.get('Mir9Esp')?.value,
+      Mir10:this.form.get('Mir10')?.value,
+      Mir10Esp:this.form.get('Mir10Esp')?.value,
+      Mir11:this.form.get('Mir11')?.value,
+      Mir11Esp:this.form.get('Mir11Esp')?.value,
+      Mir12:this.form.get('Mir12')?.value,
+      Mir12Esp:this.form.get('Mir12Esp')?.value,
+      Mir13:this.form.get('Mir13')?.value,
+      Mir13Esp:this.form.get('Mir13Esp')?.value,
+      Mir14:this.form.get('Mir14')?.value,
+      Mir14Esp:this.form.get('Mir14Esp')?.value,
+      Mir15:this.form.get('Mir15')?.value,
+      Mir15Esp:this.form.get('Mir15Esp')?.value,
+      Mir16:this.form.get('Mir16')?.value,
+      Mir16Esp:this.form.get('Mir16Esp')?.value,
+      Mir17:this.form.get('Mir17')?.value,
+      Mir17Esp:this.form.get('Mir17Esp')?.value,
+      Mir18:this.form.get('Mir18')?.value,
+      Mir18Esp:this.form.get('Mir18Esp')?.value,
+      Mir19:this.form.get('Mir19')?.value,
+      Mir19Esp:this.form.get('Mir19Esp')?.value,
+      Mir20:this.form.get('Mir20')?.value,
+      Mir20Esp:this.form.get('Mir20Esp')?.value,
+      Mir21:this.form.get('Mir21')?.value,
+      Mir21Esp:this.form.get('Mir21Esp')?.value,
+      Mir22:this.form.get('Mir22')?.value,
+      Mir22Esp:this.form.get('Mir22Esp')?.value,
+      Mir23:this.form.get('Mir23')?.value,
+      Mir23Esp:this.form.get('Mir23Esp')?.value,
+      Mir24:this.form.get('Mir24')?.value,
+      Mir24Esp:this.form.get('Mir24Esp')?.value,
+      Mir25:this.form.get('Mir25')?.value,
+      Mir25Esp:this.form.get('Mir25Esp')?.value,
+      Mir26:this.form.get('Mir26')?.value,
+      Mir26Esp:this.form.get('Mir26Esp')?.value,
+      //Fortalezas
+      FMir:this.form.get('FMir')?.value,
+      FDp:this.form.get('FDp')?.value,
+      //Areas de Oportunidad
+      AoMir:this.form.get('AoMir')?.value,
+      AoDp:this.form.get('AoDp')?.value,
+      CalfDp4form:this.form.get('CalfDp4form')?.value,
+      ponDp4form:this.form.get('ponDp4form')?.value,
+
+
 
 
 
     }
-    this._inscripcionService.saveInscripcion(inscripcion).subscribe(_data => {
-      this.toastr.success('El Participante '+ inscripcion.Nombre +' fue registrado con exito!', 'Participante Registrado');
+    this.CrecePlaneacionService.saveCrece(crece).subscribe(_data => {
+      this.toastr.success('El Crece del PP '+ crece.Pp +' fue registrado con exito!', 'Crece Registrado');
       this.form.reset();
     }, error => {
       this.toastr.error('Opss.. ocurrio un error','Error')
@@ -544,9 +291,8 @@ obtenerPp(){
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
-    private _inscripcionService: InscripcionesService,
-    private _cursosService: CursosService,
     private _depService: DependenciasService,
+    private CrecePlaneacionService:CrecePlaneacionService,
     private _catPpService: CatPpService,
     private loginServices:LoginService) {
     this.form = this.fb.group({
@@ -564,7 +310,7 @@ obtenerPp(){
       Intro:['',Validators.required],
       AnalisisInvolucrados:['',Validators.required],
       DefProblema:['',Validators.required],
-      AnalisisProblema:['',Validators.required],
+      // AnalisisProblema:['',Validators.required],
       EvoProblema:['',Validators.required],
       EstActualProblema:['',Validators.required],
       ExpAtencion:['',Validators.required],
@@ -580,7 +326,6 @@ obtenerPp(){
       MIR:['',Validators.required],
       EvoPp:['',Validators.required],
       Glosario:['',Validators.required],
-      CoberturaPp:['',Validators.required],
       Dp4:['',Validators.required],
       Dp4Esp:['',Validators.required],
       Dp5:['',Validators.required],
@@ -667,6 +412,12 @@ obtenerPp(){
       Mir25Esp:['',Validators.required],
       Mir26:['',Validators.required],
       Mir26Esp:['',Validators.required],
+      FMir:['',Validators.required],
+      FDp:['',Validators.required],
+      AoMir:['',Validators.required],
+      AoDp:['',Validators.required],
+      CalfDp4form:['',Validators.required],
+      ponDp4form:['',Validators.required],
 
 
 
@@ -676,11 +427,316 @@ obtenerPp(){
    }
 
   ngOnInit(): void {
-    this.obtenerCursos();
     this.obtenerDependencias();
     this.getUsuario();
     this.obtenerPp();
+    this.respuestaGenericaDp4();
+    this.ponderacionDp4();
 
+  }
+  public clearValue4(): void {
+    this.textAreaValueDp4 = "";
+  }
+  public clearValue5(): void {
+    this.textAreaValueDp5 = "";
+  }
+  public clearValue6(): void {
+    this.textAreaValueDp6 = "";
+  }
+  public clearValue7(): void {
+    this.textAreaValueDp7 = "";
+  }
+
+  public clearValue8(): void {
+    this.textAreaValueDp8 = "";
+  }
+  public clearValue9(): void {
+    this.textAreaValueDp9 = "";
+  }
+  public clearValue10(): void {
+    this.textAreaValueDp10 = "";
+  }
+  public clearValue11(): void {
+    this.textAreaValueDp11 = "";
+  }
+  public clearValue12(): void {
+    this.textAreaValueDp12 = "";
+  }
+  public clearValue13(): void {
+    this.textAreaValueDp13 = "";
+  }
+  public clearValue14(): void {
+    this.textAreaValueDp14 = "";
+  }
+  public clearValue15(): void {
+    this.textAreaValueDp15 = "";
+  }
+  public clearValue16(): void {
+    this.textAreaValueDp16 = "";
+  }
+  public clearValue17(): void {
+    this.textAreaValueDp17 = "";
+  }
+  public clearValue18(): void {
+    this.textAreaValueDp18 = "";
+  }
+  public clearValue19(): void {
+    this.textAreaValueDp19 = "";
+  }
+  public clearValue20(): void {
+    this.textAreaValueDp20 = "";
+  }
+
+  public clearValue21(): void {
+    this.textAreaValueMir1 = "";
+  }
+  public clearValue22(): void {
+    this.textAreaValueMir2 = "";
+  }
+  public clearValue23(): void {
+    this.textAreaValueMir3 = "";
+  }
+  public clearValue24(): void {
+    this.textAreaValueMir4 = "";
+  }
+  public clearValue25(): void {
+    this.textAreaValueMir5 = "";
+  }
+  public clearValue26(): void {
+    this.textAreaValueMir6 = "";
+  }
+  public clearValue27(): void {
+    this.textAreaValueMir7 = "";
+  }
+  public clearValue28(): void {
+    this.textAreaValueMir8 = "";
+  }
+  public clearValue29(): void {
+    this.textAreaValueMir9 = "";
+  }
+  public clearValue30(): void {
+    this.textAreaValueMir10 = "";
+  }
+  public clearValue31(): void {
+    this.textAreaValueMir11 = "";
+  }
+  public clearValue32(): void {
+    this.textAreaValueMir12 = "";
+  }
+  public clearValue33(): void {
+    this.textAreaValueMir13 = "";
+  }
+  public clearValue34(): void {
+    this.textAreaValueMir14 = "";
+  }
+  public clearValue35(): void {
+    this.textAreaValueMir15 = "";
+  }
+  public clearValue36(): void {
+    this.textAreaValueMir16 = "";
+  }
+  public clearValue37(): void {
+    this.textAreaValueMir17 = "";
+  }
+  public clearValue38(): void {
+    this.textAreaValueMir18 = "";
+  }
+  public clearValue39(): void {
+    this.textAreaValueMir19 = "";
+  }
+  public clearValue40(): void {
+    this.textAreaValueMir20 = "";
+  }
+  public clearValue41(): void {
+    this.textAreaValueMir21 = "";
+  }
+  public clearValue42(): void {
+    this.textAreaValueMir22 = "";
+  }
+  public clearValue43(): void {
+    this.textAreaValueMir23 = "";
+  }
+  public clearValue44(): void {
+    this.textAreaValueMir24 = "";
+  }
+  public clearValue45(): void {
+    this.textAreaValueMir25 = "";
+  }
+  public clearValue46(): void {
+    this.textAreaValueMir26 = "";
+  }
+  public clearValue47(): void {
+    this.textAreaValueFMIR = "";
+  }
+  public clearValue48(): void {
+    this.textAreaValueFDP = "";
+  }
+  public clearValue49(): void {
+    this.textAreaValueAOMIR = "";
+  }
+  public clearValue50(): void {
+    this.textAreaValueAODP = "";
+  }
+
+  public sinrec4(): void {
+    if(this.Dp4Calf == 9 ){
+    this.textAreaValueDp4 = "Sin recomendaciones";
+    }
+    else if(this.Dp4Calf == 6){
+      this.textAreaValueDp4 = "";
+    }
+    else if(this.Dp4Calf == 3){
+      this.textAreaValueDp4 = "";
+    }
+  }
+  public respuestaGenericaDp4(): any {
+     if(this.Dp4Calf == 9 ){
+    this.CalfDp4 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    //Maximo 2%
+     }else if(this.Dp4Calf == 6){
+       this.CalfDp4 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+      }
+     else if(this.Dp4Calf == 3){
+      this.CalfDp4 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+  }
+
+  public ponderacionDp4(): void {
+    if(this.Dp4Calf == 9 ){
+   //Maximo 2%
+   this.PonDp4 = 2;
+    }else if(this.Dp4Calf == 6){
+      this.PonDp4 = 1;
+    }
+    else if(this.Dp4Calf == 3){
+     this.PonDp4 = 0;
+   }
+ }
+  public sinrec5(): void {
+    this.textAreaValueDp5 = "Sin recomendaciones";
+  }
+  public sinrec6(): void {
+    this.textAreaValueDp6 = "Sin recomendaciones";
+  }
+  public sinrec7(): void {
+    this.textAreaValueDp7 = "Sin recomendaciones";
+  }
+  public sinrec8(): void {
+    this.textAreaValueDp8 = "Sin recomendaciones";
+  }
+  public sinrec9(): void {
+    this.textAreaValueDp9 = "Sin recomendaciones";
+  }
+  public sinrec10(): void {
+    this.textAreaValueDp10 = "Sin recomendaciones";
+  }
+  public sinrec11(): void {
+    this.textAreaValueDp11 = "Sin recomendaciones";
+  }
+  public sinrec12(): void {
+    this.textAreaValueDp12 = "Sin recomendaciones";
+  }
+  public sinrec13(): void {
+    this.textAreaValueDp13 = "Sin recomendaciones";
+  }
+  public sinrec14(): void {
+    this.textAreaValueDp14 = "Sin recomendaciones";
+  }
+  public sinrec15(): void {
+    this.textAreaValueDp15 = "Sin recomendaciones";
+  }
+  public sinrec16(): void {
+    this.textAreaValueDp16 = "Sin recomendaciones";
+  }
+  public sinrec17(): void {
+    this.textAreaValueDp17 = "Sin recomendaciones";
+  }
+  public sinrec18(): void {
+    this.textAreaValueDp18 = "Sin recomendaciones";
+  }
+  public sinrec19(): void {
+    this.textAreaValueDp19 = "Sin recomendaciones";
+  }
+  public sinrec20(): void {
+    this.textAreaValueDp20 = "Sin recomendaciones";
+  }
+  public sinrec21(): void {
+    this.textAreaValueMir1 = "Sin recomendaciones";
+  }
+  public sinrec22(): void {
+    this.textAreaValueMir2 = "Sin recomendaciones";
+  }
+  public sinrec23(): void {
+    this.textAreaValueMir3 = "Sin recomendaciones";
+  }
+  public sinrec24(): void {
+    this.textAreaValueMir4 = "Sin recomendaciones";
+  }
+  public sinrec25(): void {
+    this.textAreaValueMir5 = "Sin recomendaciones";
+  }
+  public sinrec26(): void {
+    this.textAreaValueMir6 = "Sin recomendaciones";
+  }
+  public sinrec27(): void {
+    this.textAreaValueMir7 = "Sin recomendaciones";
+  }
+  public sinrec28(): void {
+    this.textAreaValueMir8 = "Sin recomendaciones";
+  }
+  public sinrec29(): void {
+    this.textAreaValueMir9 = "Sin recomendaciones";
+  }
+  public sinrec30(): void {
+    this.textAreaValueMir10 = "Sin recomendaciones";
+  }
+  public sinrec31(): void {
+    this.textAreaValueMir11 = "Sin recomendaciones";
+  }
+  public sinrec32(): void {
+    this.textAreaValueMir12= "Sin recomendaciones";
+  }
+  public sinrec33(): void {
+    this.textAreaValueMir13 = "Sin recomendaciones";
+  }
+  public sinrec34(): void {
+    this.textAreaValueMir14 = "Sin recomendaciones";
+  }
+  public sinrec35(): void {
+    this.textAreaValueMir15 = "Sin recomendaciones";
+  }
+  public sinrec36(): void {
+    this.textAreaValueMir16 = "Sin recomendaciones";
+  }
+  public sinrec37(): void {
+    this.textAreaValueMir17 = "Sin recomendaciones";
+  }
+  public sinrec38(): void {
+    this.textAreaValueMir18 = "Sin recomendaciones";
+  }
+  public sinrec39(): void {
+    this.textAreaValueMir19 = "Sin recomendaciones";
+  }
+  public sinrec40(): void {
+    this.textAreaValueMir20 = "Sin recomendaciones";
+  }
+  public sinrec41(): void {
+    this.textAreaValueMir21 = "Sin recomendaciones";
+  }
+  public sinrec42(): void {
+    this.textAreaValueMir22 = "Sin recomendaciones";
+  }
+  public sinrec43(): void {
+    this.textAreaValueMir23= "Sin recomendaciones";
+  }
+  public sinrec44(): void {
+    this.textAreaValueMir24 = "Sin recomendaciones";
+  }
+  public sinrec45(): void {
+    this.textAreaValueMir25 = "Sin recomendaciones";
+  }
+  public sinrec46(): void {
+    this.textAreaValueMir26 = "Sin recomendaciones";
   }
   public listYear: Array<string> = [
     "2019",
