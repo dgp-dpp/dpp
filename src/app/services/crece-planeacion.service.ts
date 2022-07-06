@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 export class CrecePlaneacionService {
 
 
-private myAppUrl = 'http://172.31.141.176:8088';
+private myAppUrl = 'http://172.31.141.191:8088';
 private myApiUrl = '/BackEndApi/api/Crece'
 
   constructor(private http: HttpClient) { }

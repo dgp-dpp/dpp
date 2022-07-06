@@ -14,7 +14,7 @@ import { GridDataResult } from '@progress/kendo-angular-grid';
 })
 export class InscripcionesService {
 
-  private myAppUrl = 'http://172.31.141.176:8088';
+  private myAppUrl = 'http://172.31.141.191:8088';
 private myApiUrl = '/BackEndApi/api/Inscripcion/Registrar';
 private myApiUrlGet = '/BackEndApi/api/Inscripcion'
 

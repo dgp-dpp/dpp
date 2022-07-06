@@ -6,10 +6,10 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class DownloadUploadService {
-  private baseApiUrl = "http://172.31.141.176:8088/BackEndApi/api/File";
-  private apiDownloadUrl = "http://172.31.141.176:8088/BackEndApi/api/File/download";
-  private apiUploadUrl = "http://172.31.141.176:8088/BackEndApi/api/File/upload";
-  private ApiFileUrl = "http://172.31.141.176:8088/BackEndApi/api/File";
+  private baseApiUrl = "http://172.31.141.191:8088/BackEndApi/api/File";
+  private apiDownloadUrl = "http://172.31.141.191:8088/BackEndApi/api/File/download";
+  private apiUploadUrl = "http://172.31.141.191:8088/BackEndApi/api/File/upload";
+  private ApiFileUrl = "http://172.31.141.191:8088/BackEndApi/api/File";
   constructor(private httpClient: HttpClient) {
    }
    public downloadFile(file:string):Observable<HttpEvent<Blob>>

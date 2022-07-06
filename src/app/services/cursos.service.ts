@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class CursosService {
-  private myAppUrl = 'http://172.31.141.176:8088';
+  private myAppUrl = 'http://172.31.141.191:8088';
 private myApiUrl = '/BackEndApi/api/Curso'
 
   constructor(private http:HttpClient) {
