@@ -8,7 +8,7 @@ import { pp } from 'src/app/models/data.pp';
 import { CatPpService } from 'src/app/services/cat-pp.service';
 import { DependenciasService } from 'src/app/services/dependencias.service';
 import { LoginService } from 'src/app/services/login.service';
-import {CrecePlaneacionService} from 'src/app/services/crece-planeacion.service'
+import { CrecePlaneacionService } from 'src/app/services/crece-planeacion.service'
 
 @Component({
   selector: 'app-crece-formualario',
@@ -16,76 +16,84 @@ import {CrecePlaneacionService} from 'src/app/services/crece-planeacion.service'
   styleUrls: ['./crece-formualario.component.css']
 })
 export class CreceFormualarioComponent implements OnInit {
-//   @ViewChild('myForm') form: FormGroup;
+  //   @ViewChild('myForm') form: FormGroup;
 
-// send() { this.form.ngSubmit.emit(); }
+  // send() { this.form.ngSubmit.emit(); }
   form: FormGroup;
   public selectedValue = "";
   Nombre: string;
   Rol: string;
-  public ProgramaPresupuestario: Array<{ value: number ;text: string}>= [];
+  public ProgramaPresupuestario: Array<{ value: number; text: string }> = [];
   public fecha: Date = new Date(2000, 2, 10);
   public position: TabPosition = "top";
-  public textAreaValueDp4 ="";
-  public Dp4Calf: number;
-  public CalfDp4:string = "";
-  public PonDp4:number = 0;
-  public textAreaValueDp5 ="";
-  public textAreaValueDp6 ="";
-  public textAreaValueDp7 ="";
-  public textAreaValueDp8 ="";
-  public textAreaValueDp9 ="";
-  public textAreaValueDp10 ="";
-  public textAreaValueDp11 ="";
-  public textAreaValueDp12 ="";
-  public textAreaValueDp13 ="";
-  public textAreaValueDp14 ="";
-  public textAreaValueDp15 ="";
-  public textAreaValueDp16 ="";
-  public textAreaValueDp17 ="";
-  public textAreaValueDp18 ="";
-  public textAreaValueDp19 ="";
-  public textAreaValueDp20 ="";
 
-  public textAreaValueMir1="";
-  public textAreaValueMir2="";
-  public textAreaValueMir3="";
-  public textAreaValueMir4="";
-  public textAreaValueMir5="";
-  public textAreaValueMir6="";
-  public textAreaValueMir7="";
-  public textAreaValueMir8="";
-  public textAreaValueMir9="";
-  public textAreaValueMir10="";
-  public textAreaValueMir11="";
-  public textAreaValueMir12="";
-  public textAreaValueMir13="";
-  public textAreaValueMir14="";
-  public textAreaValueMir15="";
-  public textAreaValueMir16="";
-  public textAreaValueMir17="";
-  public textAreaValueMir18="";
-  public textAreaValueMir19="";
-  public textAreaValueMir20="";
-  public textAreaValueMir21="";
-  public textAreaValueMir22="";
-  public textAreaValueMir23="";
-  public textAreaValueMir24="";
-  public textAreaValueMir25="";
-  public textAreaValueMir26="";
-  public textAreaValueFMIR="";
-  public textAreaValueFDP="";
-  public textAreaValueAODP="";
-  public textAreaValueAOMIR="";
+  public Contador1si: number;
+  public Contador2si: any;
+  public Contador1no: any;
+  public Contador2no: any;
+  public TotalSi!: any;
 
-  public listCursos:  Array<{ value: number ;text: string}> = [];
-  public listDep:  Array<{ text: string; value: number}> = [];
+  public contador:number=0;
 
-  getUsuario():void
-  {
-     this.Nombre = this.loginServices.getTokenDecoded().sub;
-     this.Rol= this.loginServices.getTokenDecoded().roles;
-     console.log(this.loginServices.getTokenDecoded());
+  public Dp4Calf: any;
+  public CalfDp4: string = "";
+  public PonDp4: number = 0;
+  public textAreaValueDp4 = "";
+  public textAreaValueDp5 = "";
+  public textAreaValueDp6 = "";
+  public textAreaValueDp7 = "";
+  public textAreaValueDp8 = "";
+  public textAreaValueDp9 = "";
+  public textAreaValueDp10 = "";
+  public textAreaValueDp11 = "";
+  public textAreaValueDp12 = "";
+  public textAreaValueDp13 = "";
+  public textAreaValueDp14 = "";
+  public textAreaValueDp15 = "";
+  public textAreaValueDp16 = "";
+  public textAreaValueDp17 = "";
+  public textAreaValueDp18 = "";
+  public textAreaValueDp19 = "";
+  public textAreaValueDp20 = "";
+
+  public textAreaValueMir1 = "";
+  public textAreaValueMir2 = "";
+  public textAreaValueMir3 = "";
+  public textAreaValueMir4 = "";
+  public textAreaValueMir5 = "";
+  public textAreaValueMir6 = "";
+  public textAreaValueMir7 = "";
+  public textAreaValueMir8 = "";
+  public textAreaValueMir9 = "";
+  public textAreaValueMir10 = "";
+  public textAreaValueMir11 = "";
+  public textAreaValueMir12 = "";
+  public textAreaValueMir13 = "";
+  public textAreaValueMir14 = "";
+  public textAreaValueMir15 = "";
+  public textAreaValueMir16 = "";
+  public textAreaValueMir17 = "";
+  public textAreaValueMir18 = "";
+  public textAreaValueMir19 = "";
+  public textAreaValueMir20 = "";
+  public textAreaValueMir21 = "";
+  public textAreaValueMir22 = "";
+  public textAreaValueMir23 = "";
+  public textAreaValueMir24 = "";
+  public textAreaValueMir25 = "";
+  public textAreaValueMir26 = "";
+  public textAreaValueFMIR = "";
+  public textAreaValueFDP = "";
+  public textAreaValueAODP = "";
+  public textAreaValueAOMIR = "";
+
+  public listCursos: Array<{ value: number; text: string }> = [];
+  public listDep: Array<{ text: string; value: number }> = [];
+
+  getUsuario(): void {
+    this.Nombre = this.loginServices.getTokenDecoded().sub;
+    this.Rol = this.loginServices.getTokenDecoded().roles;
+    console.log(this.loginServices.getTokenDecoded());
 
   }
   public onTabSelect(e: SelectEvent): void {
@@ -95,51 +103,51 @@ export class CreceFormualarioComponent implements OnInit {
     prevButtonIcon: "fa fa-arrow-circle-left",
     nextButtonIcon: "fa fa-arrow-circle-right",
   };
-obtenerPp(){
-  this._catPpService.getListPp().pipe(
-    map(response=>response.$values)
-  ).subscribe(
-    _data=>{
-      _data = _data.map(_pp=>{
-        const {idPp,clavePp} = _pp;
-        return{
-          value:idPp,
-          text: clavePp
+  obtenerPp() {
+    this._catPpService.getListPp().pipe(
+      map(response => response.$values)
+    ).subscribe(
+      _data => {
+        _data = _data.map(_pp => {
+          const { idPp, clavePp } = _pp;
+          return {
+            value: idPp,
+            text: clavePp
+          }
+
         }
 
+        );
+        this.ProgramaPresupuestario = _data;
+        console.log(_data);
+
+      }, error => {
+        console.log(error);
       }
 
-      );
-      this.ProgramaPresupuestario=_data;
-      console.log(_data);
+    )
+  }
 
-    },error => {
-      console.log(error);
-    }
-
-  )
-}
-
-//Obtener Dependencias
+  //Obtener Dependencias
   obtenerDependencias() {
     this._depService.GetListDep().pipe(
-      map(response =>response.$values)
-     ).subscribe(_data =>{
-       _data = _data.map(_dep=>{
-        const {idDependencia, siglaDependencia} = _dep;
+      map(response => response.$values)
+    ).subscribe(_data => {
+      _data = _data.map(_dep => {
+        const { idDependencia, siglaDependencia } = _dep;
         return {
           text: siglaDependencia,
           value: idDependencia
 
         }
-       }
-        );
-        this.listDep = _data;
-        console.log(_data);
-     },
-     error => {
-      console.log(error);
-    } )
+      }
+      );
+      this.listDep = _data;
+      console.log(_data);
+    },
+      error => {
+        console.log(error);
+      })
   }
 
 
@@ -165,115 +173,116 @@ obtenerPp(){
       EvoProblema: this.form.get('EvoProblema')?.value,
       EstActualProblema: this.form.get('EstActualProblema')?.value,
       ExpAtencion: this.form.get('ExpAtencion')?.value,
-      DefObjetivos:  this.form.get('DefObjetivos')?.value,
-      AnalisisCorrespon:  this.form.get('AnalisisCorrespon')?.value,
+      DefObjetivos: this.form.get('DefObjetivos')?.value,
+      AnalisisCorrespon: this.form.get('AnalisisCorrespon')?.value,
       SelecAlterna: this.form.get('SelecAlterna')?.value,
       EstructuraAnalitica: this.form.get('EstructuraAnalitica')?.value,
-      JustObj:this.form.get('JustObj')?.value,
+      JustObj: this.form.get('JustObj')?.value,
       IdentificacionCuanPob: this.form.get('IdentificacionCuanPob')?.value,
       IdenficacionAreaInfluencia: this.form.get('IdenficacionAreaInfluencia')?.value,
-      RelOtrosPP:  this.form.get('RelOtrosPP')?.value,
+      RelOtrosPP: this.form.get('RelOtrosPP')?.value,
       ElementosPEB: this.form.get('ElementosPEB')?.value,
       MIR: this.form.get('MIR')?.value,
-      EvoPp:this.form.get('EvoPp')?.value,
-      Glosario:this.form.get('Glosario')?.value,
+      EvoPp: this.form.get('EvoPp')?.value,
+      Glosario: this.form.get('Glosario')?.value,
 
-     //Evaluacion Dp
-      Dp4:this.form.get('Dp4')?.value,
-      Dp4Esp:this.form.get('Dp4Esp')?.value,
-      Dp5:this.form.get('Dp5')?.value,
-      Dp5Esp:this.form.get('Dp5Esp')?.value,
-      Dp6:this.form.get('Dp6')?.value,
-      Dp6Esp:this.form.get('Dp6Esp')?.value,
-      Dp7:this.form.get('Dp7')?.value,
-      Dp7Esp:this.form.get('Dp7Esp')?.value,
-      Dp8:this.form.get('Dp8')?.value,
-      Dp8Esp:this.form.get('Dp8Esp')?.value,
-      Dp9:this.form.get('Dp9')?.value,
-      Dp9Esp:this.form.get('Dp9Esp')?.value,
-      Dp10:this.form.get('Dp10')?.value,
-      Dp10Esp:this.form.get('Dp10Esp')?.value,
-      Dp11:this.form.get('Dp11')?.value,
-      Dp11Esp:this.form.get('Dp11Esp')?.value,
-      Dp12:this.form.get('Dp12')?.value,
-      Dp12Esp:this.form.get('Dp12Esp')?.value,
-      Dp13:this.form.get('Dp13')?.value,
-      Dp13Esp:this.form.get('Dp13Esp')?.value,
-      Dp14:this.form.get('Dp14')?.value,
-      Dp14Esp:this.form.get('Dp14Esp')?.value,
-      Dp15:this.form.get('Dp15')?.value,
-      Dp15Esp:this.form.get('Dp15Esp')?.value,
-      Dp16:this.form.get('Dp16')?.value,
-      Dp16Esp:this.form.get('Dp16Esp')?.value,
-      Dp17:this.form.get('Dp17')?.value,
-      Dp17Esp:this.form.get('Dp17Esp')?.value,
-      Dp18:this.form.get('Dp18')?.value,
-      Dp18Esp:this.form.get('Dp18Esp')?.value,
-      Dp19:this.form.get('Dp19')?.value,
-      Dp19Esp:this.form.get('Dp19Esp')?.value,
-      Dp20:this.form.get('Dp20')?.value,
-      Dp20Esp:this.form.get('Dp20Esp')?.value,
+      //Evaluacion Dp
+      Dp1: this.form.get('Dp1')?.value,
+      Dp4: this.form.get('Dp4')?.value,
+      Dp4Esp: this.form.get('Dp4Esp')?.value,
+      Dp5: this.form.get('Dp5')?.value,
+      Dp5Esp: this.form.get('Dp5Esp')?.value,
+      Dp6: this.form.get('Dp6')?.value,
+      Dp6Esp: this.form.get('Dp6Esp')?.value,
+      Dp7: this.form.get('Dp7')?.value,
+      Dp7Esp: this.form.get('Dp7Esp')?.value,
+      Dp8: this.form.get('Dp8')?.value,
+      Dp8Esp: this.form.get('Dp8Esp')?.value,
+      Dp9: this.form.get('Dp9')?.value,
+      Dp9Esp: this.form.get('Dp9Esp')?.value,
+      Dp10: this.form.get('Dp10')?.value,
+      Dp10Esp: this.form.get('Dp10Esp')?.value,
+      Dp11: this.form.get('Dp11')?.value,
+      Dp11Esp: this.form.get('Dp11Esp')?.value,
+      Dp12: this.form.get('Dp12')?.value,
+      Dp12Esp: this.form.get('Dp12Esp')?.value,
+      Dp13: this.form.get('Dp13')?.value,
+      Dp13Esp: this.form.get('Dp13Esp')?.value,
+      Dp14: this.form.get('Dp14')?.value,
+      Dp14Esp: this.form.get('Dp14Esp')?.value,
+      Dp15: this.form.get('Dp15')?.value,
+      Dp15Esp: this.form.get('Dp15Esp')?.value,
+      Dp16: this.form.get('Dp16')?.value,
+      Dp16Esp: this.form.get('Dp16Esp')?.value,
+      Dp17: this.form.get('Dp17')?.value,
+      Dp17Esp: this.form.get('Dp17Esp')?.value,
+      Dp18: this.form.get('Dp18')?.value,
+      Dp18Esp: this.form.get('Dp18Esp')?.value,
+      Dp19: this.form.get('Dp19')?.value,
+      Dp19Esp: this.form.get('Dp19Esp')?.value,
+      Dp20: this.form.get('Dp20')?.value,
+      Dp20Esp: this.form.get('Dp20Esp')?.value,
       //MIr
-      Mir1:this.form.get('Mir1')?.value,
-      Mir1Esp:this.form.get('Mir1Esp')?.value,
-      Mir2:this.form.get('Mir2')?.value,
-      Mir2Esp:this.form.get('Mir2Esp')?.value,
-      Mir3:this.form.get('Mir3')?.value,
-      Mir3Esp:this.form.get('Mir3Esp')?.value,
-      Mir4:this.form.get('Mir4')?.value,
-      Mir4Esp:this.form.get('Mir4Esp')?.value,
-      Mir5:this.form.get('Mir5')?.value,
-      Mir5Esp:this.form.get('Mir5Esp')?.value,
-      Mir6:this.form.get('Mir6')?.value,
-      Mir6Esp:this.form.get('Mir6Esp')?.value,
-      Mir7:this.form.get('Mir7')?.value,
-      Mir7Esp:this.form.get('Mir7Esp')?.value,
-      Mir8:this.form.get('Mir8')?.value,
-      Mir8Esp:this.form.get('Mir8Esp')?.value,
-      Mir9:this.form.get('Mir9')?.value,
-      Mir9Esp:this.form.get('Mir9Esp')?.value,
-      Mir10:this.form.get('Mir10')?.value,
-      Mir10Esp:this.form.get('Mir10Esp')?.value,
-      Mir11:this.form.get('Mir11')?.value,
-      Mir11Esp:this.form.get('Mir11Esp')?.value,
-      Mir12:this.form.get('Mir12')?.value,
-      Mir12Esp:this.form.get('Mir12Esp')?.value,
-      Mir13:this.form.get('Mir13')?.value,
-      Mir13Esp:this.form.get('Mir13Esp')?.value,
-      Mir14:this.form.get('Mir14')?.value,
-      Mir14Esp:this.form.get('Mir14Esp')?.value,
-      Mir15:this.form.get('Mir15')?.value,
-      Mir15Esp:this.form.get('Mir15Esp')?.value,
-      Mir16:this.form.get('Mir16')?.value,
-      Mir16Esp:this.form.get('Mir16Esp')?.value,
-      Mir17:this.form.get('Mir17')?.value,
-      Mir17Esp:this.form.get('Mir17Esp')?.value,
-      Mir18:this.form.get('Mir18')?.value,
-      Mir18Esp:this.form.get('Mir18Esp')?.value,
-      Mir19:this.form.get('Mir19')?.value,
-      Mir19Esp:this.form.get('Mir19Esp')?.value,
-      Mir20:this.form.get('Mir20')?.value,
-      Mir20Esp:this.form.get('Mir20Esp')?.value,
-      Mir21:this.form.get('Mir21')?.value,
-      Mir21Esp:this.form.get('Mir21Esp')?.value,
-      Mir22:this.form.get('Mir22')?.value,
-      Mir22Esp:this.form.get('Mir22Esp')?.value,
-      Mir23:this.form.get('Mir23')?.value,
-      Mir23Esp:this.form.get('Mir23Esp')?.value,
-      Mir24:this.form.get('Mir24')?.value,
-      Mir24Esp:this.form.get('Mir24Esp')?.value,
-      Mir25:this.form.get('Mir25')?.value,
-      Mir25Esp:this.form.get('Mir25Esp')?.value,
-      Mir26:this.form.get('Mir26')?.value,
-      Mir26Esp:this.form.get('Mir26Esp')?.value,
+      Mir1: this.form.get('Mir1')?.value,
+      Mir1Esp: this.form.get('Mir1Esp')?.value,
+      Mir2: this.form.get('Mir2')?.value,
+      Mir2Esp: this.form.get('Mir2Esp')?.value,
+      Mir3: this.form.get('Mir3')?.value,
+      Mir3Esp: this.form.get('Mir3Esp')?.value,
+      Mir4: this.form.get('Mir4')?.value,
+      Mir4Esp: this.form.get('Mir4Esp')?.value,
+      Mir5: this.form.get('Mir5')?.value,
+      Mir5Esp: this.form.get('Mir5Esp')?.value,
+      Mir6: this.form.get('Mir6')?.value,
+      Mir6Esp: this.form.get('Mir6Esp')?.value,
+      Mir7: this.form.get('Mir7')?.value,
+      Mir7Esp: this.form.get('Mir7Esp')?.value,
+      Mir8: this.form.get('Mir8')?.value,
+      Mir8Esp: this.form.get('Mir8Esp')?.value,
+      Mir9: this.form.get('Mir9')?.value,
+      Mir9Esp: this.form.get('Mir9Esp')?.value,
+      Mir10: this.form.get('Mir10')?.value,
+      Mir10Esp: this.form.get('Mir10Esp')?.value,
+      Mir11: this.form.get('Mir11')?.value,
+      Mir11Esp: this.form.get('Mir11Esp')?.value,
+      Mir12: this.form.get('Mir12')?.value,
+      Mir12Esp: this.form.get('Mir12Esp')?.value,
+      Mir13: this.form.get('Mir13')?.value,
+      Mir13Esp: this.form.get('Mir13Esp')?.value,
+      Mir14: this.form.get('Mir14')?.value,
+      Mir14Esp: this.form.get('Mir14Esp')?.value,
+      Mir15: this.form.get('Mir15')?.value,
+      Mir15Esp: this.form.get('Mir15Esp')?.value,
+      Mir16: this.form.get('Mir16')?.value,
+      Mir16Esp: this.form.get('Mir16Esp')?.value,
+      Mir17: this.form.get('Mir17')?.value,
+      Mir17Esp: this.form.get('Mir17Esp')?.value,
+      Mir18: this.form.get('Mir18')?.value,
+      Mir18Esp: this.form.get('Mir18Esp')?.value,
+      Mir19: this.form.get('Mir19')?.value,
+      Mir19Esp: this.form.get('Mir19Esp')?.value,
+      Mir20: this.form.get('Mir20')?.value,
+      Mir20Esp: this.form.get('Mir20Esp')?.value,
+      Mir21: this.form.get('Mir21')?.value,
+      Mir21Esp: this.form.get('Mir21Esp')?.value,
+      Mir22: this.form.get('Mir22')?.value,
+      Mir22Esp: this.form.get('Mir22Esp')?.value,
+      Mir23: this.form.get('Mir23')?.value,
+      Mir23Esp: this.form.get('Mir23Esp')?.value,
+      Mir24: this.form.get('Mir24')?.value,
+      Mir24Esp: this.form.get('Mir24Esp')?.value,
+      Mir25: this.form.get('Mir25')?.value,
+      Mir25Esp: this.form.get('Mir25Esp')?.value,
+      Mir26: this.form.get('Mir26')?.value,
+      Mir26Esp: this.form.get('Mir26Esp')?.value,
       //Fortalezas
-      FMir:this.form.get('FMir')?.value,
-      FDp:this.form.get('FDp')?.value,
+      FMir: this.form.get('FMir')?.value,
+      FDp: this.form.get('FDp')?.value,
       //Areas de Oportunidad
-      AoMir:this.form.get('AoMir')?.value,
-      AoDp:this.form.get('AoDp')?.value,
-      CalfDp4form:this.form.get('CalfDp4form')?.value,
-      ponDp4form:this.form.get('ponDp4form')?.value,
+      AoMir: this.form.get('AoMir')?.value,
+      AoDp: this.form.get('AoDp')?.value,
+      CalfDp4form: this.form.get('CalfDp4form')?.value,
+      ponDp4form: this.form.get('ponDp4form')?.value,
 
 
 
@@ -281,10 +290,10 @@ obtenerPp(){
 
     }
     this.CrecePlaneacionService.saveCrece(crece).subscribe(_data => {
-      this.toastr.success('El Crece del PP '+ crece.Pp +' fue registrado con exito!', 'Crece Registrado');
+      this.toastr.success('El Crece del PP ' + crece.Pp + ' fue registrado con exito!', 'Crece Registrado');
       this.form.reset();
     }, error => {
-      this.toastr.error('Opss.. ocurrio un error','Error')
+      this.toastr.error('Opss.. ocurrio un error', 'Error')
       console.log(error);
     })
   }
@@ -292,139 +301,140 @@ obtenerPp(){
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private _depService: DependenciasService,
-    private CrecePlaneacionService:CrecePlaneacionService,
+    private CrecePlaneacionService: CrecePlaneacionService,
     private _catPpService: CatPpService,
-    private loginServices:LoginService) {
+    private loginServices: LoginService) {
     this.form = this.fb.group({
-      Email:  [this.loginServices.getTokenDecoded().email, Validators.required],
-      Revision:  ['Entrega 2023',Validators.required],
-      Pp: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]] ,
+      Email: [this.loginServices.getTokenDecoded().email, Validators.required],
+      Revision: ['Entrega 2023', Validators.required],
+      Pp: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]],
       Dependencia: ['', Validators.required],
-      Fecha:  ['', Validators.required],
-      Ano:  ['', Validators.required],
-      DepPar:  ['', Validators.required],
-      ClaveNombre:['',Validators.required],
-      DepResPp:['',Validators.required],
-      DepParPp:['',Validators.required],
-      FechaADx:['',Validators.required],
-      Intro:['',Validators.required],
-      AnalisisInvolucrados:['',Validators.required],
-      DefProblema:['',Validators.required],
+      Fecha: ['', Validators.required],
+      Ano: ['', Validators.required],
+      DepPar: ['', Validators.required],
+      ClaveNombre: ["", Validators.required],
+      DepResPp: ['', Validators.required],
+      DepParPp: ['', Validators.required],
+      FechaADx: ['', Validators.required],
+      Intro: ['', Validators.required],
+      AnalisisInvolucrados: ['', Validators.required],
+      DefProblema: ['', Validators.required],
       // AnalisisProblema:['',Validators.required],
-      EvoProblema:['',Validators.required],
-      EstActualProblema:['',Validators.required],
-      ExpAtencion:['',Validators.required],
-      DefObjetivos:['',Validators.required],
-      AnalisisCorrespon:['',Validators.required],
-      SelecAlterna:['',Validators.required],
-      EstructuraAnalitica: ['',Validators.required],
-      JustObj: ['',Validators.required],
-      IdentificacionCuanPob: ['',Validators.required],
-      IdenficacionAreaInfluencia: ['',Validators.required],
-      RelOtrosPP:['',Validators.required],
-      ElementosPEB:['',Validators.required],
-      MIR:['',Validators.required],
-      EvoPp:['',Validators.required],
-      Glosario:['',Validators.required],
-      Dp4:['',Validators.required],
-      Dp4Esp:['',Validators.required],
-      Dp5:['',Validators.required],
-      Dp5Esp:['',Validators.required],
-      Dp6:['',Validators.required],
-      Dp6Esp:['',Validators.required],
-      Dp7:['',Validators.required],
-      Dp7Esp:['',Validators.required],
-      Dp8:['',Validators.required],
-      Dp8Esp:['',Validators.required],
-      Dp9:['',Validators.required],
-      Dp9Esp:['',Validators.required],
-      Dp10:['',Validators.required],
-      Dp10Esp:['',Validators.required],
-      Dp11:['',Validators.required],
-      Dp11Esp:['',Validators.required],
-      Dp12:['',Validators.required],
-      Dp12Esp:['',Validators.required],
-      Dp13:['',Validators.required],
-      Dp13Esp:['',Validators.required],
-      Dp14:['',Validators.required],
-      Dp14Esp:['',Validators.required],
-      Dp15:['',Validators.required],
-      Dp15Esp:['',Validators.required],
-      Dp16:['',Validators.required],
-      Dp16Esp:['',Validators.required],
-      Dp17:['',Validators.required],
-      Dp17Esp:['',Validators.required],
-      Dp18:['',Validators.required],
-      Dp18Esp:['',Validators.required],
-      Dp19:['',Validators.required],
-      Dp19Esp:['',Validators.required],
-      Dp20:['',Validators.required],
-      Dp20Esp:['',Validators.required],
-      Mir1:['',Validators.required],
-      Mir1Esp:['',Validators.required],
-      Mir2:['',Validators.required],
-      Mir2Esp:['',Validators.required],
-      Mir3:['',Validators.required],
-      Mir3Esp:['',Validators.required],
-      Mir4:['',Validators.required],
-      Mir4Esp:['',Validators.required],
-      Mir5:['',Validators.required],
-      Mir5Esp:['',Validators.required],
-      Mir6:['',Validators.required],
-      Mir6Esp:['',Validators.required],
-      Mir7:['',Validators.required],
-      Mir7Esp:['',Validators.required],
-      Mir8:['',Validators.required],
-      Mir8Esp:['',Validators.required],
-      Mir9:['',Validators.required],
-      Mir9Esp:['',Validators.required],
-      Mir10:['',Validators.required],
-      Mir10Esp:['',Validators.required],
-      Mir11:['',Validators.required],
-      Mir11Esp:['',Validators.required],
-      Mir12:['',Validators.required],
-      Mir12Esp:['',Validators.required],
-      Mir13:['',Validators.required],
-      Mir13Esp:['',Validators.required],
-      Mir14:['',Validators.required],
-      Mir14Esp:['',Validators.required],
-      Mir15:['',Validators.required],
-      Mir15Esp:['',Validators.required],
-      Mir16:['',Validators.required],
-      Mir16Esp:['',Validators.required],
-      Mir17:['',Validators.required],
-      Mir17Esp:['',Validators.required],
-      Mir18:['',Validators.required],
-      Mir18Esp:['',Validators.required],
-      Mir19:['',Validators.required],
-      Mir19Esp:['',Validators.required],
-      Mir20:['',Validators.required],
-      Mir20Esp:['',Validators.required],
-      Mir21:['',Validators.required],
-      Mir21Esp:['',Validators.required],
-      Mir22:['',Validators.required],
-      Mir22Esp:['',Validators.required],
-      Mir23:['',Validators.required],
-      Mir23Esp:['',Validators.required],
-      Mir24:['',Validators.required],
-      Mir24Esp:['',Validators.required],
-      Mir25:['',Validators.required],
-      Mir25Esp:['',Validators.required],
-      Mir26:['',Validators.required],
-      Mir26Esp:['',Validators.required],
-      FMir:['',Validators.required],
-      FDp:['',Validators.required],
-      AoMir:['',Validators.required],
-      AoDp:['',Validators.required],
-      CalfDp4form:['',Validators.required],
-      ponDp4form:['',Validators.required],
+      EvoProblema: ['', Validators.required],
+      EstActualProblema: ['', Validators.required],
+      ExpAtencion: ['', Validators.required],
+      DefObjetivos: ['', Validators.required],
+      AnalisisCorrespon: ['', Validators.required],
+      SelecAlterna: ['', Validators.required],
+      EstructuraAnalitica: ['', Validators.required],
+      JustObj: ['', Validators.required],
+      IdentificacionCuanPob: ['', Validators.required],
+      IdenficacionAreaInfluencia: ['', Validators.required],
+      RelOtrosPP: ['', Validators.required],
+      ElementosPEB: ['', Validators.required],
+      MIR: ['', Validators.required],
+      EvoPp: ['', Validators.required],
+      Glosario: ['', Validators.required],
+      Dp1: ['', Validators.required],
+      Dp4: ['', Validators.required],
+      Dp4Esp: ['', Validators.required],
+      Dp5: ['', Validators.required],
+      Dp5Esp: ['', Validators.required],
+      Dp6: ['', Validators.required],
+      Dp6Esp: ['', Validators.required],
+      Dp7: ['', Validators.required],
+      Dp7Esp: ['', Validators.required],
+      Dp8: ['', Validators.required],
+      Dp8Esp: ['', Validators.required],
+      Dp9: ['', Validators.required],
+      Dp9Esp: ['', Validators.required],
+      Dp10: ['', Validators.required],
+      Dp10Esp: ['', Validators.required],
+      Dp11: ['', Validators.required],
+      Dp11Esp: ['', Validators.required],
+      Dp12: ['', Validators.required],
+      Dp12Esp: ['', Validators.required],
+      Dp13: ['', Validators.required],
+      Dp13Esp: ['', Validators.required],
+      Dp14: ['', Validators.required],
+      Dp14Esp: ['', Validators.required],
+      Dp15: ['', Validators.required],
+      Dp15Esp: ['', Validators.required],
+      Dp16: ['', Validators.required],
+      Dp16Esp: ['', Validators.required],
+      Dp17: ['', Validators.required],
+      Dp17Esp: ['', Validators.required],
+      Dp18: ['', Validators.required],
+      Dp18Esp: ['', Validators.required],
+      Dp19: ['', Validators.required],
+      Dp19Esp: ['', Validators.required],
+      Dp20: ['', Validators.required],
+      Dp20Esp: ['', Validators.required],
+      Mir1: ['', Validators.required],
+      Mir1Esp: ['', Validators.required],
+      Mir2: ['', Validators.required],
+      Mir2Esp: ['', Validators.required],
+      Mir3: ['', Validators.required],
+      Mir3Esp: ['', Validators.required],
+      Mir4: ['', Validators.required],
+      Mir4Esp: ['', Validators.required],
+      Mir5: ['', Validators.required],
+      Mir5Esp: ['', Validators.required],
+      Mir6: ['', Validators.required],
+      Mir6Esp: ['', Validators.required],
+      Mir7: ['', Validators.required],
+      Mir7Esp: ['', Validators.required],
+      Mir8: ['', Validators.required],
+      Mir8Esp: ['', Validators.required],
+      Mir9: ['', Validators.required],
+      Mir9Esp: ['', Validators.required],
+      Mir10: ['', Validators.required],
+      Mir10Esp: ['', Validators.required],
+      Mir11: ['', Validators.required],
+      Mir11Esp: ['', Validators.required],
+      Mir12: ['', Validators.required],
+      Mir12Esp: ['', Validators.required],
+      Mir13: ['', Validators.required],
+      Mir13Esp: ['', Validators.required],
+      Mir14: ['', Validators.required],
+      Mir14Esp: ['', Validators.required],
+      Mir15: ['', Validators.required],
+      Mir15Esp: ['', Validators.required],
+      Mir16: ['', Validators.required],
+      Mir16Esp: ['', Validators.required],
+      Mir17: ['', Validators.required],
+      Mir17Esp: ['', Validators.required],
+      Mir18: ['', Validators.required],
+      Mir18Esp: ['', Validators.required],
+      Mir19: ['', Validators.required],
+      Mir19Esp: ['', Validators.required],
+      Mir20: ['', Validators.required],
+      Mir20Esp: ['', Validators.required],
+      Mir21: ['', Validators.required],
+      Mir21Esp: ['', Validators.required],
+      Mir22: ['', Validators.required],
+      Mir22Esp: ['', Validators.required],
+      Mir23: ['', Validators.required],
+      Mir23Esp: ['', Validators.required],
+      Mir24: ['', Validators.required],
+      Mir24Esp: ['', Validators.required],
+      Mir25: ['', Validators.required],
+      Mir25Esp: ['', Validators.required],
+      Mir26: ['', Validators.required],
+      Mir26Esp: ['', Validators.required],
+      FMir: ['', Validators.required],
+      FDp: ['', Validators.required],
+      AoMir: ['', Validators.required],
+      AoDp: ['', Validators.required],
+      CalfDp4form: ['', Validators.required],
+      ponDp4form: ['', Validators.required],
 
 
 
 
     });
     console.log(pp);
-   }
+  }
 
   ngOnInit(): void {
     this.obtenerDependencias();
@@ -432,6 +442,7 @@ obtenerPp(){
     this.obtenerPp();
     this.respuestaGenericaDp4();
     this.ponderacionDp4();
+    //this.Elemento2Calculo();
 
   }
   public clearValue4(): void {
@@ -578,40 +589,68 @@ obtenerPp(){
     this.textAreaValueAODP = "";
   }
 
-  public sinrec4(): void {
-    if(this.Dp4Calf == 9 ){
-    this.textAreaValueDp4 = "Sin recomendaciones";
+  // public Elemento1Calculo(): void {
+  //   while(this.contador < 10)
+  //   {
+  //     this.contador += 1;
+  //     if(this.contador== 5)
+  //     {
+  //       break;
+  //     }
+  //     console.log(this.contador + " ");
+  //   }
+  //   console.log("\n");
+  // }
+
+
+  public Elemento2Calculo():void{
+    this.Contador1si = this.form.get('ClaveNombre')?.value
+    if (this.Contador1no == 0 && this.Contador2no==0) {
+      this.TotalSi = 0;
+    } else if (this.Contador1si == 1 && this.Contador2no == 0 || this.Contador1no == 0 && this.Contador2si == 1) {
+       this.TotalSi = 1;
+    } else if (this.Contador1si == 1 && this.Contador2si == 1) {
+       this.TotalSi = 2;
     }
-    else if(this.Dp4Calf == 6){
+    console.log(this.form.value);
+  }
+
+
+  public sinrec4(): void {
+    if (this.Dp4Calf == 9) {
+      this.textAreaValueDp4 = "Sin recomendaciones";
+    }
+    else if (this.Dp4Calf == 6) {
       this.textAreaValueDp4 = "";
     }
-    else if(this.Dp4Calf == 3){
+    else if (this.Dp4Calf == 3) {
       this.textAreaValueDp4 = "";
     }
   }
   public respuestaGenericaDp4(): any {
-     if(this.Dp4Calf == 9 ){
-    this.CalfDp4 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    //Maximo 2%
-     }else if(this.Dp4Calf == 6){
-       this.CalfDp4 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-      }
-     else if(this.Dp4Calf == 3){
+    if (this.Dp4Calf == 9) {
+      this.CalfDp4 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+      //Maximo 2%
+    } else if (this.Dp4Calf == 6) {
+      this.CalfDp4 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    else if (this.Dp4Calf == 3) {
       this.CalfDp4 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
     }
+    console.log(this.form.value);
   }
 
   public ponderacionDp4(): void {
-    if(this.Dp4Calf == 9 ){
-   //Maximo 2%
-   this.PonDp4 = 2;
-    }else if(this.Dp4Calf == 6){
+    if (this.Dp4Calf == 9) {
+      //Maximo 2%
+      this.PonDp4 = 2;
+    } else if (this.Dp4Calf == 6) {
       this.PonDp4 = 1;
     }
-    else if(this.Dp4Calf == 3){
-     this.PonDp4 = 0;
-   }
- }
+    else if (this.Dp4Calf == 3) {
+      this.PonDp4 = 0;
+    }
+  }
   public sinrec5(): void {
     this.textAreaValueDp5 = "Sin recomendaciones";
   }
@@ -694,7 +733,7 @@ obtenerPp(){
     this.textAreaValueMir11 = "Sin recomendaciones";
   }
   public sinrec32(): void {
-    this.textAreaValueMir12= "Sin recomendaciones";
+    this.textAreaValueMir12 = "Sin recomendaciones";
   }
   public sinrec33(): void {
     this.textAreaValueMir13 = "Sin recomendaciones";
@@ -727,7 +766,7 @@ obtenerPp(){
     this.textAreaValueMir22 = "Sin recomendaciones";
   }
   public sinrec43(): void {
-    this.textAreaValueMir23= "Sin recomendaciones";
+    this.textAreaValueMir23 = "Sin recomendaciones";
   }
   public sinrec44(): void {
     this.textAreaValueMir24 = "Sin recomendaciones";

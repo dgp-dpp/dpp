@@ -13,7 +13,7 @@ export class LoginService {
 
   constructor(private http:HttpClient)
   {
-    this.myAppUrl = 'http://172.31.141.176:8088';
+    this.myAppUrl = 'http://172.31.141.179:8088';
     this.myApiUrl = '/BackEndApi/api/Login'
 
    }

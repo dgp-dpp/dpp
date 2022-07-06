@@ -38,6 +38,7 @@ import { CensoTableroComponent } from './Views/CensoGpR/censo-tablero/censo-tabl
 import { CreceFormualarioComponent } from './Views/Planeacion/crece-formulario/crece-formualario.component';
 import { DirectorioGpRComponent } from './Views/CensoGpR/directorio-gp-r/directorio-gp-r.component';
 import { AvanceRestructuraComponent } from './Views/Reestructura/avance-restructura/avance-restructura.component';
+import { PruebaFirebaseComponent } from './Views/Administracion/prueba-firebase/prueba-firebase.component';
 
 const routes: Routes = [
 
@@ -83,6 +84,7 @@ const routes: Routes = [
   {path:"crece-formulario", component:CreceFormualarioComponent},
   {path:"directorio", component:DirectorioGpRComponent},
   {path:"avance-res", component:AvanceRestructuraComponent},
+  {path: "prueba-firestore", component:PruebaFirebaseComponent},
 
 
   { path: "chrtshigh", component:ChrtshighComponent},

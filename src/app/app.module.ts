@@ -75,9 +75,15 @@ import { FloatingLabelModule } from "@progress/kendo-angular-label";
 import { TooltipsModule } from "@progress/kendo-angular-tooltip";
 import { IntlModule } from "@progress/kendo-angular-intl";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
+import { PruebaFirebaseComponent } from './Views/Administracion/prueba-firebase/prueba-firebase.component';
 
+//firebase
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
-
+//importamos la configuracion de  firebase
+import { environment } from 'src/environments/environment';
+import { LinksService } from './services/links.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -134,9 +140,7 @@ export function tokenGetter() {
     CreceFormualarioComponent,
     DirectorioGpRComponent,
     AvanceRestructuraComponent,
-
-
-
+    PruebaFirebaseComponent,
 
 
   ],
@@ -157,6 +161,8 @@ export function tokenGetter() {
     ExcelModule,
     ButtonsModule,
     IconsModule,
+    AngularFireModule.initializeApp(environment.firebaseDb),
+    AngularFireDatabaseModule,
     LabelModule,
     InputsModule,
     LayoutModule,
@@ -178,7 +184,7 @@ export function tokenGetter() {
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true },
     DownloadUploadService,
-    CookieService],
+    CookieService,LinksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
