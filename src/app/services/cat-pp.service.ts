@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { UrlApi} from '../helpers/urlapi'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatPpService {
-  private myAppUrl = 'http://172.31.141.191:8088';
+  private myAppUrl =  UrlApi;
   private myApiUrl = '/BackEndApi/api/Pp'
 
   constructor(private http:HttpClient) { }

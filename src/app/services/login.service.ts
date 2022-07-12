@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UrlApi} from '../helpers/urlapi'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class LoginService {
 
   constructor(private http:HttpClient)
   {
-    this.myAppUrl = 'http://172.31.141.191:8088';
+    this.myAppUrl = UrlApi;
     this.myApiUrl = '/BackEndApi/api/Login'
 
    }

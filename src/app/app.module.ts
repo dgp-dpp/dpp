@@ -84,6 +84,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 //importamos la configuracion de  firebase
 import { environment } from 'src/environments/environment';
 import { LinksService } from './services/links.service';
+import { Pf2023Component } from './Views/PaqueteFiscal2023/pf2023/pf2023.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -141,6 +142,7 @@ export function tokenGetter() {
     DirectorioGpRComponent,
     AvanceRestructuraComponent,
     PruebaFirebaseComponent,
+    Pf2023Component,
 
 
   ],

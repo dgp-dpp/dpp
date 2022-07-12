@@ -1,6 +1,7 @@
 import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { UrlApi} from '../helpers/urlapi'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class UsuariosService {
   // private myAppUrl = 'http://172.31.141.176:8080';  //productivo
   // private myApiUrl = '/WebApi/api/Usuario'
 
-private myAppUrl = 'http://172.31.141.191:8088';
+private myAppUrl = UrlApi;
 private myApiUrl = '/BackEndApi/api/Usuario'
 
   constructor(private http: HttpClient) { }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Links} from '../models/links.model';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
+
 @Injectable({
   providedIn: 'root'
 })

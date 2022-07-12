@@ -8,13 +8,14 @@ import {
   SortDescriptor
 } from "@progress/kendo-data-query";
 import { GridDataResult } from '@progress/kendo-angular-grid';
+import { UrlApi} from '../helpers/urlapi'
 
 @Injectable({
   providedIn: 'root'
 })
 export class InscripcionesService {
 
-  private myAppUrl = 'http://172.31.141.191:8088';
+  private myAppUrl = UrlApi;
 private myApiUrl = '/BackEndApi/api/Inscripcion/Registrar';
 private myApiUrlGet = '/BackEndApi/api/Inscripcion'
 

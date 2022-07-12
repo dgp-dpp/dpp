@@ -39,6 +39,7 @@ import { CreceFormualarioComponent } from './Views/Planeacion/crece-formulario/c
 import { DirectorioGpRComponent } from './Views/CensoGpR/directorio-gp-r/directorio-gp-r.component';
 import { AvanceRestructuraComponent } from './Views/Reestructura/avance-restructura/avance-restructura.component';
 import { PruebaFirebaseComponent } from './Views/Administracion/prueba-firebase/prueba-firebase.component';
+import { Pf2023Component } from './Views/PaqueteFiscal2023/pf2023/pf2023.component';
 
 const routes: Routes = [
 
@@ -85,6 +86,7 @@ const routes: Routes = [
   {path:"directorio", component:DirectorioGpRComponent},
   {path:"avance-res", component:AvanceRestructuraComponent},
   {path: "prueba-firestore", component:PruebaFirebaseComponent},
+  {path: "pf2023", component:Pf2023Component},
 
 
   { path: "chrtshigh", component:ChrtshighComponent},

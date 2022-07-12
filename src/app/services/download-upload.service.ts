@@ -1,15 +1,16 @@
 import { HttpClient, HttpEvent, HttpResponse, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { UrlApi} from '../helpers/urlapi'
 
 @Injectable({
   providedIn: 'root'
 })
 export class DownloadUploadService {
-  private baseApiUrl = "http://172.31.141.191:8088/BackEndApi/api/File";
-  private apiDownloadUrl = "http://172.31.141.191:8088/BackEndApi/api/File/download";
-  private apiUploadUrl = "http://172.31.141.191:8088/BackEndApi/api/File/upload";
-  private ApiFileUrl = "http://172.31.141.191:8088/BackEndApi/api/File";
+  private baseApiUrl = UrlApi+"/BackEndApi/api/File";
+  private apiDownloadUrl = UrlApi+"/BackEndApi/api/File/download";
+  private apiUploadUrl = UrlApi+"/BackEndApi/api/File/upload";
+  private ApiFileUrl = UrlApi+"/BackEndApi/api/File";
   constructor(private httpClient: HttpClient) {
    }
    public downloadFile(file:string):Observable<HttpEvent<Blob>>
