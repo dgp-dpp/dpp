@@ -40,6 +40,7 @@ import { DirectorioGpRComponent } from './Views/CensoGpR/directorio-gp-r/directo
 import { AvanceRestructuraComponent } from './Views/Reestructura/avance-restructura/avance-restructura.component';
 import { PruebaFirebaseComponent } from './Views/Administracion/prueba-firebase/prueba-firebase.component';
 import { Pf2023Component } from './Views/PaqueteFiscal2023/pf2023/pf2023.component';
+import { GoogleMapsComponent } from './Views/Administracion/google-maps/google-maps.component';
 
 const routes: Routes = [
 
@@ -87,6 +88,7 @@ const routes: Routes = [
   {path:"avance-res", component:AvanceRestructuraComponent},
   {path: "prueba-firestore", component:PruebaFirebaseComponent},
   {path: "pf2023", component:Pf2023Component},
+  {path: "google-map", component:GoogleMapsComponent},
 
 
   { path: "chrtshigh", component:ChrtshighComponent},

@@ -53,7 +53,7 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS,HttpClientJsonpModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CuestionariosComponent } from './Views/Administracion/cuestionarios/cuestionarios.component';
 import { LoadingComponent } from './shared/loading/loading.component';
@@ -85,6 +85,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import { LinksService } from './services/links.service';
 import { Pf2023Component } from './Views/PaqueteFiscal2023/pf2023/pf2023.component';
+import { GoogleMapsComponent } from './Views/Administracion/google-maps/google-maps.component';
+//GoogleMaps
+import { GoogleMapsModule } from '@angular/google-maps';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -143,6 +146,7 @@ export function tokenGetter() {
     AvanceRestructuraComponent,
     PruebaFirebaseComponent,
     Pf2023Component,
+    GoogleMapsComponent,
 
 
   ],
@@ -154,7 +158,9 @@ export function tokenGetter() {
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     BrowserModule,
+    GoogleMapsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     AppRoutingModule,
     PdfViewerModule,
     DropDownsModule,

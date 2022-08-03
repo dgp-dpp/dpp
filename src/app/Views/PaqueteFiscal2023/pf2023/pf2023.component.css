@@ -1,0 +1,9 @@
+#sectiondefault {
+  margin: 0 auto;
+  padding-top: 20px;
+  height: 1100px;
+  width: 90%;
+  padding-right: 30px;
+
+  box-sizing: border-box;
+}
