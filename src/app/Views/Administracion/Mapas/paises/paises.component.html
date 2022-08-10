@@ -1,0 +1,7 @@
+<app-home></app-home>
+<div style="padding: 4rem;">
+  <google-map  width="900px" height="700px" [zoom]="zoom"
+    [center]="center" [options]="options">
+    <map-marker *ngFor ="let pais of paises" [position]="pais.latlng"></map-marker>
+    </google-map>
+</div>

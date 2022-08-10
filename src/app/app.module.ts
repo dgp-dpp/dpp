@@ -88,6 +88,7 @@ import { Pf2023Component } from './Views/PaqueteFiscal2023/pf2023/pf2023.compone
 import { GoogleMapsComponent } from './Views/Administracion/google-maps/google-maps.component';
 //GoogleMaps
 import { GoogleMapsModule } from '@angular/google-maps';
+import { PaisesComponent } from './Views/Administracion/Mapas/paises/paises.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -147,6 +148,7 @@ export function tokenGetter() {
     PruebaFirebaseComponent,
     Pf2023Component,
     GoogleMapsComponent,
+    PaisesComponent,
 
 
   ],
@@ -185,7 +187,9 @@ export function tokenGetter() {
         disallowedRoutes: []
       }
     })
+
   ],
+
 
 
   providers: [

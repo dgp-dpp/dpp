@@ -1,11 +1,26 @@
 <app-home></app-home>
 <div style="padding: 4rem;">
-<google-map width="900px" height="700px" [center]="position">
-  <map-marker [position]="position" [label]="label" [title]="title"></map-marker>
-  <map-marker [position]="position2" [label]="label" [title]="title"></map-marker>
-
-</google-map>
+  <google-map (mapClick)="addMarker($event)"  width="900px" height="700px" [zoom]="zoom"
+    [center]="center" [options]="options">
+    <map-marker #somemarker="mapMarker" [position]="position" [label]="label" [title]="title"  (mapClick)="openInfo(somemarker)"></map-marker>
+    <map-info-window>Este es el primer punto</map-info-window>
+    <map-marker #somemarker2="mapMarker" [position]="position2" [label]="label" [title]="title" (mapClick)="openInfo(somemarker)"></map-marker>
+      <map-info-window>Este es el segundo punto</map-info-window>
+      <!-- marcadores dinamicos -->
+    <map-marker #somemarker="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
+      [label]="marker.label" [title]="marker.title" [options]="marker.options" (mapClick)="openInfo(somemarker)">
+    </map-marker>
+    <map-marker #marker="mapMarker" *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
+      (mapClick)="openInfoWindow(marker)">
+  </map-marker>
+  <map-info-window>{{infoContent}}</map-info-window>
+  </google-map>
+  <button kendoButton (click)="zoomIn()" icon="plus"></button>
+  <button kendoButton (click)="zoomOut()" icon="minus">Zoom</button>
+  <button kendoButton (click)="Tuposicion()" icon="accessibility">Tu posicion</button>
+  <!-- <button  kendoButton (click)="logCenter()">Log Center</button> -->
+  <button kendoButton  (click)="addMarker2()" icon="marker-pin" fillMode="outline">
+    Agregar Marcador
+  </button>
 
 </div>
-
-

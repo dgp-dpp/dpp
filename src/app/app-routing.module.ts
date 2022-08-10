@@ -41,6 +41,7 @@ import { AvanceRestructuraComponent } from './Views/Reestructura/avance-restruct
 import { PruebaFirebaseComponent } from './Views/Administracion/prueba-firebase/prueba-firebase.component';
 import { Pf2023Component } from './Views/PaqueteFiscal2023/pf2023/pf2023.component';
 import { GoogleMapsComponent } from './Views/Administracion/google-maps/google-maps.component';
+import { PaisesComponent } from './Views/Administracion/Mapas/paises/paises.component';
 
 const routes: Routes = [
 
@@ -89,6 +90,7 @@ const routes: Routes = [
   {path: "prueba-firestore", component:PruebaFirebaseComponent},
   {path: "pf2023", component:Pf2023Component},
   {path: "google-map", component:GoogleMapsComponent},
+  {path: "map-paises", component: PaisesComponent},
 
 
   { path: "chrtshigh", component:ChrtshighComponent},
