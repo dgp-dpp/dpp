@@ -8,7 +8,7 @@
       <map-info-window>Este es el segundo punto</map-info-window>
       <!-- marcadores dinamicos -->
     <map-marker #somemarker="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
-      [label]="marker.label" [title]="marker.title" [options]="marker.options" (mapClick)="openInfo(somemarker)">
+      [label]="marker.label" [title]="marker.title" [options]="marker.options" (mapClick)="openInfo(somemarker)" >
     </map-marker>
     <map-marker #marker="mapMarker" *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
       (mapClick)="openInfoWindow(marker)">

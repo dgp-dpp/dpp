@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 //Modulos
@@ -89,6 +89,7 @@ import { GoogleMapsComponent } from './Views/Administracion/google-maps/google-m
 //GoogleMaps
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PaisesComponent } from './Views/Administracion/Mapas/paises/paises.component';
+import { APGComponent } from './Views/Administracion/ConsumirApis/apg/apg.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -149,6 +150,7 @@ export function tokenGetter() {
     Pf2023Component,
     GoogleMapsComponent,
     PaisesComponent,
+    APGComponent,
 
 
   ],
@@ -197,6 +199,7 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true },
     DownloadUploadService,
     CookieService,LinksService],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

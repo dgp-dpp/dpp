@@ -1,7 +1,24 @@
 <app-home></app-home>
 <div style="padding: 4rem;">
   <google-map  width="900px" height="700px" [zoom]="zoom"
-    [center]="center" [options]="options">
-    <map-marker *ngFor ="let pais of paises" [position]="pais.latlng"></map-marker>
+    [center]="center" [options]="options" [FitBounds]="true">
+    <map-marker #marker="mapMarker"
+    (mapClick)="openInfoWindow(marker, infoWindow)"
+     *ngFor ="let pais of paises" [position]="pais.position" [FitBounds]="true"
+     [iconUrl]="iconMap.iconUrl"
+    >
+       <map-info-window
+       #infoWindow="mapInfoWindow"
+       >{{pais.name}}</map-info-window>
+    </map-marker>
+    <map-marker  [position]="position2"></map-marker>
     </google-map>
+    <button kendoButton type="button" icon="marker-pin" (click)=" AddMarkers()">Ver Marcadores</button>
+    {{position2|json}}
+    {{paises|json}}
 </div>
+<!-- https://github.com/lipis/flag-icons/blob/main/flags/1x1/at.svg?raw=true
+https://flagcdn.com/ax.svg
+../../../../../assets/Icons/at.svg
+[iconUrl]="{url: https://flagcdn.com/ax.svg, scaledSize:{height:15, width:15}}"
+-->
