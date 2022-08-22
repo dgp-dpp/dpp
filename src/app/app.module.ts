@@ -90,6 +90,7 @@ import { GoogleMapsComponent } from './Views/Administracion/google-maps/google-m
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PaisesComponent } from './Views/Administracion/Mapas/paises/paises.component';
 import { APGComponent } from './Views/Administracion/ConsumirApis/apg/apg.component';
+import { MapaComponent } from './Views/Administracion/BienesServicios/mapa/mapa.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -151,6 +152,7 @@ export function tokenGetter() {
     GoogleMapsComponent,
     PaisesComponent,
     APGComponent,
+    MapaComponent,
 
 
   ],

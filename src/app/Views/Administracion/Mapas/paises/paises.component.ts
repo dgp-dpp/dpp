@@ -13,8 +13,7 @@ export class PaisesComponent implements OnInit {
 public paises : any[] = [];
 
 public iconMap  ={
-  iconUrl:"https://flagcdn.com/ax.svg",
-  iconHeigh:10
+  iconUrl:"https://raw.githubusercontent.com/scottdejonge/map-icons/master/src/icons/doctor.svg",
 }
 zoom = 1;
 center: google.maps.LatLngLiteral;
@@ -37,11 +36,12 @@ public position2 ={
   }
 
   ngOnInit(): void {
-   this.AddMarkers();
+   this.AddMarkers2();
+   this.iconMap;
 
 
   }
-   AddMarkers(){
+   AddMarkers2(){
   this.paisesService.getAll().pipe(
     map (response => response.$values)
   ).subscribe

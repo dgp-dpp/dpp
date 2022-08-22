@@ -5,20 +5,31 @@
     <map-marker #marker="mapMarker"
     (mapClick)="openInfoWindow(marker, infoWindow)"
      *ngFor ="let pais of paises" [position]="pais.position" [FitBounds]="true"
-     [iconUrl]="iconMap.iconUrl"
+     [icon]="iconMap.iconUrl"
     >
        <map-info-window
        #infoWindow="mapInfoWindow"
-       >{{pais.name}}</map-info-window>
+       >{{pais.name}}
+      </map-info-window>
     </map-marker>
     <map-marker  [position]="position2"></map-marker>
     </google-map>
-    <button kendoButton type="button" icon="marker-pin" (click)=" AddMarkers()">Ver Marcadores</button>
+    <button kendoButton type="button" icon="marker-pin" (click)=" AddMarkers2()">Ver Marcadores</button>
     {{position2|json}}
     {{paises|json}}
+
 </div>
 <!-- https://github.com/lipis/flag-icons/blob/main/flags/1x1/at.svg?raw=true
 https://flagcdn.com/ax.svg
 ../../../../../assets/Icons/at.svg
 [iconUrl]="{url: https://flagcdn.com/ax.svg, scaledSize:{height:15, width:15}}"
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-at" viewBox="0 0 640 480">
+  <g fill-rule="evenodd">
+    <path fill="#fff" d="M640 480H0V0h640z"/>
+    <path fill="#c8102e" d="M640 480H0V320h640zm0-319.9H0V.1h640z"/>
+  </g>
+</svg>
+https://github.com/cabarronc/dpp/blob/master/src/assets/Images/3.png?raw=true
+
+
 -->

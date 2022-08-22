@@ -1,0 +1,32 @@
+<app-home></app-home>
+<div style="padding: 4rem;">
+  <google-map  width="900px" height="700px" [zoom]="zoom"
+    [center]="center" [options]="options" [FitBounds]="true">
+    <map-marker #marker="mapMarker"
+
+    (mapClick)="openInfoWindow(marker, infoWindow)"
+     *ngFor ="let marcador of marcadores" [position]="marcador.position" [FitBounds]="true"
+      [label]="{
+      text: 'local_hospital',
+      fontFamily: 'Material Icons',
+      color: '#ffffff',
+      fontSize: '18px'}"
+    >
+       <map-info-window
+       #infoWindow="mapInfoWindow">
+       <b>Cve Mun:</b>{{marcador.cve_mun}}<br>
+       <b>Municipio:</b> {{marcador.municipio}}<br>
+       <b>Unidad:</b>{{marcador.unidad}}<br>
+       <b>Domicilio:</b>{{marcador.domicilio}}<br>
+      </map-info-window>
+    </map-marker>
+    <map-polyline [path]="vertices"></map-polyline>
+    <map-kml-layer [url]="kmlUrl"></map-kml-layer>
+    </google-map>
+    <button kendoButton type="button" icon="marker-pin" (click)=" AddMarkers()">Ver Marcadores</button>
+    <!-- <button kendoButton type="button" icon="position" (click)="Tuposicion()">Tu Posicion</button>
+    {{marcadores|json}}
+    [icon]="{url:iconMap.iconUrl,scale:0.010}"
+     -->
+
+</div>

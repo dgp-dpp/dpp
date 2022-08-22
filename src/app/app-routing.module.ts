@@ -43,6 +43,7 @@ import { Pf2023Component } from './Views/PaqueteFiscal2023/pf2023/pf2023.compone
 import { GoogleMapsComponent } from './Views/Administracion/google-maps/google-maps.component';
 import { PaisesComponent } from './Views/Administracion/Mapas/paises/paises.component';
 import { APGComponent } from './Views/Administracion/ConsumirApis/apg/apg.component';
+import { MapaComponent } from './Views/Administracion/BienesServicios/mapa/mapa.component';
 
 const routes: Routes = [
 
@@ -93,6 +94,8 @@ const routes: Routes = [
   {path: "google-map", component:GoogleMapsComponent},
   {path: "map-paises", component: PaisesComponent},
   {path: "apg", component: APGComponent},
+  {path: "mapa_bienes", component: MapaComponent},
+
 
 
   { path: "chrtshigh", component:ChrtshighComponent},
