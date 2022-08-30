@@ -133,17 +133,27 @@
       </div>
 
       <!-- <div class="col auto" style="padding: 1.5rem; ;padding-bottom: 2rem;padding-right: 3rem;"> -->
-      <div class="col-md-9" style="padding-top: 40px;">
+      <div class="col-md-6" style="padding-top: 40px;">
         <kendo-card width="auto" style="padding: 2.5rem;">
         <i class="fas fa-redo" (click)="loadGridItems()"></i>
-        <!-- <kendo-dropdownlist [data]="dropDownItems" [defaultItem]="defaultItem" textField="text" valueField="text"
-          (valueChange)="handleFilterChange($event)">
-          </kendo-dropdownlist> -->
+        <kendo-dropdownlist [data]="dropDownItems" [defaultItem]="defaultItem" textField="text" valueField="text"
+        (valueChange)="handleFilterChange($event)"
+          >
+          </kendo-dropdownlist>
 
-        <kendo-grid [data]="listInscripcion" [pageSize]="pageSize" [skip]="skip" [pageable]="true"
-          (pageChange)="pageChange($event)" [sortable]="false" [sort]="sortDescriptor"
-          (sortChange)="handleSortChange($event)" [height]="400" [resizable]="true" [kendoGridBinding]="gridView"
-          kendoGridSelectBy="idInscripcion" [selectedKeys]="mySelection">
+        <kendo-grid [data]="listInscripcion"
+           [pageSize]="pageSize"
+           [skip]="skip"
+           [pageable]="true"
+          (pageChange)="pageChange($event)"
+          [sortable]="false"
+          [sort]="sortDescriptor"
+          [filterable]="true"
+          (sortChange)="handleSortChange($event)"
+          [height]="400" [resizable]="true"
+          [kendoGridBinding]="gridView"
+          kendoGridSelectBy="idInscripcion"
+          [selectedKeys]="mySelection">
           <ng-template kendoGridToolbarTemplate>
             <kendo-grid-spacer></kendo-grid-spacer>
             <button kendoGridExcelCommand type="button" icon="file-excel">

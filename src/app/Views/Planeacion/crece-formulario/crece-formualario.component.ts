@@ -19,6 +19,7 @@ export class CreceFormualarioComponent implements OnInit {
   //   @ViewChild('myForm') form: FormGroup;
 
   // send() { this.form.ngSubmit.emit(); }
+  //-------------------------DECELARACION DE TODAS LAS VARIABLES--------------------
   form: FormGroup;
   public selectedValue = "";
   Nombre: string;
@@ -26,18 +27,191 @@ export class CreceFormualarioComponent implements OnInit {
   public ProgramaPresupuestario: Array<{ value: number; text: string }> = [];
   public fecha: Date = new Date(2000, 2, 10);
   public position: TabPosition = "top";
-
-  public Contador1si: number;
+  // -------VARIABLES PARA CALCULO DE LA PRIMER PREGUNTA----------
+  public Contador1si: any;
   public Contador2si: any;
   public Contador1no: any;
   public Contador2no: any;
-  public TotalSi!: any;
+  public TotalSi: number;
 
   public contador:number=0;
+
+  public CalfDp1:number;
 
   public Dp4Calf: any;
   public CalfDp4: string = "";
   public PonDp4: number = 0;
+
+  public Dp5Calf: any;
+  public CalfDp5: string = "";
+  public PonDp5: number = 0;
+
+  public Dp6Calf: any;
+  public CalfDp6: string = "";
+  public PonDp6: number = 0;
+
+  public Dp7Calf: any;
+  public CalfDp7: string = "";
+  public PonDp7: number = 0;
+
+  public Dp8Calf: any;
+  public CalfDp8: string = "";
+  public PonDp8: number = 0;
+
+  public Dp9Calf: any;
+  public CalfDp9: string = "";
+  public PonDp9: number = 0;
+
+  public Dp10Calf: any;
+  public CalfDp10: string = "";
+  public PonDp10: number = 0;
+
+  public Dp11Calf: any;
+  public CalfDp11: string = "";
+  public PonDp11: number = 0;
+
+  public Dp12Calf: any;
+  public CalfDp12: string = "";
+  public PonDp12: number = 0;
+
+  public Dp13Calf: any;
+  public CalfDp13: string = "";
+  public PonDp13: number = 0;
+
+  public Dp14Calf: any;
+  public CalfDp14: string = "";
+  public PonDp14: number = 0;
+
+  public Dp15Calf: any;
+  public CalfDp15: string = "";
+  public PonDp15: number = 0;
+
+  public Dp16Calf: any;
+  public CalfDp16: string = "";
+  public PonDp16: number = 0;
+
+  public Dp17Calf: any;
+  public CalfDp17: string = "";
+  public PonDp17: number = 0;
+
+  public Dp18Calf: any;
+  public CalfDp18: string = "";
+  public PonDp18: number = 0;
+
+  public Dp19Calf: any;
+  public CalfDp19: string = "";
+  public PonDp19: number = 0;
+
+  public Dp20Calf: any;
+  public CalfDp20: string = "";
+  public PonDp20: number = 0;
+
+  public Mir1Calf: any;
+  public CalfMir1: string = "";
+  public PonMir1: number = 0;
+
+  public Mir2Calf: any;
+  public CalfMir2: string = "";
+  public PonMir2: number = 0;
+
+  public Mir3Calf: any;
+  public CalfMir3: string = "";
+  public PonMir3: number = 0;
+
+  public Mir4Calf: any;
+  public CalfMir4: string = "";
+  public PonMir4: number = 0;
+
+  public Mir5Calf: any;
+  public CalfMir5: string = "";
+  public PonMir5: number = 0;
+
+  public Mir6Calf: any;
+  public CalfMir6: string = "";
+  public PonMir6: number = 0;
+
+  public Mir7Calf: any;
+  public CalfMir7: string = "";
+  public PonMir7: number = 0;
+
+  public Mir8Calf: any;
+  public CalfMir8: string = "";
+  public PonMir8: number = 0;
+
+  public Mir9Calf: any;
+  public CalfMir9: string = "";
+  public PonMir9: number = 0;
+
+  public Mir10Calf: any;
+  public CalfMir10: string = "";
+  public PonMir10: number = 0;
+
+  public Mir11Calf: any;
+  public CalfMir11: string = "";
+  public PonMir11: number = 0;
+
+  public Mir12Calf: any;
+  public CalfMir12: string = "";
+  public PonMir12: number = 0;
+
+  public Mir13Calf: any;
+  public CalfMir13: string = "";
+  public PonMir13: number = 0;
+
+  public Mir14Calf: any;
+  public CalfMir14: string = "";
+  public PonMir14: number = 0;
+
+  public Mir15Calf: any;
+  public CalfMir15: string = "";
+  public PonMir15: number = 0;
+
+  public Mir16Calf: any;
+  public CalfMir16: string = "";
+  public PonMir16: number = 0;
+
+  public Mir17Calf: any;
+  public CalfMir17: string = "";
+  public PonMir17: number = 0;
+
+  public Mir18Calf: any;
+  public CalfMir18: string = "";
+  public PonMir18: number = 0;
+
+  public Mir19Calf: any;
+  public CalfMir19: string = "";
+  public PonMir19: number = 0;
+
+  public Mir20Calf: any;
+  public CalfMir20: string = "";
+  public PonMir20: number = 0;
+
+  public Mir21Calf: any;
+  public CalfMir21: string = "";
+  public PonMir21: number = 0;
+
+  public Mir22Calf: any;
+  public CalfMir22: string = "";
+  public PonMir22: number = 0;
+
+  public Mir23Calf: any;
+  public CalfMir23: string = "";
+  public PonMir23: number = 0;
+
+  public Mir24Calf: any;
+  public CalfMir24: string = "";
+  public PonMir24: number = 0;
+
+  public Mir25Calf: any;
+  public CalfMir25: string = "";
+  public PonMir25: number = 0;
+
+  public Mir26Calf: any;
+  public CalfMir26: string = "";
+  public PonMir26: number = 0;
+
+
+
   public textAreaValueDp4 = "";
   public textAreaValueDp5 = "";
   public textAreaValueDp6 = "";
@@ -89,7 +263,7 @@ export class CreceFormualarioComponent implements OnInit {
 
   public listCursos: Array<{ value: number; text: string }> = [];
   public listDep: Array<{ text: string; value: number }> = [];
-
+ //--------------------OBTENER USUARIOS  PARA QUE APAREZACA EN EL MENSAJE DE BIENVENDA-----------
   getUsuario(): void {
     this.Nombre = this.loginServices.getTokenDecoded().sub;
     this.Rol = this.loginServices.getTokenDecoded().roles;
@@ -103,6 +277,8 @@ export class CreceFormualarioComponent implements OnInit {
     prevButtonIcon: "fa fa-arrow-circle-left",
     nextButtonIcon: "fa fa-arrow-circle-right",
   };
+
+  //  ---------------OBTENER PROGRAMAS PRESUPUESTARIOS---------------
   obtenerPp() {
     this._catPpService.getListPp().pipe(
       map(response => response.$values)
@@ -128,7 +304,7 @@ export class CreceFormualarioComponent implements OnInit {
     )
   }
 
-  //Obtener Dependencias
+  //---------------OBTENER DEPENDENCIAS--------------------
   obtenerDependencias() {
     this._depService.GetListDep().pipe(
       map(response => response.$values)
@@ -151,7 +327,9 @@ export class CreceFormualarioComponent implements OnInit {
   }
 
 
-  //Metodo para registrar las Inscripciones
+  //-------------------------------------------------------------------------------------------------------------
+  //-------------------------------------Metodo para registrar las Inscripciones---------------------------------
+  //-------------------------------------------------------------------------------------------------------------
   GuardarCrece() {
     const crece: any = {
       Email: this.form.get('Email')?.value,
@@ -188,8 +366,10 @@ export class CreceFormualarioComponent implements OnInit {
 
       //Evaluacion Dp
       Dp1: this.form.get('Dp1')?.value,
-      Dp4: this.form.get('Dp4')?.value,
-      Dp4Esp: this.form.get('Dp4Esp')?.value,
+      Dp4: this.form.get('Dp4')?.value,// calificacion en los intervalos [0,3,9]
+      Dp4Esp: this.form.get('Dp4Esp')?.value, // Respuesta Especifica de la pregunta
+      CalfDp4form: this.form.get('CalfDp4form')?.value, //Respuesta Generica
+      ponDp4form: this.form.get('ponDp4form')?.value,  // Ponderacion de la Pregunta [0{0},3{1},9{2}]
       Dp5: this.form.get('Dp5')?.value,
       Dp5Esp: this.form.get('Dp5Esp')?.value,
       Dp6: this.form.get('Dp6')?.value,
@@ -281,11 +461,6 @@ export class CreceFormualarioComponent implements OnInit {
       //Areas de Oportunidad
       AoMir: this.form.get('AoMir')?.value,
       AoDp: this.form.get('AoDp')?.value,
-      CalfDp4form: this.form.get('CalfDp4form')?.value,
-      ponDp4form: this.form.get('ponDp4form')?.value,
-
-
-
 
 
     }
@@ -297,6 +472,9 @@ export class CreceFormualarioComponent implements OnInit {
       console.log(error);
     })
   }
+  //-----------------------------------------------------------------------------------------
+  //--------------------------CONSTRUCTOR DONDE SE ESTABLECE EL FORM-------------------------
+  //-----------------------------------------------------------------------------------------
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -312,7 +490,7 @@ export class CreceFormualarioComponent implements OnInit {
       Fecha: ['', Validators.required],
       Ano: ['', Validators.required],
       DepPar: ['', Validators.required],
-      ClaveNombre: ["", Validators.required],
+      ClaveNombre: ['', Validators.required],
       DepResPp: ['', Validators.required],
       DepParPp: ['', Validators.required],
       FechaADx: ['', Validators.required],
@@ -430,8 +608,6 @@ export class CreceFormualarioComponent implements OnInit {
       ponDp4form: ['', Validators.required],
 
 
-
-
     });
     console.log(pp);
   }
@@ -445,6 +621,9 @@ export class CreceFormualarioComponent implements OnInit {
     //this.Elemento2Calculo();
 
   }
+  //------------------------------------------------------------------------
+  //------------------METODOS PARA LIMPIAR LOS CAMPOS-----------------------
+  //------------------------------------------------------------------------
   public clearValue4(): void {
     this.textAreaValueDp4 = "";
   }
@@ -602,20 +781,35 @@ export class CreceFormualarioComponent implements OnInit {
   //   console.log("\n");
   // }
 
-
+//---------------------------------------------------------------------------------------
+//-------------------------CALCULO DE LA PRIMER PREGUNTA---------------------------------
+//---------------------------------------------------------------------------------------
   public Elemento2Calculo():void{
     this.Contador1si = this.form.get('ClaveNombre')?.value
-    if (this.Contador1no == 0 && this.Contador2no==0) {
+    this.Contador2si = this.form.get('DepResPp')?.value
+    this.Contador1no = this.form.get('ClaveNombre')?.value
+    this.Contador2no = this.form.get('DepResPp')?.value
+    if (this.Contador1no === "0" && this.Contador2no === "0") {
       this.TotalSi = 0;
-    } else if (this.Contador1si == 1 && this.Contador2no == 0 || this.Contador1no == 0 && this.Contador2si == 1) {
+    } else if (this.Contador1si === "1" && this.Contador2no === "0") {
        this.TotalSi = 1;
-    } else if (this.Contador1si == 1 && this.Contador2si == 1) {
+    }
+      else if (this.Contador1no === "0" && this.Contador2si === "1") {
+        this.TotalSi = 1;
+    } else if (this.Contador1si === "1" && this.Contador2si === "1") {
        this.TotalSi = 2;
     }
     console.log(this.form.value);
   }
+  public TotDp1():void{
 
-
+  }
+//
+//--------------------------------------------------------------------------------------------------------------------------------------
+//METODOS PARA DETERMINAR  LOS CAMPOS DE SIN RECOMENDACIONES, RESPUESTA GENERICA Y PONDERACION EQUIVALENTE SEGUN SU  CALIFICACION (3,6,9)
+//--------------------------------------------------------------------------------------------------------------------------------------
+//
+//******************************PREGUNTA 4******************************************
   public sinrec4(): void {
     if (this.Dp4Calf == 9) {
       this.textAreaValueDp4 = "Sin recomendaciones";
@@ -630,7 +824,6 @@ export class CreceFormualarioComponent implements OnInit {
   public respuestaGenericaDp4(): any {
     if (this.Dp4Calf == 9) {
       this.CalfDp4 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-      //Maximo 2%
     } else if (this.Dp4Calf == 6) {
       this.CalfDp4 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
     }
@@ -651,30 +844,276 @@ export class CreceFormualarioComponent implements OnInit {
       this.PonDp4 = 0;
     }
   }
+  //******************************PREGUNTA 5******************************************
   public sinrec5(): void {
-    this.textAreaValueDp5 = "Sin recomendaciones";
+    if (this.Dp5Calf == 9) {
+      this.textAreaValueDp5 = "Sin recomendaciones";
+    }
+    else if (this.Dp5Calf == 6) {
+      this.textAreaValueDp5 = "";
+    }
+    else if (this.Dp5Calf == 3) {
+      this.textAreaValueDp5 = "";
+    }
   }
+  public respuestaGenericaDp5(): any {
+    if (this.Dp5Calf == 9) {
+      this.CalfDp5 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    } else if (this.Dp5Calf == 6) {
+      this.CalfDp5 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    else if (this.Dp5Calf == 3) {
+      this.CalfDp5 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    console.log(this.form.value);
+  }
+
+  public ponderacionDp5(): void {
+    if (this.Dp5Calf == 9) {
+      //Maximo 2%
+      this.PonDp5 = 2;
+    } else if (this.Dp5Calf == 6) {
+      this.PonDp5 = 1;
+    }
+    else if (this.Dp5Calf == 3) {
+      this.PonDp5 = 0;
+    }
+  }
+  //******************************PREGUNTA 6******************************************
   public sinrec6(): void {
-    this.textAreaValueDp6 = "Sin recomendaciones";
+    if (this.Dp6Calf == 9) {
+      this.textAreaValueDp6 = "Sin recomendaciones";
+    }
+    else if (this.Dp6Calf == 6) {
+      this.textAreaValueDp6 = "";
+    }
+    else if (this.Dp6Calf == 3) {
+      this.textAreaValueDp6 = "";
+    }
   }
+  public respuestaGenericaDp6(): any {
+    if (this.Dp6Calf == 9) {
+      this.CalfDp6 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    } else if (this.Dp6Calf == 6) {
+      this.CalfDp6 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    else if (this.Dp6Calf == 3) {
+      this.CalfDp6 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    console.log(this.form.value);
+  }
+
+  public ponderacionDp6(): void {
+    if (this.Dp6Calf == 9) {
+      //Maximo 2%
+      this.PonDp6 = 2;
+    } else if (this.Dp6Calf == 6) {
+      this.PonDp6 = 1;
+    }
+    else if (this.Dp6Calf == 3) {
+      this.PonDp6 = 0;
+    }
+  }
+  //******************************PREGUNTA 7******************************************
   public sinrec7(): void {
-    this.textAreaValueDp7 = "Sin recomendaciones";
+    if (this.Dp7Calf == 9) {
+      this.textAreaValueDp7 = "Sin recomendaciones";
+    }
+    else if (this.Dp7Calf == 6) {
+      this.textAreaValueDp7 = "";
+    }
+    else if (this.Dp7Calf == 3) {
+      this.textAreaValueDp7 = "";
+    }
   }
+  public respuestaGenericaDp7(): any {
+    if (this.Dp7Calf == 9) {
+      this.CalfDp7 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    } else if (this.Dp7Calf == 6) {
+      this.CalfDp7 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    else if (this.Dp7Calf == 3) {
+      this.CalfDp7 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    console.log(this.form.value);
+  }
+
+  public ponderacionDp7(): void {
+    if (this.Dp7Calf == 9) {
+      //Maximo 2%
+      this.PonDp7 = 2;
+    } else if (this.Dp7Calf == 6) {
+      this.PonDp7 = 1;
+    }
+    else if (this.Dp7Calf == 3) {
+      this.PonDp7 = 0;
+    }
+  }
+  //******************************PREGUNTA 8******************************************
   public sinrec8(): void {
-    this.textAreaValueDp8 = "Sin recomendaciones";
+    if (this.Dp8Calf == 9) {
+      this.textAreaValueDp8 = "Sin recomendaciones";
+    }
+    else if (this.Dp8Calf == 6) {
+      this.textAreaValueDp8 = "";
+    }
+    else if (this.Dp8Calf == 3) {
+      this.textAreaValueDp8 = "";
+    }
   }
+  public respuestaGenericaDp8(): any {
+    if (this.Dp8Calf == 9) {
+      this.CalfDp8 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    } else if (this.Dp8Calf == 6) {
+      this.CalfDp8 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    else if (this.Dp8Calf == 3) {
+      this.CalfDp8 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    console.log(this.form.value);
+  }
+
+  public ponderacionDp8(): void {
+    if (this.Dp8Calf == 9) {
+      //Maximo 2%
+      this.PonDp8 = 2;
+    } else if (this.Dp8Calf == 6) {
+      this.PonDp8 = 1;
+    }
+    else if (this.Dp8Calf == 3) {
+      this.PonDp8 = 0;
+    }
+  }
+  //******************************PREGUNTA 9******************************************
   public sinrec9(): void {
-    this.textAreaValueDp9 = "Sin recomendaciones";
+    if (this.Dp9Calf == 9) {
+      this.textAreaValueDp9 = "Sin recomendaciones";
+    }
+    else if (this.Dp9Calf == 6) {
+      this.textAreaValueDp9 = "";
+    }
+    else if (this.Dp9Calf == 3) {
+      this.textAreaValueDp9 = "";
+    }
   }
+  public respuestaGenericaDp9(): any {
+    if (this.Dp9Calf == 9) {
+      this.CalfDp9 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    } else if (this.Dp9Calf == 6) {
+      this.CalfDp9 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    else if (this.Dp9Calf == 3) {
+      this.CalfDp9 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    console.log(this.form.value);
+  }
+
+  public ponderacionDp9(): void {
+    if (this.Dp9Calf == 9) {
+      //Maximo 2%
+      this.PonDp9 = 2;
+    } else if (this.Dp9Calf == 6) {
+      this.PonDp9 = 1;
+    }
+    else if (this.Dp9Calf == 3) {
+      this.PonDp9 = 0;
+    }
+  }
+  //******************************PREGUNTA 10******************************************
   public sinrec10(): void {
-    this.textAreaValueDp10 = "Sin recomendaciones";
+    if (this.Dp10Calf == 9) {
+      this.textAreaValueDp10 = "Sin recomendaciones";
+    }
+    else if (this.Dp10Calf == 6) {
+      this.textAreaValueDp10 = "";
+    }
+    else if (this.Dp10Calf == 3) {
+      this.textAreaValueDp10 = "";
+    }
   }
+  public respuestaGenericaDp10(): any {
+    if (this.Dp10Calf == 9) {
+      this.CalfDp10 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    } else if (this.Dp10Calf == 6) {
+      this.CalfDp10 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    else if (this.Dp10Calf == 3) {
+      this.CalfDp10 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    console.log(this.form.value);
+  }
+
+  public ponderacionDp10(): void {
+    if (this.Dp10Calf == 9) {
+      //Maximo 2%
+      this.PonDp10 = 2;
+    } else if (this.Dp10Calf == 6) {
+      this.PonDp10 = 1;
+    }
+    else if (this.Dp10Calf == 3) {
+      this.PonDp10 = 0;
+    }
+  }
+  //******************************PREGUNTA 11******************************************
   public sinrec11(): void {
-    this.textAreaValueDp11 = "Sin recomendaciones";
+    if (this.Dp11Calf == 9) {
+      this.textAreaValueDp11 = "Sin recomendaciones";
+    }
+    else if (this.Dp11Calf == 6) {
+      this.textAreaValueDp11 = "";
+    }
+    else if (this.Dp11Calf == 3) {
+      this.textAreaValueDp11 = "";
+    }
   }
+  public respuestaGenericaDp11(): any {
+    if (this.Dp11Calf == 9) {
+      this.CalfDp11 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    } else if (this.Dp11Calf == 6) {
+      this.CalfDp11 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    else if (this.Dp11Calf == 3) {
+      this.CalfDp11 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    console.log(this.form.value);
+  }
+
+  public ponderacionDp11(): void {
+    if (this.Dp11Calf == 9) {
+      //Maximo 2%
+      this.PonDp11 = 2;
+    } else if (this.Dp11Calf == 6) {
+      this.PonDp11 = 1;
+    }
+    else if (this.Dp11Calf == 3) {
+      this.PonDp11 = 0;
+    }
+  }
+  //******************************PREGUNTA 12******************************************
   public sinrec12(): void {
-    this.textAreaValueDp12 = "Sin recomendaciones";
+    if (this.Dp12Calf == 9) {
+      this.textAreaValueDp12 = "Sin recomendaciones";
+    }
+    else if (this.Dp12Calf == 6) {
+      this.textAreaValueDp12 = "";
+    }
+    else if (this.Dp12Calf == 3) {
+      this.textAreaValueDp12 = "";
+    }
   }
+  public respuestaGenericaDp12(): any {
+    if (this.Dp12Calf == 9) {
+      this.CalfDp12 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    } else if (this.Dp12Calf == 6) {
+      this.CalfDp12 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    else if (this.Dp12Calf == 3) {
+      this.CalfDp12 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    }
+    console.log(this.form.value);
+  }
+
+
   public sinrec13(): void {
     this.textAreaValueDp13 = "Sin recomendaciones";
   }
@@ -777,6 +1216,9 @@ export class CreceFormualarioComponent implements OnInit {
   public sinrec46(): void {
     this.textAreaValueMir26 = "Sin recomendaciones";
   }
+  //----------------------------------------------------------------------------------------------
+  //--------------------------------CATALOGOS DE DROPLIST-----------------------------------------
+  //----------------------------------------------------------------------------------------------
   public listYear: Array<string> = [
     "2019",
     "2020",

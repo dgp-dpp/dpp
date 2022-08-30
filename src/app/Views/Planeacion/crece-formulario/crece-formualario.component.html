@@ -152,13 +152,14 @@
                                           &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                           &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         </kendo-label>
-                                        <input required type="radio" class="custom-size"  name="ClaveNombre" (click)=" Elemento2Calculo()" value="1" #si
+                                        <kendo-label class="k-radio-label" [for]="1" >Si</kendo-label>
+                                        <input required type="radio" class="custom-size"  name="ClaveNombre" (click)="Elemento2Calculo()" value="1" #1
                                             formControlName="ClaveNombre" kendoRadioButton />
-                                          <kendo-label class="k-radio-label" [for]="si" >Si</kendo-label>
+
                                       </li>
                                       <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="ClaveNombre"  (click)=" Elemento2Calculo()" value="0" #no
+                                        <kendo-label class="k-radio-label" [for]="0">No</kendo-label>
+                                        <input required type="radio" class="custom-size" name="ClaveNombre"  (click)="Elemento2Calculo()" value="0" #0
                                            formControlName="ClaveNombre" kendoRadioButton />
                                       </li>
                                     </ul>
@@ -178,13 +179,13 @@
                                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         </kendo-label>
                                         <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DepResPp"
+                                        <input required type="radio" class="custom-size" name="DepResPp"   (click)="Elemento2Calculo()"
                                            value="1" #si formControlName="DepResPp"
                                           kendoRadioButton />
                                       </li>
                                       <li class="k-radio-item">
                                         <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required class="custom-size" type="radio" name="DepResPp"
+                                        <input required class="custom-size" type="radio" name="DepResPp"  (click)="Elemento2Calculo()"
                                           value="0" #no formControlName="DepResPp"
                                           kendoRadioButton />
                                       </li>
@@ -201,13 +202,13 @@
                                           Programa
                                           Presupuestario
                                           &nbsp;&nbsp;&nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DepParPp" value="1" #si
+                                        <kendo-label class="k-radio-label" [for]="1">Si</kendo-label>
+                                        <input required type="radio" class="custom-size" name="DepParPp" value="1" #1
                                           formControlName="DepParPp" kendoRadioButton />
                                       </li>
                                       <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DepParPp" value="0" #no
+                                        <kendo-label class="k-radio-label" [for]="0">No</kendo-label>
+                                        <input required type="radio" class="custom-size" name="DepParPp" value="0" #0
                                           formControlName="DepParPp" kendoRadioButton />
                                       </li>
                                     </ul>
@@ -740,12 +741,12 @@
                                         ¿El DP incluye todos los apartados y elementos de acuerdo con la guía?
                                       </kendo-label>
                                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                        <kendo-textarea formControlName="Dp1" [(ngModel)]="TotalSi" resizable="auto"
+                                        <kendo-textarea formControlName="Dp1"  [(ngModel)]="TotalSi" resizable="auto"
                                           name="Dp1" flow="horizontal">
                                           <kendo-textarea-suffix>
                                             <!-- <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                               icon="edit" (click)="Elemento2Calculo()">Respuesta Generica</button> -->
-                                            <button kendoButton type="button" class="suffix-clear-button"
+                                            <button kendoButton type="button" class="suffix-clear-button" (click)="Elemento2Calculo()"
                                               fillMode="clear" icon="edit">Respuesta Generica</button>
                                             <!-- <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                               icon="edit" (click)="CalfDp1Pon">Respuesta Generica</button> -->
@@ -829,7 +830,7 @@
                                   <kendo-formhint style="font-weight: normal;" align="start">4 DP RE</kendo-formhint>
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
-
+                               <!-- 4Dp Generica &nbsp; -->
                                 <p> </p>
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
                                   <kendo-textarea formControlName="CalfDp4form" [(ngModel)]="CalfDp4" resizable="auto"

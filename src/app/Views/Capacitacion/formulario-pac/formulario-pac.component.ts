@@ -36,7 +36,7 @@ export class FormularioPacComponent implements OnInit {
     public pageSize: number = 10;
     public skip: number = 0;
     public sortDescriptor: SortDescriptor[] = [];
-    public filterTerm: string = null;
+    public filterTerm: number = null;
     public gridView: any[];
     public mySelection: string[] = [];
 
@@ -169,7 +169,7 @@ export class FormularioPacComponent implements OnInit {
   }
 
   public loadGridItems(): void {
-    this._inscripcionService.GetListInscripcion().pipe(
+   this._inscripcionService.GetListInscripcion().pipe(
       map(response =>response.$values)
     ).subscribe(_data => {
       _data =_data.map(_par=>{
@@ -248,7 +248,7 @@ public handleFilterChange(item: {
   text: string;
   value: number | null;
 }): void {
-  this.filterTerm = item.text;
+  this.filterTerm = item.value;
   this.skip = 0;
   this.loadGridItems();
 }

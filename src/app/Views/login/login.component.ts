@@ -119,7 +119,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(usuario).subscribe( data => {
       console.log(data);
       this.userService.setToken(data.token);
-      
+
       setTimeout(() => {
         if(this.email==="eve.holt@reqres.in" && this.password=="123"){
           this.toastr.success("Usted se ha logeado correctamente");
@@ -131,18 +131,18 @@ export class LoginComponent implements OnInit {
         this.toastr.error("Por favor ingresa las credenciales correctas",'Error');
         this.email="";
         this.password="";
-        
+
        }
        this.loading=false;
       },1500);
-      
-      
+
+
     },
       error => {
         console.log(error);
-        
+
     });
-    
+
   }
 
 }

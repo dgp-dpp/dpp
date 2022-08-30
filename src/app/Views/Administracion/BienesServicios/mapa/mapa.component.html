@@ -1,32 +1,74 @@
 <app-home></app-home>
 <div style="padding: 4rem;">
-  <google-map  width="900px" height="700px" [zoom]="zoom"
-    [center]="center" [options]="options" [FitBounds]="true">
-    <map-marker #marker="mapMarker"
+  <button kendoButton type="button" icon="marker-pin" (click)=" AddMarkers()">Ver Marcadores</button>
+  <google-map width="900px" style="color:0xffffff" height="700px" [zoom]="zoom" [center]="center" [options]="options"
+    [FitBounds]="true">
+    <map-marker-clusterer [imagePath]="markerClustererImagePath">
+      <map-marker #marker="mapMarker" (mapClick)="openInfoWindow(marker, infoWindow)"
+        *ngFor="let marcador of marcadores" [position]="marcador.position" [FitBounds]="true" [icon]="marcador.icon">
+        <map-info-window #infoWindow="mapInfoWindow">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Ver Detalle
+          </button><br>
 
-    (mapClick)="openInfoWindow(marker, infoWindow)"
-     *ngFor ="let marcador of marcadores" [position]="marcador.position" [FitBounds]="true"
-      [label]="{
-      text: 'local_hospital',
-      fontFamily: 'Material Icons',
-      color: '#ffffff',
-      fontSize: '18px'}"
-    >
-       <map-info-window
-       #infoWindow="mapInfoWindow">
-       <b>Cve Mun:</b>{{marcador.cve_mun}}<br>
-       <b>Municipio:</b> {{marcador.municipio}}<br>
-       <b>Unidad:</b>{{marcador.unidad}}<br>
-       <b>Domicilio:</b>{{marcador.domicilio}}<br>
-      </map-info-window>
-    </map-marker>
+          <b>Cve Mun:</b>{{marcador.cve_mun}}<br>
+          <b>Municipio:</b> {{marcador.municipio}}<br>
+          <b>Unidad:</b>{{marcador.unidad}}<br>
+          <b>Domicilio:</b>{{marcador.domicilio}}<br>
+          <b>Programa Presupuestario:</b>{{marcador.pp}}<br>
+          <b>P/G:</b>{{marcador.pg}}<br>
+          <b>Icono:</b><a target="_blank" href='{{marcador.icon}}'>Prueba este link</a>
+        </map-info-window>
+      </map-marker>
+    </map-marker-clusterer>
     <map-polyline [path]="vertices"></map-polyline>
     <map-kml-layer [url]="kmlUrl"></map-kml-layer>
-    </google-map>
-    <button kendoButton type="button" icon="marker-pin" (click)=" AddMarkers()">Ver Marcadores</button>
-    <!-- <button kendoButton type="button" icon="position" (click)="Tuposicion()">Tu Posicion</button>
+    <!-- <map-marker [position] = position2></map-marker> -->
+  </google-map>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-fullscreen-sm-down">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Descripcion del Punto</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div *ngFor="let marcador of marcadores">
+        <b>P/G:</b>{{marcador.pg}}<br>
+        <b>Cve Mun:</b>{{marcador.cve_mun}}<br>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      <button type="button" class="btn btn-primary">Guardar Cambios</button>
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- <button kendoButton type="button" icon="position" (click)="Tuposicion()">Tu Posicion</button>
     {{marcadores|json}}
-    [icon]="{url:iconMap.iconUrl,scale:0.010}"
+    [icon]="{url:iconMap.iconUrl,scale:0.010}
+    local_hospital
+    local_police"
+    [label]="{
+      text: 'marcador.icon',
+      fontFamily: 'Material Icons',
+      color: '#ffffff',
+      fontSize: '32px'}"
      -->
 
 </div>
+<script>
+  var myModal = document.getElementById('myModal')
+  var myInput = document.getElementById('myInput')
+
+  myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+  })
+</script>
