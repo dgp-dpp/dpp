@@ -1,57 +1,115 @@
 <app-home></app-home>
 <div style="padding: 4rem;">
-  <button kendoButton type="button" icon="marker-pin" (click)=" AddMarkers()">Ver Marcadores</button>
-  <google-map width="900px" style="color:0xffffff" height="700px" [zoom]="zoom" [center]="center" [options]="options"
-    [FitBounds]="true">
-    <map-marker-clusterer [imagePath]="markerClustererImagePath">
-      <map-marker #marker="mapMarker" (mapClick)="openInfoWindow(marker, infoWindow)"
-        *ngFor="let marcador of marcadores" [position]="marcador.position" [FitBounds]="true" [icon]="marcador.icon">
-        <map-info-window #infoWindow="mapInfoWindow">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Ver Detalle
-          </button><br>
-
-          <b>Cve Mun:</b>{{marcador.cve_mun}}<br>
-          <b>Municipio:</b> {{marcador.municipio}}<br>
-          <b>Unidad:</b>{{marcador.unidad}}<br>
-          <b>Domicilio:</b>{{marcador.domicilio}}<br>
-          <b>Programa Presupuestario:</b>{{marcador.pp}}<br>
-          <b>P/G:</b>{{marcador.pg}}<br>
-          <b>Icono:</b><a target="_blank" href='{{marcador.icon}}'>Prueba este link</a>
-        </map-info-window>
-      </map-marker>
-    </map-marker-clusterer>
-    <map-polyline [path]="vertices"></map-polyline>
-    <map-kml-layer [url]="kmlUrl"></map-kml-layer>
-    <!-- <map-marker [position] = position2></map-marker> -->
-  </google-map>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-fullscreen-sm-down">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Descripcion del Punto</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <div *ngFor="let marcador of marcadores">
-        <b>P/G:</b>{{marcador.pg}}<br>
-        <b>Cve Mun:</b>{{marcador.cve_mun}}<br>
-
+<kendo-tabstrip [scrollable]="settings" (tabSelect)="onTabSelect($event)" [tabPosition]="position">
+<!-- My Maps -->
+  <kendo-tabstrip-tab [selected]="true">
+    <ng-template kendoTabTitle>
+      <strong>
+        My Maps
+      </strong>
+    </ng-template>
+    <ng-template kendoTabContent>
+      <div class="container-fluid"  style="background-color: rgb(204, 198, 198);">
+        <div style="padding: 4rem; align-content: center;">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1a4ubi2kxfA2pge8Jx_s5pbGwwEE0YvE&ehbc=2E312F" width="900" height="700"></iframe>
       </div>
+      </div>
+    </ng-template>
+    </kendo-tabstrip-tab>
+  <!--2.-  Mapa de Google -->
+  <kendo-tabstrip-tab [selected]="false">
+    <ng-template kendoTabTitle>
+      <strong>
+        Google Maps
+      </strong>
+    </ng-template>
+    <ng-template kendoTabContent>
+      <div class="container-fluid"  style="background-color: rgb(204, 198, 198);">
+        <div style="padding: 4rem; align-items: center;">
+          <button kendoButton type="button" icon="marker-pin" (click)=" AddMarkers()">Ver Marcadores</button>
+          <google-map width="900px" style="color:0xffffff" height="700px" [zoom]="zoom" [center]="center"
+            [options]="options" [FitBounds]="true">
+            <map-marker-clusterer [imagePath]="markerClustererImagePath">
+              <map-marker #marker="mapMarker" (mapClick)="openInfoWindow(marker, infoWindow)"
+                *ngFor="let marcador of marcadores" [position]="marcador.position" [FitBounds]="true"
+                [icon]="marcador.icon">
+                <map-info-window #infoWindow="mapInfoWindow">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Ver Detalle
+                  </button><br>
+                  <b>Id:</b>{{marcador.id}}<br>
+                  <b>Cve Mun:</b>{{marcador.cve_mun}}<br>
+                  <b>Municipio:</b> {{marcador.municipio}}<br>
+                  <b>Unidad:</b>{{marcador.unidad}}<br>
+                  <b>Domicilio:</b>{{marcador.domicilio}}<br>
+                  <b>Programa Presupuestario:</b>{{marcador.pp}}<br>
+                  <b>P/G:</b>{{marcador.pg}}<br>
+                  <b>Icono:</b><a target="_blank" href='{{marcador.icon}}'>Prueba este link</a>
+                </map-info-window>
+              </map-marker>
+            </map-marker-clusterer>
+            <map-polyline [path]="vertices"></map-polyline>
+            <map-kml-layer [url]="kmlUrl"></map-kml-layer>
+            <!-- <map-marker [position] = position2></map-marker> -->
+          </google-map>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen-sm-down">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Descripcion del Punto</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <a type="button" *ngFor="let marcador of marcadores">
 
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary">Guardar Cambios</button>
-    </div>
-  </div>
-</div>
-</div>
+                    <b>P/G:</b>{{marcador.pg}}<br>
+                    <b>Cve Mun:</b>{{marcador.cve_mun}}<br>
 
-  <!-- <button kendoButton type="button" icon="position" (click)="Tuposicion()">Tu Posicion</button>
+                  </a>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+       </div>
+        </div>
+        </ng-template>
+        </kendo-tabstrip-tab>
+
+          <kendo-tabstrip-tab [selected]="false">
+            <ng-template kendoTabTitle>
+              <strong>
+                Studio Here
+              </strong>
+            </ng-template>
+            <ng-template kendoTabContent>
+              <div class="container-fluid"  style="background-color: rgb(204, 198, 198);">
+                <div style="padding: 4rem; align-content: center;">
+              <iframe src="https://studio.here.com/viewer/?project_id=93fb4da5-1355-497d-bedf-52e6288633e3" width="1100" height="600"></iframe>
+                </div>
+              </div>
+            </ng-template>
+            </kendo-tabstrip-tab>
+        </kendo-tabstrip>
+        </div>
+        <script>
+          var myModal = document.getElementById('myModal')
+          var myInput = document.getElementById('myInput')
+
+          myModal.addEventListener('shown.bs.modal', function () {
+            myInput.focus()
+          })
+        </script>
+      <!-- <button kendoButton type="button" icon="position" (click)="Tuposicion()">Tu Posicion</button>
     {{marcadores|json}}
     [icon]="{url:iconMap.iconUrl,scale:0.010}
     local_hospital
@@ -62,13 +120,3 @@ aria-hidden="true">
       color: '#ffffff',
       fontSize: '32px'}"
      -->
-
-</div>
-<script>
-  var myModal = document.getElementById('myModal')
-  var myInput = document.getElementById('myInput')
-
-  myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-  })
-</script>

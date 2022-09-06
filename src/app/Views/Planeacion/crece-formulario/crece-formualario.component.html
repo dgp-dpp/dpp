@@ -143,7 +143,7 @@
                                 <div class="col-md-6">
                                   <!-- 2.1 Clave  y Nombre del Programa Presupuestario -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
+                                    style="background-color: darkgray">
                                     <ul class="k-radio-list k-list-horizontal">
                                       <li class="k-radio-item">
                                         <kendo-label class="k-radio-label">1.- Clave y Nombre del Programa
@@ -715,9 +715,11 @@
           </div>
           <p></p>
           <!-- Seccion  3 Evaluacion al DX Particular -->
+          {{TotalDp}}
           <div class="col-md-12">
             <kendo-panelbar>
               <kendo-panelbar-item icon="folder" title="Evaluación al Diagnóstico Particular">
+
                 <ng-template kendoPanelBarContent>
                   <kendo-card width="auto" style="padding: 1rem; align-content: center;">
                     <kendo-tabstrip [scrollable]="settings" (tabSelect)="onTabSelect($event)" [tabPosition]="position">
@@ -789,30 +791,25 @@
                                         resumen ejecutivo del documento.
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Dp4" value="9" #9
-                                        [(ngModel)]="Dp4Calf" formControlName="Dp4" (click)="respuestaGenericaDp4()"
-                                        (click)="ponderacionDp4()" (click)="sinrec4()" kendoRadioButton />
+                                         formControlName="Dp4" [(ngModel)]="Dp4Calf"  (click)="MethodTotalDp()" (click)="RespuestaDp4()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Dp4" value="6" #6
-                                        [(ngModel)]="Dp4Calf" formControlName="Dp4" (click)="respuestaGenericaDp4()"
-                                        (click)="ponderacionDp4()" (click)="sinrec4()" kendoRadioButton />
+                                         formControlName="Dp4" [(ngModel)]="Dp4Calf"  (click)="MethodTotalDp()" (click)="RespuestaDp4()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                         redacción)</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
-                                      <input required type="radio" class="custom-size" name="Dp4" value="3" #No
-                                        [(ngModel)]="Dp4Calf" formControlName="Dp4" (click)="respuestaGenericaDp4()"
-                                        (click)="ponderacionDp4()" (click)="sinrec4()" kendoRadioButton />
-                                      <kendo-label class="k-radio-label" [for]="6">3 No</kendo-label>
+                                      <input required type="radio" class="custom-size" name="Dp4" value="3" #3
+                                         formControlName="Dp4" [(ngModel)]="Dp4Calf" (click)="MethodTotalDp()" (click)="RespuestaDp4()" kendoRadioButton />
+                                      <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
                                   <kendo-formerror>Error: Campo requerido </kendo-formerror>
                                 </kendo-formfield>
                                 <p> </p>
-
-                                <!-- 4Dp Especifica &nbsp; -->
-                                <!-- {{textAreaValue}} -->
+                                 <!------------------- 4Dp Especifica &nbsp; ------------>
                                 <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica,
                                   en
                                   caso de que la calificación sea 9 documentar "Sin recomendaciones".
@@ -824,42 +821,38 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue4()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec4()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaDp4()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">4 DP RE</kendo-formhint>
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
-                               <!-- 4Dp Generica &nbsp; -->
-                                <p> </p>
-                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="CalfDp4form" [(ngModel)]="CalfDp4" resizable="auto"
+                                     <!-- ----------------4Dp Generica &nbsp; --------->
+                                  <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea formControlName="CalfDp4form" [(ngModel)]="CalfDp4" [readonly]="true" resizable="auto"
                                     name="CalfDp4" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="respuestaGenericaDp4()">Respuesta Generica</button>
+                                        icon="edit" (click)="RespuestaDp4()">Respuesta Generica</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">4 DP Generica
                                   </kendo-formhint>
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
-                                <br>
+                                <!--------------------- 4Dp Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponDp4form" [(ngModel)]="PonDp4" resizable="auto"
+                                  <kendo-textarea formControlName="ponDp4form"  [readonly]="true" [(ngModel)]="PonDp4" resizable="auto"
                                     name="PonDp4" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
-                                        (click)="ponderacionDp4()">Ponderacion</button>
+                                      (click)="RespuestaDp4()">Ponderacion</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">4 DP Ponderacion
                                   </kendo-formhint>
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
-                                <!-- {{Dp4Calf}}<br>
-                                <br>
-                                {{PonDp4}} -->
                               </div>
                             </div>
                           </div>
@@ -884,18 +877,19 @@
                                     relacionados con la problemática?
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp5" value="9" #9
-                                    formControlName="Dp5" kendoRadioButton />
+                                    formControlName="Dp5" (click)="MethodTotalDp()" [(ngModel)]="Dp5Calf" (click)="RespuestaDp5()"
+                                    kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp5" value="6" #6
-                                    formControlName="Dp5" kendoRadioButton />
+                                    formControlName="Dp5" (click)="MethodTotalDp()" [(ngModel)]="Dp5Calf"  (click)="RespuestaDp5()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp5" value="3" #No
-                                    formControlName="Dp5" kendoRadioButton />
+                                    formControlName="Dp5"  (click)="MethodTotalDp()" [(ngModel)]="Dp5Calf"  (click)="RespuestaDp5()"kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -903,8 +897,6 @@
                             </kendo-formfield>
                             <p> </p>
                             <!-- 5Dp Especifica &nbsp; -->
-                            <!-- {{textAreaValue}} -->
-                            <!-- <p>Model: {{ model|json}}</p> -->
                             <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica, en
                               caso de que la calificación sea 9 documentar "Sin recomendaciones".
                             </kendo-label>
@@ -915,12 +907,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue5()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec5()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp5()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">5 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                                <!-- ----------------5Dp Generica &nbsp; --------->
+                             <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                             <kendo-textarea formControlName="CalfDp5form" [(ngModel)]="CalfDp5" [readonly]="true" resizable="auto"
+                               name="CalfDp5" flow="horizontal">
+                               <kendo-textarea-suffix>
+                                 <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                   icon="edit" (click)="RespuestaDp5()">Respuesta Generica</button>
+                               </kendo-textarea-suffix>
+                             </kendo-textarea>
+                             <kendo-formhint style="font-weight: normal;" align="start">5 DP Generica
+                             </kendo-formhint>
+                             <kendo-formerror>Error: es requerido</kendo-formerror>
+                           </kendo-formfield>
+                           <!--------------------- 5Dp Ponderacion -------->
+                           <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                             <kendo-textarea formControlName="ponDp5form"  [readonly]="true" [(ngModel)]="PonDp5" resizable="auto"
+                               name="PonDp5" flow="horizontal">
+                               <kendo-textarea-suffix>
+                                 <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                                 (click)="RespuestaDp5()">Ponderacion</button>
+                               </kendo-textarea-suffix>
+                             </kendo-textarea>
+                             <kendo-formhint style="font-weight: normal;" align="start">5 DP Ponderacion
+                             </kendo-formhint>
+                             <kendo-formerror>Error: es requerido</kendo-formerror>
+                           </kendo-formfield>
                             <p> </p>
                           </div>
                         </ng-template>
@@ -947,18 +966,18 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp6" value="9" #9
-                                    formControlName="Dp6" kendoRadioButton />
+                                    formControlName="Dp6" [(ngModel)]="Dp6Calf"  (click)="RespuestaDp6()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp6" value="6" #6
-                                    formControlName="Dp6" kendoRadioButton />
+                                    formControlName="Dp6"  [(ngModel)]="Dp6Calf"  (click)="RespuestaDp6()"kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp6" value="3" #No
-                                    formControlName="Dp6" kendoRadioButton />
+                                    formControlName="Dp6" [(ngModel)]="Dp6Calf"  (click)="RespuestaDp6()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -966,8 +985,6 @@
                             </kendo-formfield>
                             <p> </p>
                             <!-- 6Dp Especifica &nbsp; -->
-                            <!-- {{textAreaValue}} -->
-                            <!-- <p>Model: {{ model}}</p> -->
                             <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica, en
                               caso de que la calificación sea 9 documentar "Sin recomendaciones".
                             </kendo-label>
@@ -978,12 +995,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue6()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec6()">Sin recomendaciones</button>
+                                    icon="edit"  (click)="RespuestaDp6()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">6 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------6Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp6form" [(ngModel)]="CalfDp6" [readonly]="true" resizable="auto"
+                           name="CalfDp6" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp6()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">6 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 6Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp6form"  [readonly]="true" [(ngModel)]="PonDp6" resizable="auto"
+                           name="PonDp6" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp6()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">6 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                             <!--7 Dp  &nbsp; -->
                             <kendo-formfield orientation="vertical" showErros="initial"
@@ -995,18 +1039,18 @@
                                     que se identifica su relación con el problema? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp7" value="9" #9
-                                    formControlName="Dp7" kendoRadioButton />
+                                    formControlName="Dp7"[(ngModel)]="Dp7Calf"  (click)="RespuestaDp7()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp7" value="6" #6
-                                    formControlName="Dp7" kendoRadioButton />
+                                    formControlName="Dp7" [(ngModel)]="Dp7Calf" (click)="RespuestaDp7()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp7" value="3" #No
-                                    formControlName="Dp7" kendoRadioButton />
+                                    formControlName="Dp7" [(ngModel)]="Dp7Calf" (click)="RespuestaDp7()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1014,8 +1058,6 @@
                             </kendo-formfield>
                             <p> </p>
                             <!-- 7Dp Especifica &nbsp; -->
-                            <!-- {{textAreaValue}} -->
-                            <!-- <p>Model: {{ model}}</p> -->
                             <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica, en
                               caso de que la calificación sea 9 documentar "Sin recomendaciones".
                             </kendo-label>
@@ -1026,12 +1068,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue7()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec7()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp7()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">7 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------7Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp7form" [(ngModel)]="CalfDp7" [readonly]="true" resizable="auto"
+                           name="CalfDp7" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp7()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">7 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 7Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp7form"  [readonly]="true" [(ngModel)]="PonDp7" resizable="auto"
+                           name="PonDp5" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp7()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">7 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
 
                             <p> </p>
                             <!--8 Dp  &nbsp; -->
@@ -1046,18 +1115,18 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp8" value="9" #9
-                                    formControlName="Dp8" kendoRadioButton />
+                                    formControlName="Dp8"  [(ngModel)]="Dp8Calf"(click)="RespuestaDp8()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp8" value="6" #6
-                                    formControlName="Dp8" kendoRadioButton />
+                                    formControlName="Dp8" [(ngModel)]="Dp8Calf" (click)="RespuestaDp8()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp8" value="3" #No
-                                    formControlName="Dp8" kendoRadioButton />
+                                    formControlName="Dp8"  [(ngModel)]="Dp8Calf" (click)="RespuestaDp8()"kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1065,8 +1134,6 @@
                             </kendo-formfield>
                             <p> </p>
                             <!-- 8Dp Especifica &nbsp; -->
-                            <!-- {{textAreaValue}} -->
-                            <!-- <p>Model: {{ model}}</p> -->
                             <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica, en
                               caso de que la calificación sea 9 documentar "Sin recomendaciones".
                             </kendo-label>
@@ -1077,12 +1144,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue8()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec8()">Sin recomendaciones</button>
+                                    icon="edit"  (click)="RespuestaDp8()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">8 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------8Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp8form" [(ngModel)]="CalfDp8" [readonly]="true" resizable="auto"
+                           name="CalfDp8" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp8()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">8 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 8Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp8form"  [readonly]="true" [(ngModel)]="PonDp8" resizable="auto"
+                           name="PonDp8" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp8()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">8 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
 
                             <p> </p>
 
@@ -1108,18 +1202,18 @@
                                     tiempo?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp9" value="9" #9
-                                    formControlName="Dp9" kendoRadioButton />
+                                    formControlName="Dp9" [(ngModel)]="Dp9Calf" (click)="RespuestaDp9()"kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp9" value="6" #6
-                                    formControlName="Dp9" kendoRadioButton />
+                                    formControlName="Dp9"  [(ngModel)]="Dp9Calf" (click)="RespuestaDp9()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp9" value="3" #No
-                                    formControlName="Dp9" kendoRadioButton />
+                                    formControlName="Dp9"  [(ngModel)]="Dp9Calf" (click)="RespuestaDp9()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1137,12 +1231,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue9()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec9()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp9()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">9 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------9Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp9form" [(ngModel)]="CalfDp9" [readonly]="true" resizable="auto"
+                           name="CalfDp9" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp9()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">9 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 9Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp9form"  [readonly]="true" [(ngModel)]="PonDp9" resizable="auto"
+                           name="PonDp9" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp9()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">9 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                             <!--10 ¿El DP describe y cuantifica la situación actual del problema? Dp  &nbsp; -->
                             <kendo-formfield orientation="vertical" showErros="initial"
@@ -1157,18 +1278,18 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp10" value="9" #9
-                                    formControlName="Dp10" kendoRadioButton />
+                                    formControlName="Dp10"  [(ngModel)]="Dp10Calf"(click)="RespuestaDp10()"  kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp10" value="6" #6
-                                    formControlName="Dp10" kendoRadioButton />
+                                    formControlName="Dp10" [(ngModel)]="Dp10Calf" (click)="RespuestaDp10()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp10" value="3" #No
-                                    formControlName="Dp10" kendoRadioButton />
+                                    formControlName="Dp10" [(ngModel)]="Dp10Calf" (click)="RespuestaDp10()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1186,12 +1307,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue10()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec10()">Sin recomendaciones</button>
+                                    icon="edit"  (click)="RespuestaDp10()" >Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">10 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------10Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp10form" [(ngModel)]="CalfDp10" [readonly]="true" resizable="auto"
+                           name="CalfDp10" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp10()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">10 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 5Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp10form"  [readonly]="true" [(ngModel)]="PonDp10" resizable="auto"
+                           name="PonDp10" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp10()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">10 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                             <!--11.- ¿Se cuenta con al menos dos niveles de causas?   &nbsp; -->
                             <kendo-formfield orientation="vertical" showErros="initial"
@@ -1207,18 +1355,18 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp11" value="9" #9
-                                    formControlName="Dp11" kendoRadioButton />
+                                    formControlName="Dp11" [(ngModel)]="Dp11Calf" (click)="RespuestaDp11()"kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp11" value="6" #6
-                                    formControlName="Dp11" kendoRadioButton />
+                                    formControlName="Dp11" [(ngModel)]="Dp11Calf" (click)="RespuestaDp11()"  kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp11" value="3" #No
-                                    formControlName="Dp11" kendoRadioButton />
+                                    formControlName="Dp11" [(ngModel)]="Dp11Calf" (click)="RespuestaDp11()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1226,8 +1374,6 @@
                             </kendo-formfield>
                             <p> </p>
                             <!-- 9Dp Especifica &nbsp; -->
-                            <!-- {{textAreaValue}} -->
-                            <!-- <p>Model: {{ model}}</p> -->
                             <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica, en
                               caso de que la calificación sea 9 documentar "Sin recomendaciones".
                             </kendo-label>
@@ -1238,12 +1384,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue11()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec11()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp11()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">11 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------11Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp11form" [(ngModel)]="CalfDp11" [readonly]="true" resizable="auto"
+                           name="CalfDp11" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp11()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">11 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 11Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp11form"  [readonly]="true" [(ngModel)]="PonDp11" resizable="auto"
+                           name="PonDp10" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp11()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">11 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
 
                             <p> </p>
                             <!--12.- ¿Cuantas causas se presentan en el árbol de problemas?  &nbsp; -->
@@ -1260,18 +1433,18 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp12" value="9" #9
-                                    formControlName="Dp12" kendoRadioButton />
+                                    formControlName="Dp12" [(ngModel)]="Dp12Calf" (click)="RespuestaDp12()"kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp12" value="6" #6
-                                    formControlName="Dp12" kendoRadioButton />
+                                    formControlName="Dp12" [(ngModel)]="Dp12Calf" (click)="RespuestaDp12()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp12" value="3" #No
-                                    formControlName="Dp12" kendoRadioButton />
+                                    formControlName="Dp12" [(ngModel)]="Dp12Calf" (click)="RespuestaDp12()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1289,12 +1462,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue12()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec12()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp12()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">12 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------12Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp12form" [(ngModel)]="CalfDp12" [readonly]="true" resizable="auto"
+                           name="CalfDp12" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp12()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">12 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 12Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp12form"  [readonly]="true" [(ngModel)]="PonDp12" resizable="auto"
+                           name="PonDp12" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp12()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">12 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                           </div>
                         </ng-template>
@@ -1320,18 +1520,18 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp13" value="9" #9
-                                    formControlName="Dp13" kendoRadioButton />
+                                    formControlName="Dp13"[(ngModel)]="Dp13Calf"  (click)="RespuestaDp13()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp13" value="6" #6
-                                    formControlName="Dp13" kendoRadioButton />
+                                    formControlName="Dp13" [(ngModel)]="Dp13Calf" (click)="RespuestaDp13()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp13" value="3" #No
-                                    formControlName="Dp13" kendoRadioButton />
+                                    formControlName="Dp13"  [(ngModel)]="Dp13Calf"  (click)="RespuestaDp13()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1349,12 +1549,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue13()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec13()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp13()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">13 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------13Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp13form" [(ngModel)]="CalfDp13" [readonly]="true" resizable="auto"
+                           name="CalfDp13" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp13()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">13 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 13Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp13form"  [readonly]="true" [(ngModel)]="PonDp13" resizable="auto"
+                           name="PonDp13" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp13()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">13 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                             <!--14  &nbsp; -->
                             <kendo-formfield orientation="vertical" showErros="initial"
@@ -1368,18 +1595,18 @@
                                     pertinente, eficiente y eficaz)
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp14" value="9" #9
-                                    formControlName="Dp14" kendoRadioButton />
+                                    formControlName="Dp14"  [(ngModel)]="Dp14Calf"  (click)="RespuestaDp14()"kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp14" value="6" #6
-                                    formControlName="Dp14" kendoRadioButton />
+                                    formControlName="Dp14"  [(ngModel)]="Dp14Calf" (click)="RespuestaDp14()"kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp14" value="3" #No
-                                    formControlName="Dp14" kendoRadioButton />
+                                    formControlName="Dp14"  [(ngModel)]="Dp14Calf" (click)="RespuestaDp14()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1397,12 +1624,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue14()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec14()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp14()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">14 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------14Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp14form" [(ngModel)]="CalfDp14" [readonly]="true" resizable="auto"
+                           name="CalfDp14" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp14()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">10 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 14Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp14form"  [readonly]="true" [(ngModel)]="PonDp14" resizable="auto"
+                           name="PonDp14" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp14()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">10 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                           </div>
                         </ng-template>
@@ -1424,18 +1678,18 @@
                                     objetivos que serán parte de la intervención de gobierno?
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp15" value="9" #9
-                                    formControlName="Dp15" kendoRadioButton />
+                                    formControlName="Dp15"  [(ngModel)]="Dp15Calf"(click)="RespuestaDp15()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp15" value="6" #6
-                                    formControlName="Dp15" kendoRadioButton />
+                                    formControlName="Dp15" [(ngModel)]="Dp15Calf" (click)="RespuestaDp15()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp15" value="3" #No
-                                    formControlName="Dp15" kendoRadioButton />
+                                    formControlName="Dp15" [(ngModel)]="Dp15Calf"(click)="RespuestaDp15()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1453,12 +1707,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue15()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec15()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp15()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">15 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------15Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp15form" [(ngModel)]="CalfDp15" [readonly]="true" resizable="auto"
+                           name="CalfDp15" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp15()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">15 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 15Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp15form"  [readonly]="true" [(ngModel)]="PonDp15" resizable="auto"
+                           name="PonDp15" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp15()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">15 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                           </div>
                         </ng-template>
@@ -1484,18 +1765,18 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Dp16" value="9" #9
-                                        formControlName="Dp16" kendoRadioButton />
+                                        formControlName="Dp16" [(ngModel)]="Dp16Calf" (click)="RespuestaDp16()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Dp16" value="6" #6
-                                        formControlName="Dp16" kendoRadioButton />
+                                        formControlName="Dp16" [(ngModel)]="Dp16Calf" (click)="RespuestaDp16()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                         redacción)</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
-                                      <input required type="radio" class="custom-size" name="Dp16" value="3" #No
-                                        formControlName="Dp16" kendoRadioButton />
+                                      <input required type="radio" [(ngModel)]="Dp16Calf" class="custom-size" name="Dp16" value="3" #No
+                                        formControlName="Dp16" (click)="RespuestaDp16()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -1514,12 +1795,39 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue16()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec16()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaDp16()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">16 DP RE</kendo-formhint>
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
+                                <p> </p>
+                                <!-- ----------------16Dp Generica &nbsp; --------->
+                             <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                             <kendo-textarea formControlName="CalfDp16form" [(ngModel)]="CalfDp16" [readonly]="true" resizable="auto"
+                               name="CalfDp16" flow="horizontal">
+                               <kendo-textarea-suffix>
+                                 <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                   icon="edit" (click)="RespuestaDp16()">Respuesta Generica</button>
+                               </kendo-textarea-suffix>
+                             </kendo-textarea>
+                             <kendo-formhint style="font-weight: normal;" align="start">16 DP Generica
+                             </kendo-formhint>
+                             <kendo-formerror>Error: es requerido</kendo-formerror>
+                           </kendo-formfield>
+                           <!--------------------- 16Dp Ponderacion -------->
+                           <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                             <kendo-textarea formControlName="ponDp16form"  [readonly]="true" [(ngModel)]="PonDp16" resizable="auto"
+                               name="PonDp16" flow="horizontal">
+                               <kendo-textarea-suffix>
+                                 <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                                 (click)="RespuestaDp16()">Ponderacion</button>
+                               </kendo-textarea-suffix>
+                             </kendo-textarea>
+                             <kendo-formhint style="font-weight: normal;" align="start">16 DP Ponderacion
+                             </kendo-formhint>
+                             <kendo-formerror>Error: es requerido</kendo-formerror>
+                           </kendo-formfield>
                                 <p> </p>
                               </div>
                             </div>
@@ -1543,18 +1851,18 @@
                                     tipo de intervención? (Tabla en guía DxP)
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp17" value="9" #9
-                                    formControlName="Dp17" kendoRadioButton />
+                                    formControlName="Dp17" [(ngModel)]="Dp17Calf" (click)="RespuestaDp17()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp17" value="6" #6
-                                    formControlName="Dp17" kendoRadioButton />
+                                    formControlName="Dp17" [(ngModel)]="Dp17Calf" (click)="RespuestaDp17()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp17" value="3" #No
-                                    formControlName="Dp17" kendoRadioButton />
+                                    formControlName="Dp17" [(ngModel)]="Dp17Calf"(click)="RespuestaDp17()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1572,12 +1880,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue17()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec17()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp17()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">17 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------17Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp17form" [(ngModel)]="CalfDp17" [readonly]="true" resizable="auto"
+                           name="CalfDp17" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp17()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">17 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 17Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp17form"  [readonly]="true" [(ngModel)]="PonDp17" resizable="auto"
+                           name="PonDp17" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp17()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">17 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                           </div>
                         </ng-template>
@@ -1604,18 +1939,18 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Dp18" value="9" #9
-                                        formControlName="Dp18" kendoRadioButton />
+                                        formControlName="Dp18" [(ngModel)]="Dp18Calf" (click)="RespuestaDp18()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Dp18" value="6" #6
-                                        formControlName="Dp18" kendoRadioButton />
+                                        formControlName="Dp18"  [(ngModel)]="Dp18Calf"  (click)="RespuestaDp18()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                         redacción)</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Dp18" value="3" #No
-                                        formControlName="Dp18" kendoRadioButton />
+                                        formControlName="Dp18"  [(ngModel)]="Dp18Calf"  (click)="RespuestaDp18()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -1634,12 +1969,39 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue18()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec18()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaDp18()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">18 DP RE</kendo-formhint>
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
+                                <p> </p>
+                                <!-- ----------------18Dp Generica &nbsp; --------->
+                             <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                             <kendo-textarea formControlName="CalfDp18form" [(ngModel)]="CalfDp18" [readonly]="true" resizable="auto"
+                               name="CalfDp18" flow="horizontal">
+                               <kendo-textarea-suffix>
+                                 <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                   icon="edit" (click)="RespuestaDp18()">Respuesta Generica</button>
+                               </kendo-textarea-suffix>
+                             </kendo-textarea>
+                             <kendo-formhint style="font-weight: normal;" align="start">18 DP Generica
+                             </kendo-formhint>
+                             <kendo-formerror>Error: es requerido</kendo-formerror>
+                           </kendo-formfield>
+                           <!--------------------- 18Dp Ponderacion -------->
+                           <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                             <kendo-textarea formControlName="ponDp18form"  [readonly]="true" [(ngModel)]="PonDp18" resizable="auto"
+                               name="PonDp18" flow="horizontal">
+                               <kendo-textarea-suffix>
+                                 <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                                 (click)="RespuestaDp18()">Ponderacion</button>
+                               </kendo-textarea-suffix>
+                             </kendo-textarea>
+                             <kendo-formhint style="font-weight: normal;" align="start">18 DP Ponderacion
+                             </kendo-formhint>
+                             <kendo-formerror>Error: es requerido</kendo-formerror>
+                           </kendo-formfield>
                                 <p> </p>
                               </div>
                             </div>
@@ -1665,18 +2027,18 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp19" value="9" #9
-                                    formControlName="Dp19" kendoRadioButton />
+                                    formControlName="Dp19" [(ngModel)]="Dp19Calf" (click)="RespuestaDp19()"kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp19" value="6" #6
-                                    formControlName="Dp19" kendoRadioButton />
+                                    formControlName="Dp19" [(ngModel)]="Dp19Calf" (click)="RespuestaDp19()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
                                     redacción)</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp19" value="3" #No
-                                    formControlName="Dp19" kendoRadioButton />
+                                    formControlName="Dp19" [(ngModel)]="Dp19Calf" (click)="RespuestaDp19()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1694,12 +2056,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue19()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec19()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp19()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">19 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------19Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp19form" [(ngModel)]="CalfDp19" [readonly]="true" resizable="auto"
+                           name="CalfDp19" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp19()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">19 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 19Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp19form"  [readonly]="true" [(ngModel)]="PonDp19" resizable="auto"
+                           name="PonDp19" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp19()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">19 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                           </div>
                         </ng-template>
@@ -1722,12 +2111,12 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                   </kendo-label>
                                   <input required type="radio" class="custom-size" name="Dp20" value="9" #9
-                                    formControlName="Dp20" kendoRadioButton />
+                                    formControlName="Dp20" [(ngModel)]="Dp20Calf"  (click)="RespuestaDp20()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                 </li>
                                 <li class="k-radio-item" style="padding-left: 1rem;">
                                   <input required type="radio" class="custom-size" name="Dp20" value="3" #No
-                                    formControlName="Dp20" kendoRadioButton />
+                                    formControlName="Dp20" [(ngModel)]="Dp20Calf" (click)="RespuestaDp20()" kendoRadioButton />
                                   <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                 </li>
                               </ul>
@@ -1745,12 +2134,39 @@
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                     icon="close" (click)="clearValue20()"></button>
                                   <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="sinrec20()">Sin recomendaciones</button>
+                                    icon="edit" (click)="RespuestaDp20()">Sin recomendaciones</button>
                                 </kendo-textarea-suffix>
                               </kendo-textarea>
                               <kendo-formhint style="font-weight: normal;" align="start">20 DP RE</kendo-formhint>
                               <kendo-formerror>Error: es requerido</kendo-formerror>
                             </kendo-formfield>
+                            <p> </p>
+                            <!-- ----------------20Dp Generica &nbsp; --------->
+                         <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="CalfDp20form" [(ngModel)]="CalfDp20" [readonly]="true" resizable="auto"
+                           name="CalfDp20" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                               icon="edit" (click)="RespuestaDp20()">Respuesta Generica</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">20 DP Generica
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
+                       <!--------------------- 20Dp Ponderacion -------->
+                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                         <kendo-textarea formControlName="ponDp20form"  [readonly]="true" [(ngModel)]="PonDp20" resizable="auto"
+                           name="PonDp20" flow="horizontal">
+                           <kendo-textarea-suffix>
+                             <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                             (click)="RespuestaDp20()">Ponderacion</button>
+                           </kendo-textarea-suffix>
+                         </kendo-textarea>
+                         <kendo-formhint style="font-weight: normal;" align="start">20 DP Ponderacion
+                         </kendo-formhint>
+                         <kendo-formerror>Error: es requerido</kendo-formerror>
+                       </kendo-formfield>
                             <p> </p>
                           </div>
                         </ng-template>
@@ -1763,7 +2179,7 @@
             <p></p>
             <!-- Seccion  4 Calificacion MIR -->
             <kendo-panelbar>
-              <kendo-panelbar-item icon="folder" title="Calificacion MIR">
+              <kendo-panelbar-item icon="folder" title="Evaluación MIR">
                 <ng-template kendoPanelBarContent>
                   <kendo-card width="auto" style="padding: 1rem; align-content: center;">
                     <kendo-tabstrip [scrollable]="settings" (tabSelect)="onTabSelect($event)" [tabPosition]="position">
@@ -1792,12 +2208,12 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir2" value="9" #9
-                                        formControlName="Mir2" kendoRadioButton />
+                                        formControlName="Mir2" [(ngModel)]="Mir2Calf" (click)="RespuestaMir2()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir2" value="3" #No
-                                        formControlName="Mir2" kendoRadioButton />
+                                        formControlName="Mir2"[(ngModel)]="Mir2Calf" (click)="RespuestaMir2()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -1816,7 +2232,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue22()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec22()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir2()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">2 MIR RE</kendo-formhint>
@@ -1836,17 +2252,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir8" value="9" #9
-                                        formControlName="Mir8" kendoRadioButton />
+                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9. Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir8" value="6" #No
-                                        formControlName="Mir8" kendoRadioButton />
+                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir8" value="3" #No
-                                        formControlName="Mir8" kendoRadioButton />
+                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. No</kendo-label>
                                     </li>
                                   </ul>
@@ -1865,7 +2281,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue28()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec28()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir8()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">8 MIR RE</kendo-formhint>
@@ -1887,12 +2303,12 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir13" value="9" #9
-                                        formControlName="Mir13" kendoRadioButton />
+                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9. Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir13" value="6" #No
-                                        formControlName="Mir13" kendoRadioButton />
+                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
@@ -1916,7 +2332,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue33()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec33()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir13()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">13 MIR RE</kendo-formhint>
@@ -1950,12 +2366,12 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir1" value="9" #9
-                                        formControlName="Mir1" kendoRadioButton />
+                                        formControlName="Mir1" [(ngModel)]="Mir1Calf" (click)="RespuestaMir1()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir1" value="3" #No
-                                        formControlName="Mir1" kendoRadioButton />
+                                        formControlName="Mir1" [(ngModel)]="Mir1Calf" (click)="RespuestaMir1()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -1974,7 +2390,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue21()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec21()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir1()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">1 MIR RE</kendo-formhint>
@@ -1998,17 +2414,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir17" value="9" #9
-                                        formControlName="Mir17" kendoRadioButton />
+                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir17" value="6" #6
-                                        formControlName="Mir17" kendoRadioButton />
+                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir17" value="3" #3
-                                        formControlName="Mir17" kendoRadioButton />
+                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2027,7 +2443,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue37()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec37()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir17()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">17 MIR RE</kendo-formhint>
@@ -2052,12 +2468,12 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir6" value="9" #9
-                                        formControlName="Mir6" kendoRadioButton />
+                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir6" value="3" #No
-                                        formControlName="Mir6" kendoRadioButton />
+                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2076,7 +2492,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue26()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec26()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir6()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">6 MIR RE</kendo-formhint>
@@ -2101,17 +2517,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir18" value="9" #9
-                                        formControlName="Mir18" kendoRadioButton />
+                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- del 0 al 20</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir18" value="6" #6
-                                        formControlName="Mir18" kendoRadioButton />
+                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- del 21 al 80</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir18" value="3" #3
-                                        formControlName="Mir18" kendoRadioButton />
+                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- del 81 al 100 </kendo-label>
                                     </li>
                                   </ul>
@@ -2130,7 +2546,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue38()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec38()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir18()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">18 MIR RE</kendo-formhint>
@@ -2157,13 +2573,13 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir7" value="9" #9
-                                        formControlName="Mir7" kendoRadioButton />
+                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
 
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir7" value="3" #No
-                                        formControlName="Mir7" kendoRadioButton />
+                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2182,7 +2598,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue27()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec27()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir7()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">7 MIR RE</kendo-formhint>
@@ -2206,12 +2622,12 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir19" value="9" #9
-                                        formControlName="Mir19" kendoRadioButton />
+                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir19" value="3" #3
-                                        formControlName="Mir19" kendoRadioButton />
+                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No </kendo-label>
                                     </li>
                                   </ul>
@@ -2230,7 +2646,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue39()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec39()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir19()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">19 MIR RE</kendo-formhint>
@@ -2254,17 +2670,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir12" value="9" #9
-                                        formControlName="Mir12" kendoRadioButton />
+                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir12" value="6" #6
-                                        formControlName="Mir12" kendoRadioButton />
+                                        formControlName="Mir12" [(ngModel)]="Mir1Calf" (click)="RespuestaMir12()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir12" value="3" #3
-                                        formControlName="Mir12" kendoRadioButton />
+                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2283,7 +2699,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue32()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec32()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir12()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">12 MIR RE</kendo-formhint>
@@ -2309,17 +2725,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir21" value="9" #9
-                                        formControlName="Mir21" kendoRadioButton />
+                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir21" value="6" #6
-                                        formControlName="Mir21" kendoRadioButton />
+                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir21" value="3" #3
-                                        formControlName="Mir21" kendoRadioButton />
+                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No </kendo-label>
                                     </li>
                                   </ul>
@@ -2338,7 +2754,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue41()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec41()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir21()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">21 MIR RE</kendo-formhint>
@@ -2364,24 +2780,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir16" value="9" #9
-                                        formControlName="Mir16" kendoRadioButton />
+                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- maximo 3</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir16" value="6" #No
-                                        formControlName="Mir16" kendoRadioButton />
+                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- de 3 a 5</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir16" value="3" #No
-                                        formControlName="Mir16" kendoRadioButton />
+                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- mas de 5</kendo-label>
                                     </li>
                                   </ul>
                                   <kendo-formerror>Error: Campo requerido </kendo-formerror>
                                 </kendo-formfield>
                                 <p> </p>
-                                <!-- 1 MIR Especifica &nbsp; -->
+                                <!-- 16 MIR Especifica &nbsp; -->
                                 <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica,
                                   en
                                   caso de que la calificación sea 9 documentar "Sin recomendaciones".
@@ -2393,7 +2809,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue36()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec36()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir16()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">16 MIR RE</kendo-formhint>
@@ -2428,19 +2844,19 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir3" value="9" #9
-                                        formControlName="Mir3" kendoRadioButton />
+                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Máximo 3 indicadores, claramente
                                         miden el objetivo.</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir3" value="3" #6
-                                        formControlName="Mir3" kendoRadioButton />
+                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Máximo 3 indicadores, no se
                                         identifica relación con el objetivo en alguno de los indicadores</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir3" value="3" #3
-                                        formControlName="Mir3" kendoRadioButton />
+                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- Más de 3 indicadores
                                       </kendo-label>
                                     </li>
@@ -2460,7 +2876,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue23()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec23()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir3()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">3 MIR RE</kendo-formhint>
@@ -2484,17 +2900,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir23" value="9" #9
-                                        formControlName="Mir23" kendoRadioButton />
+                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir23" value="6" #6
-                                        formControlName="Mir23" kendoRadioButton />
+                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir23" value="3" #3
-                                        formControlName="Mir23" kendoRadioButton />
+                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2513,7 +2929,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue43()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec43()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir23()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">23 MIR RE</kendo-formhint>
@@ -2537,19 +2953,19 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir9" value="9" #9
-                                        formControlName="Mir9" kendoRadioButton />
+                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9. Máximo 3 indicadores, claramente
                                         miden el objetivo</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir9" value="6" #6
-                                        formControlName="Mir9" kendoRadioButton />
+                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Máximo 3 indicadores, no se
                                         identifica relación con el objetivo en alguno de los indicadores</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir9" value="3" #3
-                                        formControlName="Mir9" kendoRadioButton />
+                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. Más de 3 indicadores</kendo-label>
                                     </li>
                                   </ul>
@@ -2568,7 +2984,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue29()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec29()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir9()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">9 MIR RE</kendo-formhint>
@@ -2593,17 +3009,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir24" value="9" #9
-                                        formControlName="Mir24" kendoRadioButton />
+                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- 100%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir24" value="6" #6
-                                        formControlName="Mir24" kendoRadioButton />
+                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- 60 al 99%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir24" value="3" #3
-                                        formControlName="Mir24" kendoRadioButton />
+                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- menos del 60%</kendo-label>
                                     </li>
                                   </ul>
@@ -2622,7 +3038,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue44()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec44()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir24()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">24 MIR RE</kendo-formhint>
@@ -2648,19 +3064,19 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir14" value="9" #9
-                                        formControlName="Mir14" kendoRadioButton />
+                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Máximo 3 indicadores, claramente
                                         miden el objetivo.</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir14" value="6" #6
-                                        formControlName="Mir14" kendoRadioButton />
+                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Máximo 3 indicadores, no se
                                         identifica relación con el objetivo en alguno de los indicadores</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir14" value="3" #3
-                                        formControlName="Mir14" kendoRadioButton />
+                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. Más de 3 indicadores</kendo-label>
                                     </li>
                                   </ul>
@@ -2679,7 +3095,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue34()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec34()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir14()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">14 MIR RE</kendo-formhint>
@@ -2702,17 +3118,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir25" value="9" #9
-                                        formControlName="Mir25" kendoRadioButton />
+                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- 100%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir25" value="6" #6
-                                        formControlName="Mir25" kendoRadioButton />
+                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- del 80 al 99%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir25" value="3" #3
-                                        formControlName="Mir25" kendoRadioButton />
+                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. menos del 80%</kendo-label>
                                     </li>
                                   </ul>
@@ -2731,7 +3147,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue45()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec45()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir25()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">25 MIR RE</kendo-formhint>
@@ -2766,17 +3182,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir4" value="9" #9
-                                        formControlName="Mir4" kendoRadioButton />
+                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir4" value="3" #6
-                                        formControlName="Mir4" kendoRadioButton />
+                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir4" value="3" #3
-                                        formControlName="Mir4" kendoRadioButton />
+                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.-No </kendo-label>
                                     </li>
                                   </ul>
@@ -2795,7 +3211,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue24()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec24()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir4()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">4 MIR RE</kendo-formhint>
@@ -2819,17 +3235,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir15" value="9" #9
-                                        formControlName="Mir15" kendoRadioButton />
+                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir15" value="6" #6
-                                        formControlName="Mir15" kendoRadioButton />
+                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir15" value="3" #3
-                                        formControlName="Mir15" kendoRadioButton />
+                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2848,7 +3264,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue35()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec35()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir15()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">15 MIR RE
@@ -2874,17 +3290,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir10" value="9" #9
-                                        formControlName="Mir10" kendoRadioButton />
+                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir10" value="6" #6
-                                        formControlName="Mir10" kendoRadioButton />
+                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir10" value="3" #3
-                                        formControlName="Mir10" kendoRadioButton />
+                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2903,7 +3319,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue30()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec30()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir10()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">10 MIR RE</kendo-formhint>
@@ -2938,18 +3354,18 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir5" value="9" #9
-                                        formControlName="Mir5" kendoRadioButton />
+                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir5" value="3" #6
-                                        formControlName="Mir5" kendoRadioButton />
+                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente (en caso de que se
                                         identifiquen supuestos faltantes)</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir5" value="3" #3
-                                        formControlName="Mir5" kendoRadioButton />
+                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No
                                       </kendo-label>
                                     </li>
@@ -2969,7 +3385,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue25()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec25()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir5()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">5 MIR RE</kendo-formhint>
@@ -2994,17 +3410,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir22" value="9" #9
-                                        formControlName="Mir22" kendoRadioButton />
+                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir22" value="6" #6
-                                        formControlName="Mir22" kendoRadioButton />
+                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir22" value="3" #3
-                                        formControlName="Mir22" kendoRadioButton />
+                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -3023,7 +3439,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue42()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec42()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir22()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">23 MIR RE</kendo-formhint>
@@ -3047,17 +3463,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir11" value="9" #9
-                                        formControlName="Mir11" kendoRadioButton />
+                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir11" value="6" #6
-                                        formControlName="Mir11" kendoRadioButton />
+                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir11" value="3" #3
-                                        formControlName="Mir11" kendoRadioButton />
+                                        formControlName="Mir11"[(ngModel)]="Mir11Calf" (click)="RespuestaMir11()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No</kendo-label>
                                     </li>
                                   </ul>
@@ -3076,7 +3492,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue31()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec31()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir11()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">11 MIR RE</kendo-formhint>
@@ -3102,17 +3518,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir26" value="9" #9
-                                        formControlName="Mir26" kendoRadioButton />
+                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir26" value="6" #6
-                                        formControlName="Mir26" kendoRadioButton />
+                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir26" value="3" #3
-                                        formControlName="Mir26" kendoRadioButton />
+                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No</kendo-label>
                                     </li>
                                   </ul>
@@ -3131,7 +3547,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue46()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec46()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir26()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">26 MIR RE</kendo-formhint>
@@ -3156,17 +3572,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <input required type="radio" class="custom-size" name="Mir20" value="9" #9
-                                        formControlName="Mir20" kendoRadioButton />
+                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir20" value="6" #6
-                                        formControlName="Mir20" kendoRadioButton />
+                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir20" value="3" #3
-                                        formControlName="Mir20" kendoRadioButton />
+                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No</kendo-label>
                                     </li>
                                   </ul>
@@ -3185,7 +3601,7 @@
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
                                         icon="close" (click)="clearValue40()"></button>
                                       <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                        icon="edit" (click)="sinrec40()">Sin recomendaciones</button>
+                                        icon="edit" (click)="RespuestaMir20()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
                                   <kendo-formhint style="font-weight: normal;" align="start">20 MIR RE</kendo-formhint>

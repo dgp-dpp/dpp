@@ -37,7 +37,7 @@ export class CreceFormualarioComponent implements OnInit {
   public contador:number=0;
 
   public CalfDp1:number;
-
+  public TotalDp:number;
   public Dp4Calf: any;
   public CalfDp4: string = "";
   public PonDp4: number = 0;
@@ -372,36 +372,68 @@ export class CreceFormualarioComponent implements OnInit {
       ponDp4form: this.form.get('ponDp4form')?.value,  // Ponderacion de la Pregunta [0{0},3{1},9{2}]
       Dp5: this.form.get('Dp5')?.value,
       Dp5Esp: this.form.get('Dp5Esp')?.value,
+      CalfDp5form: this.form.get('CalfDp5form')?.value,
+      ponDp5form: this.form.get('ponDp5form')?.value,
       Dp6: this.form.get('Dp6')?.value,
       Dp6Esp: this.form.get('Dp6Esp')?.value,
+      CalfDp6form: this.form.get('CalfDp6form')?.value,
+      ponDp6form: this.form.get('ponDp6form')?.value,
       Dp7: this.form.get('Dp7')?.value,
       Dp7Esp: this.form.get('Dp7Esp')?.value,
+      CalfDp7form: this.form.get('CalfDp7form')?.value,
+      ponDp7form: this.form.get('ponDp7form')?.value,
       Dp8: this.form.get('Dp8')?.value,
       Dp8Esp: this.form.get('Dp8Esp')?.value,
+      CalfDp8form: this.form.get('CalfDp8form')?.value,
+      ponDp8form: this.form.get('ponDp8form')?.value,
       Dp9: this.form.get('Dp9')?.value,
       Dp9Esp: this.form.get('Dp9Esp')?.value,
+      CalfDp9form: this.form.get('CalfDp9form')?.value,
+      ponDp9form: this.form.get('ponDp9form')?.value,
       Dp10: this.form.get('Dp10')?.value,
       Dp10Esp: this.form.get('Dp10Esp')?.value,
+      CalfDp10form: this.form.get('CalfDp10form')?.value,
+      ponDp10form: this.form.get('ponDp10form')?.value,
       Dp11: this.form.get('Dp11')?.value,
       Dp11Esp: this.form.get('Dp11Esp')?.value,
+      CalfDp11form: this.form.get('CalfDp11form')?.value,
+      ponDp11form: this.form.get('ponDp11form')?.value,
       Dp12: this.form.get('Dp12')?.value,
       Dp12Esp: this.form.get('Dp12Esp')?.value,
+      CalfDp12form: this.form.get('CalfDp12form')?.value,
+      ponDp12form: this.form.get('ponDp12form')?.value,
       Dp13: this.form.get('Dp13')?.value,
       Dp13Esp: this.form.get('Dp13Esp')?.value,
+      CalfDp13form: this.form.get('CalfDp13form')?.value,
+      ponDp13form: this.form.get('ponDp13form')?.value,
       Dp14: this.form.get('Dp14')?.value,
       Dp14Esp: this.form.get('Dp14Esp')?.value,
+      CalfDp14form: this.form.get('CalfDp14form')?.value,
+      ponDp14form: this.form.get('ponDp14form')?.value,
       Dp15: this.form.get('Dp15')?.value,
       Dp15Esp: this.form.get('Dp15Esp')?.value,
+      CalfDp15form: this.form.get('CalfDp15form')?.value,
+      ponDp15form: this.form.get('ponDp15form')?.value,
       Dp16: this.form.get('Dp16')?.value,
       Dp16Esp: this.form.get('Dp16Esp')?.value,
+      CalfDp16form: this.form.get('CalfDp16form')?.value,
+      ponDp16form: this.form.get('ponDp16form')?.value,
       Dp17: this.form.get('Dp17')?.value,
       Dp17Esp: this.form.get('Dp17Esp')?.value,
+      CalfDp17form: this.form.get('CalfDp17form')?.value,
+      ponDp17form: this.form.get('ponDp17form')?.value,
       Dp18: this.form.get('Dp18')?.value,
       Dp18Esp: this.form.get('Dp18Esp')?.value,
+      CalfDp18form: this.form.get('CalfDp18form')?.value,
+      ponDp18form: this.form.get('ponDp18form')?.value,
       Dp19: this.form.get('Dp19')?.value,
       Dp19Esp: this.form.get('Dp19Esp')?.value,
+      CalfDp19form: this.form.get('CalfDp19form')?.value,
+      ponDp19form: this.form.get('ponDp19form')?.value,
       Dp20: this.form.get('Dp20')?.value,
       Dp20Esp: this.form.get('Dp20Esp')?.value,
+      CalfDp20form: this.form.get('CalfDp20form')?.value,
+      ponDp20form: this.form.get('ponDp20form')?.value,
       //MIr
       Mir1: this.form.get('Mir1')?.value,
       Mir1Esp: this.form.get('Mir1Esp')?.value,
@@ -516,38 +548,72 @@ export class CreceFormualarioComponent implements OnInit {
       Dp1: ['', Validators.required],
       Dp4: ['', Validators.required],
       Dp4Esp: ['', Validators.required],
+      CalfDp4form: ['', Validators.required],
+      ponDp4form: ['', Validators.required],
       Dp5: ['', Validators.required],
       Dp5Esp: ['', Validators.required],
+      CalfDp5form: ['', Validators.required],
+      ponDp5form: ['', Validators.required],
       Dp6: ['', Validators.required],
       Dp6Esp: ['', Validators.required],
+      CalfDp6form: ['', Validators.required],
+      ponDp6form: ['', Validators.required],
       Dp7: ['', Validators.required],
       Dp7Esp: ['', Validators.required],
+      CalfDp7form: ['', Validators.required],
+      ponDp7form: ['', Validators.required],
       Dp8: ['', Validators.required],
       Dp8Esp: ['', Validators.required],
+      CalfDp8form: ['', Validators.required],
+      ponDp8form: ['', Validators.required],
       Dp9: ['', Validators.required],
       Dp9Esp: ['', Validators.required],
+      CalfDp9form: ['', Validators.required],
+      ponDp9form: ['', Validators.required],
       Dp10: ['', Validators.required],
       Dp10Esp: ['', Validators.required],
+      CalfDp10form: ['', Validators.required],
+      ponDp10form: ['', Validators.required],
       Dp11: ['', Validators.required],
       Dp11Esp: ['', Validators.required],
+      CalfDp11form: ['', Validators.required],
+      ponDp11form: ['', Validators.required],
       Dp12: ['', Validators.required],
       Dp12Esp: ['', Validators.required],
+      CalfDp12form: ['', Validators.required],
+      ponDp12form: ['', Validators.required],
       Dp13: ['', Validators.required],
       Dp13Esp: ['', Validators.required],
+      CalfDp13form: ['', Validators.required],
+      ponDp13form: ['', Validators.required],
       Dp14: ['', Validators.required],
       Dp14Esp: ['', Validators.required],
+      CalfDp14form: ['', Validators.required],
+      ponDp14form: ['', Validators.required],
       Dp15: ['', Validators.required],
       Dp15Esp: ['', Validators.required],
+      CalfDp15form: ['', Validators.required],
+      ponDp15form: ['', Validators.required],
       Dp16: ['', Validators.required],
       Dp16Esp: ['', Validators.required],
+      CalfDp16form: ['', Validators.required],
+      ponDp16form: ['', Validators.required],
       Dp17: ['', Validators.required],
       Dp17Esp: ['', Validators.required],
+      CalfDp17form: ['', Validators.required],
+      ponDp17form: ['', Validators.required],
       Dp18: ['', Validators.required],
       Dp18Esp: ['', Validators.required],
+      CalfDp18form: ['', Validators.required],
+      ponDp18form: ['', Validators.required],
       Dp19: ['', Validators.required],
       Dp19Esp: ['', Validators.required],
+      CalfDp19form: ['', Validators.required],
+      ponDp19form: ['', Validators.required],
       Dp20: ['', Validators.required],
       Dp20Esp: ['', Validators.required],
+      CalfDp20form: ['', Validators.required],
+      ponDp20form: ['', Validators.required],
       Mir1: ['', Validators.required],
       Mir1Esp: ['', Validators.required],
       Mir2: ['', Validators.required],
@@ -604,8 +670,7 @@ export class CreceFormualarioComponent implements OnInit {
       FDp: ['', Validators.required],
       AoMir: ['', Validators.required],
       AoDp: ['', Validators.required],
-      CalfDp4form: ['', Validators.required],
-      ponDp4form: ['', Validators.required],
+
 
 
     });
@@ -616,8 +681,9 @@ export class CreceFormualarioComponent implements OnInit {
     this.obtenerDependencias();
     this.getUsuario();
     this.obtenerPp();
-    this.respuestaGenericaDp4();
-    this.ponderacionDp4();
+    this.MethodTotalDp();
+    // this.respuestaGenericaDp4();
+    // this.ponderacionDp4();
     //this.Elemento2Calculo();
 
   }
@@ -804,418 +870,714 @@ export class CreceFormualarioComponent implements OnInit {
   public TotDp1():void{
 
   }
+  //
+//--------------------------------------------------------------------------------------------------------------------------------------
+//METODOS PARA DETERMINAR LA SUMA DE LAS PONDERACIONES
+//--------------------------------------------------------------------------------------------------------------------------------------
+//
+public MethodTotalDp():any{
+this.TotalDp = this.PonDp4 + this.PonDp5 +  this.PonDp6 +  this.PonDp7 +  this.PonDp8 +  this.PonDp9 +  this.PonDp10 +  this.PonDp11 +  this.PonDp12;
+}
+
+
 //
 //--------------------------------------------------------------------------------------------------------------------------------------
 //METODOS PARA DETERMINAR  LOS CAMPOS DE SIN RECOMENDACIONES, RESPUESTA GENERICA Y PONDERACION EQUIVALENTE SEGUN SU  CALIFICACION (3,6,9)
 //--------------------------------------------------------------------------------------------------------------------------------------
 //
-//******************************PREGUNTA 4******************************************
-  public sinrec4(): void {
-    if (this.Dp4Calf == 9) {
-      this.textAreaValueDp4 = "Sin recomendaciones";
-    }
-    else if (this.Dp4Calf == 6) {
-      this.textAreaValueDp4 = "";
-    }
-    else if (this.Dp4Calf == 3) {
-      this.textAreaValueDp4 = "";
-    }
+
+  // public sinrec4(): void {
+  //   if (this.Dp4Calf == 9) {
+  //     this.textAreaValueDp4 = "Sin recomendaciones";
+  //   }
+  //   else if (this.Dp4Calf == 6) {
+  //     this.textAreaValueDp4 = "";
+  //   }
+  //   else if (this.Dp4Calf == 3) {
+  //     this.textAreaValueDp4 = "";
+  //   }
+  // }
+  // public respuestaGenericaDp4(): any {
+  //   if (this.Dp4Calf == 9) {
+  //     this.CalfDp4 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+  //   } else if (this.Dp4Calf == 6) {
+  //     this.CalfDp4 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+  //   }
+  //   else if (this.Dp4Calf == 3) {
+  //     this.CalfDp4 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+  //   }
+  //   console.log(this.form.value);
+  // }
+
+  // public ponderacionDp4(): void {
+  //   if (this.Dp4Calf == 9) {
+  //     //Maximo 2%
+  //     this.PonDp4 = 2;
+  //   } else if (this.Dp4Calf == 6) {
+  //     this.PonDp4 = 1;
+  //   }
+  //   else if (this.Dp4Calf == 3) {
+  //     this.PonDp4 = 0;
+  //   }
+  // }
+  //******************************PREGUNTA 4******************************************
+public RespuestaDp4(): void{
+  if (this.Dp4Calf == 9) {
+    this.textAreaValueDp4 = "Sin recomendaciones";
+    this.CalfDp4 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+    this.PonDp4 = 2;
   }
-  public respuestaGenericaDp4(): any {
-    if (this.Dp4Calf == 9) {
-      this.CalfDp4 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    } else if (this.Dp4Calf == 6) {
-      this.CalfDp4 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    else if (this.Dp4Calf == 3) {
-      this.CalfDp4 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    console.log(this.form.value);
+  else if (this.Dp4Calf == 6) {
+    this.textAreaValueDp4 = "";
+    this.CalfDp4 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo."
+    +"\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    this.PonDp4 = 1;
+  }
+  else if (this.Dp4Calf == 3) {
+    this.textAreaValueDp4 = "";
+    this.CalfDp4 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa."
+    +"\nEste apartado comprende un resumen ejecutivo del resto del documento."
+    +"\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    this.PonDp4 = 0;
   }
 
-  public ponderacionDp4(): void {
-    if (this.Dp4Calf == 9) {
-      //Maximo 2%
-      this.PonDp4 = 2;
-    } else if (this.Dp4Calf == 6) {
-      this.PonDp4 = 1;
-    }
-    else if (this.Dp4Calf == 3) {
-      this.PonDp4 = 0;
-    }
-  }
+}
   //******************************PREGUNTA 5******************************************
-  public sinrec5(): void {
+  public RespuestaDp5(): void {
     if (this.Dp5Calf == 9) {
       this.textAreaValueDp5 = "Sin recomendaciones";
+      this.CalfDp5 = "Se considera que se identifican los involucrados en la problemática.";
+      this.PonDp5 = 10;
     }
     else if (this.Dp5Calf == 6) {
       this.textAreaValueDp5 = "";
+      this.CalfDp5 = "Se considera que no se identifican todos los involucrados relacionados con la problemática, por lo que es necesario ampliar el análisis. "
+      +"\nEste punto es muy relevante para el éxito del Programa presupuestario, ya que los involucrados pueden afectar los resultados del mismo."
+      +"\nDada su importancia, esta recomendación será incluida en el plan de mejora continua del Programa.";
+      this.PonDp5 = 5;
     }
     else if (this.Dp5Calf == 3) {
       this.textAreaValueDp5 = "";
-    }
-  }
-  public respuestaGenericaDp5(): any {
-    if (this.Dp5Calf == 9) {
-      this.CalfDp5 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    } else if (this.Dp5Calf == 6) {
-      this.CalfDp5 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    else if (this.Dp5Calf == 3) {
-      this.CalfDp5 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    console.log(this.form.value);
-  }
-
-  public ponderacionDp5(): void {
-    if (this.Dp5Calf == 9) {
-      //Maximo 2%
-      this.PonDp5 = 2;
-    } else if (this.Dp5Calf == 6) {
-      this.PonDp5 = 1;
-    }
-    else if (this.Dp5Calf == 3) {
+      this.CalfDp5 = "Se considera que no se identifican los involucrados relacionados con la problemática, por lo que es necesario realizar el análisis."
+      +"\nEste punto es muy relevante para el éxito del Programa presupuestario, ya que los involucrados pueden afectar los resultados del mismo."
+      +"\nDada su importancia, esta recomendación será incluida en el plan de mejora continua del Programa.";
       this.PonDp5 = 0;
     }
   }
   //******************************PREGUNTA 6******************************************
-  public sinrec6(): void {
+  public RespuestaDp6(): void {
     if (this.Dp6Calf == 9) {
       this.textAreaValueDp6 = "Sin recomendaciones";
+      this.CalfDp6 = "En lo que respecta a la problemática presentada, el problema o situación inicial se expresa de manera clara.";
+      this.PonDp6 = 10;
     }
     else if (this.Dp6Calf == 6) {
       this.textAreaValueDp6 = "";
+      this.CalfDp6 = "No Aplica";
+      this.PonDp6 = 5;
     }
     else if (this.Dp6Calf == 3) {
       this.textAreaValueDp6 = "";
-    }
-  }
-  public respuestaGenericaDp6(): any {
-    if (this.Dp6Calf == 9) {
-      this.CalfDp6 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    } else if (this.Dp6Calf == 6) {
-      this.CalfDp6 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    else if (this.Dp6Calf == 3) {
-      this.CalfDp6 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    console.log(this.form.value);
-  }
-
-  public ponderacionDp6(): void {
-    if (this.Dp6Calf == 9) {
-      //Maximo 2%
-      this.PonDp6 = 2;
-    } else if (this.Dp6Calf == 6) {
-      this.PonDp6 = 1;
-    }
-    else if (this.Dp6Calf == 3) {
+      this.CalfDp6 = "En lo que respecta a la problemática, el problema no se expresa claramente, por lo que es necesario replantearlo."
+      +"\nEs importante considerar que para la definición del problema se requiere de la participación de todos los involucrados."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, siendo su atención urgente, ya que es la base para el resto del diagnóstico.";
       this.PonDp6 = 0;
     }
   }
   //******************************PREGUNTA 7******************************************
-  public sinrec7(): void {
+  public RespuestaDp7(): void {
     if (this.Dp7Calf == 9) {
       this.textAreaValueDp7 = "Sin recomendaciones";
+      this.CalfDp7= "Las causas de la problemática se presentan de manera lógica, y se encuentran sustentadas en información cualitativa y/o cuantitativa.";
+      this.PonDp7 = 10;
     }
     else if (this.Dp7Calf == 6) {
       this.textAreaValueDp7 = "";
+      this.CalfDp7= "Las causas de la problemática se encuentran parcialmente documentadas, es necesario estructurar la información de manera lógica, así cómo ampliar la información cualitativa y cuantitativa que permita establecer una relación clara con el problema."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas impactan en la definición de los objetivos de la intervención.";
+      this.PonDp7 = 5;
     }
     else if (this.Dp7Calf == 3) {
       this.textAreaValueDp7 = "";
-    }
-  }
-  public respuestaGenericaDp7(): any {
-    if (this.Dp7Calf == 9) {
-      this.CalfDp7 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    } else if (this.Dp7Calf == 6) {
-      this.CalfDp7 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    else if (this.Dp7Calf == 3) {
-      this.CalfDp7 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    console.log(this.form.value);
-  }
-
-  public ponderacionDp7(): void {
-    if (this.Dp7Calf == 9) {
-      //Maximo 2%
-      this.PonDp7 = 2;
-    } else if (this.Dp7Calf == 6) {
-      this.PonDp7 = 1;
-    }
-    else if (this.Dp7Calf == 3) {
+      this.CalfDp7= "Las causas de la problemática no se encuentran documentadas, es necesario incluir la información cualitativa y cuantitativa que sustente las causas del problema."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas impactan en la definición de los objetivos de la intervención.";
       this.PonDp7 = 0;
     }
   }
   //******************************PREGUNTA 8******************************************
-  public sinrec8(): void {
+  public RespuestaDp8(): void {
     if (this.Dp8Calf == 9) {
       this.textAreaValueDp8 = "Sin recomendaciones";
+      this.CalfDp8= "El árbol de problemas presentado es claro, sin embargo es necesario revisar las causas considerando la participación de todos los involucrados.";
+      this.PonDp8 = 8;
     }
     else if (this.Dp8Calf == 6) {
       this.textAreaValueDp8 = "";
+      this.CalfDp8= "Se identifica que existen causas o efectos que no corresponden con el problema, por lo que es necesario verificar que las causas sean efectivamente el origen del problema y que los efectos resultan de éste. "
+      +"\nEs importante considerar que para la elaboración del árbol de problemas se requiere de la participación de todos los involucrados."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas y efectos impactan en la definición de los objetivos de la intervención.";
+      this.PonDp8 = 4;
     }
     else if (this.Dp8Calf == 3) {
       this.textAreaValueDp8 = "";
-    }
-  }
-  public respuestaGenericaDp8(): any {
-    if (this.Dp8Calf == 9) {
-      this.CalfDp8 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    } else if (this.Dp8Calf == 6) {
-      this.CalfDp8 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    else if (this.Dp8Calf == 3) {
-      this.CalfDp8 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    console.log(this.form.value);
-  }
-
-  public ponderacionDp8(): void {
-    if (this.Dp8Calf == 9) {
-      //Maximo 2%
-      this.PonDp8 = 2;
-    } else if (this.Dp8Calf == 6) {
-      this.PonDp8 = 1;
-    }
-    else if (this.Dp8Calf == 3) {
+      this.CalfDp8= "Se identifica que las causas o efectos no corresponden con la problemática, por lo que es necesario verificar que las causas sean efectivamente el origen del problema y que los efectos resultan de éste."
+      +"\nEs importante considerar que para la elaboración del árbol de problemas se requiere de la participación de todos los involucrados. "
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas y efectos impactan en la definición de los objetivos de la intervención.";
       this.PonDp8 = 0;
     }
   }
   //******************************PREGUNTA 9******************************************
-  public sinrec9(): void {
+  public RespuestaDp9(): void {
     if (this.Dp9Calf == 9) {
       this.textAreaValueDp9 = "Sin recomendaciones";
+      this.CalfDp9= "El Diagnóstico Particular incluye información histórica que permite visualizar cómo ha cambiado la problemática a lo largo del tiempo.";
+      this.PonDp9 = 4;
     }
     else if (this.Dp9Calf == 6) {
       this.textAreaValueDp9 = "";
+      this.CalfDp9= "El Diagnóstico Particular incluye información histórica parcial sobre el cambio de la problemática a lo largo del tiempo, por lo que es necesario ampliar el análisis y su documentación."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que es importante conocer la tendencia de la problemática, su atención se considera relevante.";
+      this.PonDp9 = 2;
     }
     else if (this.Dp9Calf == 3) {
       this.textAreaValueDp9 = "";
-    }
-  }
-  public respuestaGenericaDp9(): any {
-    if (this.Dp9Calf == 9) {
-      this.CalfDp9 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    } else if (this.Dp9Calf == 6) {
-      this.CalfDp9 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    else if (this.Dp9Calf == 3) {
-      this.CalfDp9 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    console.log(this.form.value);
-  }
-
-  public ponderacionDp9(): void {
-    if (this.Dp9Calf == 9) {
-      //Maximo 2%
-      this.PonDp9 = 2;
-    } else if (this.Dp9Calf == 6) {
-      this.PonDp9 = 1;
-    }
-    else if (this.Dp9Calf == 3) {
+      this.CalfDp9= "El Diagnóstico Particular no incluye información histórica que permita visualizar como ha cambiado la problemática a lo largo del tiempo, por lo que es necesario realizar el análisis e incluir esta información."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que es importante conocer la tendencia de la problemática, su atención se considera relevante.";
       this.PonDp9 = 0;
     }
   }
   //******************************PREGUNTA 10******************************************
-  public sinrec10(): void {
+  public RespuestaDp10(): void {
     if (this.Dp10Calf == 9) {
       this.textAreaValueDp10 = "Sin recomendaciones";
+      this.CalfDp10= "La situación actual presentada en el Diagnóstico Particular se describe claramente y se cuantifica, es importante que esta información sirva como base para la definición de indicadores a nivel propósito.";
+      this.PonDp10 = 8;
     }
     else if (this.Dp10Calf == 6) {
       this.textAreaValueDp10 = "";
+      this.CalfDp10= "La situación actual del problema no está cuantificada, esta información permite conocer la magnitud o tamaño del problema en función de la población o área de enfoque, por lo que se requiere documentar."
+      "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente ya que la situación actual nos permite medir los resultados del Programa.";
+      this.PonDp10 = 4;
     }
     else if (this.Dp10Calf == 3) {
       this.textAreaValueDp10 = "";
-    }
-  }
-  public respuestaGenericaDp10(): any {
-    if (this.Dp10Calf == 9) {
-      this.CalfDp10 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    } else if (this.Dp10Calf == 6) {
-      this.CalfDp10 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    else if (this.Dp10Calf == 3) {
-      this.CalfDp10 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    console.log(this.form.value);
-  }
-
-  public ponderacionDp10(): void {
-    if (this.Dp10Calf == 9) {
-      //Maximo 2%
-      this.PonDp10 = 2;
-    } else if (this.Dp10Calf == 6) {
-      this.PonDp10 = 1;
-    }
-    else if (this.Dp10Calf == 3) {
+      this.CalfDp10= "La situación actual del problema no se presenta de manera clara, esta información debe estructurarse de forma que permita conocer la magnitud o tamaño del problema en función de la población o área de enfoque, por lo que se requiere documentar."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente ya que la situación actual nos permite medir los resultados del Programa.";
       this.PonDp10 = 0;
     }
   }
   //******************************PREGUNTA 11******************************************
-  public sinrec11(): void {
+  public  RespuestaDp11(): void {
     if (this.Dp11Calf == 9) {
       this.textAreaValueDp11 = "Sin recomendaciones";
+      this.CalfDp11= "Se cuenta, cuando menos, con dos niveles de causas.";
+      this.PonDp11 = 4;
     }
     else if (this.Dp11Calf == 6) {
       this.textAreaValueDp11 = "";
+      this.CalfDp11= "No aplica";
+      this.PonDp11 = 2;
     }
     else if (this.Dp11Calf == 3) {
       this.textAreaValueDp11 = "";
-    }
-  }
-  public respuestaGenericaDp11(): any {
-    if (this.Dp11Calf == 9) {
-      this.CalfDp11 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    } else if (this.Dp11Calf == 6) {
-      this.CalfDp11 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    else if (this.Dp11Calf == 3) {
-      this.CalfDp11 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    }
-    console.log(this.form.value);
-  }
-
-  public ponderacionDp11(): void {
-    if (this.Dp11Calf == 9) {
-      //Maximo 2%
-      this.PonDp11 = 2;
-    } else if (this.Dp11Calf == 6) {
-      this.PonDp11 = 1;
-    }
-    else if (this.Dp11Calf == 3) {
+      this.CalfDp11= "No se cuenta, cuando menos, con dos niveles de causas."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente, para garantizar la correcta atención a la problemática.";
       this.PonDp11 = 0;
     }
   }
   //******************************PREGUNTA 12******************************************
-  public sinrec12(): void {
+  public RespuestaDp12(): void {
     if (this.Dp12Calf == 9) {
       this.textAreaValueDp12 = "Sin recomendaciones";
+      this.CalfDp12= "En lo que respecta al árbol de problemas, se estima que éste identifica un número de causas razonables que permita analizar alternativas para la solución de la problemática.";
+      this.PonDp12 = 4;
     }
     else if (this.Dp12Calf == 6) {
       this.textAreaValueDp12 = "";
+      this.CalfDp12= "En lo que respecta al árbol de problemas, se considera que es necesario ampliar el análisis de la problemática para identificar un mayor número de causas que permitan identificar alternativas de solución."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.PonDp12 = 2;
     }
     else if (this.Dp12Calf == 3) {
       this.textAreaValueDp12 = "";
+      this.CalfDp12= "En lo que respecta al árbol de problemas, se considera que el análisis de la problemática no identifica todas las causas que dan origen al problema, por lo que es necesario ampliar el análisis y replantear el árbol de problemas."
+      "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.PonDp12 = 0;
     }
   }
-  public respuestaGenericaDp12(): any {
-    if (this.Dp12Calf == 9) {
-      this.CalfDp12 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    } else if (this.Dp12Calf == 6) {
-      this.CalfDp12 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+   //******************************PREGUNTA 13******************************************
+   public RespuestaDp13():void {
+    if (this.Dp13Calf == 9) {
+      this.textAreaValueDp13 = "Sin recomendaciones";
+      this.CalfDp13= "El análisis de corresponsabilidad cuenta con una lógica correcta entre las relaciones causas-medios y efectos-fines contenidas en los árboles de problemas y objetivos.";
+      this.PonDp13 = 4;
     }
-    else if (this.Dp12Calf == 3) {
-      this.CalfDp12 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa.\nEste apartado comprende un resumen ejecutivo del resto del documento.\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+    else if (this.Dp13Calf == 6) {
+      this.textAreaValueDp13 = "";
+      this.CalfDp13= "El análisis de corresponsabilidad no es claro para algunas relaciones causas-medios y efectos-fines, por lo que es necesario verificarlas. "
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.PonDp13 = 2;
     }
-    console.log(this.form.value);
+    else if (this.Dp13Calf == 3) {
+      this.textAreaValueDp13 = "";
+      this.CalfDp13= "La lógica del análisis de corresponsabilidad no es clara, por lo que se requiere verificar la relación entre causas-medios y efectos-fines."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.PonDp13 = 2;
+    }
   }
+   //******************************PREGUNTA 14******************************************
+   public RespuestaDp14(): void {
+    if (this.Dp14Calf == 9) {
+      this.textAreaValueDp14 = "Sin recomendaciones";
+      this.CalfDp14= "Se considera que el análisis de alternativas contiene la información que permite evaluar las diferentes alternativas de solución. Es importante mencionar que estas alternativas deben considerar la participación de los involucrados.";
+      this.PonDp14 = 4;
+    }
+    else if (this.Dp14Calf == 6) {
+      this.textAreaValueDp14 = "";
+      this.CalfDp14= "Se considera que es necesario ampliar el análisis de las alternativas de solución, de acuerdo a las atribuciones normativas, factibilidad técnica, económica y ambiental, así como aquella que resulte pertinente, eficiente y eficaz."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que el análisis de alternativas permite identificar soluciones más eficientes, su atención se considera relevante.";
+      this.PonDp14 = 2;
+    }
+    else if (this.Dp14Calf == 3) {
+      this.textAreaValueDp14 = "";
+      this.CalfDp14= "En el diagnóstico no se presentan alternativas de solución, por lo que se requiere identificarlas y analizarlas de acuerdo a las atribuciones normativas, factibilidad técnica, económica y ambiental, así como aquella que resulte pertinente, eficiente y eficaz. "
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que el análisis de alternativas permite identificar soluciones más eficientes, su atención se considera relevante.";
+      this.PonDp14 = 0;
+    }
+  }
+   //******************************PREGUNTA 15******************************************
+   public RespuestaDp15():void {
+    if (this.Dp15Calf == 9) {
+      this.textAreaValueDp15 = "Sin recomendaciones";
+      this.CalfDp15= "La estructura analítica del programa es consistente con el análisis de las alternativas.";
+      this.PonDp15 = 4;
+    }
+    else if (this.Dp15Calf == 6) {
+      this.textAreaValueDp15 = "";
+      this.CalfDp15= "La estructura analítica del programa no es consistente con la información del análisis de alternativas, por lo que es necesario verificar el análisis de alternativas."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.PonDp15 = 2;
+    }
+    else if (this.Dp15Calf == 3) {
+      this.textAreaValueDp15 = "";
+      this.CalfDp15= "No se presenta la estructura analítica del programa, por lo que es necesario actualizar el Diagnóstico Particular con esta información."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.PonDp15 = 0;
+    }
+  }
+   //******************************PREGUNTA 16******************************************
+   public RespuestaDp16():void {
+    if (this.Dp16Calf == 9) {
+      this.textAreaValueDp16 = "Sin recomendaciones";
+      this.CalfDp16= "Se presenta información cualitativa y cuantitativa que justifica los objetivos de la intervención.";
+      this.PonDp16 = 4;
+    }
+    else if (this.Dp16Calf == 6) {
+      this.textAreaValueDp16 = "";
+      this.CalfDp16= "La información cualitativa y cuantitativa que se requiere para justificar los objetivos de la intervención se encuentra incompleta, por lo que es necesario ampliarla."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.PonDp16 = 2;
+    }
+    else if (this.Dp16Calf == 3) {
+      this.textAreaValueDp16 = "";
+      this.CalfDp16= "No se presenta información cualitativa y cuantitativa que justifique los objetivos de la intervención, por lo que es necesario incluirla."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.PonDp16 = 0;
+    }
+  }
+   //******************************PREGUNTA 17******************************************
+   public RespuestaDp17(): void {
+    if (this.Dp17Calf == 9) {
+      this.textAreaValueDp17 = "Sin recomendaciones";
+      this.CalfDp17= "De acuerdo con el tipo de intervención, se presenta la identificación y cuantificación de la población.";
+      this.PonDp17 = 8;
+    }
+    else if (this.Dp17Calf == 6) {
+      this.textAreaValueDp17 = "";
+      this.CalfDp17= "De acuerdo con el tipo de intervención, se presenta parcialmente la identificación y cuantificación de la población, por lo que es necesario complementarla."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente, ya que es necesario identificar y cuantificar la cobertura del programa.";
+      this.PonDp17 = 4;
+    }
+    else if (this.Dp17Calf == 3) {
+      this.textAreaValueDp17 = "";
+      this.CalfDp17= "De acuerdo con el tipo de intervención, no se identifica o cuantifica la población, por lo que se requiere incluir esta información."
+      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente, ya que es necesario identificar y cuantificar la cobertura del programa.";
+      this.PonDp17 = 0;
+    }
+  }
+   //******************************PREGUNTA 18******************************************
+   public RespuestaDp18(): void {
+    if (this.Dp18Calf == 9) {
+      this.textAreaValueDp18 = "Sin recomendaciones";
+      this.CalfDp18= "Se considera que se identifican los suficientes programas que complementan a éste.";
+      this.PonDp18 = 2;
+    }
+    else if (this.Dp18Calf == 6) {
+      this.textAreaValueDp18 = "";
+      this.CalfDp18= "Se considera que se identifican parcialmente los programas complementarios, por lo que es necesario revisar los instrumentos de desarrollo y Ley de Presupuesto para identificar otros programas relacionados."
+      +"\nEsta recomendación se integrará al plan de mejora continua del Programa.";
+      this.PonDp18 = 1;
+    }
+    else if (this.Dp18Calf == 3) {
+      this.textAreaValueDp18 = "No se identifican programas complementarios, por lo que es necesario revisar los instrumentos de desarrollo y Ley de Presupuesto para identificar otros programas relacionados."
+      +"\nEsta recomendación se integrará al plan de mejora continua del Programa.";
+      this.CalfDp18= "";
+      this.PonDp18 = 0;
+    }
+  }
+   //******************************PREGUNTA 19******************************************
+   public RespuestaDp19(): void {
+    if (this.Dp19Calf == 9) {
+      this.textAreaValueDp19 = "Sin recomendaciones";
+      this.CalfDp19= "De acuerdo con la población objetivo, se identifica el tipo de beneficiario y los elementos que se requieren para la construcción del padrón de beneficiarios.";
+      this.PonDp19 = 2;
+    }
+    else if (this.Dp19Calf == 6) {
+      this.textAreaValueDp19 = "";
+      this.CalfDp19= "De acuerdo con la población objetivo, se identifica el tipo de beneficiario y algunos elementos que se requieren para la construcción del padrón de beneficiarios."
+      +"\nEsta recomendación será registrada en el plan de mejora continua del Programa.";
+      this.PonDp19 = 1;
+    }
+    else if (this.Dp19Calf == 3) {
+      this.textAreaValueDp19 = "";
+      this.CalfDp19= "De acuerdo con la población objetivo, no se identifica el tipo de beneficiario o los elementos que se requieren para la construcción del padrón de beneficiarios."
+      + "\nEsta recomendación será registrada en el plan de mejora continua del Programa.";
+      this.PonDp19 = 0;
+    }
+  }
+  //  //******************************PREGUNTA 20******************************************
+   public RespuestaDp20():  void {
+    if (this.Dp20Calf == 9) {
+      this.textAreaValueDp20 = "Sin recomendaciones";
+      this.CalfDp20= "Se presenta la MIR en el apartado correspondiente.";
+      this.PonDp20 = 2;
+    }
+    else if (this.Dp20Calf == 6) {
+      this.textAreaValueDp20 = "";
+      this.CalfDp20= "No aplica";
+      this.PonDp20 = 1;
 
-
-  public sinrec13(): void {
-    this.textAreaValueDp13 = "Sin recomendaciones";
+    }
+    else if (this.Dp20Calf == 3) {
+      this.textAreaValueDp20 = "";
+      this.CalfDp20= "No se presenta la MIR en el apartado correspondiente."
+      +"\nEsta recomendación se integrará al plan de mejora continua del Programa.";
+      this.PonDp20 = 0;
+    }
   }
-  public sinrec14(): void {
-    this.textAreaValueDp14 = "Sin recomendaciones";
-  }
-  public sinrec15(): void {
-    this.textAreaValueDp15 = "Sin recomendaciones";
-  }
-  public sinrec16(): void {
-    this.textAreaValueDp16 = "Sin recomendaciones";
-  }
-  public sinrec17(): void {
-    this.textAreaValueDp17 = "Sin recomendaciones";
-  }
-  public sinrec18(): void {
-    this.textAreaValueDp18 = "Sin recomendaciones";
-  }
-  public sinrec19(): void {
-    this.textAreaValueDp19 = "Sin recomendaciones";
-  }
-  public sinrec20(): void {
-    this.textAreaValueDp20 = "Sin recomendaciones";
-  }
-  public sinrec21(): void {
+//  //******************************PREGUNTA 1 MIR ******************************************
+public  RespuestaMir1(): void {
+  if (this.Mir1Calf == 9) {
     this.textAreaValueMir1 = "Sin recomendaciones";
   }
-  public sinrec22(): void {
+  else if (this.Mir1Calf == 6) {
+    this.textAreaValueMir1 = "";
+  }
+  else if (this.Mir1Calf == 3) {
+    this.textAreaValueMir1 = "";
+  }
+}
+//  //******************************PREGUNTA 2 MIR ******************************************
+public  RespuestaMir2(): void {
+  if (this.Mir2Calf == 9) {
     this.textAreaValueMir2 = "Sin recomendaciones";
   }
-  public sinrec23(): void {
+  else if (this.Mir2Calf == 6) {
+    this.textAreaValueMir2 = "";
+  }
+  else if (this.Mir2Calf == 3) {
+    this.textAreaValueMir2 = "";
+  }
+}
+//  //******************************PREGUNTA 3 MIR ******************************************
+public  RespuestaMir3(): void {
+  if (this.Mir3Calf == 9) {
     this.textAreaValueMir3 = "Sin recomendaciones";
   }
-  public sinrec24(): void {
+  else if (this.Mir3Calf == 6) {
+    this.textAreaValueMir3 = "";
+  }
+  else if (this.Mir3Calf == 3) {
+    this.textAreaValueMir3 = "";
+  }
+}
+//  //******************************PREGUNTA 4 MIR ******************************************
+public  RespuestaMir4(): void {
+  if (this.Mir4Calf == 9) {
     this.textAreaValueMir4 = "Sin recomendaciones";
   }
-  public sinrec25(): void {
+  else if (this.Mir4Calf == 6) {
+    this.textAreaValueMir4 = "";
+  }
+  else if (this.Mir4Calf == 3) {
+    this.textAreaValueMir4 = "";
+  }
+}
+//  //******************************PREGUNTA 5 MIR ******************************************
+public  RespuestaMir5(): void {
+  if (this.Mir5Calf == 9) {
     this.textAreaValueMir5 = "Sin recomendaciones";
   }
-  public sinrec26(): void {
+  else if (this.Mir5Calf == 6) {
+    this.textAreaValueMir5 = "";
+  }
+  else if (this.Mir5Calf == 3) {
+    this.textAreaValueMir5 = "";
+  }
+}
+//  //******************************PREGUNTA 6 MIR ******************************************
+public  RespuestaMir6(): void {
+  if (this.Mir6Calf == 9) {
     this.textAreaValueMir6 = "Sin recomendaciones";
   }
-  public sinrec27(): void {
+  else if (this.Mir6Calf == 6) {
+    this.textAreaValueMir6 = "";
+  }
+  else if (this.Mir6Calf == 3) {
+    this.textAreaValueMir6 = "";
+  }
+}
+//  //******************************PREGUNTA 7 MIR ******************************************
+public  RespuestaMir7(): void {
+  if (this.Mir7Calf == 9) {
     this.textAreaValueMir7 = "Sin recomendaciones";
   }
-  public sinrec28(): void {
+  else if (this.Mir7Calf == 6) {
+    this.textAreaValueMir7 = "";
+  }
+  else if (this.Mir7Calf == 3) {
+    this.textAreaValueMir7 = "";
+  }
+}
+//  //******************************PREGUNTA 8 MIR ******************************************
+public RespuestaMir8(): void {
+  if (this.Mir8Calf == 9) {
     this.textAreaValueMir8 = "Sin recomendaciones";
   }
-  public sinrec29(): void {
+  else if (this.Mir8Calf == 6) {
+    this.textAreaValueMir8 = "";
+  }
+  else if (this.Mir8Calf == 3) {
+    this.textAreaValueMir8 = "";
+  }
+}
+//  //******************************PREGUNTA 9 MIR ******************************************
+public RespuestaMir9(): void {
+  if (this.Mir9Calf == 9) {
     this.textAreaValueMir9 = "Sin recomendaciones";
   }
-  public sinrec30(): void {
+  else if (this.Mir9Calf == 6) {
+    this.textAreaValueMir9 = "";
+  }
+  else if (this.Mir9Calf == 3) {
+    this.textAreaValueMir9 = "";
+  }
+}
+
+//  //******************************PREGUNTA 10 MIR ******************************************
+public RespuestaMir10(): void {
+  if (this.Mir10Calf == 9) {
     this.textAreaValueMir10 = "Sin recomendaciones";
   }
-  public sinrec31(): void {
-    this.textAreaValueMir11 = "Sin recomendaciones";
+  else if (this.Mir10Calf == 6) {
+    this.textAreaValueMir10 = "";
   }
-  public sinrec32(): void {
+  else if (this.Mir10Calf == 3) {
+    this.textAreaValueMir10 = "";
+  }
+}
+//  //******************************PREGUNTA 11 MIR ******************************************
+public  RespuestaMir11(): void {
+  if (this.Mir11Calf == 9) {
+    this.textAreaValueMir1 = "Sin recomendaciones";
+  }
+  else if (this.Mir11Calf == 6) {
+    this.textAreaValueMir1 = "";
+  }
+  else if (this.Mir11Calf == 3) {
+    this.textAreaValueMir1 = "";
+  }
+}
+//  //******************************PREGUNTA 12 MIR ******************************************
+public  RespuestaMir12(): void {
+  if (this.Mir12Calf == 9) {
     this.textAreaValueMir12 = "Sin recomendaciones";
   }
-  public sinrec33(): void {
+  else if (this.Mir12Calf == 6) {
+    this.textAreaValueMir12 = "";
+  }
+  else if (this.Mir12Calf == 3) {
+    this.textAreaValueMir12 = "";
+  }
+}
+//  //******************************PREGUNTA 13 MIR ******************************************
+public RespuestaMir13(): void {
+  if (this.Mir13Calf == 9) {
     this.textAreaValueMir13 = "Sin recomendaciones";
   }
-  public sinrec34(): void {
+  else if (this.Mir1Calf == 6) {
+    this.textAreaValueMir13 = "";
+  }
+  else if (this.Mir1Calf == 3) {
+    this.textAreaValueMir13 = "";
+  }
+}
+//  //******************************PREGUNTA 14 MIR ******************************************
+public  RespuestaMir14(): void {
+  if (this.Mir14Calf == 9) {
     this.textAreaValueMir14 = "Sin recomendaciones";
   }
-  public sinrec35(): void {
+  else if (this.Mir14Calf == 6) {
+    this.textAreaValueMir14 = "";
+  }
+  else if (this.Mir14Calf == 3) {
+    this.textAreaValueMir14 = "";
+  }
+}
+//  //******************************PREGUNTA 15 MIR ******************************************
+public  RespuestaMir15(): void {
+  if (this.Mir15Calf == 9) {
     this.textAreaValueMir15 = "Sin recomendaciones";
   }
-  public sinrec36(): void {
+  else if (this.Mir15Calf == 6) {
+    this.textAreaValueMir15 = "";
+  }
+  else if (this.Mir15Calf == 3) {
+    this.textAreaValueMir15 = "";
+  }
+}
+//  //******************************PREGUNTA 16 MIR ******************************************
+public  RespuestaMir16(): void {
+  if (this.Mir16Calf == 9) {
     this.textAreaValueMir16 = "Sin recomendaciones";
   }
-  public sinrec37(): void {
+  else if (this.Mir16Calf == 6) {
+    this.textAreaValueMir16 = "";
+  }
+  else if (this.Mir16Calf == 3) {
+    this.textAreaValueMir16 = "";
+  }
+}
+//  //******************************PREGUNTA 17 MIR ******************************************
+public  RespuestaMir17(): void {
+  if (this.Mir17Calf == 9) {
     this.textAreaValueMir17 = "Sin recomendaciones";
   }
-  public sinrec38(): void {
+  else if (this.Mir17Calf == 6) {
+    this.textAreaValueMir17 = "";
+  }
+  else if (this.Mir17Calf == 3) {
+    this.textAreaValueMir17 = "";
+  }
+}
+//  //******************************PREGUNTA 18 MIR ******************************************
+public  RespuestaMir18(): void {
+  if (this.Mir18Calf == 9) {
     this.textAreaValueMir18 = "Sin recomendaciones";
   }
-  public sinrec39(): void {
+  else if (this.Mir18Calf == 6) {
+    this.textAreaValueMir18 = "";
+  }
+  else if (this.Mir18Calf == 3) {
+    this.textAreaValueMir18 = "";
+  }
+}
+//  //******************************PREGUNTA 19 MIR ******************************************
+public  RespuestaMir19(): void {
+  if (this.Mir19Calf == 9) {
     this.textAreaValueMir19 = "Sin recomendaciones";
   }
-  public sinrec40(): void {
+  else if (this.Mir19Calf == 6) {
+    this.textAreaValueMir19 = "";
+  }
+  else if (this.Mir19Calf == 3) {
+    this.textAreaValueMir19 = "";
+  }
+}
+//  //******************************PREGUNTA 20 MIR ******************************************
+public  RespuestaMir20(): void {
+  if (this.Mir20Calf == 9) {
     this.textAreaValueMir20 = "Sin recomendaciones";
   }
-  public sinrec41(): void {
+  else if (this.Mir20Calf == 6) {
+    this.textAreaValueMir20 = "";
+  }
+  else if (this.Mir20Calf == 3) {
+    this.textAreaValueMir20 = "";
+  }
+}
+//  //******************************PREGUNTA 21 MIR ******************************************
+public  RespuestaMir21(): void {
+  if (this.Mir21Calf == 9) {
     this.textAreaValueMir21 = "Sin recomendaciones";
   }
-  public sinrec42(): void {
+  else if (this.Mir21Calf == 6) {
+    this.textAreaValueMir21 = "";
+  }
+  else if (this.Mir21Calf == 3) {
+    this.textAreaValueMir21 = "";
+  }
+}
+//  //******************************PREGUNTA 22 MIR ******************************************
+public  RespuestaMir22(): void {
+  if (this.Mir22Calf == 9) {
     this.textAreaValueMir22 = "Sin recomendaciones";
   }
-  public sinrec43(): void {
+  else if (this.Mir22Calf == 6) {
+    this.textAreaValueMir22 = "";
+  }
+  else if (this.Mir22Calf == 3) {
+    this.textAreaValueMir22 = "";
+  }
+}
+//  //******************************PREGUNTA 23 MIR ******************************************
+public  RespuestaMir23(): void {
+  if (this.Mir23Calf == 9) {
     this.textAreaValueMir23 = "Sin recomendaciones";
   }
-  public sinrec44(): void {
+  else if (this.Mir23Calf == 6) {
+    this.textAreaValueMir23 = "";
+  }
+  else if (this.Mir23Calf == 3) {
+    this.textAreaValueMir23 = "";
+  }
+}
+//  //******************************PREGUNTA 24 MIR ******************************************
+public  RespuestaMir24(): void {
+  if (this.Mir24Calf == 9) {
     this.textAreaValueMir24 = "Sin recomendaciones";
   }
-  public sinrec45(): void {
+  else if (this.Mir24Calf == 6) {
+    this.textAreaValueMir24 = "";
+  }
+  else if (this.Mir24Calf == 3) {
+    this.textAreaValueMir24 = "";
+  }
+}
+//  //******************************PREGUNTA 25 MIR ******************************************
+public  RespuestaMir25(): void {
+  if (this.Mir25Calf == 9) {
     this.textAreaValueMir25 = "Sin recomendaciones";
   }
-  public sinrec46(): void {
-    this.textAreaValueMir26 = "Sin recomendaciones";
+  else if (this.Mir25Calf == 6) {
+    this.textAreaValueMir25 = "";
   }
+  else if (this.Mir25Calf == 3) {
+    this.textAreaValueMir25 = "";
+  }
+}
+//  //******************************PREGUNTA 26 MIR ******************************************
+public  RespuestaMir26(): void {
+  if (this.Mir26Calf == 9) {
+    this.textAreaValueMir26= "Sin recomendaciones";
+  }
+  else if (this.Mir26Calf == 6) {
+    this.textAreaValueMir26 = "";
+  }
+  else if (this.Mir26Calf == 3) {
+    this.textAreaValueMir26 = "";
+  }
+}
   //----------------------------------------------------------------------------------------------
   //--------------------------------CATALOGOS DE DROPLIST-----------------------------------------
   //----------------------------------------------------------------------------------------------

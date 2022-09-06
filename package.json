@@ -25,7 +25,6 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@googlemaps/markerclusterer": "^1.0.12",
     "@ng-bootstrap/ng-bootstrap": "^12.0.0",
-    "@popperjs/core": "^2.10.2",
     "@progress/kendo-angular-buttons": "^6.0.0",
     "@progress/kendo-angular-common": "^2.0.0",
     "@progress/kendo-angular-dateinputs": "^5.0.0",

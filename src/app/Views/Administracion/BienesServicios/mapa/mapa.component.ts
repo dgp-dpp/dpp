@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker,GoogleMap } from '@angular/google-maps';
 import { map } from 'rxjs';
 import {  MapabienesService } from 'src/app/services/mapabienes.service';
-
+import { SelectEvent, TabPosition } from '@progress/kendo-angular-layout';
 
 
 
@@ -15,6 +15,9 @@ export class MapaComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow;
   public marcadores : any[] = [];
+  public position: TabPosition = "top";
+
+
 
   vertices: google.maps.LatLngLiteral[] = [
     {lat: 13, lng: 13},
@@ -26,6 +29,13 @@ public iconMap  ={
   iconUrl: "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/Icons/local_hospital_black_24dp.svg"
   // iconUrl:"https://github.com/cabarronc/dpp/blob/master/src/assets/Icons/building_hospital_medical_icon_226547.ico?raw=true"
 }
+public onTabSelect(e: SelectEvent): void {
+  console.log(e);
+}
+public settings = {
+  prevButtonIcon: "fa fa-arrow-circle-left",
+  nextButtonIcon: "fa fa-arrow-circle-right",
+};
 
 public position2 = {
   lat: 20.644342843727173, lng:-100.99584701789902
@@ -54,7 +64,7 @@ options: google.maps.MapOptions = {
     ).subscribe
     (_data => {
       _data = _data.map(_marcadores =>{
-        const {municipio, unidad, domicilio, cve_mun, lng, lat,pp,pg,icon} =_marcadores;
+        const {id,municipio, unidad, domicilio, cve_mun, lng, lat,pp,pg,icon} =_marcadores;
       //  console.log(_paises);
         return{
         municipio: municipio,
@@ -64,7 +74,8 @@ options: google.maps.MapOptions = {
         position:{lat,lng},
         pp:pp,
         pg:pg,
-        icon:icon
+        icon:icon,
+        id:id
         }
       })
       console.log(_data);

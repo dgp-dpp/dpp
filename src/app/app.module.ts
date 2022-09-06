@@ -66,7 +66,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 //Kendo ui
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { GridModule, PDFModule,ExcelModule } from '@progress/kendo-angular-grid';
-import { ButtonsModule } from "@progress/kendo-angular-buttons";
+import { ButtonsModule} from "@progress/kendo-angular-buttons";
 import { IconsModule } from "@progress/kendo-angular-icons";
 import { LabelModule } from "@progress/kendo-angular-label";
 import { InputsModule } from "@progress/kendo-angular-inputs";
