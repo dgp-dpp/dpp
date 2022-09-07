@@ -26,6 +26,7 @@ export class MapaComponent implements OnInit {
   ];
 public kmlUrl= "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/pdf/GuanajuatoPologonos.kml";
 public kmlUrl2= "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/pdf/denpob.kml";
+public kmlUrl3 ="https://github.com/cabarronc/dpp/blob/master/src/assets/pdf/Unidades_Medicas_Estado.kml"
 public iconMap  ={
   iconUrl: "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/Icons/local_hospital_black_24dp.svg"
   // iconUrl:"https://github.com/cabarronc/dpp/blob/master/src/assets/Icons/building_hospital_medical_icon_226547.ico?raw=true"

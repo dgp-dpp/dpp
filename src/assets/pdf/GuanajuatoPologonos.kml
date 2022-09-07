@@ -3,8 +3,8 @@
   <Document>
     <Style id="0">
       <LineStyle>
-        <color>225DC6</color>
-        <width>3</width>
+        <color>ffffffff</color>
+        <width>1</width>
       </LineStyle>
       <PolyStyle>
         <color>80cccccc</color>
