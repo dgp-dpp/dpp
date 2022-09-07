@@ -448,7 +448,7 @@
         <extrude xmlns="">1</extrude>
         <altitudeMode xmlns="">clampToGround</altitudeMode>
       </Polygon>
-      <description xmlns=""><![CDATA[Pénjamo: No disponible]]></description>
+      <description xmlns=""><![CDATA[Pénjamo: esto es una prueba]]></description>
       <styleUrl xmlns="">#0</styleUrl>
     </Placemark>
     <Placemark id="46">
@@ -826,7 +826,7 @@
         <extrude xmlns="">1</extrude>
         <altitudeMode xmlns="">clampToGround</altitudeMode>
       </Polygon>
-      <description xmlns=""><![CDATA[León: No disponible]]></description>
+      <description xmlns=""><![CDATA[León: Donde la vdia no vale nada]]></description>
       <styleUrl xmlns="">#0</styleUrl>
     </Placemark>
     <Placemark id="40">
