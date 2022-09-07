@@ -24,7 +24,7 @@ export class MapaComponent implements OnInit {
     {lat: -13, lng: 0},
     {lat: 13, lng: -13},
   ];
-public kmlUrl= "https://www.inegi.org.mx/kml/11.kml";
+public kmlUrl= "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/pdf/GuanajuatoPologonos.kml";
 public kmlUrl2= "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/pdf/denpob.kml";
 public iconMap  ={
   iconUrl: "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/Icons/local_hospital_black_24dp.svg"
