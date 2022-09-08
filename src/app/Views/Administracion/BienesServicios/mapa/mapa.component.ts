@@ -3,6 +3,8 @@ import { MapInfoWindow, MapMarker,GoogleMap } from '@angular/google-maps';
 import { map } from 'rxjs';
 import {  MapabienesService } from 'src/app/services/mapabienes.service';
 import { SelectEvent, TabPosition } from '@progress/kendo-angular-layout';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 
@@ -15,7 +17,10 @@ export class MapaComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow;
   public marcadores : any[] = [];
+  public marcador:any;
+
   public position: TabPosition = "top";
+  form: FormGroup;
 
 
 
@@ -24,9 +29,8 @@ export class MapaComponent implements OnInit {
     {lat: -13, lng: 0},
     {lat: 13, lng: -13},
   ];
-public kmlUrl= "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/pdf/GuanajuatoPologonos.kml";
-public kmlUrl2= "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/pdf/denpob.kml";
-public kmlUrl3 ="https://github.com/cabarronc/dpp/blob/master/src/assets/pdf/Unidades_Medicas_Estado.kml"
+public kmlUrl= "https://www.inegi.org.mx/kml/11.kml";
+public kmlUrl2= "https://www.inegi.org.mx/kml/11.kml";
 public iconMap  ={
   iconUrl: "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/Icons/local_hospital_black_24dp.svg"
   // iconUrl:"https://github.com/cabarronc/dpp/blob/master/src/assets/Icons/building_hospital_medical_icon_226547.ico?raw=true"
@@ -34,6 +38,15 @@ public iconMap  ={
 public onTabSelect(e: SelectEvent): void {
   console.log(e);
 }
+
+GuardarMarcador() {
+  const crece: any = {
+  marcador_id: this.form.get('marcador_id')?.value
+  }
+}
+
+
+
 public settings = {
   prevButtonIcon: "fa fa-arrow-circle-left",
   nextButtonIcon: "fa fa-arrow-circle-right",
@@ -54,7 +67,11 @@ options: google.maps.MapOptions = {
   minZoom: 3,
 }
 
-  constructor(private mapabienesService: MapabienesService) { }
+  constructor(private mapabienesService: MapabienesService, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      marcador_id: ["", Validators.required]
+    });
+   }
 
   ngOnInit(): void {
     this.Tuposicion();
@@ -89,6 +106,9 @@ options: google.maps.MapOptions = {
     }
     public openInfoWindow(marker: MapMarker, infoWindow: MapInfoWindow) {
       infoWindow.open(marker);
+  }
+  public openInfo(marker: MapMarker) {
+    this.info.open(marker)
   }
 
   Tuposicion() {
