@@ -10,6 +10,7 @@ import { DependenciasService } from 'src/app/services/dependencias.service';
 import { LoginService } from 'src/app/services/login.service';
 import { CrecePlaneacionService } from 'src/app/services/crece-planeacion.service'
 
+
 @Component({
   selector: 'app-crece-formualario',
   templateUrl: './crece-formualario.component.html',
@@ -27,6 +28,7 @@ export class CreceFormualarioComponent implements OnInit {
   public ProgramaPresupuestario: Array<{ value: number; text: string }> = [];
   public fecha: Date = new Date(2000, 2, 10);
   public position: TabPosition = "top";
+  public dep:string;
   // -------VARIABLES PARA CALCULO DE LA PRIMER PREGUNTA----------
   public Contador1si: any;
   public Contador2si: any;
@@ -107,107 +109,81 @@ export class CreceFormualarioComponent implements OnInit {
   public PonDp20: number = 0;
 
   public Mir1Calf: any;
-  public CalfMir1: string = "";
   public PonMir1: number = 0;
 
   public Mir2Calf: any;
-  public CalfMir2: string = "";
   public PonMir2: number = 0;
 
   public Mir3Calf: any;
-  public CalfMir3: string = "";
   public PonMir3: number = 0;
 
   public Mir4Calf: any;
-  public CalfMir4: string = "";
   public PonMir4: number = 0;
 
   public Mir5Calf: any;
-  public CalfMir5: string = "";
   public PonMir5: number = 0;
 
   public Mir6Calf: any;
-  public CalfMir6: string = "";
   public PonMir6: number = 0;
 
   public Mir7Calf: any;
-  public CalfMir7: string = "";
   public PonMir7: number = 0;
 
   public Mir8Calf: any;
-  public CalfMir8: string = "";
   public PonMir8: number = 0;
 
   public Mir9Calf: any;
-  public CalfMir9: string = "";
   public PonMir9: number = 0;
 
   public Mir10Calf: any;
-  public CalfMir10: string = "";
   public PonMir10: number = 0;
 
   public Mir11Calf: any;
-  public CalfMir11: string = "";
   public PonMir11: number = 0;
 
   public Mir12Calf: any;
-  public CalfMir12: string = "";
   public PonMir12: number = 0;
 
   public Mir13Calf: any;
-  public CalfMir13: string = "";
   public PonMir13: number = 0;
 
   public Mir14Calf: any;
-  public CalfMir14: string = "";
   public PonMir14: number = 0;
 
   public Mir15Calf: any;
-  public CalfMir15: string = "";
   public PonMir15: number = 0;
 
   public Mir16Calf: any;
-  public CalfMir16: string = "";
   public PonMir16: number = 0;
 
   public Mir17Calf: any;
-  public CalfMir17: string = "";
   public PonMir17: number = 0;
 
   public Mir18Calf: any;
-  public CalfMir18: string = "";
   public PonMir18: number = 0;
 
   public Mir19Calf: any;
-  public CalfMir19: string = "";
   public PonMir19: number = 0;
 
   public Mir20Calf: any;
-  public CalfMir20: string = "";
   public PonMir20: number = 0;
 
   public Mir21Calf: any;
-  public CalfMir21: string = "";
   public PonMir21: number = 0;
 
   public Mir22Calf: any;
-  public CalfMir22: string = "";
   public PonMir22: number = 0;
 
   public Mir23Calf: any;
-  public CalfMir23: string = "";
   public PonMir23: number = 0;
 
   public Mir24Calf: any;
-  public CalfMir24: string = "";
   public PonMir24: number = 0;
 
   public Mir25Calf: any;
-  public CalfMir25: string = "";
   public PonMir25: number = 0;
 
   public Mir26Calf: any;
-  public CalfMir26: string = "";
   public PonMir26: number = 0;
 
 
@@ -616,56 +592,82 @@ export class CreceFormualarioComponent implements OnInit {
       ponDp20form: ['', Validators.required],
       Mir1: ['', Validators.required],
       Mir1Esp: ['', Validators.required],
+      ponMir1form: ['', Validators.required],
       Mir2: ['', Validators.required],
       Mir2Esp: ['', Validators.required],
+      ponMir2form: ['', Validators.required],
       Mir3: ['', Validators.required],
       Mir3Esp: ['', Validators.required],
+      ponMir3form: ['', Validators.required],
       Mir4: ['', Validators.required],
       Mir4Esp: ['', Validators.required],
+      ponMir4form: ['', Validators.required],
       Mir5: ['', Validators.required],
       Mir5Esp: ['', Validators.required],
+      ponMir5form: ['', Validators.required],
       Mir6: ['', Validators.required],
       Mir6Esp: ['', Validators.required],
+      ponMir6form: ['', Validators.required],
       Mir7: ['', Validators.required],
       Mir7Esp: ['', Validators.required],
+      ponMir7form: ['', Validators.required],
       Mir8: ['', Validators.required],
       Mir8Esp: ['', Validators.required],
+      ponMir8form: ['', Validators.required],
       Mir9: ['', Validators.required],
       Mir9Esp: ['', Validators.required],
+      ponMir9form: ['', Validators.required],
       Mir10: ['', Validators.required],
       Mir10Esp: ['', Validators.required],
+      ponMir10form: ['', Validators.required],
       Mir11: ['', Validators.required],
       Mir11Esp: ['', Validators.required],
+      ponMir11form: ['', Validators.required],
       Mir12: ['', Validators.required],
       Mir12Esp: ['', Validators.required],
+      ponMir12form: ['', Validators.required],
       Mir13: ['', Validators.required],
       Mir13Esp: ['', Validators.required],
+      ponMir13form: ['', Validators.required],
       Mir14: ['', Validators.required],
       Mir14Esp: ['', Validators.required],
+      ponMir14form: ['', Validators.required],
       Mir15: ['', Validators.required],
       Mir15Esp: ['', Validators.required],
+      ponMir15form: ['', Validators.required],
       Mir16: ['', Validators.required],
       Mir16Esp: ['', Validators.required],
+      ponMir16form: ['', Validators.required],
       Mir17: ['', Validators.required],
       Mir17Esp: ['', Validators.required],
+      ponMir17form: ['', Validators.required],
       Mir18: ['', Validators.required],
       Mir18Esp: ['', Validators.required],
+      ponMir18form: ['', Validators.required],
       Mir19: ['', Validators.required],
       Mir19Esp: ['', Validators.required],
+      ponMir19form: ['', Validators.required],
       Mir20: ['', Validators.required],
       Mir20Esp: ['', Validators.required],
+      ponMir20form: ['', Validators.required],
       Mir21: ['', Validators.required],
       Mir21Esp: ['', Validators.required],
+      ponMir21form: ['', Validators.required],
       Mir22: ['', Validators.required],
       Mir22Esp: ['', Validators.required],
+      ponMir22form: ['', Validators.required],
       Mir23: ['', Validators.required],
       Mir23Esp: ['', Validators.required],
+      ponMir23form: ['', Validators.required],
       Mir24: ['', Validators.required],
       Mir24Esp: ['', Validators.required],
+      ponMir24form: ['', Validators.required],
       Mir25: ['', Validators.required],
       Mir25Esp: ['', Validators.required],
+      ponMir25form: ['', Validators.required],
       Mir26: ['', Validators.required],
       Mir26Esp: ['', Validators.required],
+      ponMir26form: ['', Validators.required],
       FMir: ['', Validators.required],
       FDp: ['', Validators.required],
       AoMir: ['', Validators.required],
@@ -875,10 +877,62 @@ export class CreceFormualarioComponent implements OnInit {
 //METODOS PARA DETERMINAR LA SUMA DE LAS PONDERACIONES
 //--------------------------------------------------------------------------------------------------------------------------------------
 //
-public MethodTotalDp():any{
-this.TotalDp = this.PonDp4 + this.PonDp5 +  this.PonDp6 +  this.PonDp7 +  this.PonDp8 +  this.PonDp9 +  this.PonDp10 +  this.PonDp11 +  this.PonDp12;
-}
 
+public progressStyles: { [key: string]: string } = {
+color:"",
+background: ""
+};
+public MethodTotalDp():any{
+this.TotalDp = this.PonDp4 + this.PonDp5 +  this.PonDp6 +  this.PonDp7 +  this.PonDp8 +  this.PonDp9 +  this.PonDp10 +  this.PonDp11 +  this.PonDp12 + this.PonDp13 +this.PonDp14 +this.PonDp15 +this.PonDp16 +this.PonDp17 +this.PonDp18 +this.PonDp19 +this.PonDp20;
+switch (this.TotalDp ) {
+  case 50:this.updateAppearance("#f50707");
+  break;
+  case 51:
+  case 52:
+  case 53:
+  case 54:
+  case 55:
+  case 56:
+  case 57:
+  case 58:
+  case 59:
+  case 60:
+  case 61:
+  case 70:this.updateAppearance("#ee9f05");
+  break;
+  case 71:
+  case 72:
+  case 73:
+  case 74:
+  case 75:
+  case 76:
+  case 77:
+  case 78:
+  case 79:
+  case 80:this.updateAppearance("#1C4822");
+  break;
+  case 81:
+  case 82:
+  case 83:
+  case 84:
+  case 85:
+  case 86:
+  case 87:
+  case 88:
+  case 89:
+  case 90:
+  default:
+
+
+  }
+
+}
+private updateAppearance(
+ background: string
+): void {
+  this.progressStyles['background'] = background
+
+}
 
 //
 //--------------------------------------------------------------------------------------------------------------------------------------
@@ -1269,30 +1323,57 @@ public RespuestaDp4(): void{
 public  RespuestaMir1(): void {
   if (this.Mir1Calf == 9) {
     this.textAreaValueMir1 = "Sin recomendaciones";
+    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
+      this.PonMir1 = 8;
+    }
+    else{
+      this.PonMir1 = 6
+    }
+
   }
-  else if (this.Mir1Calf == 6) {
-    this.textAreaValueMir1 = "";
-  }
+
   else if (this.Mir1Calf == 3) {
     this.textAreaValueMir1 = "";
+    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
+      this.PonMir1 = 8;
+    }
+    else{
+      this.PonMir1 = 6
+    }
   }
 }
 //  //******************************PREGUNTA 2 MIR ******************************************
 public  RespuestaMir2(): void {
   if (this.Mir2Calf == 9) {
     this.textAreaValueMir2 = "Sin recomendaciones";
+    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
+      this.PonMir2 = 0;
+    }
+    else{
+      this.PonMir2 = 4
+    }
   }
-  else if (this.Mir2Calf == 6) {
-    this.textAreaValueMir2 = "";
-  }
+
   else if (this.Mir2Calf == 3) {
     this.textAreaValueMir2 = "";
+    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
+      this.PonMir2 = 0;
+    }
+    else{
+      this.PonMir2 = 0
+    }
   }
 }
 //  //******************************PREGUNTA 3 MIR ******************************************
 public  RespuestaMir3(): void {
   if (this.Mir3Calf == 9) {
     this.textAreaValueMir3 = "Sin recomendaciones";
+    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
+      this.PonMir2 = 0;
+    }
+    else{
+      this.PonMir2 = 4
+    }
   }
   else if (this.Mir3Calf == 6) {
     this.textAreaValueMir3 = "";
@@ -1353,12 +1434,31 @@ public  RespuestaMir7(): void {
 public RespuestaMir8(): void {
   if (this.Mir8Calf == 9) {
     this.textAreaValueMir8 = "Sin recomendaciones";
+    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
+      this.PonMir2 = 0;
+    }
+    else{
+      this.PonMir2 = 4
+    }
+
   }
   else if (this.Mir8Calf == 6) {
     this.textAreaValueMir8 = "";
+    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
+      this.PonMir2 = 0;
+    }
+    else{
+      this.PonMir2 = 2
+    }
   }
   else if (this.Mir8Calf == 3) {
     this.textAreaValueMir8 = "";
+    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
+      this.PonMir2 = 0;
+    }
+    else{
+      this.PonMir2 = 0
+    }
   }
 }
 //  //******************************PREGUNTA 9 MIR ******************************************
@@ -1415,10 +1515,10 @@ public RespuestaMir13(): void {
   if (this.Mir13Calf == 9) {
     this.textAreaValueMir13 = "Sin recomendaciones";
   }
-  else if (this.Mir1Calf == 6) {
+  else if (this.Mir13Calf == 6) {
     this.textAreaValueMir13 = "";
   }
-  else if (this.Mir1Calf == 3) {
+  else if (this.Mir13Calf == 3) {
     this.textAreaValueMir13 = "";
   }
 }

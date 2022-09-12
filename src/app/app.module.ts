@@ -76,7 +76,8 @@ import { TooltipsModule } from "@progress/kendo-angular-tooltip";
 import { IntlModule } from "@progress/kendo-angular-intl";
 import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
 import { PruebaFirebaseComponent } from './Views/Administracion/prueba-firebase/prueba-firebase.component';
-
+import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
+//import { IndicatorsModule } from "@progress/kendo-angular-indicators";
 //firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
@@ -174,6 +175,7 @@ export function tokenGetter() {
     PDFModule,
     ExcelModule,
     ButtonsModule,
+    ProgressBarModule,
     IconsModule,
     AngularFireModule.initializeApp(environment.firebaseDb),
     AngularFireDatabaseModule,
