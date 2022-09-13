@@ -3,6 +3,8 @@
 <section id="sectiondefault">
 
   <div class="bd-callout bd-callout-info">CRECE PLANEACION
+    <button kendoButton type="button" (click)="MethodTotalCal()" icon="redo">Ver Calificacion Global</button>
+    {{CalProm}}
   </div>
   <h1> Bienvenido: <strong>{{Nombre}}</strong></h1>
   <form class="k-form" [formGroup]="form" (ngSubmit)="GuardarCrece()">
@@ -55,8 +57,8 @@
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Dependencia" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" [(ngModel)]="selectedValue"
-                            formControlName="Dependencia" [(ngModel)]="dep" [valuePrimitive]="true" [data]="listDep" textField="text"
-                            valueField="text">
+                            formControlName="Dependencia" [(ngModel)]="dep" [valuePrimitive]="true" [data]="listDep"
+                            textField="text" valueField="text">
                           </kendo-dropdownlist>
                         </kendo-floatinglabel>
                       </div>
@@ -718,9 +720,10 @@
           <p></p>
           <!-- Seccion  3 Evaluacion al DX Particular -->
           <div class="col-md-6">
-          <kendo-label  text="Calificacion&nbsp;&nbsp;"  style="font-weight: bold;">
-            <kendo-progressbar [progressCssStyle]="progressStyles" style="width: 400px;" [value]="TotalDp"></kendo-progressbar>
-          </kendo-label>
+            <kendo-label text="Calificacion&nbsp;&nbsp;" style="font-weight: bold;">
+              <kendo-progressbar [progressCssStyle]="progressStyles" style="width: 400px;" [value]="TotalDp">
+              </kendo-progressbar>
+            </kendo-label>
           </div>
           <div class="col-md-12">
             <kendo-panelbar>
@@ -2179,7 +2182,7 @@
                               <kendo-formerror>Error: Campo requerido </kendo-formerror>
                             </kendo-formfield>
                             <p> </p>
-                            <!-- 19Dp Especifica &nbsp; -->
+                            <!-- 20Dp Especifica &nbsp; -->
                             <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica, en
                               caso de que la calificación sea 9 documentar "Sin recomendaciones".
                             </kendo-label>
@@ -2233,6 +2236,10 @@
               </kendo-panelbar-item>
             </kendo-panelbar>
             <p></p>
+            <kendo-label text="Calificacion MIR&nbsp;&nbsp;" style="font-weight: bold;">
+              <kendo-progressbar [progressCssStyle]="progressStylestwo" style="width: 400px;" [value]="TotalMir">
+              </kendo-progressbar>
+            </kendo-label>
             <!-- Seccion  4 Calificacion MIR -->
             <kendo-panelbar>
               <kendo-panelbar-item icon="folder" title="Evaluación MIR">
@@ -2253,6 +2260,7 @@
                                   style="background-color: darkgray;">
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
+
                                       <kendo-label class="k-radio-label" style="font-weight: bold;">2.- ¿La MIR cuenta
                                         algún
                                         indicador publicado en el PED 2040?
@@ -2263,14 +2271,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape"  [align]="badgeAlign" themeColor="success" [Size]="Size"  [cutoutBorder]="true">Fin</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir2" value="9" #9
-                                        formControlName="Mir2" [(ngModel)]="Mir2Calf" (click)="RespuestaMir2()"
+                                        formControlName="Mir2" [(ngModel)]="Mir2Calf" (click)="RespuestaMir2()"(click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir2" value="3" #No
-                                        formControlName="Mir2" [(ngModel)]="Mir2Calf" (click)="RespuestaMir2()"
+                                        formControlName="Mir2" [(ngModel)]="Mir2Calf" (click)="RespuestaMir2()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
@@ -2316,6 +2327,7 @@
                                   style="background-color: darkgray;">
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-badge-container>
                                       <kendo-label class="k-radio-label" style="font-weight: bold;">
                                         8.- ¿La MIR cuenta los indicadores publicados en el PG 18-24 que corresponde de
                                         acuerdo con el pre análisis entregado a la dependencia?
@@ -2323,20 +2335,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+
+                                      <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Proposito</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir8" value="9" #9
-                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"
+                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"(click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9. Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir8" value="6" #No
-                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"
+                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"(click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir8" value="3" #No
-                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"
+                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. No</kendo-label>
                                     </li>
@@ -2390,20 +2405,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                    <kendo-badge-container>
+                                      <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir13" value="9" #9
-                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()"
+                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9. Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir13" value="6" #No
-                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()"
+                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir13" value="3" #No
-                                        formControlName="Mir13" kendoRadioButton />
+                                        formControlName="Mir13"  [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()" (click)="MethodTotalMir()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. No</kendo-label>
                                     </li>
                                   </ul>
@@ -2430,8 +2448,8 @@
                                 </kendo-formfield>
                                 <!--------------------- 13MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir13form" [readonly]="true" [(ngModel)]="PonMir13"
-                                    resizable="auto" name="PonMir13" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir13form" [readonly]="true"
+                                    [(ngModel)]="PonMir13" resizable="auto" name="PonMir13" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir13()">Ponderacion</button>
@@ -2468,15 +2486,18 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success" size="medium"  [cutoutBorder]="true">Fin</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir1" value="9" #9
-                                        formControlName="Mir1"  (click)="RespuestaMir1()" [(ngModel)]="Mir1Calf" (click)="RespuestaMir1()"
-                                        kendoRadioButton />
+                                        formControlName="Mir1"  [(ngModel)]="Mir1Calf"
+                                        (click)="RespuestaMir1()" (click)="MethodTotalMir()"kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir1" value="3" #No
-                                        formControlName="Mir1"  (click)="RespuestaMir1()"[(ngModel)]="Mir1Calf" (click)="RespuestaMir1()"
-                                        kendoRadioButton />
+                                        formControlName="Mir1" [(ngModel)]="Mir1Calf"
+                                        (click)="RespuestaMir1()" (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2503,8 +2524,8 @@
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
                                 <p></p>
-                                 <!--------------------- 1MIR Ponderacion -------->
-                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                <!--------------------- 1MIR Ponderacion -------->
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
                                   <kendo-textarea formControlName="ponMir1form" [readonly]="true" [(ngModel)]="PonMir1"
                                     resizable="auto" name="PonMir1" flow="horizontal">
                                     <kendo-textarea-suffix>
@@ -2532,20 +2553,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir17" value="9" #9
-                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()"
+                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir17" value="6" #6
-                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()"
+                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir17" value="3" #3
-                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()"
+                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
@@ -2573,8 +2597,8 @@
                                 </kendo-formfield>
                                 <!--------------------- 17MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir17form" [readonly]="true" [(ngModel)]="PonMir17"
-                                    resizable="auto" name="PonMir17" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir17form" [readonly]="true"
+                                    [(ngModel)]="PonMir17" resizable="auto" name="PonMir17" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir17()">Ponderacion</button>
@@ -2594,6 +2618,7 @@
                                   style="background-color: darkgray;">
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-badge-container>
                                       <kendo-label class="k-radio-label" style="font-weight: bold;">6- ¿La redacción del
                                         propósito cumple con la sintaxis,
                                         población objetivo más situación deseada? (población objetivo o área de enfoque
@@ -2602,14 +2627,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir6" value="9" #9
-                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()"
+                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir6" value="3" #No
-                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()"
+                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
@@ -2666,20 +2694,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir18" value="9" #9
-                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()"
+                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- del 0 al 20</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir18" value="6" #6
-                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()"
+                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- del 21 al 80</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir18" value="3" #3
-                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()"
+                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- del 81 al 100 </kendo-label>
                                     </li>
@@ -2707,8 +2738,8 @@
                                 </kendo-formfield>
                                 <!--------------------- 18MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir18form" [readonly]="true" [(ngModel)]="PonMir18"
-                                    resizable="auto" name="PonMir18" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir18form" [readonly]="true"
+                                    [(ngModel)]="PonMir18" resizable="auto" name="PonMir18" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir18()">Ponderacion</button>
@@ -2738,15 +2769,18 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir7" value="9" #9
-                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()"
+                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
 
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir7" value="3" #No
-                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()"
+                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
@@ -2773,16 +2807,16 @@
                                   <kendo-formerror>Error: el campo es requerido</kendo-formerror>
                                 </kendo-formfield>
                                 <p></p>
-                                <!--------------------- 17MIR Ponderacion -------->
+                                <!--------------------- 7MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir17form" [readonly]="true" [(ngModel)]="PonMir17"
-                                    resizable="auto" name="PonMir17" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir7form" [readonly]="true"
+                                    [(ngModel)]="PonMir7" resizable="auto" name="PonMir7" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
-                                        (click)="RespuestaMir17()">Ponderacion</button>
+                                        (click)="RespuestaMir7()">Ponderacion</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
-                                  <kendo-formhint style="font-weight: normal;" align="start">17 Mir Ponderacion
+                                  <kendo-formhint style="font-weight: normal;" align="start">7 Mir Ponderacion
                                   </kendo-formhint>
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
@@ -2802,14 +2836,17 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir19" value="9" #9
-                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()"
+                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir19" value="3" #3
-                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()"
+                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No </kendo-label>
                                     </li>
@@ -2838,8 +2875,8 @@
                                 <p></p>
                                 <!--------------------- 19MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir19form" [readonly]="true" [(ngModel)]="PonMir19"
-                                    resizable="auto" name="PonMir19" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir19form" [readonly]="true"
+                                    [(ngModel)]="PonMir19" resizable="auto" name="PonMir19" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir19()">Ponderacion</button>
@@ -2865,20 +2902,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir12" value="9" #9
-                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()"
+                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir12" value="6" #6
-                                        formControlName="Mir12" [(ngModel)]="Mir1Calf" (click)="RespuestaMir12()"
+                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir12" value="3" #3
-                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()"
+                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
@@ -2906,8 +2946,8 @@
                                 </kendo-formfield>
                                 <!--------------------- 12MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir12form" [readonly]="true" [(ngModel)]="PonMir12"
-                                    resizable="auto" name="PonMir12" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir12form" [readonly]="true"
+                                    [(ngModel)]="PonMir12" resizable="auto" name="PonMir12" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir12()">Ponderacion</button>
@@ -2936,20 +2976,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="warning" size="medium"  [cutoutBorder]="true">Actividad</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir21" value="9" #9
-                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()"
+                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir21" value="6" #6
-                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()"
+                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir21" value="3" #3
-                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()"
+                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No </kendo-label>
                                     </li>
@@ -2978,8 +3021,8 @@
                                 <p></p>
                                 <!--------------------- 21MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir21form" [readonly]="true" [(ngModel)]="PonMir21"
-                                    resizable="auto" name="PonMir21" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir21form" [readonly]="true"
+                                    [(ngModel)]="PonMir21" resizable="auto" name="PonMir21" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir21()">Ponderacion</button>
@@ -2998,6 +3041,7 @@
                                   style="background-color: darkgray;">
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-badge-container>
                                       <kendo-label class="k-radio-label" style="font-weight: bold;">16.- ¿Cuál es el
                                         número de entregables máximo que tienen los componentes?
                                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -3007,20 +3051,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir16" value="9" #9
-                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()"
+                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- maximo 3</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir16" value="6" #No
-                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()"
+                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- de 3 a 5</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir16" value="3" #No
-                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()"
+                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- mas de 5</kendo-label>
                                     </li>
@@ -3048,8 +3095,8 @@
                                 </kendo-formfield>
                                 <!--------------------- 16MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir16form" [readonly]="true" [(ngModel)]="PonMir16"
-                                    resizable="auto" name="PonMir16" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir16form" [readonly]="true"
+                                    [(ngModel)]="PonMir16" resizable="auto" name="PonMir16" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir16()">Ponderacion</button>
@@ -3087,22 +3134,25 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success" size="medium"  [cutoutBorder]="true">Fin</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir3" value="9" #9
-                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()"
+                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Máximo 3 indicadores, claramente
                                         miden el objetivo.</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir3" value="3" #6
-                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()"
+                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Máximo 3 indicadores, no se
                                         identifica relación con el objetivo en alguno de los indicadores</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir3" value="3" #3
-                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()"
+                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- Más de 3 indicadores
                                       </kendo-label>
@@ -3129,19 +3179,20 @@
                                   <kendo-formhint style="font-weight: normal;" align="start">3 MIR RE</kendo-formhint>
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
-                                <p></p><!--------------------- 3MIR Ponderacion -------->
+                                <p></p>
+                                <!--------------------- 3MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                 <kendo-textarea formControlName="ponMir3form" [readonly]="true" [(ngModel)]="PonMir3"
-                                   resizable="auto" name="PonMir3" flow="horizontal">
-                                   <kendo-textarea-suffix>
-                                     <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
-                                       (click)="RespuestaMir3()">Ponderacion</button>
-                                   </kendo-textarea-suffix>
-                                 </kendo-textarea>
-                                 <kendo-formhint style="font-weight: normal;" align="start">3 Mir Ponderacion
-                                 </kendo-formhint>
-                                 <kendo-formerror>Error: es requerido</kendo-formerror>
-                               </kendo-formfield>
+                                  <kendo-textarea formControlName="ponMir3form" [readonly]="true" [(ngModel)]="PonMir3"
+                                    resizable="auto" name="PonMir3" flow="horizontal">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                                        (click)="RespuestaMir3()">Ponderacion</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">3 Mir Ponderacion
+                                  </kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
                               </div>
                               <!--23 MIR  &nbsp; -->
                               <div class="col-sm-6">
@@ -3158,20 +3209,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir23" value="9" #9
-                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()"
+                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir23" value="6" #6
-                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()"
+                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir23" value="3" #3
-                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()"
+                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
@@ -3198,10 +3252,10 @@
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
                                 <p></p>
-                                <!--------------------- 1MIR Ponderacion -------->
+                                <!--------------------- 23MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir23form" [readonly]="true" [(ngModel)]="PonMir23"
-                                    resizable="auto" name="PonMir23" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir23form" [readonly]="true"
+                                    [(ngModel)]="PonMir23" resizable="auto" name="PonMir23" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir23()">Ponderacion</button>
@@ -3227,22 +3281,25 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir9" value="9" #9
-                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()"
+                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9. Máximo 3 indicadores, claramente
                                         miden el objetivo</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir9" value="6" #6
-                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()"
+                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Máximo 3 indicadores, no se
                                         identifica relación con el objetivo en alguno de los indicadores</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir9" value="3" #3
-                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()"
+                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. Más de 3 indicadores</kendo-label>
                                     </li>
@@ -3299,20 +3356,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir24" value="9" #9
-                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()"
+                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- 100%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir24" value="6" #6
-                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()"
+                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- 60 al 99%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir24" value="3" #3
-                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()"
+                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- menos del 60%</kendo-label>
                                     </li>
@@ -3341,8 +3401,8 @@
                                 <p></p>
                                 <!--------------------- 24MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir24form" [readonly]="true" [(ngModel)]="PonMir24"
-                                    resizable="auto" name="PonMir24" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir24form" [readonly]="true"
+                                    [(ngModel)]="PonMir24" resizable="auto" name="PonMir24" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir24()">Ponderacion</button>
@@ -3370,22 +3430,25 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir14" value="9" #9
-                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()"
+                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Máximo 3 indicadores, claramente
                                         miden el objetivo.</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir14" value="6" #6
-                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()"
+                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Máximo 3 indicadores, no se
                                         identifica relación con el objetivo en alguno de los indicadores</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir14" value="3" #3
-                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()"
+                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. Más de 3 indicadores</kendo-label>
                                     </li>
@@ -3414,8 +3477,8 @@
                                 <p></p>
                                 <!--------------------- 14MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir14form" [readonly]="true" [(ngModel)]="PonMir14"
-                                    resizable="auto" name="PonMir14" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir14form" [readonly]="true"
+                                    [(ngModel)]="PonMir14" resizable="auto" name="PonMir14" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir14()">Ponderacion</button>
@@ -3440,20 +3503,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir25" value="9" #9
-                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()"
+                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- 100%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir25" value="6" #6
-                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()"
+                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- del 80 al 99%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir25" value="3" #3
-                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()"
+                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. menos del 80%</kendo-label>
                                     </li>
@@ -3482,8 +3548,8 @@
                                 <p></p>
                                 <!--------------------- 25MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir25form" [readonly]="true" [(ngModel)]="PonMir25"
-                                    resizable="auto" name="PonMir25" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir25form" [readonly]="true"
+                                    [(ngModel)]="PonMir25" resizable="auto" name="PonMir25" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir25()">Ponderacion</button>
@@ -3520,20 +3586,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success" size="medium"  [cutoutBorder]="true">Fin</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir4" value="9" #9
-                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()"
+                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir4" value="3" #6
-                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()"
+                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir4" value="3" #3
-                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()"
+                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.-No </kendo-label>
                                     </li>
@@ -3589,20 +3658,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir15" value="9" #9
-                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()"
+                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir15" value="6" #6
-                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()"
+                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir15" value="3" #3
-                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()"
+                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
@@ -3632,8 +3704,8 @@
                                 <p></p>
                                 <!--------------------- 15MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir15form" [readonly]="true" [(ngModel)]="PonMir15"
-                                    resizable="auto" name="PonMir15" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir15form" [readonly]="true"
+                                    [(ngModel)]="PonMir15" resizable="auto" name="PonMir15" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir15()">Ponderacion</button>
@@ -3660,20 +3732,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir10" value="9" #9
-                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()"
+                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir10" value="6" #6
-                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()"
+                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir10" value="3" #3
-                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()"
+                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
@@ -3701,8 +3776,8 @@
                                 </kendo-formfield>
                                 <!--------------------- 10MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir10form" [readonly]="true" [(ngModel)]="PonMir10"
-                                    resizable="auto" name="PonMir10" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir10form" [readonly]="true"
+                                    [(ngModel)]="PonMir10" resizable="auto" name="PonMir10" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir10()">Ponderacion</button>
@@ -3740,21 +3815,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success" size="medium"  [cutoutBorder]="true">Fin</kendo-badge>
+                                        </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir5" value="9" #9
-                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()"
+                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir5" value="3" #6
-                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()"
+                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente (en caso de que se
                                         identifiquen supuestos faltantes)</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir5" value="3" #3
-                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()"
+                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No
                                       </kendo-label>
@@ -3812,20 +3890,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="warning" size="medium"  [cutoutBorder]="true">Actividad</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir22" value="9" #9
-                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()"
+                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir22" value="6" #6
-                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()"
+                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir22" value="3" #3
-                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()"
+                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
@@ -3848,13 +3929,13 @@
                                         icon="edit" (click)="RespuestaMir22()">Sin recomendaciones</button>
                                     </kendo-textarea-suffix>
                                   </kendo-textarea>
-                                  <kendo-formhint style="font-weight: normal;" align="start">23 MIR RE</kendo-formhint>
+                                  <kendo-formhint style="font-weight: normal;" align="start">22 MIR RE</kendo-formhint>
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
                                 <!--------------------- 22MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir22form" [readonly]="true" [(ngModel)]="PonMir22"
-                                    resizable="auto" name="PonMir22" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir22form" [readonly]="true"
+                                    [(ngModel)]="PonMir22" resizable="auto" name="PonMir22" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir22()">Ponderacion</button>
@@ -3874,27 +3955,31 @@
                                   style="background-color: darkgray;">
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-badge-container>
                                       <kendo-label class="k-radio-label" style="font-weight: bold;">11.- ¿Si se logra el
                                         Propósito del Pp y se cumplen los Supuestos asociados a éste, se contribuirá al
                                         logro del Fin?
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
+
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+
+                                        <kendo-badge position="edge" [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir11" value="9" #9
-                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()"
+                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir11" value="6" #6
-                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()"
+                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir11" value="3" #3
-                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()"
+                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No</kendo-label>
                                     </li>
@@ -3922,8 +4007,8 @@
                                 </kendo-formfield>
                                 <!--------------------- 11MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir11form" [readonly]="true" [(ngModel)]="PonMir11"
-                                    resizable="auto" name="PonMir11" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir11form" [readonly]="true"
+                                    [(ngModel)]="PonMir11" resizable="auto" name="PonMir11" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir11()">Ponderacion</button>
@@ -3952,20 +4037,23 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir26" value="9" #9
-                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()"
+                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir26" value="6" #6
-                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()"
+                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir26" value="3" #3
-                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()"
+                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No</kendo-label>
                                     </li>
@@ -3993,8 +4081,8 @@
                                 </kendo-formfield>
                                 <!--------------------- 26MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir26form" [readonly]="true" [(ngModel)]="PonMir26"
-                                    resizable="auto" name="PonMir26" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir26form" [readonly]="true"
+                                    [(ngModel)]="PonMir26" resizable="auto" name="PonMir26" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir26()">Ponderacion</button>
@@ -4014,28 +4102,30 @@
                                   style="background-color: darkgray;">
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
-                                      <kendo-label class="k-radio-label" style="font-weight: bold;">20.- ¿Existen
-                                        supuestos que cumplen con los criterios de ser situaciones
-                                        externas y de probabilidad media para cada uno de los niveles de la MIR?
+                                      <kendo-badge-container>
+                                      <kendo-label class="k-radio-label" style="font-weight: bold;">20.- ¿Si se producen los componentes y se cumplen con los supuestos asociados a éstos, se logrará el Propósito del Pp?
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
+
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                   </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir20" value="9" #9
-                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()"
+                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir20" value="6" #6
-                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()"
+                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir20" value="3" #3
-                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()"
+                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()" (click)="MethodTotalMir()"
                                         kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No</kendo-label>
                                     </li>
@@ -4063,8 +4153,8 @@
                                 </kendo-formfield>
                                 <!--------------------- 20MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir20form" [readonly]="true" [(ngModel)]="PonMir20"
-                                    resizable="auto" name="PonMir20" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir20form" [readonly]="true"
+                                    [(ngModel)]="PonMir20" resizable="auto" name="PonMir20" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir20()">Ponderacion</button>
