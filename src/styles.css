@@ -4,32 +4,39 @@
     margin-right: 0px;
     width: 0px;
   }
-  
+
   iframe {
     border: none;
   }
-  
+
   .hidden {
     height: 0 !important;
     width: 0 !important;
   }
-  
+
   .report-container {
     height: 80vh;
     margin: 15px auto;
-    width: 90%; 
+    width: 90%;
   }
-  
+
   html, body { height: 100%; }
-  
+
+  /* body {
+  background: #2c3e50;
+  background: -webkit-linear-gradient(to right, #3498db, #2c3e50);
+  background: linear-gradient(to right, #3498db, #2c3e50);
+  } */
+
   body {
-    background: #2c3e50;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
-    
+    background: #80b5eb;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #8dc3e7, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #79b9ee, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
   }
-  
+
+
   .titulo {
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -85,14 +92,14 @@
 
   /*footer {
     position:sticky;
-    
+
     bottom: 0;
     height: 100%;
     right: 0%;
     left: 0%;
     /*height: 50px;
   }*/
-  
+
   /*
     .containerP {
     min-height: 100%;
@@ -109,5 +116,5 @@
   position:sticky;
   /*height: 40px;
   margin-top: -40px;
-  
+
 }*/

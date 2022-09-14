@@ -10,7 +10,7 @@ import { DependenciasService } from 'src/app/services/dependencias.service';
 import { LoginService } from 'src/app/services/login.service';
 import { CrecePlaneacionService } from 'src/app/services/crece-planeacion.service'
 
-import { BadgeAlign, BadgePosition,BadgeShape,BadgeThemeColor,BadgeSize } from "@progress/kendo-angular-indicators";
+import { BadgeAlign, BadgePosition, BadgeShape, BadgeThemeColor, BadgeSize } from "@progress/kendo-angular-indicators";
 
 
 @Component({
@@ -30,28 +30,75 @@ export class CreceFormualarioComponent implements OnInit {
   public ProgramaPresupuestario: Array<{ value: number; text: string }> = [];
   public fecha: Date = new Date(2000, 2, 10);
   public position: TabPosition = "top";
-  public dep:string;
-//-------------------------DECELARACION DE VARIABLES PARA LA UI KENDO BADGE --------------------
-  public shape:BadgeShape ="rounded";
-  public ColorFin: BadgeThemeColor="secondary";
-  public Size: BadgeSize="medium";
+  public dep: string;
+  public pp: string;
+  //-------------------------DECELARACION DE VARIABLES PARA LA UI KENDO BADGE --------------------
+  public shape: BadgeShape = "rounded";
+  public ColorFin: BadgeThemeColor = "secondary";
+  public Size: BadgeSize = "medium";
   public badgeAlign: BadgeAlign = { vertical: "bottom", horizontal: "end" };
 
   // -------VARIABLES PARA CALCULO DE LA PRIMER PREGUNTA----------
   public Contador1si: any;
   public Contador2si: any;
+  public Contador3si: any;
+  public Contador4si: any;
+  public Contador5si: any;
+  public Contador6si: any;
+  public Contador7si: any;
+  public Contador8si: any;
+  public Contador9si: any;
+  public Contador10si: any;
+  public Contador11si: any;
+  public Contador12si: any;
+  public Contador13si: any;
+  public Contador14si: any;
+  public Contador15si: any;
+  public Contador16si: any;
+  public Contador17si: any;
+  public Contador18si: any;
+  public Contador19si: any;
+  public Contador20si: any;
+  public Contador21si: any;
+  public Contador22si: any;
+
   public Contador1no: any;
   public Contador2no: any;
+  public Contador3no: any;
+  public Contador4no: any;
+  public Contador5no: any;
+  public Contador6no: any;
+  public Contador7no: any;
+  public Contador8no: any;
+  public Contador9no: any;
+  public Contador10no: any;
+  public Contador11no: any;
+  public Contador12no: any;
+  public Contador13no: any;
+  public Contador14no: any;
+  public Contador15no: any;
+  public Contador16no: any;
+  public Contador17no: any;
+  public Contador18no: any;
+  public Contador19no: any;
+  public Contador20no: any;
+  public Contador21no: any;
+  public Contador22no: any;
+
+
+
+
+
   public TotalSi: number;
 
-  public contador:number=0;
+  public contador: number = 0;
 
-  public CalfDp1:number;
-  public TotalDp:number;
-  public TotalMir:number;
-  public CalProm:number;
+  public CalfDp1: number;
+  public TotalDp: number;
+  public TotalMir: number;
+  public CalProm: number;
 
-  public CalGlob:number;
+  public CalGlob: number;
   public Dp4Calf: any;
   public CalfDp4: string = "";
   public PonDp4: number = 0;
@@ -251,7 +298,7 @@ export class CreceFormualarioComponent implements OnInit {
 
   public listCursos: Array<{ value: number; text: string }> = [];
   public listDep: Array<{ text: string; value: number }> = [];
- //--------------------OBTENER USUARIOS  PARA QUE APAREZACA EN EL MENSAJE DE BIENVENDA-----------
+  //--------------------OBTENER USUARIOS  PARA QUE APAREZACA EN EL MENSAJE DE BIENVENDA-----------
   getUsuario(): void {
     this.Nombre = this.loginServices.getTokenDecoded().sub;
     this.Rol = this.loginServices.getTokenDecoded().roles;
@@ -865,162 +912,219 @@ export class CreceFormualarioComponent implements OnInit {
   //   console.log("\n");
   // }
 
-//---------------------------------------------------------------------------------------
-//-------------------------CALCULO DE LA PRIMER PREGUNTA---------------------------------
-//---------------------------------------------------------------------------------------
-  public Elemento2Calculo():void{
+  //------------------------------KENDO UI GAUGE -----------------------------------------
+  public colors = [
+    {
+      to: 25,
+      color: "#8396B8",
+    },
+    {
+      from: 25,
+      to: 50,
+      color: "#F69006",
+    },
+    {
+      from: 50,
+      to: 75,
+      color: "#FAFA02",
+    },
+    {
+      from: 75,
+      color: "#02FA27",
+    },
+  ];
+
+
+  //---------------------------------------------------------------------------------------
+  //-------------------------CALCULO DE LA PRIMER PREGUNTA---------------------------------
+  //---------------------------------------------------------------------------------------
+  public Elemento2Calculo(): void {
     this.Contador1si = this.form.get('ClaveNombre')?.value
     this.Contador2si = this.form.get('DepResPp')?.value
+    this.Contador3si = this.form.get('DepParPp')?.value
     this.Contador1no = this.form.get('ClaveNombre')?.value
     this.Contador2no = this.form.get('DepResPp')?.value
+    this.Contador3no = this.form.get('DepParPp')?.value
+
+
     if (this.Contador1no === "0" && this.Contador2no === "0") {
       this.TotalSi = 0;
     } else if (this.Contador1si === "1" && this.Contador2no === "0") {
-       this.TotalSi = 1;
+      this.TotalSi = 1;
     }
-      else if (this.Contador1no === "0" && this.Contador2si === "1") {
-        this.TotalSi = 1;
+    else if (this.Contador1no === "0" && this.Contador2si === "1") {
+      this.TotalSi = 1;
     } else if (this.Contador1si === "1" && this.Contador2si === "1") {
-       this.TotalSi = 2;
+      this.TotalSi = 2;
     }
+    //Tres Preguntas
+    else if (this.Contador1no === "0" && this.Contador2no === "0" && this.Contador3no === "0") {
+      this.TotalSi = 0;
+    }
+    else if (this.Contador1si === "1" && this.Contador2no === "0" && this.Contador3no === "0") {
+      this.TotalSi = 1;
+    }
+    else if (this.Contador1si === "1" && this.Contador2si === "1" && this.Contador3no === "0") {
+      this.TotalSi = 2;
+    }
+    else if (this.Contador1si === "1" && this.Contador2no === "0" && this.Contador3si === "1") {
+      this.TotalSi = 2;
+    }
+    else if (this.Contador1no === "0" && this.Contador2si === "1" && this.Contador3si === "1") {
+      this.TotalSi = 2;
+    }
+    else if (this.Contador1no === "0" && this.Contador2no === "0" && this.Contador3si === "1") {
+      this.TotalSi = 1;
+    }
+    else if (this.Contador1no === "0" && this.Contador2si === "1" && this.Contador3no === "0") {
+      this.TotalSi = 1;
+    }
+    else if (this.Contador1si === "1" && this.Contador2si === "1"  && this.Contador3si === "1") {
+      this.TotalSi = 3;
+    }
+
+
+
+
+
     console.log(this.form.value);
   }
-  public TotDp1():void{
+  public TotDp1(): void {
 
   }
   //
-//--------------------------------------------------------------------------------------------------------------------------------------
-//METODOS PARA DETERMINAR LA SUMA DE LAS PONDERACIONES
-//--------------------------------------------------------------------------------------------------------------------------------------
-//
-public MethodTotalCal():any{
-  this.CalGlob = this.TotalDp+this.TotalMir;
-  this.CalProm = this.CalGlob/2;
-}
-
-public progressStyles: { [key: string]: string } = {
-color:"",
-background: ""
-};
-public MethodTotalDp():any{
-this.TotalDp = this.PonDp4 + this.PonDp5 +  this.PonDp6 +  this.PonDp7 +  this.PonDp8 +  this.PonDp9 +  this.PonDp10 +  this.PonDp11 +  this.PonDp12 + this.PonDp13 +this.PonDp14 +this.PonDp15 +this.PonDp16 +this.PonDp17 +this.PonDp18 +this.PonDp19 +this.PonDp20;
-this.CalGlob = this.TotalDp+this.TotalMir;
-this.CalProm = this.CalGlob/2;
-switch (this.TotalDp ) {
-  case 50:this.updateAppearance("#f50707");
-  break;
-  case 51:
-  case 52:
-  case 53:
-  case 54:
-  case 55:
-  case 56:
-  case 57:
-  case 58:
-  case 59:
-  case 60:
-  case 61:
-  case 70:this.updateAppearance("#ee9f05");
-  break;
-  case 71:
-  case 72:
-  case 73:
-  case 74:
-  case 75:
-  case 76:
-  case 77:
-  case 78:
-  case 79:
-  case 80:this.updateAppearance("#1C4822");
-  break;
-  case 81:
-  case 82:
-  case 83:
-  case 84:
-  case 85:
-  case 86:
-  case 87:
-  case 88:
-  case 89:
-  case 90:
-  default:
-
-
+  //--------------------------------------------------------------------------------------------------------------------------------------
+  //METODOS PARA DETERMINAR LA SUMA DE LAS PONDERACIONES
+  //--------------------------------------------------------------------------------------------------------------------------------------
+  //
+  public MethodTotalCal(): any {
+    this.CalGlob = this.TotalDp + this.TotalMir;
+    this.CalProm = this.CalGlob / 2;
   }
 
-}
-private updateAppearance(
-  background: string
- ): void {
-   this.progressStyles['background'] = background
+  public progressStyles: { [key: string]: string } = {
+    color: "",
+    background: ""
+  };
+  public MethodTotalDp(): any {
+    this.TotalDp = this.PonDp4 + this.PonDp5 + this.PonDp6 + this.PonDp7 + this.PonDp8 + this.PonDp9 + this.PonDp10 + this.PonDp11 + this.PonDp12 + this.PonDp13 + this.PonDp14 + this.PonDp15 + this.PonDp16 + this.PonDp17 + this.PonDp18 + this.PonDp19 + this.PonDp20;
+    this.CalGlob = this.TotalDp + this.TotalMir;
+    this.CalProm = this.CalGlob / 2;
+    switch (this.TotalDp) {
+      case 50: this.updateAppearance("#f50707");
+        break;
+      case 51:
+      case 52:
+      case 53:
+      case 54:
+      case 55:
+      case 56:
+      case 57:
+      case 58:
+      case 59:
+      case 60:
+      case 61:
+      case 70: this.updateAppearance("#ee9f05");
+        break;
+      case 71:
+      case 72:
+      case 73:
+      case 74:
+      case 75:
+      case 76:
+      case 77:
+      case 78:
+      case 79:
+      case 80: this.updateAppearance("#1C4822");
+        break;
+      case 81:
+      case 82:
+      case 83:
+      case 84:
+      case 85:
+      case 86:
+      case 87:
+      case 88:
+      case 89:
+      case 90:
+      default:
 
- }
-//------------------------------------TOTAL MIR ----------------------------------------
-public progressStylestwo: { [key: string]: string } = {
-  color:"",
-  background: ""
+
+    }
+
+  }
+  private updateAppearance(
+    background: string
+  ): void {
+    this.progressStyles['background'] = background
+
+  }
+  //------------------------------------TOTAL MIR ----------------------------------------
+  public progressStylestwo: { [key: string]: string } = {
+    color: "",
+    background: ""
   };
 
-public MethodTotalMir():any{
-  this.TotalMir = this.PonMir1 + this.PonMir2 +  this.PonMir3 +  this.PonMir4 +  this.PonMir5 +  this.PonMir6 +  this.PonMir7 +  this.PonMir8 +  this.PonMir9 + this.PonMir10 +this.PonMir11 +this.PonMir12 +this.PonMir13 +this.PonMir14 +this.PonMir15 +this.PonMir16 +this.PonMir17 +this.PonMir18 +this.PonMir19 +this.PonMir20  +this.PonMir21 +this.PonMir22 +this.PonMir23 +this.PonMir24 +this.PonMir25 +this.PonMir26;
-  this.CalGlob = this.TotalDp+this.TotalMir;
-  this.CalProm = this.CalGlob/2;
-  switch (this.TotalMir ) {
-    case 50:this.updateAppearancetwo("#f50707");
-    break;
-    case 51:
-    case 52:
-    case 53:
-    case 54:
-    case 55:
-    case 56:
-    case 57:
-    case 58:
-    case 59:
-    case 60:
-    case 61:
-    case 70:this.updateAppearancetwo("#ee9f05");
-    break;
-    case 71:
-    case 72:
-    case 73:
-    case 74:
-    case 75:
-    case 76:
-    case 77:
-    case 78:
-    case 79:
-    case 80:this.updateAppearancetwo("#1C4822");
-    break;
-    case 81:
-    case 82:
-    case 83:
-    case 84:
-    case 85:
-    case 86:
-    case 87:
-    case 88:
-    case 89:
-    case 90:
-    default:
+  public MethodTotalMir(): any {
+    this.TotalMir = this.PonMir1 + this.PonMir2 + this.PonMir3 + this.PonMir4 + this.PonMir5 + this.PonMir6 + this.PonMir7 + this.PonMir8 + this.PonMir9 + this.PonMir10 + this.PonMir11 + this.PonMir12 + this.PonMir13 + this.PonMir14 + this.PonMir15 + this.PonMir16 + this.PonMir17 + this.PonMir18 + this.PonMir19 + this.PonMir20 + this.PonMir21 + this.PonMir22 + this.PonMir23 + this.PonMir24 + this.PonMir25 + this.PonMir26;
+    this.CalGlob = this.TotalDp + this.TotalMir;
+    this.CalProm = this.CalGlob / 2;
+    switch (this.TotalMir) {
+      case 50: this.updateAppearancetwo("#f50707");
+        break;
+      case 51:
+      case 52:
+      case 53:
+      case 54:
+      case 55:
+      case 56:
+      case 57:
+      case 58:
+      case 59:
+      case 60:
+      case 61:
+      case 70: this.updateAppearancetwo("#ee9f05");
+        break;
+      case 71:
+      case 72:
+      case 73:
+      case 74:
+      case 75:
+      case 76:
+      case 77:
+      case 78:
+      case 79:
+      case 80: this.updateAppearancetwo("#1C4822");
+        break;
+      case 81:
+      case 82:
+      case 83:
+      case 84:
+      case 85:
+      case 86:
+      case 87:
+      case 88:
+      case 89:
+      case 90:
+      default:
 
 
     }
 
   }
 
-private updateAppearancetwo(
-  background: string
- ): void {
-   this.progressStylestwo['background'] = background
+  private updateAppearancetwo(
+    background: string
+  ): void {
+    this.progressStylestwo['background'] = background
 
- }
+  }
 
-//
-//--------------------------------------------------------------------------------------------------------------------------------------
-//METODOS PARA DETERMINAR  LOS CAMPOS DE SIN RECOMENDACIONES, RESPUESTA GENERICA Y PONDERACION EQUIVALENTE SEGUN SU  CALIFICACION (3,6,9)
-//--------------------------------------------------------------------------------------------------------------------------------------
-//
+  //
+  //--------------------------------------------------------------------------------------------------------------------------------------
+  //METODOS PARA DETERMINAR  LOS CAMPOS DE SIN RECOMENDACIONES, RESPUESTA GENERICA Y PONDERACION EQUIVALENTE SEGUN SU  CALIFICACION (3,6,9)
+  //--------------------------------------------------------------------------------------------------------------------------------------
+  //
 
   // public sinrec4(): void {
   //   if (this.Dp4Calf == 9) {
@@ -1057,27 +1161,27 @@ private updateAppearancetwo(
   //   }
   // }
   //******************************PREGUNTA 4******************************************
-public RespuestaDp4(): void{
-  if (this.Dp4Calf == 9) {
-    this.textAreaValueDp4 = "Sin recomendaciones";
-    this.CalfDp4 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
-    this.PonDp4 = 2;
-  }
-  else if (this.Dp4Calf == 6) {
-    this.textAreaValueDp4 = "";
-    this.CalfDp4 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo."
-    +"\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    this.PonDp4 = 1;
-  }
-  else if (this.Dp4Calf == 3) {
-    this.textAreaValueDp4 = "";
-    this.CalfDp4 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa."
-    +"\nEste apartado comprende un resumen ejecutivo del resto del documento."
-    +"\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
-    this.PonDp4 = 0;
-  }
+  public RespuestaDp4(): void {
+    if (this.Dp4Calf == 9) {
+      this.textAreaValueDp4 = "Sin recomendaciones";
+      this.CalfDp4 = "La introducción del Diagnóstico es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno";
+      this.PonDp4 = 2;
+    }
+    else if (this.Dp4Calf == 6) {
+      this.textAreaValueDp4 = "";
+      this.CalfDp4 = "La introducción del Diagnóstico no es lo suficientemente clara para dar a conocer la problemática, como ésta será atendida y la justificación de la intervención de gobierno, en este apartado se espera un resumen ejecutivo."
+        + "\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+      this.PonDp4 = 1;
+    }
+    else if (this.Dp4Calf == 3) {
+      this.textAreaValueDp4 = "";
+      this.CalfDp4 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa."
+        + "\nEste apartado comprende un resumen ejecutivo del resto del documento."
+        + "\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
+      this.PonDp4 = 0;
+    }
 
-}
+  }
   //******************************PREGUNTA 5******************************************
   public RespuestaDp5(): void {
     if (this.Dp5Calf == 9) {
@@ -1088,15 +1192,15 @@ public RespuestaDp4(): void{
     else if (this.Dp5Calf == 6) {
       this.textAreaValueDp5 = "";
       this.CalfDp5 = "Se considera que no se identifican todos los involucrados relacionados con la problemática, por lo que es necesario ampliar el análisis. "
-      +"\nEste punto es muy relevante para el éxito del Programa presupuestario, ya que los involucrados pueden afectar los resultados del mismo."
-      +"\nDada su importancia, esta recomendación será incluida en el plan de mejora continua del Programa.";
+        + "\nEste punto es muy relevante para el éxito del Programa presupuestario, ya que los involucrados pueden afectar los resultados del mismo."
+        + "\nDada su importancia, esta recomendación será incluida en el plan de mejora continua del Programa.";
       this.PonDp5 = 5;
     }
     else if (this.Dp5Calf == 3) {
       this.textAreaValueDp5 = "";
       this.CalfDp5 = "Se considera que no se identifican los involucrados relacionados con la problemática, por lo que es necesario realizar el análisis."
-      +"\nEste punto es muy relevante para el éxito del Programa presupuestario, ya que los involucrados pueden afectar los resultados del mismo."
-      +"\nDada su importancia, esta recomendación será incluida en el plan de mejora continua del Programa.";
+        + "\nEste punto es muy relevante para el éxito del Programa presupuestario, ya que los involucrados pueden afectar los resultados del mismo."
+        + "\nDada su importancia, esta recomendación será incluida en el plan de mejora continua del Programa.";
       this.PonDp5 = 0;
     }
   }
@@ -1115,8 +1219,8 @@ public RespuestaDp4(): void{
     else if (this.Dp6Calf == 3) {
       this.textAreaValueDp6 = "";
       this.CalfDp6 = "En lo que respecta a la problemática, el problema no se expresa claramente, por lo que es necesario replantearlo."
-      +"\nEs importante considerar que para la definición del problema se requiere de la participación de todos los involucrados."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, siendo su atención urgente, ya que es la base para el resto del diagnóstico.";
+        + "\nEs importante considerar que para la definición del problema se requiere de la participación de todos los involucrados."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, siendo su atención urgente, ya que es la base para el resto del diagnóstico.";
       this.PonDp6 = 0;
     }
   }
@@ -1124,19 +1228,19 @@ public RespuestaDp4(): void{
   public RespuestaDp7(): void {
     if (this.Dp7Calf == 9) {
       this.textAreaValueDp7 = "Sin recomendaciones";
-      this.CalfDp7= "Las causas de la problemática se presentan de manera lógica, y se encuentran sustentadas en información cualitativa y/o cuantitativa.";
+      this.CalfDp7 = "Las causas de la problemática se presentan de manera lógica, y se encuentran sustentadas en información cualitativa y/o cuantitativa.";
       this.PonDp7 = 10;
     }
     else if (this.Dp7Calf == 6) {
       this.textAreaValueDp7 = "";
-      this.CalfDp7= "Las causas de la problemática se encuentran parcialmente documentadas, es necesario estructurar la información de manera lógica, así cómo ampliar la información cualitativa y cuantitativa que permita establecer una relación clara con el problema."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas impactan en la definición de los objetivos de la intervención.";
+      this.CalfDp7 = "Las causas de la problemática se encuentran parcialmente documentadas, es necesario estructurar la información de manera lógica, así cómo ampliar la información cualitativa y cuantitativa que permita establecer una relación clara con el problema."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas impactan en la definición de los objetivos de la intervención.";
       this.PonDp7 = 5;
     }
     else if (this.Dp7Calf == 3) {
       this.textAreaValueDp7 = "";
-      this.CalfDp7= "Las causas de la problemática no se encuentran documentadas, es necesario incluir la información cualitativa y cuantitativa que sustente las causas del problema."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas impactan en la definición de los objetivos de la intervención.";
+      this.CalfDp7 = "Las causas de la problemática no se encuentran documentadas, es necesario incluir la información cualitativa y cuantitativa que sustente las causas del problema."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas impactan en la definición de los objetivos de la intervención.";
       this.PonDp7 = 0;
     }
   }
@@ -1144,21 +1248,21 @@ public RespuestaDp4(): void{
   public RespuestaDp8(): void {
     if (this.Dp8Calf == 9) {
       this.textAreaValueDp8 = "Sin recomendaciones";
-      this.CalfDp8= "El árbol de problemas presentado es claro, sin embargo es necesario revisar las causas considerando la participación de todos los involucrados.";
+      this.CalfDp8 = "El árbol de problemas presentado es claro, sin embargo es necesario revisar las causas considerando la participación de todos los involucrados.";
       this.PonDp8 = 8;
     }
     else if (this.Dp8Calf == 6) {
       this.textAreaValueDp8 = "";
-      this.CalfDp8= "Se identifica que existen causas o efectos que no corresponden con el problema, por lo que es necesario verificar que las causas sean efectivamente el origen del problema y que los efectos resultan de éste. "
-      +"\nEs importante considerar que para la elaboración del árbol de problemas se requiere de la participación de todos los involucrados."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas y efectos impactan en la definición de los objetivos de la intervención.";
+      this.CalfDp8 = "Se identifica que existen causas o efectos que no corresponden con el problema, por lo que es necesario verificar que las causas sean efectivamente el origen del problema y que los efectos resultan de éste. "
+        + "\nEs importante considerar que para la elaboración del árbol de problemas se requiere de la participación de todos los involucrados."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas y efectos impactan en la definición de los objetivos de la intervención.";
       this.PonDp8 = 4;
     }
     else if (this.Dp8Calf == 3) {
       this.textAreaValueDp8 = "";
-      this.CalfDp8= "Se identifica que las causas o efectos no corresponden con la problemática, por lo que es necesario verificar que las causas sean efectivamente el origen del problema y que los efectos resultan de éste."
-      +"\nEs importante considerar que para la elaboración del árbol de problemas se requiere de la participación de todos los involucrados. "
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas y efectos impactan en la definición de los objetivos de la intervención.";
+      this.CalfDp8 = "Se identifica que las causas o efectos no corresponden con la problemática, por lo que es necesario verificar que las causas sean efectivamente el origen del problema y que los efectos resultan de éste."
+        + "\nEs importante considerar que para la elaboración del árbol de problemas se requiere de la participación de todos los involucrados. "
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, considerando su atención como urgente, ya que las causas y efectos impactan en la definición de los objetivos de la intervención.";
       this.PonDp8 = 0;
     }
   }
@@ -1166,19 +1270,19 @@ public RespuestaDp4(): void{
   public RespuestaDp9(): void {
     if (this.Dp9Calf == 9) {
       this.textAreaValueDp9 = "Sin recomendaciones";
-      this.CalfDp9= "El Diagnóstico Particular incluye información histórica que permite visualizar cómo ha cambiado la problemática a lo largo del tiempo.";
+      this.CalfDp9 = "El Diagnóstico Particular incluye información histórica que permite visualizar cómo ha cambiado la problemática a lo largo del tiempo.";
       this.PonDp9 = 4;
     }
     else if (this.Dp9Calf == 6) {
       this.textAreaValueDp9 = "";
-      this.CalfDp9= "El Diagnóstico Particular incluye información histórica parcial sobre el cambio de la problemática a lo largo del tiempo, por lo que es necesario ampliar el análisis y su documentación."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que es importante conocer la tendencia de la problemática, su atención se considera relevante.";
+      this.CalfDp9 = "El Diagnóstico Particular incluye información histórica parcial sobre el cambio de la problemática a lo largo del tiempo, por lo que es necesario ampliar el análisis y su documentación."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que es importante conocer la tendencia de la problemática, su atención se considera relevante.";
       this.PonDp9 = 2;
     }
     else if (this.Dp9Calf == 3) {
       this.textAreaValueDp9 = "";
-      this.CalfDp9= "El Diagnóstico Particular no incluye información histórica que permita visualizar como ha cambiado la problemática a lo largo del tiempo, por lo que es necesario realizar el análisis e incluir esta información."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que es importante conocer la tendencia de la problemática, su atención se considera relevante.";
+      this.CalfDp9 = "El Diagnóstico Particular no incluye información histórica que permita visualizar como ha cambiado la problemática a lo largo del tiempo, por lo que es necesario realizar el análisis e incluir esta información."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que es importante conocer la tendencia de la problemática, su atención se considera relevante.";
       this.PonDp9 = 0;
     }
   }
@@ -1186,38 +1290,38 @@ public RespuestaDp4(): void{
   public RespuestaDp10(): void {
     if (this.Dp10Calf == 9) {
       this.textAreaValueDp10 = "Sin recomendaciones";
-      this.CalfDp10= "La situación actual presentada en el Diagnóstico Particular se describe claramente y se cuantifica, es importante que esta información sirva como base para la definición de indicadores a nivel propósito.";
+      this.CalfDp10 = "La situación actual presentada en el Diagnóstico Particular se describe claramente y se cuantifica, es importante que esta información sirva como base para la definición de indicadores a nivel propósito.";
       this.PonDp10 = 8;
     }
     else if (this.Dp10Calf == 6) {
       this.textAreaValueDp10 = "";
-      this.CalfDp10= "La situación actual del problema no está cuantificada, esta información permite conocer la magnitud o tamaño del problema en función de la población o área de enfoque, por lo que se requiere documentar."
+      this.CalfDp10 = "La situación actual del problema no está cuantificada, esta información permite conocer la magnitud o tamaño del problema en función de la población o área de enfoque, por lo que se requiere documentar."
       "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente ya que la situación actual nos permite medir los resultados del Programa.";
       this.PonDp10 = 4;
     }
     else if (this.Dp10Calf == 3) {
       this.textAreaValueDp10 = "";
-      this.CalfDp10= "La situación actual del problema no se presenta de manera clara, esta información debe estructurarse de forma que permita conocer la magnitud o tamaño del problema en función de la población o área de enfoque, por lo que se requiere documentar."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente ya que la situación actual nos permite medir los resultados del Programa.";
+      this.CalfDp10 = "La situación actual del problema no se presenta de manera clara, esta información debe estructurarse de forma que permita conocer la magnitud o tamaño del problema en función de la población o área de enfoque, por lo que se requiere documentar."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente ya que la situación actual nos permite medir los resultados del Programa.";
       this.PonDp10 = 0;
     }
   }
   //******************************PREGUNTA 11******************************************
-  public  RespuestaDp11(): void {
+  public RespuestaDp11(): void {
     if (this.Dp11Calf == 9) {
       this.textAreaValueDp11 = "Sin recomendaciones";
-      this.CalfDp11= "Se cuenta, cuando menos, con dos niveles de causas.";
+      this.CalfDp11 = "Se cuenta, cuando menos, con dos niveles de causas.";
       this.PonDp11 = 4;
     }
     else if (this.Dp11Calf == 6) {
       this.textAreaValueDp11 = "";
-      this.CalfDp11= "No aplica";
+      this.CalfDp11 = "No aplica";
       this.PonDp11 = 2;
     }
     else if (this.Dp11Calf == 3) {
       this.textAreaValueDp11 = "";
-      this.CalfDp11= "No se cuenta, cuando menos, con dos niveles de causas."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente, para garantizar la correcta atención a la problemática.";
+      this.CalfDp11 = "No se cuenta, cuando menos, con dos niveles de causas."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente, para garantizar la correcta atención a la problemática.";
       this.PonDp11 = 0;
     }
   }
@@ -1225,732 +1329,732 @@ public RespuestaDp4(): void{
   public RespuestaDp12(): void {
     if (this.Dp12Calf == 9) {
       this.textAreaValueDp12 = "Sin recomendaciones";
-      this.CalfDp12= "En lo que respecta al árbol de problemas, se estima que éste identifica un número de causas razonables que permita analizar alternativas para la solución de la problemática.";
+      this.CalfDp12 = "En lo que respecta al árbol de problemas, se estima que éste identifica un número de causas razonables que permita analizar alternativas para la solución de la problemática.";
       this.PonDp12 = 4;
     }
     else if (this.Dp12Calf == 6) {
       this.textAreaValueDp12 = "";
-      this.CalfDp12= "En lo que respecta al árbol de problemas, se considera que es necesario ampliar el análisis de la problemática para identificar un mayor número de causas que permitan identificar alternativas de solución."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.CalfDp12 = "En lo que respecta al árbol de problemas, se considera que es necesario ampliar el análisis de la problemática para identificar un mayor número de causas que permitan identificar alternativas de solución."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
       this.PonDp12 = 2;
     }
     else if (this.Dp12Calf == 3) {
       this.textAreaValueDp12 = "";
-      this.CalfDp12= "En lo que respecta al árbol de problemas, se considera que el análisis de la problemática no identifica todas las causas que dan origen al problema, por lo que es necesario ampliar el análisis y replantear el árbol de problemas."
+      this.CalfDp12 = "En lo que respecta al árbol de problemas, se considera que el análisis de la problemática no identifica todas las causas que dan origen al problema, por lo que es necesario ampliar el análisis y replantear el árbol de problemas."
       "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
       this.PonDp12 = 0;
     }
   }
-   //******************************PREGUNTA 13******************************************
-   public RespuestaDp13():void {
+  //******************************PREGUNTA 13******************************************
+  public RespuestaDp13(): void {
     if (this.Dp13Calf == 9) {
       this.textAreaValueDp13 = "Sin recomendaciones";
-      this.CalfDp13= "El análisis de corresponsabilidad cuenta con una lógica correcta entre las relaciones causas-medios y efectos-fines contenidas en los árboles de problemas y objetivos.";
+      this.CalfDp13 = "El análisis de corresponsabilidad cuenta con una lógica correcta entre las relaciones causas-medios y efectos-fines contenidas en los árboles de problemas y objetivos.";
       this.PonDp13 = 4;
     }
     else if (this.Dp13Calf == 6) {
       this.textAreaValueDp13 = "";
-      this.CalfDp13= "El análisis de corresponsabilidad no es claro para algunas relaciones causas-medios y efectos-fines, por lo que es necesario verificarlas. "
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.CalfDp13 = "El análisis de corresponsabilidad no es claro para algunas relaciones causas-medios y efectos-fines, por lo que es necesario verificarlas. "
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
       this.PonDp13 = 2;
     }
     else if (this.Dp13Calf == 3) {
       this.textAreaValueDp13 = "";
-      this.CalfDp13= "La lógica del análisis de corresponsabilidad no es clara, por lo que se requiere verificar la relación entre causas-medios y efectos-fines."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.CalfDp13 = "La lógica del análisis de corresponsabilidad no es clara, por lo que se requiere verificar la relación entre causas-medios y efectos-fines."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
       this.PonDp13 = 2;
     }
   }
-   //******************************PREGUNTA 14******************************************
-   public RespuestaDp14(): void {
+  //******************************PREGUNTA 14******************************************
+  public RespuestaDp14(): void {
     if (this.Dp14Calf == 9) {
       this.textAreaValueDp14 = "Sin recomendaciones";
-      this.CalfDp14= "Se considera que el análisis de alternativas contiene la información que permite evaluar las diferentes alternativas de solución. Es importante mencionar que estas alternativas deben considerar la participación de los involucrados.";
+      this.CalfDp14 = "Se considera que el análisis de alternativas contiene la información que permite evaluar las diferentes alternativas de solución. Es importante mencionar que estas alternativas deben considerar la participación de los involucrados.";
       this.PonDp14 = 4;
     }
     else if (this.Dp14Calf == 6) {
       this.textAreaValueDp14 = "";
-      this.CalfDp14= "Se considera que es necesario ampliar el análisis de las alternativas de solución, de acuerdo a las atribuciones normativas, factibilidad técnica, económica y ambiental, así como aquella que resulte pertinente, eficiente y eficaz."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que el análisis de alternativas permite identificar soluciones más eficientes, su atención se considera relevante.";
+      this.CalfDp14 = "Se considera que es necesario ampliar el análisis de las alternativas de solución, de acuerdo a las atribuciones normativas, factibilidad técnica, económica y ambiental, así como aquella que resulte pertinente, eficiente y eficaz."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que el análisis de alternativas permite identificar soluciones más eficientes, su atención se considera relevante.";
       this.PonDp14 = 2;
     }
     else if (this.Dp14Calf == 3) {
       this.textAreaValueDp14 = "";
-      this.CalfDp14= "En el diagnóstico no se presentan alternativas de solución, por lo que se requiere identificarlas y analizarlas de acuerdo a las atribuciones normativas, factibilidad técnica, económica y ambiental, así como aquella que resulte pertinente, eficiente y eficaz. "
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que el análisis de alternativas permite identificar soluciones más eficientes, su atención se considera relevante.";
+      this.CalfDp14 = "En el diagnóstico no se presentan alternativas de solución, por lo que se requiere identificarlas y analizarlas de acuerdo a las atribuciones normativas, factibilidad técnica, económica y ambiental, así como aquella que resulte pertinente, eficiente y eficaz. "
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, ya que el análisis de alternativas permite identificar soluciones más eficientes, su atención se considera relevante.";
       this.PonDp14 = 0;
     }
   }
-   //******************************PREGUNTA 15******************************************
-   public RespuestaDp15():void {
+  //******************************PREGUNTA 15******************************************
+  public RespuestaDp15(): void {
     if (this.Dp15Calf == 9) {
       this.textAreaValueDp15 = "Sin recomendaciones";
-      this.CalfDp15= "La estructura analítica del programa es consistente con el análisis de las alternativas.";
+      this.CalfDp15 = "La estructura analítica del programa es consistente con el análisis de las alternativas.";
       this.PonDp15 = 4;
     }
     else if (this.Dp15Calf == 6) {
       this.textAreaValueDp15 = "";
-      this.CalfDp15= "La estructura analítica del programa no es consistente con la información del análisis de alternativas, por lo que es necesario verificar el análisis de alternativas."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.CalfDp15 = "La estructura analítica del programa no es consistente con la información del análisis de alternativas, por lo que es necesario verificar el análisis de alternativas."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
       this.PonDp15 = 2;
     }
     else if (this.Dp15Calf == 3) {
       this.textAreaValueDp15 = "";
-      this.CalfDp15= "No se presenta la estructura analítica del programa, por lo que es necesario actualizar el Diagnóstico Particular con esta información."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.CalfDp15 = "No se presenta la estructura analítica del programa, por lo que es necesario actualizar el Diagnóstico Particular con esta información."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
       this.PonDp15 = 0;
     }
   }
-   //******************************PREGUNTA 16******************************************
-   public RespuestaDp16():void {
+  //******************************PREGUNTA 16******************************************
+  public RespuestaDp16(): void {
     if (this.Dp16Calf == 9) {
       this.textAreaValueDp16 = "Sin recomendaciones";
-      this.CalfDp16= "Se presenta información cualitativa y cuantitativa que justifica los objetivos de la intervención.";
+      this.CalfDp16 = "Se presenta información cualitativa y cuantitativa que justifica los objetivos de la intervención.";
       this.PonDp16 = 4;
     }
     else if (this.Dp16Calf == 6) {
       this.textAreaValueDp16 = "";
-      this.CalfDp16= "La información cualitativa y cuantitativa que se requiere para justificar los objetivos de la intervención se encuentra incompleta, por lo que es necesario ampliarla."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.CalfDp16 = "La información cualitativa y cuantitativa que se requiere para justificar los objetivos de la intervención se encuentra incompleta, por lo que es necesario ampliarla."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
       this.PonDp16 = 2;
     }
     else if (this.Dp16Calf == 3) {
       this.textAreaValueDp16 = "";
-      this.CalfDp16= "No se presenta información cualitativa y cuantitativa que justifique los objetivos de la intervención, por lo que es necesario incluirla."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
+      this.CalfDp16 = "No se presenta información cualitativa y cuantitativa que justifique los objetivos de la intervención, por lo que es necesario incluirla."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera relevante.";
       this.PonDp16 = 0;
     }
   }
-   //******************************PREGUNTA 17******************************************
-   public RespuestaDp17(): void {
+  //******************************PREGUNTA 17******************************************
+  public RespuestaDp17(): void {
     if (this.Dp17Calf == 9) {
       this.textAreaValueDp17 = "Sin recomendaciones";
-      this.CalfDp17= "De acuerdo con el tipo de intervención, se presenta la identificación y cuantificación de la población.";
+      this.CalfDp17 = "De acuerdo con el tipo de intervención, se presenta la identificación y cuantificación de la población.";
       this.PonDp17 = 8;
     }
     else if (this.Dp17Calf == 6) {
       this.textAreaValueDp17 = "";
-      this.CalfDp17= "De acuerdo con el tipo de intervención, se presenta parcialmente la identificación y cuantificación de la población, por lo que es necesario complementarla."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente, ya que es necesario identificar y cuantificar la cobertura del programa.";
+      this.CalfDp17 = "De acuerdo con el tipo de intervención, se presenta parcialmente la identificación y cuantificación de la población, por lo que es necesario complementarla."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente, ya que es necesario identificar y cuantificar la cobertura del programa.";
       this.PonDp17 = 4;
     }
     else if (this.Dp17Calf == 3) {
       this.textAreaValueDp17 = "";
-      this.CalfDp17= "De acuerdo con el tipo de intervención, no se identifica o cuantifica la población, por lo que se requiere incluir esta información."
-      +"\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente, ya que es necesario identificar y cuantificar la cobertura del programa.";
+      this.CalfDp17 = "De acuerdo con el tipo de intervención, no se identifica o cuantifica la población, por lo que se requiere incluir esta información."
+        + "\nEsta recomendación formará parte del plan de mejora continua del Programa, su atención se considera urgente, ya que es necesario identificar y cuantificar la cobertura del programa.";
       this.PonDp17 = 0;
     }
   }
-   //******************************PREGUNTA 18******************************************
-   public RespuestaDp18(): void {
+  //******************************PREGUNTA 18******************************************
+  public RespuestaDp18(): void {
     if (this.Dp18Calf == 9) {
       this.textAreaValueDp18 = "Sin recomendaciones";
-      this.CalfDp18= "Se considera que se identifican los suficientes programas que complementan a éste.";
+      this.CalfDp18 = "Se considera que se identifican los suficientes programas que complementan a éste.";
       this.PonDp18 = 2;
     }
     else if (this.Dp18Calf == 6) {
       this.textAreaValueDp18 = "";
-      this.CalfDp18= "Se considera que se identifican parcialmente los programas complementarios, por lo que es necesario revisar los instrumentos de desarrollo y Ley de Presupuesto para identificar otros programas relacionados."
-      +"\nEsta recomendación se integrará al plan de mejora continua del Programa.";
+      this.CalfDp18 = "Se considera que se identifican parcialmente los programas complementarios, por lo que es necesario revisar los instrumentos de desarrollo y Ley de Presupuesto para identificar otros programas relacionados."
+        + "\nEsta recomendación se integrará al plan de mejora continua del Programa.";
       this.PonDp18 = 1;
     }
     else if (this.Dp18Calf == 3) {
       this.textAreaValueDp18 = "No se identifican programas complementarios, por lo que es necesario revisar los instrumentos de desarrollo y Ley de Presupuesto para identificar otros programas relacionados."
-      +"\nEsta recomendación se integrará al plan de mejora continua del Programa.";
-      this.CalfDp18= "";
+        + "\nEsta recomendación se integrará al plan de mejora continua del Programa.";
+      this.CalfDp18 = "";
       this.PonDp18 = 0;
     }
   }
-   //******************************PREGUNTA 19******************************************
-   public RespuestaDp19(): void {
+  //******************************PREGUNTA 19******************************************
+  public RespuestaDp19(): void {
     if (this.Dp19Calf == 9) {
       this.textAreaValueDp19 = "Sin recomendaciones";
-      this.CalfDp19= "De acuerdo con la población objetivo, se identifica el tipo de beneficiario y los elementos que se requieren para la construcción del padrón de beneficiarios.";
+      this.CalfDp19 = "De acuerdo con la población objetivo, se identifica el tipo de beneficiario y los elementos que se requieren para la construcción del padrón de beneficiarios.";
       this.PonDp19 = 2;
     }
     else if (this.Dp19Calf == 6) {
       this.textAreaValueDp19 = "";
-      this.CalfDp19= "De acuerdo con la población objetivo, se identifica el tipo de beneficiario y algunos elementos que se requieren para la construcción del padrón de beneficiarios."
-      +"\nEsta recomendación será registrada en el plan de mejora continua del Programa.";
+      this.CalfDp19 = "De acuerdo con la población objetivo, se identifica el tipo de beneficiario y algunos elementos que se requieren para la construcción del padrón de beneficiarios."
+        + "\nEsta recomendación será registrada en el plan de mejora continua del Programa.";
       this.PonDp19 = 1;
     }
     else if (this.Dp19Calf == 3) {
       this.textAreaValueDp19 = "";
-      this.CalfDp19= "De acuerdo con la población objetivo, no se identifica el tipo de beneficiario o los elementos que se requieren para la construcción del padrón de beneficiarios."
-      + "\nEsta recomendación será registrada en el plan de mejora continua del Programa.";
+      this.CalfDp19 = "De acuerdo con la población objetivo, no se identifica el tipo de beneficiario o los elementos que se requieren para la construcción del padrón de beneficiarios."
+        + "\nEsta recomendación será registrada en el plan de mejora continua del Programa.";
       this.PonDp19 = 0;
     }
   }
   //  //******************************PREGUNTA 20******************************************
-   public RespuestaDp20():  void {
+  public RespuestaDp20(): void {
     if (this.Dp20Calf == 9) {
       this.textAreaValueDp20 = "Sin recomendaciones";
-      this.CalfDp20= "Se presenta la MIR en el apartado correspondiente.";
+      this.CalfDp20 = "Se presenta la MIR en el apartado correspondiente.";
       this.PonDp20 = 2;
     }
     else if (this.Dp20Calf == 6) {
       this.textAreaValueDp20 = "";
-      this.CalfDp20= "No aplica";
+      this.CalfDp20 = "No aplica";
       this.PonDp20 = 1;
 
     }
     else if (this.Dp20Calf == 3) {
       this.textAreaValueDp20 = "";
-      this.CalfDp20= "No se presenta la MIR en el apartado correspondiente."
-      +"\nEsta recomendación se integrará al plan de mejora continua del Programa.";
+      this.CalfDp20 = "No se presenta la MIR en el apartado correspondiente."
+        + "\nEsta recomendación se integrará al plan de mejora continua del Programa.";
       this.PonDp20 = 0;
     }
   }
-//  //******************************PREGUNTA 1 MIR ******************************************
-public  RespuestaMir1(): void {
-  if (this.Mir1Calf == 9) {
-    this.textAreaValueMir1 = "Sin recomendaciones";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir1 = 8;
-    }
-    else{
-      this.PonMir1 = 6
+  //  //******************************PREGUNTA 1 MIR ******************************************
+  public RespuestaMir1(): void {
+    if (this.Mir1Calf == 9) {
+      this.textAreaValueMir1 = "Sin recomendaciones";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir1 = 8;
+      }
+      else {
+        this.PonMir1 = 6
+      }
+
     }
 
-  }
-
-  else if (this.Mir1Calf == 3) {
-    this.textAreaValueMir1 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir1 = 0;
-    }
-    else{
-      this.PonMir1 = 0
-    }
-  }
-}
-//  //******************************PREGUNTA 2 MIR ******************************************
-public  RespuestaMir2(): void {
-  if (this.Mir2Calf == 9) {
-    this.textAreaValueMir2 = "Sin recomendaciones";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir2 = 0;
-    }
-    else{
-      this.PonMir2 = 4
+    else if (this.Mir1Calf == 3) {
+      this.textAreaValueMir1 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir1 = 0;
+      }
+      else {
+        this.PonMir1 = 0
+      }
     }
   }
-
-  else if (this.Mir2Calf == 3) {
-    this.textAreaValueMir2 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir2 = 0;
-    }
-    else{
-      this.PonMir2 = 0
-    }
-  }
-}
-// Seccion 3. Fin
-//  //******************************PREGUNTA 3 MIR ******************************************
-// 3.-¿Los indicadores permiten medir el objetivo planteado en el resumen narrativo a nivel fin
-//Orden Informe 13
-public  RespuestaMir3(): void {
-  if (this.Mir3Calf == 9) {
-    this.textAreaValueMir3 = "Sin recomendaciones";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir3 = 4;
-    }
-    else{
-      this.PonMir3 = 4
-    }
-  }
-  else if (this.Mir3Calf == 6) {
-    this.textAreaValueMir3 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir3 = 2;
-    }
-    else{
-      this.PonMir3 = 2
-    }
-  }
-  else if (this.Mir3Calf == 3) {
-    this.textAreaValueMir3 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir3 = 0;
-    }
-    else{
-      this.PonMir3 = 0
-    }
-  }
-}
-// 4. Medios de verificación
-// 4 .-¿Los medios de verificación de los indicadores de nivel fin se encuentran totalmente
-//documentados?
-//Orden informe 19
-//  //******************************PREGUNTA 4 MIR ******************************************
-public  RespuestaMir4(): void {
-  if (this.Mir4Calf == 9) {
-    this.textAreaValueMir4 = "Sin recomendaciones";
-    this.PonMir4 = 2;
-  }
-  else if (this.Mir4Calf == 6) {
-    this.textAreaValueMir4 = "";
-    this.PonMir4 = 1;
-  }
-  else if (this.Mir4Calf == 3) {
-    this.textAreaValueMir4 = "";
-    this.PonMir4 = 0;
-  }
-}
-//5. Supuestos
-//5.-¿Si se contribuye al logro del Fin y se mantienen vigentes los Supuestos asociados a éste, se garantizará la sustentabilidad de losbeneficios del programa?
-//Orden Informe 23
-//  //******************************PREGUNTA 5 MIR ******************************************
-public  RespuestaMir5(): void {
-  if (this.Mir5Calf == 9) {
-    this.textAreaValueMir5 = "Sin recomendaciones";
-    this.PonMir5= 4;
-  }
-  else if (this.Mir5Calf == 6) {
-    this.textAreaValueMir5 = "";
-    this.PonMir5 = 2;
-  }
-  else if (this.Mir5Calf == 3) {
-    this.textAreaValueMir5 = "";
-    this.PonMir5 = 0;
-  }
-}
-//2. Objetivos
-//6- ¿La redacción del propósito cumple con la sintaxis, población objetivo más situación deseada? (población objetivo o área de enfoque+ verbo en presente + resultado logrado)
-// Orden Informe 5
-//  //******************************PREGUNTA 6 MIR ******************************************
-public  RespuestaMir6(): void {
-  if (this.Mir6Calf == 9) {
-    this.textAreaValueMir6 = "Sin recomendaciones";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir6 = 8;
-    }
-    else{
-      this.PonMir6 = 6
-    }
-  }
-
-  else if (this.Mir6Calf == 3) {
-    this.textAreaValueMir6 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir6 = 0;
-    }
-    else{
-      this.PonMir6 = 0
-    }
-  }
-}
-// Seccion 2. Objetivos
-// 7.- ¿La redacción del propósito es consistente con la población objetivo identificada en el DxP?
-//  //******************************PREGUNTA 7 MIR ******************************************
-// Orden Informe 6
-public  RespuestaMir7(): void {
-  if (this.Mir7Calf == 9) {
-    this.textAreaValueMir7 = "Sin recomendaciones";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir7 = 10;
-    }
-    else{
-      this.PonMir7 = 6
-    }
-  }
-
-  else if (this.Mir7Calf == 3) {
-    this.textAreaValueMir7 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir7 = 0;
-    }
-    else{
-      this.PonMir7 = 0
-    }
-  }
-}
-// Seccion 1. Alineacion Estrategica
-// 8.- ¿La MIR cuenta los indicadores publicados en el PG 18-24 que corresponde de acuerdo con el pre análisis entregado a la dependencia?
-// Orden del Informe 2
-//  //******************************PREGUNTA 8 MIR ******************************************
-public RespuestaMir8(): void {
-  if (this.Mir8Calf == 9) {
-    this.textAreaValueMir8 = "Sin recomendaciones";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir8 = 0;
-    }
-    else{
-      this.PonMir8 = 4
+  //  //******************************PREGUNTA 2 MIR ******************************************
+  public RespuestaMir2(): void {
+    if (this.Mir2Calf == 9) {
+      this.textAreaValueMir2 = "Sin recomendaciones";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir2 = 0;
+      }
+      else {
+        this.PonMir2 = 4
+      }
     }
 
-  }
-  else if (this.Mir8Calf == 6) {
-    this.textAreaValueMir8 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir8 = 0;
-    }
-    else{
-      this.PonMir8 = 2
-    }
-  }
-  else if (this.Mir8Calf == 3) {
-    this.textAreaValueMir8 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir8 = 0;
-    }
-    else{
-      this.PonMir8 = 0
+    else if (this.Mir2Calf == 3) {
+      this.textAreaValueMir2 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir2 = 0;
+      }
+      else {
+        this.PonMir2 = 0
+      }
     }
   }
-}
-//Seccion 3. Indicadores
-//.-¿Los indicadores permiten medir el objetivo planteado en el resumen narrativo de nivel propósito?
-//  //******************************PREGUNTA 9 MIR ******************************************
-// Orden Informe 14
-public RespuestaMir9(): void {
-  if (this.Mir9Calf == 9) {
-    this.textAreaValueMir9 = "Sin recomendaciones";
-    this.PonMir9 = 4
-  }
-  else if (this.Mir9Calf == 6) {
-    this.textAreaValueMir9 = "";
-    this.PonMir9 = 2
-  }
-  else if (this.Mir9Calf == 3) {
-    this.textAreaValueMir9 = "";
-    this.PonMir9 = 0
-  }
-}
-//4. Medios de verificación
-//10.- ¿Los medios de verificación de los indicadores de nivel propósito están totalmente documentados?
-//  //******************************PREGUNTA 10 MIR ******************************************
-// Orden Informe 20
-public RespuestaMir10(): void {
-  if (this.Mir10Calf == 9) {
-    this.textAreaValueMir10 = "Sin recomendaciones";
-    this.PonMir10 = 2
-  }
-  else if (this.Mir10Calf == 6) {
-    this.textAreaValueMir10 = "";
-    this.PonMir10 = 1
-  }
-  else if (this.Mir10Calf == 3) {
-    this.textAreaValueMir10 = "";
-    this.PonMir10 = 0
-  }
-}
-// 5. Supuestos
-// 11.- ¿Si se logra el Propósito del Pp y se cumplen los Supuestos asociados a éste, se contribuirá al logro del Fin?
-//  //******************************PREGUNTA 11 MIR ******************************************
-//Orden Informe 24
-public  RespuestaMir11(): void {
-  if (this.Mir11Calf == 9) {
-    this.textAreaValueMir1 = "Sin recomendaciones";
-    this.PonMir11 = 4
-  }
-  else if (this.Mir11Calf == 6) {
-    this.textAreaValueMir1 = "";
-    this.PonMir11 = 2
-  }
-  else if (this.Mir11Calf == 3) {
-    this.textAreaValueMir1 = "";
-    this.PonMir11 = 0
-  }
-}
-// Seccion 2. Objetivos
-//12.- ¿A nivel componente, se describen claramente los Productos terminados o Servicios proporcionados, seguidos de Verbo en pasado participio?
-//Orden Informe 7
-//  //******************************PREGUNTA 12 MIR ******************************************
-public  RespuestaMir12(): void {
-  if (this.Mir12Calf == 9) {
-    this.textAreaValueMir12 = "Sin recomendaciones";
-    this.PonMir12 = 4;
-  }
-  else if (this.Mir12Calf == 6) {
-    this.textAreaValueMir12 = "";
-    this.PonMir12 = 2;
-  }
-  else if (this.Mir12Calf == 3) {
-    this.textAreaValueMir12 = "";
-    this.PonMir12 = 0;
-  }
-}
-// Seccion 1. Alineación estratégica
-//13.- ¿La MIR incluye los indicadores publicados en los Programas Sectoriales que corresponde de acuerdo con el pre análisis entregado a la dependencia?
-// Orden Informe 3
-//  //******************************PREGUNTA 13 MIR ******************************************
-public RespuestaMir13(): void {
-  if (this.Mir13Calf == 9) {
-    this.textAreaValueMir13 = "Sin recomendaciones";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir13 = 0;
+  // Seccion 3. Fin
+  //  //******************************PREGUNTA 3 MIR ******************************************
+  // 3.-¿Los indicadores permiten medir el objetivo planteado en el resumen narrativo a nivel fin
+  //Orden Informe 13
+  public RespuestaMir3(): void {
+    if (this.Mir3Calf == 9) {
+      this.textAreaValueMir3 = "Sin recomendaciones";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir3 = 4;
+      }
+      else {
+        this.PonMir3 = 4
+      }
     }
-    else{
-      this.PonMir13 = 4
+    else if (this.Mir3Calf == 6) {
+      this.textAreaValueMir3 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir3 = 2;
+      }
+      else {
+        this.PonMir3 = 2
+      }
+    }
+    else if (this.Mir3Calf == 3) {
+      this.textAreaValueMir3 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir3 = 0;
+      }
+      else {
+        this.PonMir3 = 0
+      }
     }
   }
-  else if (this.Mir13Calf == 6) {
-    this.textAreaValueMir13 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir13 = 0;
+  // 4. Medios de verificación
+  // 4 .-¿Los medios de verificación de los indicadores de nivel fin se encuentran totalmente
+  //documentados?
+  //Orden informe 19
+  //  //******************************PREGUNTA 4 MIR ******************************************
+  public RespuestaMir4(): void {
+    if (this.Mir4Calf == 9) {
+      this.textAreaValueMir4 = "Sin recomendaciones";
+      this.PonMir4 = 2;
     }
-    else{
-      this.PonMir13 = 2
+    else if (this.Mir4Calf == 6) {
+      this.textAreaValueMir4 = "";
+      this.PonMir4 = 1;
+    }
+    else if (this.Mir4Calf == 3) {
+      this.textAreaValueMir4 = "";
+      this.PonMir4 = 0;
     }
   }
-  else if (this.Mir13Calf == 3) {
-    this.textAreaValueMir13 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir13 = 0;
+  //5. Supuestos
+  //5.-¿Si se contribuye al logro del Fin y se mantienen vigentes los Supuestos asociados a éste, se garantizará la sustentabilidad de losbeneficios del programa?
+  //Orden Informe 23
+  //  //******************************PREGUNTA 5 MIR ******************************************
+  public RespuestaMir5(): void {
+    if (this.Mir5Calf == 9) {
+      this.textAreaValueMir5 = "Sin recomendaciones";
+      this.PonMir5 = 4;
     }
-    else{
-      this.PonMir13 = 0
+    else if (this.Mir5Calf == 6) {
+      this.textAreaValueMir5 = "";
+      this.PonMir5 = 2;
+    }
+    else if (this.Mir5Calf == 3) {
+      this.textAreaValueMir5 = "";
+      this.PonMir5 = 0;
     }
   }
-}
-//Seccion 3. Indicadores
-//¿Los indicadores permiten medir el objetivo planteado en el resumen narrativo a nivel componente?
-//Orden Informe 15
-//  //******************************PREGUNTA 14 MIR ******************************************
-public  RespuestaMir14(): void {
-  if (this.Mir14Calf == 9) {
-    this.textAreaValueMir14 = "Sin recomendaciones";
-    this.PonMir14 = 4
-  }
-  else if (this.Mir14Calf == 6) {
-    this.textAreaValueMir14 = "";
-    this.PonMir14 = 2
-  }
-  else if (this.Mir14Calf == 3) {
-    this.textAreaValueMir14 = "";
-    this.PonMir14 = 0
-  }
-}
-//4. Medios de verificación
-//¿Los medios de verificación de los indicadores de nivel componente están totalmente documentados?
-//Orden Informe 21
-//  //******************************PREGUNTA 15 MIR ******************************************
-public  RespuestaMir15(): void {
-  if (this.Mir15Calf == 9) {
-    this.textAreaValueMir15 = "Sin recomendaciones";
-    this.PonMir15 = 2
-  }
-  else if (this.Mir15Calf == 6) {
-    this.textAreaValueMir15 = "";
-    this.PonMir15 = 1
-  }
-  else if (this.Mir15Calf == 3) {
-    this.textAreaValueMir15 = "";
-    this.PonMir15 = 0
-  }
-}
-// Secion 2. Objetivos
-//¿Cuál es el número de entregables máximo que tienen los componentes?
-// Orden Informe 21
-//  //******************************PREGUNTA 16 MIR ******************************************
-public  RespuestaMir16(): void {
-  if (this.Mir16Calf == 9) {
-    this.textAreaValueMir16 = "Sin recomendaciones";
-    this.PonMir16 = 2
-  }
-  else if (this.Mir16Calf == 6) {
-    this.textAreaValueMir16 = "";
-    this.PonMir16 = 1
-  }
-  else if (this.Mir16Calf == 3) {
-    this.textAreaValueMir16 = "";
-    this.PonMir16 = 0
-  }
-}
-//Seccion 2. Objetivos
-//¿Los entregables de componente son consistentes con el objetivo?
-// Orden Informe 8
-//  //******************************PREGUNTA 17 MIR ******************************************
-public  RespuestaMir17(): void {
-  if (this.Mir17Calf == 9) {
-    this.textAreaValueMir17 = "Sin recomendaciones";
-    this.PonMir17 = 4
-  }
-  else if (this.Mir17Calf == 6) {
-    this.textAreaValueMir17 = "";
-    this.PonMir17 = 2
-  }
-  else if (this.Mir17Calf == 3) {
-    this.textAreaValueMir17 = "";
-    this.PonMir17 = 0
-  }
-}
-// Seccion 2 Objetivos
-// 18.- ¿Qué porcentaje de los entregables de componente se replican en los entregables de las actividades?
-// Orden Informe 10
-//  //******************************PREGUNTA 18 MIR ******************************************
-public  RespuestaMir18(): void {
-  if (this.Mir18Calf == 9) {
-    this.textAreaValueMir18 = "Sin recomendaciones";
-    this.PonMir18 = 4
-  }
-  else if (this.Mir18Calf == 6) {
-    this.textAreaValueMir18 = "";
-    this.PonMir18 = 2
-  }
-  else if (this.Mir18Calf == 3) {
-    this.textAreaValueMir18 = "";
-    this.PonMir18 = 0
-  }
-}
-// Seccion 2 Objetivos
-// 19.- ¿Todos los componentes tienen actividades asociadas?
-// Orden Informe 11
-//  //******************************PREGUNTA 19 MIR ******************************************
-public  RespuestaMir19(): void {
-  if (this.Mir19Calf == 9) {
-    this.textAreaValueMir19 = "Sin recomendaciones";
-    this.PonMir19 = 4
-  }
+  //2. Objetivos
+  //6- ¿La redacción del propósito cumple con la sintaxis, población objetivo más situación deseada? (población objetivo o área de enfoque+ verbo en presente + resultado logrado)
+  // Orden Informe 5
+  //  //******************************PREGUNTA 6 MIR ******************************************
+  public RespuestaMir6(): void {
+    if (this.Mir6Calf == 9) {
+      this.textAreaValueMir6 = "Sin recomendaciones";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir6 = 8;
+      }
+      else {
+        this.PonMir6 = 6
+      }
+    }
 
-  else if (this.Mir19Calf == 3) {
-    this.textAreaValueMir19 = "";
-    this.PonMir19 = 0
-  }
-}
-// Seccion 5. Supuestos
-// ¿Si se producen los componentes y se cumplen con los supuestos asociados a éstos, se logrará el Propósito del Pp?
-// Orden Informe 25
-//  //******************************PREGUNTA 20 MIR ******************************************
-public  RespuestaMir20(): void {
-  if (this.Mir20Calf == 9) {
-    this.textAreaValueMir20 = "Sin recomendaciones";
-    this.PonMir20 = 4
-  }
-  else if (this.Mir20Calf == 6) {
-    this.textAreaValueMir20 = "";
-    this.PonMir20 = 2
-  }
-  else if (this.Mir20Calf == 3) {
-    this.textAreaValueMir20 = "";
-    this.PonMir20 = 0
-  }
-}
-//Seccion 2. Objetivo
-//21. ¿Las actividades se describen como sustantivo derivado de verbo, seguido del complemento?
-//Orden Informe 25
-//  //******************************PREGUNTA 21 MIR ******************************************
-public  RespuestaMir21(): void {
-  if (this.Mir21Calf == 9) {
-    this.textAreaValueMir21 = "Sin recomendaciones";
-    this.PonMir21 = 2
-  }
-  else if (this.Mir21Calf == 6) {
-    this.textAreaValueMir21 = "";
-    this.PonMir21 = 1
-  }
-  else if (this.Mir21Calf == 3) {
-    this.textAreaValueMir21 = "";
-    this.PonMir21 = 0
-  }
-}
-//Seccion 5. Supuestos
-//22. ¿Si se completan las Actividades programadas y se cumplen con los Supuestos asociados a éstas, se lograrán producir los componentes?
-//Orden Informe 25
-//  //******************************PREGUNTA 22 MIR ******************************************
-public  RespuestaMir22(): void {
-  if (this.Mir22Calf == 9) {
-    this.textAreaValueMir22 = "Sin recomendaciones";
-    this.PonMir22 = 4
-  }
-  else if (this.Mir22Calf == 6) {
-    this.textAreaValueMir22 = "";
-    this.PonMir22 = 2
-  }
-  else if (this.Mir22Calf == 3) {
-    this.textAreaValueMir22 = "";
-    this.PonMir22 = 0
-  }
-}
-//5.- Indicadores
-//¿Las fechas de disponibilidad de la información de indicadores son consistentes?
-//Orden Informe 17
-//  //******************************PREGUNTA 23 MIR ******************************************
-public  RespuestaMir23(): void {
-  if (this.Mir23Calf == 9) {
-    this.textAreaValueMir23 = "Sin recomendaciones";
-    this.PonMir23 = 2
-  }
-  else if (this.Mir23Calf == 6) {
-    this.textAreaValueMir23 = "";
-    this.PonMir23 = 1
-  }
-  else if (this.Mir23Calf == 3) {
-    this.textAreaValueMir23 = "";
-    this.PonMir23 = 0
-  }
-}
-//Seccion 3. Indicadores
-//¿Porcentaje de indicadores que tienen un plan de mejora autogestiva? para todos los niveles
-//Orden Informe 18
-//  //******************************PREGUNTA 24 MIR ******************************************
-public  RespuestaMir24(): void {
-  if (this.Mir24Calf == 9) {
-    this.textAreaValueMir24 = "Sin recomendaciones";
-    this.PonMir24 = 4
-  }
-  else if (this.Mir24Calf == 6) {
-    this.textAreaValueMir24 = "";
-    this.PonMir24 = 2
-  }
-  else if (this.Mir24Calf == 3) {
-    this.textAreaValueMir24 = "";
-    this.PonMir24 = 0
-  }
-}
-//Seccion 3. Indicadores
-//¿El algoritmo de los indicadores es congruente con su definición y unidad de medida?
-//Orden Informe 16
-//  //******************************PREGUNTA 25 MIR ******************************************
-public  RespuestaMir25(): void {
-  if (this.Mir25Calf == 9) {
-    this.textAreaValueMir25 = "Sin recomendaciones";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir25 = 10;
-    }
-    else{
-      this.PonMir25 = 6
+    else if (this.Mir6Calf == 3) {
+      this.textAreaValueMir6 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir6 = 0;
+      }
+      else {
+        this.PonMir6 = 0
+      }
     }
   }
-  else if (this.Mir25Calf == 6) {
-    this.textAreaValueMir25 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir25 = 5;
+  // Seccion 2. Objetivos
+  // 7.- ¿La redacción del propósito es consistente con la población objetivo identificada en el DxP?
+  //  //******************************PREGUNTA 7 MIR ******************************************
+  // Orden Informe 6
+  public RespuestaMir7(): void {
+    if (this.Mir7Calf == 9) {
+      this.textAreaValueMir7 = "Sin recomendaciones";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir7 = 10;
+      }
+      else {
+        this.PonMir7 = 6
+      }
     }
-    else{
-      this.PonMir25 = 3
+
+    else if (this.Mir7Calf == 3) {
+      this.textAreaValueMir7 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir7 = 0;
+      }
+      else {
+        this.PonMir7 = 0
+      }
     }
   }
-  else if (this.Mir25Calf == 3) {
-    this.textAreaValueMir25 = "";
-    if(this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG" ){
-      this.PonMir25 = 0;
+  // Seccion 1. Alineacion Estrategica
+  // 8.- ¿La MIR cuenta los indicadores publicados en el PG 18-24 que corresponde de acuerdo con el pre análisis entregado a la dependencia?
+  // Orden del Informe 2
+  //  //******************************PREGUNTA 8 MIR ******************************************
+  public RespuestaMir8(): void {
+    if (this.Mir8Calf == 9) {
+      this.textAreaValueMir8 = "Sin recomendaciones";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir8 = 0;
+      }
+      else {
+        this.PonMir8 = 4
+      }
+
     }
-    else{
-      this.PonMir25 = 0
+    else if (this.Mir8Calf == 6) {
+      this.textAreaValueMir8 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir8 = 0;
+      }
+      else {
+        this.PonMir8 = 2
+      }
+    }
+    else if (this.Mir8Calf == 3) {
+      this.textAreaValueMir8 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir8 = 0;
+      }
+      else {
+        this.PonMir8 = 0
+      }
     }
   }
-}
-//Seccion 5. supuestos
-//¿Existen supuestos que cumplen con los criterios de ser situaciones externas y de probabilidad media para cada uno de los niveles de la MIR?
-//Orden Informe 22
-//  //******************************PREGUNTA 26 MIR ******************************************
-public  RespuestaMir26(): void {
-  if (this.Mir26Calf == 9) {
-    this.textAreaValueMir26= "Sin recomendaciones";
-    this.PonMir26 = 4
+  //Seccion 3. Indicadores
+  //.-¿Los indicadores permiten medir el objetivo planteado en el resumen narrativo de nivel propósito?
+  //  //******************************PREGUNTA 9 MIR ******************************************
+  // Orden Informe 14
+  public RespuestaMir9(): void {
+    if (this.Mir9Calf == 9) {
+      this.textAreaValueMir9 = "Sin recomendaciones";
+      this.PonMir9 = 4
+    }
+    else if (this.Mir9Calf == 6) {
+      this.textAreaValueMir9 = "";
+      this.PonMir9 = 2
+    }
+    else if (this.Mir9Calf == 3) {
+      this.textAreaValueMir9 = "";
+      this.PonMir9 = 0
+    }
   }
-  else if (this.Mir26Calf == 6) {
-    this.textAreaValueMir26 = "";
-    this.PonMir26 = 2
+  //4. Medios de verificación
+  //10.- ¿Los medios de verificación de los indicadores de nivel propósito están totalmente documentados?
+  //  //******************************PREGUNTA 10 MIR ******************************************
+  // Orden Informe 20
+  public RespuestaMir10(): void {
+    if (this.Mir10Calf == 9) {
+      this.textAreaValueMir10 = "Sin recomendaciones";
+      this.PonMir10 = 2
+    }
+    else if (this.Mir10Calf == 6) {
+      this.textAreaValueMir10 = "";
+      this.PonMir10 = 1
+    }
+    else if (this.Mir10Calf == 3) {
+      this.textAreaValueMir10 = "";
+      this.PonMir10 = 0
+    }
   }
-  else if (this.Mir26Calf == 3) {
-    this.textAreaValueMir26 = "";
-    this.PonMir26 = 0
+  // 5. Supuestos
+  // 11.- ¿Si se logra el Propósito del Pp y se cumplen los Supuestos asociados a éste, se contribuirá al logro del Fin?
+  //  //******************************PREGUNTA 11 MIR ******************************************
+  //Orden Informe 24
+  public RespuestaMir11(): void {
+    if (this.Mir11Calf == 9) {
+      this.textAreaValueMir11 = "Sin recomendaciones";
+      this.PonMir11 = 4
+    }
+    else if (this.Mir11Calf == 6) {
+      this.textAreaValueMir11 = "";
+      this.PonMir11 = 2
+    }
+    else if (this.Mir11Calf == 3) {
+      this.textAreaValueMir11 = "";
+      this.PonMir11 = 0
+    }
   }
-}
+  // Seccion 2. Objetivos
+  //12.- ¿A nivel componente, se describen claramente los Productos terminados o Servicios proporcionados, seguidos de Verbo en pasado participio?
+  //Orden Informe 7
+  //  //******************************PREGUNTA 12 MIR ******************************************
+  public RespuestaMir12(): void {
+    if (this.Mir12Calf == 9) {
+      this.textAreaValueMir12 = "Sin recomendaciones";
+      this.PonMir12 = 4;
+    }
+    else if (this.Mir12Calf == 6) {
+      this.textAreaValueMir12 = "";
+      this.PonMir12 = 2;
+    }
+    else if (this.Mir12Calf == 3) {
+      this.textAreaValueMir12 = "";
+      this.PonMir12 = 0;
+    }
+  }
+  // Seccion 1. Alineación estratégica
+  //13.- ¿La MIR incluye los indicadores publicados en los Programas Sectoriales que corresponde de acuerdo con el pre análisis entregado a la dependencia?
+  // Orden Informe 3
+  //  //******************************PREGUNTA 13 MIR ******************************************
+  public RespuestaMir13(): void {
+    if (this.Mir13Calf == 9) {
+      this.textAreaValueMir13 = "Sin recomendaciones";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir13 = 0;
+      }
+      else {
+        this.PonMir13 = 4
+      }
+    }
+    else if (this.Mir13Calf == 6) {
+      this.textAreaValueMir13 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir13 = 0;
+      }
+      else {
+        this.PonMir13 = 2
+      }
+    }
+    else if (this.Mir13Calf == 3) {
+      this.textAreaValueMir13 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir13 = 0;
+      }
+      else {
+        this.PonMir13 = 0
+      }
+    }
+  }
+  //Seccion 3. Indicadores
+  //¿Los indicadores permiten medir el objetivo planteado en el resumen narrativo a nivel componente?
+  //Orden Informe 15
+  //  //******************************PREGUNTA 14 MIR ******************************************
+  public RespuestaMir14(): void {
+    if (this.Mir14Calf == 9) {
+      this.textAreaValueMir14 = "Sin recomendaciones";
+      this.PonMir14 = 4
+    }
+    else if (this.Mir14Calf == 6) {
+      this.textAreaValueMir14 = "";
+      this.PonMir14 = 2
+    }
+    else if (this.Mir14Calf == 3) {
+      this.textAreaValueMir14 = "";
+      this.PonMir14 = 0
+    }
+  }
+  //4. Medios de verificación
+  //¿Los medios de verificación de los indicadores de nivel componente están totalmente documentados?
+  //Orden Informe 21
+  //  //******************************PREGUNTA 15 MIR ******************************************
+  public RespuestaMir15(): void {
+    if (this.Mir15Calf == 9) {
+      this.textAreaValueMir15 = "Sin recomendaciones";
+      this.PonMir15 = 2
+    }
+    else if (this.Mir15Calf == 6) {
+      this.textAreaValueMir15 = "";
+      this.PonMir15 = 1
+    }
+    else if (this.Mir15Calf == 3) {
+      this.textAreaValueMir15 = "";
+      this.PonMir15 = 0
+    }
+  }
+  // Secion 2. Objetivos
+  //¿Cuál es el número de entregables máximo que tienen los componentes?
+  // Orden Informe 21
+  //  //******************************PREGUNTA 16 MIR ******************************************
+  public RespuestaMir16(): void {
+    if (this.Mir16Calf == 9) {
+      this.textAreaValueMir16 = "Sin recomendaciones";
+      this.PonMir16 = 2
+    }
+    else if (this.Mir16Calf == 6) {
+      this.textAreaValueMir16 = "";
+      this.PonMir16 = 1
+    }
+    else if (this.Mir16Calf == 3) {
+      this.textAreaValueMir16 = "";
+      this.PonMir16 = 0
+    }
+  }
+  //Seccion 2. Objetivos
+  //¿Los entregables de componente son consistentes con el objetivo?
+  // Orden Informe 8
+  //  //******************************PREGUNTA 17 MIR ******************************************
+  public RespuestaMir17(): void {
+    if (this.Mir17Calf == 9) {
+      this.textAreaValueMir17 = "Sin recomendaciones";
+      this.PonMir17 = 4
+    }
+    else if (this.Mir17Calf == 6) {
+      this.textAreaValueMir17 = "";
+      this.PonMir17 = 2
+    }
+    else if (this.Mir17Calf == 3) {
+      this.textAreaValueMir17 = "";
+      this.PonMir17 = 0
+    }
+  }
+  // Seccion 2 Objetivos
+  // 18.- ¿Qué porcentaje de los entregables de componente se replican en los entregables de las actividades?
+  // Orden Informe 10
+  //  //******************************PREGUNTA 18 MIR ******************************************
+  public RespuestaMir18(): void {
+    if (this.Mir18Calf == 9) {
+      this.textAreaValueMir18 = "Sin recomendaciones";
+      this.PonMir18 = 4
+    }
+    else if (this.Mir18Calf == 6) {
+      this.textAreaValueMir18 = "";
+      this.PonMir18 = 2
+    }
+    else if (this.Mir18Calf == 3) {
+      this.textAreaValueMir18 = "";
+      this.PonMir18 = 0
+    }
+  }
+  // Seccion 2 Objetivos
+  // 19.- ¿Todos los componentes tienen actividades asociadas?
+  // Orden Informe 11
+  //  //******************************PREGUNTA 19 MIR ******************************************
+  public RespuestaMir19(): void {
+    if (this.Mir19Calf == 9) {
+      this.textAreaValueMir19 = "Sin recomendaciones";
+      this.PonMir19 = 4
+    }
+
+    else if (this.Mir19Calf == 3) {
+      this.textAreaValueMir19 = "";
+      this.PonMir19 = 0
+    }
+  }
+  // Seccion 5. Supuestos
+  // ¿Si se producen los componentes y se cumplen con los supuestos asociados a éstos, se logrará el Propósito del Pp?
+  // Orden Informe 25
+  //  //******************************PREGUNTA 20 MIR ******************************************
+  public RespuestaMir20(): void {
+    if (this.Mir20Calf == 9) {
+      this.textAreaValueMir20 = "Sin recomendaciones";
+      this.PonMir20 = 4
+    }
+    else if (this.Mir20Calf == 6) {
+      this.textAreaValueMir20 = "";
+      this.PonMir20 = 2
+    }
+    else if (this.Mir20Calf == 3) {
+      this.textAreaValueMir20 = "";
+      this.PonMir20 = 0
+    }
+  }
+  //Seccion 2. Objetivo
+  //21. ¿Las actividades se describen como sustantivo derivado de verbo, seguido del complemento?
+  //Orden Informe 25
+  //  //******************************PREGUNTA 21 MIR ******************************************
+  public RespuestaMir21(): void {
+    if (this.Mir21Calf == 9) {
+      this.textAreaValueMir21 = "Sin recomendaciones";
+      this.PonMir21 = 2
+    }
+    else if (this.Mir21Calf == 6) {
+      this.textAreaValueMir21 = "";
+      this.PonMir21 = 1
+    }
+    else if (this.Mir21Calf == 3) {
+      this.textAreaValueMir21 = "";
+      this.PonMir21 = 0
+    }
+  }
+  //Seccion 5. Supuestos
+  //22. ¿Si se completan las Actividades programadas y se cumplen con los Supuestos asociados a éstas, se lograrán producir los componentes?
+  //Orden Informe 25
+  //  //******************************PREGUNTA 22 MIR ******************************************
+  public RespuestaMir22(): void {
+    if (this.Mir22Calf == 9) {
+      this.textAreaValueMir22 = "Sin recomendaciones";
+      this.PonMir22 = 4
+    }
+    else if (this.Mir22Calf == 6) {
+      this.textAreaValueMir22 = "";
+      this.PonMir22 = 2
+    }
+    else if (this.Mir22Calf == 3) {
+      this.textAreaValueMir22 = "";
+      this.PonMir22 = 0
+    }
+  }
+  //5.- Indicadores
+  //¿Las fechas de disponibilidad de la información de indicadores son consistentes?
+  //Orden Informe 17
+  //  //******************************PREGUNTA 23 MIR ******************************************
+  public RespuestaMir23(): void {
+    if (this.Mir23Calf == 9) {
+      this.textAreaValueMir23 = "Sin recomendaciones";
+      this.PonMir23 = 2
+    }
+    else if (this.Mir23Calf == 6) {
+      this.textAreaValueMir23 = "";
+      this.PonMir23 = 1
+    }
+    else if (this.Mir23Calf == 3) {
+      this.textAreaValueMir23 = "";
+      this.PonMir23 = 0
+    }
+  }
+  //Seccion 3. Indicadores
+  //¿Porcentaje de indicadores que tienen un plan de mejora autogestiva? para todos los niveles
+  //Orden Informe 18
+  //  //******************************PREGUNTA 24 MIR ******************************************
+  public RespuestaMir24(): void {
+    if (this.Mir24Calf == 9) {
+      this.textAreaValueMir24 = "Sin recomendaciones";
+      this.PonMir24 = 4
+    }
+    else if (this.Mir24Calf == 6) {
+      this.textAreaValueMir24 = "";
+      this.PonMir24 = 2
+    }
+    else if (this.Mir24Calf == 3) {
+      this.textAreaValueMir24 = "";
+      this.PonMir24 = 0
+    }
+  }
+  //Seccion 3. Indicadores
+  //¿El algoritmo de los indicadores es congruente con su definición y unidad de medida?
+  //Orden Informe 16
+  //  //******************************PREGUNTA 25 MIR ******************************************
+  public RespuestaMir25(): void {
+    if (this.Mir25Calf == 9) {
+      this.textAreaValueMir25 = "Sin recomendaciones";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir25 = 10;
+      }
+      else {
+        this.PonMir25 = 6
+      }
+    }
+    else if (this.Mir25Calf == 6) {
+      this.textAreaValueMir25 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir25 = 5;
+      }
+      else {
+        this.PonMir25 = 3
+      }
+    }
+    else if (this.Mir25Calf == 3) {
+      this.textAreaValueMir25 = "";
+      if (this.dep == "UG" || this.dep == "TJA" || this.dep == "PDH" || this.dep == "TEEG" || this.dep == "IEEG" || this.dep == "IACIP" || this.dep == "FGEG") {
+        this.PonMir25 = 0;
+      }
+      else {
+        this.PonMir25 = 0
+      }
+    }
+  }
+  //Seccion 5. supuestos
+  //¿Existen supuestos que cumplen con los criterios de ser situaciones externas y de probabilidad media para cada uno de los niveles de la MIR?
+  //Orden Informe 22
+  //  //******************************PREGUNTA 26 MIR ******************************************
+  public RespuestaMir26(): void {
+    if (this.Mir26Calf == 9) {
+      this.textAreaValueMir26 = "Sin recomendaciones";
+      this.PonMir26 = 4
+    }
+    else if (this.Mir26Calf == 6) {
+      this.textAreaValueMir26 = "";
+      this.PonMir26 = 2
+    }
+    else if (this.Mir26Calf == 3) {
+      this.textAreaValueMir26 = "";
+      this.PonMir26 = 0
+    }
+  }
   //----------------------------------------------------------------------------------------------
   //--------------------------------CATALOGOS DE DROPLIST-----------------------------------------
   //----------------------------------------------------------------------------------------------

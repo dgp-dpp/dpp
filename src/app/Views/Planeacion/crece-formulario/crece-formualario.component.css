@@ -33,6 +33,7 @@ h1{
     height: 3200px;
     width: 90%;
     padding-right: 30px;
+    padding-top: 15px;
 
     box-sizing: border-box;
   }
@@ -51,6 +52,7 @@ h1{
 
 }
 
+
 *, ::after, ::before {
     box-sizing: border-box;
 }
@@ -62,4 +64,9 @@ input[type="radio"] {
 .custom-size {
   width: 14px;
   height: 14px;
+}
+div#total{
+  float:right;
+  padding-right: 10px;
+
 }

@@ -1,15 +1,24 @@
 <app-home></app-home>
-
+<div id="total">
+  <strong><font color="yellow">{{pp}}</font></strong>
+    <kendo-circulargauge [value]="CalProm" [scale]="{ max: 100 }"[colors]="colors" style="width: 100px; height: 100px;">
+      <ng-template
+      kendoCircularGaugeCenterTemplate
+        let-value="CalProm"
+        let-color="color"
+      >
+        <span > <font color="white">{{ CalProm }}</font></span>
+      </ng-template>
+    </kendo-circulargauge>
+  </div>
 <section id="sectiondefault">
 
-  <div class="bd-callout bd-callout-info">CRECE PLANEACION
-    <button kendoButton type="button" (click)="MethodTotalCal()" icon="redo">Ver Calificacion Global</button>
-    {{CalProm}}
-  </div>
-  <h1> Bienvenido: <strong>{{Nombre}}</strong></h1>
+
+
   <form class="k-form" [formGroup]="form" (ngSubmit)="GuardarCrece()">
     <fieldset class="k-form-fieldset">
       <div class="container-fluid">
+        <h1> Bienvenido: <strong>{{Nombre}}</strong></h1>Usted esta elaborando el Crece del Programa Presupuestario <strong><font color="yellow">{{pp}}</font></strong> de <strong><font color="yellow">{{dep}}</font></strong>
         <div class="row">
           <div class="col-sm-4">
             <kendo-panelbar>
@@ -49,7 +58,7 @@
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Programa Presupuestario" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" formControlName="Pp" [valuePrimitive]="true"
-                            placeholder="Programa Presupuestario" [data]="ProgramaPresupuestario" textField="text"
+                            placeholder="Programa Presupuestario" [(ngModel)]="pp" [data]="ProgramaPresupuestario" textField="text"
                             valueField="text">
                           </kendo-dropdownlist>
                         </kendo-floatinglabel>
@@ -124,7 +133,6 @@
           <p></p>
           <div class="col-md-12">
             <kendo-panelbar>
-
               <kendo-panelbar-item icon="folder" title="Elementos Diagnóstico Particular">
                 <ng-template kendoPanelBarContent>
                   <div style="padding-left: 1.5rem; padding-right: 1.5rem;  padding-left: 3rem;">
@@ -156,14 +164,14 @@
                                         </kendo-label>
                                         <kendo-label class="k-radio-label" [for]="1">Si</kendo-label>
                                         <input required type="radio" class="custom-size" name="ClaveNombre"
-                                          (click)="Elemento2Calculo()" value="1" #1 formControlName="ClaveNombre"
+                                          (click)="Elemento2Calculo()" ([ngModel])="Contador1si"value="1" #1 formControlName="ClaveNombre"
                                           kendoRadioButton />
 
                                       </li>
                                       <li class="k-radio-item">
                                         <kendo-label class="k-radio-label" [for]="0">No</kendo-label>
                                         <input required type="radio" class="custom-size" name="ClaveNombre"
-                                          (click)="Elemento2Calculo()" value="0" #0 formControlName="ClaveNombre"
+                                          (click)="Elemento2Calculo()"([ngModel])="Contador1no" value="0" #0 formControlName="ClaveNombre"
                                           kendoRadioButton />
                                       </li>
                                     </ul>
@@ -184,13 +192,13 @@
                                         </kendo-label>
                                         <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
                                         <input required type="radio" class="custom-size" name="DepResPp"
-                                          (click)="Elemento2Calculo()" value="1" #si formControlName="DepResPp"
+                                          (click)="Elemento2Calculo()" ([ngModel])="Contador2si" value="1" #si formControlName="DepResPp"
                                           kendoRadioButton />
                                       </li>
                                       <li class="k-radio-item">
                                         <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
                                         <input required class="custom-size" type="radio" name="DepResPp"
-                                          (click)="Elemento2Calculo()" value="0" #no formControlName="DepResPp"
+                                          (click)="Elemento2Calculo()"  ([ngModel])="Contador2no" value="0" #no formControlName="DepResPp"
                                           kendoRadioButton />
                                       </li>
                                     </ul>
@@ -207,12 +215,12 @@
                                           Presupuestario
                                           &nbsp;&nbsp;&nbsp;</kendo-label>
                                         <kendo-label class="k-radio-label" [for]="1">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DepParPp" value="1" #1
+                                        <input required type="radio" class="custom-size"(click)="Elemento2Calculo()"([ngModel])="Contador3si" name="DepParPp" value="1" #1
                                           formControlName="DepParPp" kendoRadioButton />
                                       </li>
                                       <li class="k-radio-item">
                                         <kendo-label class="k-radio-label" [for]="0">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DepParPp" value="0" #0
+                                        <input required type="radio" class="custom-size" (click)="Elemento2Calculo()" ([ngModel])="Contador3no"name="DepParPp" value="0" #0
                                           formControlName="DepParPp" kendoRadioButton />
                                       </li>
                                     </ul>
@@ -720,7 +728,7 @@
           <p></p>
           <!-- Seccion  3 Evaluacion al DX Particular -->
           <div class="col-md-6">
-            <kendo-label text="Calificacion&nbsp;&nbsp;" style="font-weight: bold;">
+            <kendo-label text="Calificacion DP&nbsp;&nbsp;" style="font-weight: bold;">
               <kendo-progressbar [progressCssStyle]="progressStyles" style="width: 400px;" [value]="TotalDp">
               </kendo-progressbar>
             </kendo-label>
@@ -3200,6 +3208,7 @@
                                   style="background-color: darkgray;">
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-badge-container>
                                       <kendo-label class="k-radio-label" style="font-weight: bold;">23.- ¿Las fechas de
                                         disponibilidad de la información de indicadores son consistentes?
                                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -3209,7 +3218,7 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
-                                      <kendo-badge-container>
+
                                         <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
                                    </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir23" value="9" #9
@@ -3495,6 +3504,7 @@
                                   style="background-color: darkgray;">
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-badge-container>
                                       <kendo-label class="k-radio-label" style="font-weight: bold;">25.- ¿El algoritmo
                                         de los indicadores es congruente con su definición y unidad de medida?
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
@@ -3503,7 +3513,6 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
-                                      <kendo-badge-container>
                                         <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
                                    </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir25" value="9" #9
