@@ -1,24 +1,37 @@
 <app-home></app-home>
-<div id="total">
-  <strong><font color="yellow">{{pp}}</font></strong>
-    <kendo-circulargauge [value]="CalProm" [scale]="{ max: 100 }"[colors]="colors" style="width: 100px; height: 100px;">
-      <ng-template
-      kendoCircularGaugeCenterTemplate
-        let-value="CalProm"
-        let-color="color"
-      >
-        <span > <font color="white">{{ CalProm }}</font></span>
-      </ng-template>
-    </kendo-circulargauge>
-  </div>
+
 <section id="sectiondefault">
 
 
 
   <form class="k-form" [formGroup]="form" (ngSubmit)="GuardarCrece()">
+    <div id="total">
+      <strong>
+
+      </strong>
+      <kendo-circulargauge [value]="CalProm" [scale]="{ max: 100 }" [colors]="colors"
+        style="width: 100px; height: 100px;">
+        <ng-template kendoCircularGaugeCenterTemplate let-value="CalProm" let-color="color">
+          <strong>
+            <span>
+              <font color="white">{{ CalProm }}&nbsp;</font>
+            </span>
+          </strong>
+          <span>
+            <font color="yellow">{{pp}}</font>
+          </span>
+        </ng-template>
+      </kendo-circulargauge>
+    </div>
     <fieldset class="k-form-fieldset">
       <div class="container-fluid">
-        <h1> Bienvenido: <strong>{{Nombre}}</strong></h1>Usted esta elaborando el Crece del Programa Presupuestario <strong><font color="yellow">{{pp}}</font></strong> de <strong><font color="yellow">{{dep}}</font></strong>
+        <h1> Bienvenido: <strong>{{Nombre}}</strong></h1>Usted esta {{accion}} el Crece del Programa Presupuestario
+        <strong>
+          <font color="yellow">{{pp}}</font>
+        </strong> de <strong>
+          <font color="yellow">{{dep}}</font>
+        </strong>
+        <p></p>
         <div class="row">
           <div class="col-sm-4">
             <kendo-panelbar>
@@ -58,8 +71,8 @@
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Programa Presupuestario" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" formControlName="Pp" [valuePrimitive]="true"
-                            placeholder="Programa Presupuestario" [(ngModel)]="pp" [data]="ProgramaPresupuestario" textField="text"
-                            valueField="text">
+                            placeholder="Programa Presupuestario" [(ngModel)]="pp" [data]="ProgramaPresupuestario"
+                            textField="text" valueField="text">
                           </kendo-dropdownlist>
                         </kendo-floatinglabel>
                       </div>
@@ -86,20 +99,26 @@
                         </kendo-floatinglabel>
                       </div> -->
                       <p></p>
+                      <!-- Selected value is: {{ fecha | kendoDate: "yyyy-MM-ddThh:mm:ss" }}<br>
+                      Selected value is: {{ fecha | json }} -->
+                      <p>Form model: {{ fecha | json }}</p>
+                      <p>Model: {{ output }}</p>
+                      {{value}}
                       <kendo-formfield showHints="initial" showErrors="initial">
                         <kendo-floatinglabel text="Fecha" style="font-weight: bold;">
-                          <kendo-datepicker style="font-weight: normal;" [(value)]="fecha" formControlName="Fecha">
+                          <kendo-datepicker   style="font-weight: normal;" [(ngModel)]="fecha.value" (valueChange)="handleChange($event)" [format]="format" format="yyyy-MM-dd" formControlName="Fecha">
                           </kendo-datepicker>
                         </kendo-floatinglabel>
                         <kendo-formhint align="start"> use Alt+↓ para abrir el calendario, ← y → para navegar, ↑ para
                           incrementar y ↓ para disminuir el valor</kendo-formhint>
                         <kendo-formerror>Error: Fecha requerida</kendo-formerror>
                       </kendo-formfield>
+
                       <p></p>
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Año de Actualizacion" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" [data]="listYear" formControlName="Ano"
-                            value="" #Ano required>
+                            value="" [(ngModel)]="year" (click)="RespuestaDp2()" #Ano required>
                             <ng-template kendoDropDownListPrefixTemplate>
                               <button
                                 title="Esta etiqueta nos sirve para identificar a que versión corresponde la calificación."
@@ -111,8 +130,9 @@
                       </div>
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Dep/Ent Participantes" style="font-weight: bold;">
-                          <kendo-dropdownlist style="font-weight: normal;" [data]="listDepPar" formControlName="DepPar"
-                            value="" #DepPar required>
+                          <kendo-dropdownlist style="font-weight: normal;" [(ngModel)]="depModelo"
+                            (click)="RespuestaDp3()" [data]="listDepPar" formControlName="DepPar" value="" #DepPar
+                            required>
                             <ng-template kendoDropDownListPrefixTemplate>
                               <button title="" kendoButton fillMode="clear" icon="edit"></button>
                               <kendo-textbox-separator></kendo-textbox-separator>
@@ -128,8 +148,95 @@
               </kendo-panelbar-item>
             </kendo-panelbar>
           </div>
-          <br>
+          <!--     --------------TABLERO DE CONTROL-----------  -->
+          <div class="col-md-8">
+            <kendo-panelbar>
+              <kendo-panelbar-item icon="eye" title="TABLERO DE CONTROL">
+                <ng-template kendoPanelBarContent>
+                  <div style="padding-left: 1.5rem; padding-right: 1.5rem;  padding-left: 3rem;">
+                    <kendo-card width="auto" style="padding: 1rem; align-content: center;">
+                      <kendo-tabstrip [scrollable]="settings" (tabSelect)="onTabSelect($event)"
+                        [tabPosition]="position">
+                        <kendo-tabstrip-tab [selected]="true">
+                          <ng-template kendoTabTitle>
+                            <strong>
+                              TABLERO DE CONTROL
+                            </strong>
+                          </ng-template>
+                          <ng-template kendoTabContent>
+                            <div class="container-fluid">
+                              <div class="col-lg-12">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h5 class="titulo">LISTADO PROGRAMAS PRESUPUESTARIOS</h5>
+                                    <div class="row">
+                                      <div class="col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-text bg-gray">
+                                              <i class="fa fa-search"></i>
 
+                                            </div>
+                                            <input type="text" name ="filterPp"class="form-control" placeholder="buscar..." [(ngModel)]="filterPp" [ngModelOptions]="{standalone: true}">
+
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-text bg-gray">
+                                              <i class="fa fa-search"></i>
+
+                                            </div>
+                                            <input type="text" name ="filterPp"class="form-control" placeholder="buscar por Pp" [(ngModel)]="filterPp" [ngModelOptions]="{standalone: true}">
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <table class="table table-striped">
+                                      <thead>
+                                        <tr>
+                                        <th>Programa</th>
+                                        <th>Email</th>
+                                        <th>Revision</th>
+                                        <th>Fecha</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <i class="fas fa-redo" (click)="obtenerCreces()"></i>
+                                        <tr *ngFor="let crece of creces | filters:'email':filterPp">
+                                          <td>{{ crece.pp }}</td>
+                                          <td>{{ crece.email }}</td>
+                                          <td>{{ crece.revision}}</td>
+                                          <td>{{ crece.fecha }}</td>
+                                          <td>
+                                            <i (click)="editarCrece(crece)" class="far fa-edit text-info"></i>
+                                          </td>
+                                          <td>
+                                            <i (click)="eliminarCrece(crece.id)"
+                                              class="far fa-trash-alt text-danger"></i>
+                                          </td>
+                                        </tr>
+
+                                      </tbody>
+                                    </table>
+                                  </div>
+                              </div>
+                              </div>
+
+
+
+                            </div>
+
+                          </ng-template>
+                        </kendo-tabstrip-tab>
+                      </kendo-tabstrip>
+                    </kendo-card>
+                  </div>
+                </ng-template>
+              </kendo-panelbar-item>
+
+            </kendo-panelbar>
+          </div>
+          <br>
           <p></p>
           <div class="col-md-12">
             <kendo-panelbar>
@@ -148,572 +255,309 @@
                           </ng-template>
                           <ng-template kendoTabContent>
                             <div class="container-fluid">
-
                               <div class="row">
                                 <div class="col-md-6">
                                   <!-- 2.1 Clave  y Nombre del Programa Presupuestario -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
                                     style="background-color: darkgray">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">1.- Clave y Nombre del Programa
-                                          Presupuestario
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="1">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="ClaveNombre"
-                                          (click)="Elemento2Calculo()" ([ngModel])="Contador1si"value="1" #1 formControlName="ClaveNombre"
-                                          kendoRadioButton />
-
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="0">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="ClaveNombre"
-                                          (click)="Elemento2Calculo()"([ngModel])="Contador1no" value="0" #0 formControlName="ClaveNombre"
-                                          kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="1.- Clave y Nombre del Programa
+                                          Presupuestario">
+                                        <div style="padding-left:10.8rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked1" [ngModelOptions]="{standalone: true}"
+                                            formControlName="ClaveNombre" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-
-                                  <!-- Dependencia responsable del Programa Presupuestario &nbsp; -->
+                                  <!-- 2.2 Dependencia responsable del Programa Presupuestario -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">2.- Dependencia responsable del Programa
-                                          Presupuestario
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DepResPp"
-                                          (click)="Elemento2Calculo()" ([ngModel])="Contador2si" value="1" #si formControlName="DepResPp"
-                                          kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required class="custom-size" type="radio" name="DepResPp"
-                                          (click)="Elemento2Calculo()"  ([ngModel])="Contador2no" value="0" #no formControlName="DepResPp"
-                                          kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select"
+                                        text="2.- Dependencia responsable del Programa Presupuestario">
+                                        <div style="padding-left:7.1rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked2" [ngModelOptions]="{standalone: true}"
+                                            formControlName="DepResPp" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-                                  <!-- Dependencias o Entidades participantes en el Programa Presupuestario &nbsp; -->
+                                  <!-- 2.3 Dependencias o Entidades participantes en el Programa Presupuestario -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">3.- Dependencias o Entidades participantes en
-                                          el
-                                          Programa
-                                          Presupuestario
-                                          &nbsp;&nbsp;&nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="1">Si</kendo-label>
-                                        <input required type="radio" class="custom-size"(click)="Elemento2Calculo()"([ngModel])="Contador3si" name="DepParPp" value="1" #1
-                                          formControlName="DepParPp" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="0">No</kendo-label>
-                                        <input required type="radio" class="custom-size" (click)="Elemento2Calculo()" ([ngModel])="Contador3no"name="DepParPp" value="0" #0
-                                          formControlName="DepParPp" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select"
+                                        text="3.- Dependencias o Entidades participantes en el Programa Presupuestario">
+                                        <div style="padding-left:1rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked3" [ngModelOptions]="{standalone: true}"
+                                            formControlName="DepParPp" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-                                  <!-- Fecha de actualización del Diagnóstico Particular &nbsp; -->
+                                  <!-- 2.4- Fecha de actualización del Diagnóstico Particular -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">4.- Fecha de actualización del Diagnóstico
-                                          Particular
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                                          &nbsp;&nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="FechaADx" value="1" #si
-                                          formControlName="FechaADx" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="FechaADx" value="0" #no
-                                          formControlName="FechaADx" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select"
+                                        text="4.- Fecha de actualización del Diagnóstico Particular">
+                                        <div style="padding-left:9.7rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked4" [ngModelOptions]="{standalone: true}"
+                                            formControlName="FechaADx" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-                                  <!-- Introducción &nbsp; -->
+                                  <!-- 2.5.- Introducción -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">5.- Introducción
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="Intro" value="1" #si
-                                          formControlName="Intro" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="Intro" value="0" #no
-                                          formControlName="Intro" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="5.- Introducción">
+                                        <div style="padding-left:23.55rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked5" [ngModelOptions]="{standalone: true}"
+                                            formControlName="Intro" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!-- Análisis de involucrados &nbsp; -->
+                                  <!-- 2.6 - Análisis de involucrados -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">6.- Análisis de involucrados
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="AnalisisInvolucrados"
-                                          value="1" #si formControlName="AnalisisInvolucrados" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="AnalisisInvolucrados"
-                                          value="0" #no formControlName="AnalisisInvolucrados" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="6.- Análisis de involucrados">
+                                        <div style="padding-left:19.15rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked6" [ngModelOptions]="{standalone: true}"
+                                            formControlName="AnalisisInvolucrados" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!-- Identificación/Definición del Problema &nbsp; -->
+                                  <!-- 2.7 -Identificación/Definición del Problema -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">7.- Identificación/Definición del Problema
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-
-
-                                          &nbsp;&nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DefProblema" value="1"
-                                          #si formControlName="DefProblema" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DefProblema" value="0"
-                                          #no formControlName="DefProblema" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="7.- Identificación/Definición del Problema">
+                                        <div style="padding-left:13.68rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked7" [ngModelOptions]="{standalone: true}"
+                                            formControlName="DefProblema" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-
-
-                                  <!-- Evolución del problema &nbsp; -->
+                                  <!-- 2.8 -Evolución del problema -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">8.- Evolución del problema
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;
-                                          &nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="EvoProblema" value="1"
-                                          #si formControlName="EvoProblema" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="EvoProblema" value="0"
-                                          #no formControlName="EvoProblema" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="8.- Evolución del problema">
+                                        <div style="padding-left:19.28rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked8" [ngModelOptions]="{standalone: true}"
+                                            formControlName="EvoProblema" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!-- Estado actual del problema &nbsp; -->
+                                  <!-- 2.9  Estado actual del problema -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">9.- Estado actual del problema
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="EstActualProblema"
-                                          value="1" #si formControlName="EstActualProblema" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="EstActualProblema"
-                                          value="0" #no formControlName="EstActualProblema" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="9.- Estado actual del problema">
+                                        <div style="padding-left:17.9rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked9" [ngModelOptions]="{standalone: true}"
+                                            formControlName="EstActualProblema" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!-- Experiencias de Atención &nbsp; -->
+                                  <!-- 2.10  Experiencias de Atención -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">10.- Experiencias de Atención
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="ExpAtencion" value="1"
-                                          #si formControlName="ExpAtencion" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="ExpAtencion" value="0"
-                                          #no formControlName="ExpAtencion" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="10.- Experiencias de Atención">
+                                        <div style="padding-left:18.3rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked10" [ngModelOptions]="{standalone: true}"
+                                            formControlName="ExpAtencion" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!-- Definición de los objetivos &nbsp; -->
+                                  <!-- 2.11  Definición de los objetivos -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">11. -Definición de los objetivos
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DefObjetivos" value="1"
-                                          #si formControlName="DefObjetivos" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="DefObjetivos" value="0"
-                                          #no formControlName="DefObjetivos" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="11.- Definición de los objetivos">
+                                        <div style="padding-left:17.8rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked11" [ngModelOptions]="{standalone: true}"
+                                            formControlName="DefObjetivos" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-
 
                                 </div>
                                 <div class="col-md-6">
-                                  <!--2.12 Análisis de Corresponsabilidad &nbsp; -->
+                                  <!-- 2.12  Análisis de Corresponsabilidad -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">12.- Análisis de Corresponsabilidad
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="AnalisisCorrespon"
-                                          value="1" #si formControlName="AnalisisCorrespon" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="AnalisisCorrespon"
-                                          value="0" #no formControlName="AnalisisCorrespon" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="12.- Análisis de Corresponsabilidad">
+                                        <div style="padding-left:15.9rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked12" [ngModelOptions]="{standalone: true}"
+                                            formControlName="AnalisisCorrespon" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-                                  <!-- Selección de Alternativa &nbsp; -->
+                                  <!-- 2.13  Selección de Alternativa  -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">13.- Selección de Alternativa
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="SelecAlterna" value="1"
-                                          #si formControlName="SelecAlterna" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="SelecAlterna" value="0"
-                                          #no formControlName="SelecAlterna" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="13.- Selección de Alternativa">
+                                        <div style="padding-left:18.5rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked13" [ngModelOptions]="{standalone: true}"
+                                            formControlName="SelecAlterna" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-                                  <!-- Estructura analítica del programa &nbsp; -->
+                                  <!-- 2.14 Estructura analítica del programa    -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">14.- Estructura analítica del programa
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="EstructuraAnalitica"
-                                          value="1" #si formControlName="EstructuraAnalitica" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="EstructuraAnalitica"
-                                          value="0" #no formControlName="EstructuraAnalitica" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="14.- Estructura analítica del programa ">
+                                        <div style="padding-left:15.0rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked14" [ngModelOptions]="{standalone: true}"
+                                            formControlName="EstructuraAnalitica" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-                                  <!-- Justificación de los objetivos de la intervención &nbsp; -->
+                                  <!-- 2.15  Justificación de los objetivos de la intervención   -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">15.- Justificación de los objetivos de la
-                                          intervención
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="JustObj" value="1" #si
-                                          formControlName="JustObj" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="JustObj" value="0" #no
-                                          formControlName="JustObj" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select"
+                                        text="15.- Justificación de los objetivos de la intervención">
+                                        <div style="padding-left:9.70rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked15" [ngModelOptions]="{standalone: true}"
+                                            formControlName="JustObj" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-                                  <!-- Identificación y cuantificación de la población &nbsp; -->
+                                  <!-- 2.16  Identificación y cuantificación de la población   -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">16.- Identificación y cuantificación de la
-                                          población
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="IdentificacionCuanPob"
-                                          value="1" #si formControlName="IdentificacionCuanPob" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="IdentificacionCuanPob"
-                                          value="0" #no formControlName="IdentificacionCuanPob" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select"
+                                        text="16. Identificación y cuantificación de la población">
+                                        <div style="padding-left:10.60rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked16" [ngModelOptions]="{standalone: true}"
+                                            formControlName="IdentificacionCuanPob" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!--  Identificación de las áreas de influencia &nbsp; -->
+                                  <!-- 2.17 Identificación de las áreas de influencia  -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">17.- Identificación de las áreas de
-                                          influencia
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size"
-                                          name="IdenficacionAreaInfluencia" value="1" #si
-                                          formControlName="IdenficacionAreaInfluencia" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size"
-                                          name="IdenficacionAreaInfluencia" value="0" #no
-                                          formControlName="IdenficacionAreaInfluencia" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="17. Identificación de las áreas de
+                                      influencia">
+                                        <div style="padding-left:13.1rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked17" [ngModelOptions]="{standalone: true}"
+                                            formControlName="IdenficacionAreaInfluencia" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!-- Relación con otros Programas Presupuestarios &nbsp; -->
+                                  <!-- 2.18 Relación con otros Programas Presupuestarios -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">18.- Relación con otros Programas
-                                          Presupuestarios
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="RelOtrosPP" value="1" #si
-                                          formControlName="RelOtrosPP" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="RelOtrosPP" value="0" #no
-                                          formControlName="RelOtrosPP" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select"
+                                        text="18. Relación con otros ProgramasPresupuestarios">
+                                        <div style="padding-left:10.6rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked18" [ngModelOptions]="{standalone: true}"
+                                            formControlName="RelOtrosPP" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!-- Elementos para la integración de un padrón de beneficiarios &nbsp; -->
+                                  <!-- 2.19  Elementos para la integración de un padrón de beneficiarios-->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">19.- Elementos para la integración de un
-                                          padrón de
-                                          beneficiarios
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="ElementosPEB" value="1"
-                                          #si formControlName="ElementosPEB" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="ElementosPEB" value="0"
-                                          #no formControlName="ElementosPEB" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select"
+                                        text="19. Elementos para la integración de un padrón de beneficiarios">
+                                        <div style="padding-left:5rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked19" [ngModelOptions]="{standalone: true}"
+                                            formControlName="ElementosPEB" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-                                  <!-- MIR &nbsp; -->
+                                  <!-- 2.20   MIR-->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">20.- MIR
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="MIR" value="1" #si
-                                          formControlName="MIR" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="MIR" value="0" #no
-                                          formControlName="MIR" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="20. MIR">
+                                        <div style="padding-left:26.65rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked20" [ngModelOptions]="{standalone: true}"
+                                            formControlName="MIR" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!--Evolución del Programa Presupuestario  &nbsp; -->
+                                  <!-- 2.21   Evolución del Programa Presupuestario-->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">21. - Evolución del Programa Presupuestario
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="EvoPp" value="1" #si
-                                          formControlName="EvoPp" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="EvoPp" value="0" #no
-                                          formControlName="EvoPp" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="21. Evolución del Programa Presupuestario">
+                                        <div style="padding-left:13.1rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked21" [ngModelOptions]="{standalone: true}"
+                                            formControlName="EvoPp" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-                                  <!--Glosario de términos  &nbsp; -->
+                                  <!-- 2.22 Glosario de términos -->
                                   <kendo-formfield orientation="horizontal" showErros="initial"
-                                    style="background-color: darkgray;">
-                                    <ul class="k-radio-list k-list-horizontal">
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label">22.- Glosario de términos
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</kendo-label>
-                                        <kendo-label class="k-radio-label" [for]="si">Si</kendo-label>
-                                        <input required type="radio" class="custom-size" name="Glosario" value="1" #si
-                                          formControlName="Glosario" kendoRadioButton />
-                                      </li>
-                                      <li class="k-radio-item">
-                                        <kendo-label class="k-radio-label" [for]="no">No</kendo-label>
-                                        <input required type="radio" class="custom-size" name="Glosario" value="0" #no
-                                          formControlName="Glosario" kendoRadioButton />
-                                      </li>
-                                    </ul>
-                                    <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                    style="background-color: darkgray">
+                                    <div style="padding-top: 0.5rem; padding-bottom: 0.5rem;padding-left: 0.5rem;">
+                                      <kendo-label [for]="select" text="22. Glosario de términos">
+                                        <div style="padding-left:20.1rem;">
+                                          <input type="checkbox" size="large" #select [indeterminate]="false"
+                                            [(ngModel)]="checked22" [ngModelOptions]="{standalone: true}"
+                                            formControlName="Glosario" kendoCheckBox />
+                                        </div>
+                                      </kendo-label>
+                                    </div>
                                   </kendo-formfield>
-
-
                                 </div>
                               </div>
+
                             </div>
                           </ng-template>
                         </kendo-tabstrip-tab>
@@ -722,14 +566,18 @@
                   </div>
                 </ng-template>
               </kendo-panelbar-item>
-
             </kendo-panelbar>
           </div>
           <p></p>
+
           <!-- Seccion  3 Evaluacion al DX Particular -->
-          <div class="col-md-6">
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-9">
             <kendo-label text="Calificacion DP&nbsp;&nbsp;" style="font-weight: bold;">
-              <kendo-progressbar [progressCssStyle]="progressStyles" style="width: 400px;" [value]="TotalDp">
+              <kendo-progressbar [progressCssStyle]="progressStyles" [animation]="animation" style="width: 800px;"
+                [value]="TotalDp">
               </kendo-progressbar>
             </kendo-label>
           </div>
@@ -741,7 +589,7 @@
                   <kendo-card width="auto" style="padding: 1rem; align-content: center;">
                     <kendo-tabstrip [scrollable]="settings" (tabSelect)="onTabSelect($event)" [tabPosition]="position">
                       <!-- Seccion 3.1 General -->
-                      <kendo-tabstrip-tab>
+                      <kendo-tabstrip-tab [selected]="true">
                         <ng-template kendoTabTitle>
                           <strong> 01. General</strong>
                         </ng-template>
@@ -749,9 +597,10 @@
 
                           <div class="container-fluid">
                             <p> </p>
-                            <!--1 Dp  &nbsp; -->
+
                             <div class="row">
                               <div class="col-md-6">
+                                <!--1 Dp  &nbsp; -->
                                 <kendo-formfield orientation="vertical" showErros="initial"
                                   style="background-color: darkgray;">
                                   <ul class="k-radio-list k-list-vertical">
@@ -760,36 +609,86 @@
                                         ¿El DP incluye todos los apartados y elementos de acuerdo con la guía?
                                       </kendo-label>
                                       <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                        <kendo-textarea formControlName="Dp1" [(ngModel)]="TotalSi" resizable="auto"
-                                          name="Dp1" flow="horizontal">
+                                        <kendo-textarea [readonly]="true" formControlName="Dp1" [(ngModel)]="Dp1Calf"
+                                          resizable="auto" name="Dp1" flow="horizontal">
                                           <kendo-textarea-suffix>
-                                            <!-- <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                              icon="edit" (click)="Elemento2Calculo()">Respuesta Generica</button> -->
                                             <button kendoButton type="button" class="suffix-clear-button"
-                                              (click)="Elemento2Calculo()" fillMode="clear" icon="edit">Respuesta
-                                              Generica</button>
-                                            <!-- <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                              icon="edit" (click)="CalfDp1Pon">Respuesta Generica</button> -->
+                                              (click)="CalculoDp()" fillMode="clear" icon="edit">Ponderacion</button>
                                           </kendo-textarea-suffix>
                                         </kendo-textarea>
-                                        <kendo-formhint style="font-weight: normal;" align="start">1 DP Generica
+                                        <kendo-formhint style="font-weight: normal;" align="start">1 DP Ponderacion
                                         </kendo-formhint>
                                         <kendo-formerror>Error: es requerido</kendo-formerror>
                                       </kendo-formfield>
-                                      {{TotalSi}}
                                     </li>
                                   </ul>
                                   <kendo-formerror>Error: Campo requerido </kendo-formerror>
                                 </kendo-formfield>
-                                <p> </p>
                               </div>
+                              <div class="col-md-6">
+                                <!--2 Dp  &nbsp; -->
+                                <p> </p>
+                                <kendo-formfield orientation="vertical" showErros="initial"
+                                  style="background-color: darkgray;">
+                                  <ul class="k-radio-list k-list-vertical">
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-label class="k-radio-label" style="font-weight: bold;">2.- ¿Cuál es la
+                                        fecha de actualización del DP?
+                                      </kendo-label>
+                                      <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                        <kendo-textarea [readonly]="true" formControlName="Dp2" [(ngModel)]="PonDp2"
+                                          resizable="auto" name="Dp2" flow="horizontal">
+                                          <kendo-textarea-suffix>
+                                            <button kendoButton type="button" class="suffix-clear-button"
+                                              (click)="RespuestaDp2()" fillMode="clear" icon="edit">Ponderacion</button>
+                                          </kendo-textarea-suffix>
+                                        </kendo-textarea>
+                                        <kendo-formhint style="font-weight: normal;" align="start">1 DP Ponderacion
+                                        </kendo-formhint>
+                                        <kendo-formerror>Error: es requerido</kendo-formerror>
+                                      </kendo-formfield>
+                                    </li>
+                                  </ul>
+                                  <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                </kendo-formfield>
+                              </div>
+                              <!--3 Dp  &nbsp; -->
+                              <div class="col-md-6">
+                                <kendo-formfield orientation="vertical" showErros="initial"
+                                  style="background-color: darkgray;">
+                                  <ul class="k-radio-list k-list-vertical">
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-label class="k-radio-label" style="font-weight: bold;">3.- ¿El DP cuenta
+                                        con Dependencia responsable y dependencias participantes del programa
+                                        presupuestario?
+                                      </kendo-label>
+                                      <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                        <kendo-textarea formControlName="Dp3" [readonly]="true" [(ngModel)]="PonDp3"
+                                          resizable="auto" name="Dp3" flow="horizontal">
+                                          <kendo-textarea-suffix>
+                                            <button kendoButton type="button" class="suffix-clear-button"
+                                              (click)="RespuestaDp3()" fillMode="clear" icon="edit">Ponderacion</button>
+
+                                          </kendo-textarea-suffix>
+                                        </kendo-textarea>
+                                        <kendo-formhint style="font-weight: normal;" align="start">1 DP Ponderacion
+                                        </kendo-formhint>
+                                        <kendo-formerror>Error: es requerido</kendo-formerror>
+                                      </kendo-formfield>
+                                    </li>
+                                  </ul>
+                                  <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                </kendo-formfield>
+                              </div>
+
+
                             </div>
                           </div>
                         </ng-template>
                       </kendo-tabstrip-tab>
 
                       <!-- Seccion 3.2 Introduccion -->
-                      <kendo-tabstrip-tab [selected]="true">
+                      <kendo-tabstrip-tab>
                         <ng-template kendoTabTitle>
                           <strong> 02. Introducción</strong>
                         </ng-template>
@@ -2243,11 +2142,20 @@
                 </ng-template>
               </kendo-panelbar-item>
             </kendo-panelbar>
-            <p></p>
-            <kendo-label text="Calificacion MIR&nbsp;&nbsp;" style="font-weight: bold;">
-              <kendo-progressbar [progressCssStyle]="progressStylestwo" style="width: 400px;" [value]="TotalMir">
+          </div>
+          <p></p>
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-9">
+            <kendo-label text="Calificacion MIR" style="font-weight: bold;">
+              <kendo-progressbar [progressCssStyle]="progressStylestwo" [animation]="animation" style="width: 800px;"
+                [value]="TotalMir">
               </kendo-progressbar>
             </kendo-label>
+          </div>
+          <div class="col-md-12">
+
+
             <!-- Seccion  4 Calificacion MIR -->
             <kendo-panelbar>
               <kendo-panelbar-item icon="folder" title="Evaluación MIR">
@@ -2280,17 +2188,18 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape"  [align]="badgeAlign" themeColor="success" [Size]="Size"  [cutoutBorder]="true">Fin</kendo-badge>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success"
+                                          [Size]="Size" [cutoutBorder]="true">Fin</kendo-badge>
                                       </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir2" value="9" #9
-                                        formControlName="Mir2" [(ngModel)]="Mir2Calf" (click)="RespuestaMir2()"(click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir2" [(ngModel)]="Mir2Calf" (click)="RespuestaMir2()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir2" value="3" #No
-                                        formControlName="Mir2" [(ngModel)]="Mir2Calf" (click)="RespuestaMir2()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir2" [(ngModel)]="Mir2Calf" (click)="RespuestaMir2()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2336,31 +2245,33 @@
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <kendo-badge-container>
-                                      <kendo-label class="k-radio-label" style="font-weight: bold;">
-                                        8.- ¿La MIR cuenta los indicadores publicados en el PG 18-24 que corresponde de
-                                        acuerdo con el pre análisis entregado a la dependencia?
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                      </kendo-label>
+                                        <kendo-label class="k-radio-label" style="font-weight: bold;">
+                                          8.- ¿La MIR cuenta los indicadores publicados en el PG 18-24 que corresponde
+                                          de
+                                          acuerdo con el pre análisis entregado a la dependencia?
+                                          &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </kendo-label>
 
-                                      <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Proposito</kendo-badge>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error"
+                                          size="medium" [cutoutBorder]="true">Proposito</kendo-badge>
                                       </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir8" value="9" #9
-                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"(click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9. Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir8" value="6" #No
-                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"(click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir8" value="3" #No
-                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir8" [(ngModel)]="Mir8Calf" (click)="RespuestaMir8()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. No</kendo-label>
                                     </li>
                                   </ul>
@@ -2413,23 +2324,25 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
-                                    <kendo-badge-container>
-                                      <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
+                                      <kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary"
+                                          size="medium" [cutoutBorder]="true">Componente</kendo-badge>
                                       </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir13" value="9" #9
-                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9. Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir13" value="6" #No
-                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir13" value="3" #No
-                                        formControlName="Mir13"  [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()" (click)="MethodTotalMir()"kendoRadioButton />
+                                        formControlName="Mir13" [(ngModel)]="Mir13Calf" (click)="RespuestaMir13()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. No</kendo-label>
                                     </li>
                                   </ul>
@@ -2495,17 +2408,18 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success" size="medium"  [cutoutBorder]="true">Fin</kendo-badge>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success"
+                                          size="medium" [cutoutBorder]="true">Fin</kendo-badge>
                                       </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir1" value="9" #9
-                                        formControlName="Mir1"  [(ngModel)]="Mir1Calf"
-                                        (click)="RespuestaMir1()" (click)="MethodTotalMir()"kendoRadioButton />
+                                        formControlName="Mir1" [(ngModel)]="Mir1Calf" (click)="RespuestaMir1()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir1" value="3" #No
-                                        formControlName="Mir1" [(ngModel)]="Mir1Calf"
-                                        (click)="RespuestaMir1()" (click)="MethodTotalMir()" kendoRadioButton />
+                                        formControlName="Mir1" [(ngModel)]="Mir1Calf" (click)="RespuestaMir1()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2562,23 +2476,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary"
+                                          size="medium" [cutoutBorder]="true">Componente</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir17" value="9" #9
-                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir17" value="6" #6
-                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir17" value="3" #3
-                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir17" [(ngModel)]="Mir17Calf" (click)="RespuestaMir17()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2627,26 +2542,29 @@
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <kendo-badge-container>
-                                      <kendo-label class="k-radio-label" style="font-weight: bold;">6- ¿La redacción del
-                                        propósito cumple con la sintaxis,
-                                        población objetivo más situación deseada? (población objetivo o área de enfoque
-                                        + verbo en presente + resultado logrado)
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                      </kendo-label>
+                                        <kendo-label class="k-radio-label" style="font-weight: bold;">6- ¿La redacción
+                                          del
+                                          propósito cumple con la sintaxis,
+                                          población objetivo más situación deseada? (población objetivo o área de
+                                          enfoque
+                                          + verbo en presente + resultado logrado)
+                                          &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </kendo-label>
 
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error"
+                                          size="medium" [cutoutBorder]="true">Propósito</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir6" value="9" #9
-                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir6" value="3" #No
-                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir6" [(ngModel)]="Mir6Calf" (click)="RespuestaMir6()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2703,23 +2621,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary"
+                                          size="medium" [cutoutBorder]="true">Componente</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir18" value="9" #9
-                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- del 0 al 20</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir18" value="6" #6
-                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- del 21 al 80</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir18" value="3" #3
-                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir18" [(ngModel)]="Mir18Calf" (click)="RespuestaMir18()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- del 81 al 100 </kendo-label>
                                     </li>
                                   </ul>
@@ -2778,18 +2697,19 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error"
+                                          size="medium" [cutoutBorder]="true">Propósito</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir7" value="9" #9
-                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
 
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir7" value="3" #No
-                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir7" [(ngModel)]="Mir7Calf" (click)="RespuestaMir7()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2817,8 +2737,8 @@
                                 <p></p>
                                 <!--------------------- 7MIR Ponderacion -------->
                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                                  <kendo-textarea formControlName="ponMir7form" [readonly]="true"
-                                    [(ngModel)]="PonMir7" resizable="auto" name="PonMir7" flow="horizontal">
+                                  <kendo-textarea formControlName="ponMir7form" [readonly]="true" [(ngModel)]="PonMir7"
+                                    resizable="auto" name="PonMir7" flow="horizontal">
                                     <kendo-textarea-suffix>
                                       <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
                                         (click)="RespuestaMir7()">Ponderacion</button>
@@ -2843,19 +2763,21 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary"
+                                          size="medium" [cutoutBorder]="true">Componente</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir19" value="9" #9
-                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir19" value="3" #3
-                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir19" [(ngModel)]="Mir19Calf" (click)="RespuestaMir19()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No </kendo-label>
                                     </li>
                                   </ul>
@@ -2911,23 +2833,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary"
+                                          size="medium" [cutoutBorder]="true">Componente</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir12" value="9" #9
-                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir12" value="6" #6
-                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir12" value="3" #3
-                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir12" [(ngModel)]="Mir12Calf" (click)="RespuestaMir12()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -2985,23 +2908,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="warning" size="medium"  [cutoutBorder]="true">Actividad</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="warning"
+                                          size="medium" [cutoutBorder]="true">Actividad</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir21" value="9" #9
-                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir21" value="6" #6
-                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir21" value="3" #3
-                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir21" [(ngModel)]="Mir21Calf" (click)="RespuestaMir21()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No </kendo-label>
                                     </li>
                                   </ul>
@@ -3050,33 +2974,34 @@
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <kendo-badge-container>
-                                      <kendo-label class="k-radio-label" style="font-weight: bold;">16.- ¿Cuál es el
-                                        número de entregables máximo que tienen los componentes?
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                      </kendo-label>
+                                        <kendo-label class="k-radio-label" style="font-weight: bold;">16.- ¿Cuál es el
+                                          número de entregables máximo que tienen los componentes?
+                                          &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </kendo-label>
 
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary"
+                                          size="medium" [cutoutBorder]="true">Componente</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir16" value="9" #9
-                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- maximo 3</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir16" value="6" #No
-                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- de 3 a 5</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir16" value="3" #No
-                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir16" [(ngModel)]="Mir16Calf" (click)="RespuestaMir16()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- mas de 5</kendo-label>
                                     </li>
                                   </ul>
@@ -3143,25 +3068,26 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success" size="medium"  [cutoutBorder]="true">Fin</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success"
+                                          size="medium" [cutoutBorder]="true">Fin</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir3" value="9" #9
-                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Máximo 3 indicadores, claramente
                                         miden el objetivo.</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir3" value="3" #6
-                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Máximo 3 indicadores, no se
                                         identifica relación con el objetivo en alguno de los indicadores</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir3" value="3" #3
-                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir3" [(ngModel)]="Mir3Calf" (click)="RespuestaMir3()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- Más de 3 indicadores
                                       </kendo-label>
                                     </li>
@@ -3209,33 +3135,35 @@
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <kendo-badge-container>
-                                      <kendo-label class="k-radio-label" style="font-weight: bold;">23.- ¿Las fechas de
-                                        disponibilidad de la información de indicadores son consistentes?
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                      </kendo-label>
+                                        <kendo-label class="k-radio-label" style="font-weight: bold;">23.- ¿Las fechas
+                                          de
+                                          disponibilidad de la información de indicadores son consistentes?
+                                          &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </kendo-label>
 
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse"
+                                          size="medium" [cutoutBorder]="true">Todos Niveles</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir23" value="9" #9
-                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir23" value="6" #6
-                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir23" value="3" #3
-                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir23" [(ngModel)]="Mir23Calf" (click)="RespuestaMir23()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -3291,25 +3219,26 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error"
+                                          size="medium" [cutoutBorder]="true">Propósito</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir9" value="9" #9
-                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9. Máximo 3 indicadores, claramente
                                         miden el objetivo</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir9" value="6" #6
-                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Máximo 3 indicadores, no se
                                         identifica relación con el objetivo en alguno de los indicadores</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir9" value="3" #3
-                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir9" [(ngModel)]="Mir9Calf" (click)="RespuestaMir9()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. Más de 3 indicadores</kendo-label>
                                     </li>
                                   </ul>
@@ -3366,23 +3295,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse"
+                                          size="medium" [cutoutBorder]="true">Todos Niveles</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir24" value="9" #9
-                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- 100%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir24" value="6" #6
-                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- 60 al 99%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir24" value="3" #3
-                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir24" [(ngModel)]="Mir24Calf" (click)="RespuestaMir24()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- menos del 60%</kendo-label>
                                     </li>
                                   </ul>
@@ -3440,25 +3370,26 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary"
+                                          size="medium" [cutoutBorder]="true">Componente</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir14" value="9" #9
-                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Máximo 3 indicadores, claramente
                                         miden el objetivo.</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir14" value="6" #6
-                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6. Máximo 3 indicadores, no se
                                         identifica relación con el objetivo en alguno de los indicadores</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir14" value="3" #3
-                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir14" [(ngModel)]="Mir14Calf" (click)="RespuestaMir14()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. Más de 3 indicadores</kendo-label>
                                     </li>
                                   </ul>
@@ -3505,31 +3436,32 @@
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <kendo-badge-container>
-                                      <kendo-label class="k-radio-label" style="font-weight: bold;">25.- ¿El algoritmo
-                                        de los indicadores es congruente con su definición y unidad de medida?
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                      </kendo-label>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-label class="k-radio-label" style="font-weight: bold;">25.- ¿El algoritmo
+                                          de los indicadores es congruente con su definición y unidad de medida?
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </kendo-label>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse"
+                                          size="medium" [cutoutBorder]="true">Todos Niveles</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir25" value="9" #9
-                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- 100%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir25" value="6" #6
-                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- del 80 al 99%</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir25" value="3" #3
-                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir25" [(ngModel)]="Mir25Calf" (click)="RespuestaMir25()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3. menos del 80%</kendo-label>
                                     </li>
                                   </ul>
@@ -3596,23 +3528,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success" size="medium"  [cutoutBorder]="true">Fin</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success"
+                                          size="medium" [cutoutBorder]="true">Fin</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir4" value="9" #9
-                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir4" value="3" #6
-                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir4" value="3" #3
-                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir4" [(ngModel)]="Mir4Calf" (click)="RespuestaMir4()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.-No </kendo-label>
                                     </li>
                                   </ul>
@@ -3668,23 +3601,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary"
+                                          size="medium" [cutoutBorder]="true">Componente</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir15" value="9" #9
-                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir15" value="6" #6
-                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir15" value="3" #3
-                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir15" [(ngModel)]="Mir15Calf" (click)="RespuestaMir15()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -3742,23 +3676,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="error"
+                                          size="medium" [cutoutBorder]="true">Propósito</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir10" value="9" #9
-                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir10" value="6" #6
-                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir10" value="3" #3
-                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir10" [(ngModel)]="Mir10Calf" (click)="RespuestaMir10()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -3825,24 +3760,25 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success" size="medium"  [cutoutBorder]="true">Fin</kendo-badge>
-                                        </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="success"
+                                          size="medium" [cutoutBorder]="true">Fin</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir5" value="9" #9
-                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir5" value="3" #6
-                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente (en caso de que se
                                         identifiquen supuestos faltantes)</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir5" value="3" #3
-                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir5" [(ngModel)]="Mir5Calf" (click)="RespuestaMir5()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No
                                       </kendo-label>
                                     </li>
@@ -3900,23 +3836,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="warning" size="medium"  [cutoutBorder]="true">Actividad</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="warning"
+                                          size="medium" [cutoutBorder]="true">Actividad</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir22" value="9" #9
-                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir22" value="6" #6
-                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6 Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir22" value="3" #3
-                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir22" [(ngModel)]="Mir22Calf" (click)="RespuestaMir22()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
                                     </li>
                                   </ul>
@@ -3965,31 +3902,34 @@
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <kendo-badge-container>
-                                      <kendo-label class="k-radio-label" style="font-weight: bold;">11.- ¿Si se logra el
-                                        Propósito del Pp y se cumplen los Supuestos asociados a éste, se contribuirá al
-                                        logro del Fin?
+                                        <kendo-label class="k-radio-label" style="font-weight: bold;">11.- ¿Si se logra
+                                          el
+                                          Propósito del Pp y se cumplen los Supuestos asociados a éste, se contribuirá
+                                          al
+                                          logro del Fin?
 
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                      </kendo-label>
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </kendo-label>
 
-                                        <kendo-badge position="edge" [shape]="shape" [align]="badgeAlign" themeColor="error" size="medium"  [cutoutBorder]="true">Propósito</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge position="edge" [shape]="shape" [align]="badgeAlign"
+                                          themeColor="error" size="medium" [cutoutBorder]="true">Propósito</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir11" value="9" #9
-                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir11" value="6" #6
-                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir11" value="3" #3
-                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir11" [(ngModel)]="Mir11Calf" (click)="RespuestaMir11()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No</kendo-label>
                                     </li>
                                   </ul>
@@ -4047,23 +3987,24 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                       </kendo-label>
                                       <kendo-badge-container>
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse" size="medium"  [cutoutBorder]="true">Todos Niveles</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="inverse"
+                                          size="medium" [cutoutBorder]="true">Todos Niveles</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir26" value="9" #9
-                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir26" value="6" #6
-                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir26" value="3" #3
-                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir26" [(ngModel)]="Mir26Calf" (click)="RespuestaMir26()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No</kendo-label>
                                     </li>
                                   </ul>
@@ -4112,30 +4053,33 @@
                                   <ul class="k-radio-list k-list-vertical">
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <kendo-badge-container>
-                                      <kendo-label class="k-radio-label" style="font-weight: bold;">20.- ¿Si se producen los componentes y se cumplen con los supuestos asociados a éstos, se logrará el Propósito del Pp?
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                      </kendo-label>
+                                        <kendo-label class="k-radio-label" style="font-weight: bold;">20.- ¿Si se
+                                          producen los componentes y se cumplen con los supuestos asociados a éstos, se
+                                          logrará el Propósito del Pp?
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </kendo-label>
 
-                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary" size="medium"  [cutoutBorder]="true">Componente</kendo-badge>
-                                   </kendo-badge-container>
+                                        <kendo-badge [shape]="shape" [align]="badgeAlign" themeColor="primary"
+                                          size="medium" [cutoutBorder]="true">Componente</kendo-badge>
+                                      </kendo-badge-container>
                                       <input required type="radio" class="custom-size" name="Mir20" value="9" #9
-                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="9">9.- Si </kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir20" value="6" #6
-                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="6">6.- Parcialmente</kendo-label>
                                     </li>
                                     <li class="k-radio-item" style="padding-left: 1rem;">
                                       <input required type="radio" class="custom-size" name="Mir20" value="3" #3
-                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()" (click)="MethodTotalMir()"
-                                        kendoRadioButton />
+                                        formControlName="Mir20" [(ngModel)]="Mir20Calf" (click)="RespuestaMir20()"
+                                        (click)="MethodTotalMir()" kendoRadioButton />
                                       <kendo-label class="k-radio-label" [for]="3">3.- No</kendo-label>
                                     </li>
                                   </ul>

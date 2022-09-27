@@ -29,11 +29,11 @@ h1{
   }
   #sectiondefault {
     margin: 0 auto;
-    padding-top: 5px;
     height: 3200px;
-    width: 90%;
-    padding-right: 30px;
-    padding-top: 15px;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 10px;
 
     box-sizing: border-box;
   }
@@ -70,3 +70,14 @@ div#total{
   padding-right: 10px;
 
 }
+kendo-listbox {
+  height: 270px;
+  width: 240px;
+}
+
+kendo-listbox:nth-of-type(1) {
+  margin-right: 8px;
+}
+
+
+

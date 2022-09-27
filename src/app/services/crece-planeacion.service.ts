@@ -16,12 +16,7 @@ private myApiUrl = '/BackEndApi/api/Crece'
 
 
   getListCrece(): Observable<any> {
-    // let cabecera = new HttpHeaders({
-    //   "Content-Type": "application/json",
-    //   "Access-Control-Allow-Origin": "*",
-    //   "Access-Control-Allow-Credentials": "true"
-    //  });
-    // return this.http.get(this.myAppUrl + this.myApiUrl,{ headers: cabecera });
+
     return this.http.get(this.myAppUrl + this.myApiUrl+"/GetListCreces").pipe(tap((data) => {
       console.log(data)
     }));

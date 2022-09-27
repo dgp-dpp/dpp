@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectEvent, TabPosition } from '@progress/kendo-angular-layout';
 import { ToastrService } from 'ngx-toastr';
-import { map } from 'rxjs';
+import { empty, map, Observable } from 'rxjs';
 
 import { pp } from 'src/app/models/data.pp';
 import { CatPpService } from 'src/app/services/cat-pp.service';
@@ -11,6 +11,18 @@ import { LoginService } from 'src/app/services/login.service';
 import { CrecePlaneacionService } from 'src/app/services/crece-planeacion.service'
 
 import { BadgeAlign, BadgePosition, BadgeShape, BadgeThemeColor, BadgeSize } from "@progress/kendo-angular-indicators";
+import { ElementSchemaRegistry } from '@angular/compiler';
+import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
+import { GridDataResult } from '@progress/kendo-angular-grid';
+import { SortDescriptor } from '@progress/kendo-data-query';
+import { IntlService } from "@progress/kendo-angular-intl";
+export interface JsonModel {
+  value: string;
+}
+export interface Fecha {
+  value: Date;
+}
+
 
 
 @Component({
@@ -19,6 +31,62 @@ import { BadgeAlign, BadgePosition, BadgeShape, BadgeThemeColor, BadgeSize } fro
   styleUrls: ['./crece-formualario.component.css']
 })
 export class CreceFormualarioComponent implements OnInit {
+   filterPp = this.loginServices.getTokenDecoded().email;
+
+  public fecha: Fecha;
+  public model: JsonModel = JSON.parse('{"value": "2022-09-26" }');
+  public output: string = JSON.stringify(this.model);
+  id: number | undefined;
+
+  accion = 'Elaborando';
+  // public model: JsonModel = JSON.parse('{ "fecha": "2017-06-30" }');
+  // public output: string = JSON.stringify(this.model);
+  public checked1: boolean = false;
+  public checked2: boolean = false;
+  public checked3: boolean = false;
+  public checked4: boolean = false;
+  public checked5: boolean = false;
+  public checked6: boolean = false;
+  public checked7: boolean = false;
+  public checked8: boolean = false;
+  public checked9: boolean = false;
+  public checked10: boolean = false;
+  public checked11: boolean = false;
+  public checked12: boolean = false;
+  public checked13: boolean = false;
+  public checked14: boolean = false;
+  public checked15: boolean = false;
+  public checked16: boolean = false;
+  public checked17: boolean = false;
+  public checked18: boolean = false;
+  public checked19: boolean = false;
+  public checked20: boolean = false;
+  public checked21: boolean = false;
+  public checked22: boolean = false;
+
+
+
+  public Elements: string[] = [
+    "element1",
+    "element2",
+    "element3",
+    "element4",
+  ];
+  public elementos: boolean[] = [];
+  public elementosTrue: boolean[] = [];
+  public elementosFalse: boolean[] = [];
+  public countElementsSi: number;
+  public countElementsNo: number;
+
+  public animation = true;
+
+
+
+
+
+  public ElementSelected: string[] =
+    [];
+  public ElementsLen: number = this.ElementSelected.length;
   //   @ViewChild('myForm') form: FormGroup;
 
   // send() { this.form.ngSubmit.emit(); }
@@ -28,7 +96,198 @@ export class CreceFormualarioComponent implements OnInit {
   Nombre: string;
   Rol: string;
   public ProgramaPresupuestario: Array<{ value: number; text: string }> = [];
-  public fecha: Date = new Date(2000, 2, 10);
+  listCreces: any[] = [];
+  public creces:Array<{id:number;
+                      email:string;
+                      revision:string;
+                      pp:string;
+                      dependencia:string;
+                      fecha:any;
+                      ano:number;
+                      depPar:string;
+                      claveNombre:boolean;
+                      depResPp:boolean;
+                      depParPp:boolean;
+                      fechaADx:boolean;
+                      intro:boolean;
+                      analisisInvolucrados:boolean;
+                      defProblema:boolean;
+                      evoProblema:boolean;
+                      estActualProblema:boolean;
+                      expAtencion:boolean;
+                      defObjetivos:boolean;
+                      analisisCorrespon:boolean;
+                      selecAlterna:boolean;
+                      estructuraAnalitica:boolean;
+                      justObj:boolean;
+                      identificacionCuanPob:boolean;
+                      identificacionAreaInfluencia:boolean;
+                      relOtrosPP:boolean;
+                      elementosPEB:boolean;
+                      mir:boolean;
+                      evoPp:boolean;
+                      glosario:boolean;
+                      dp1:number;
+                      dp2:number;
+                      dp3:number;
+                      dp4:number;
+                      dp4Esp:string;
+                      calDp4form:string;
+                      ponDp4form:number;
+                      dp5:number;
+                      dp5Esp:string;
+                      calDp5form:string;
+                      ponDp5form:number;
+                      dp6:number;
+                      dp6Esp:string;
+                      calfDp6form:string;
+                      ponDp6form:number;
+                      dp7:number;
+                      dp7Esp:string;
+                      calfDp7form:string;
+                      ponDp7form:number;
+                      dp8:number;
+                      dp8Esp:string;
+                      calfDp8form:string;
+                      ponDp8form:number;
+                      dp9:number;
+                      dp9Esp:string;
+                      calfDp9form:string;
+                      ponDp9form:number;
+                      dp10:number;
+                      dp10Esp:string;
+                      calfDp10form:string;
+                      ponDp10form:number;
+                      dp11:number;
+                      dp11Esp:string;
+                      calfDp11form:string;
+                      ponDp11form:number;
+                      dp12:number;
+                      dp12Esp:string;
+                      calfDp12form:string;
+                      ponDp12form:number;
+                      dp13:number;
+                      dp13Esp:string;
+                      calfDp13form:string;
+                      ponDp13form:number;
+                      dp14:number;
+                      dp14Esp:string;
+                      calfDp14form:string;
+                      ponDp14form:number;
+                      dp15:number;
+                      dp15Esp:string;
+                      calfDp15form:string;
+                      ponDp15form:number;
+                      dp16:number;
+                      dp16Esp:string;
+                      calfDp16form:string;
+                      ponDp16form:number;
+                      dp17:number;
+                      dp17Esp:string;
+                      calfDp17form:string;
+                      ponDp17form:number;
+                      dp18:number;
+                      dp18Esp:string;
+                      calfDp18form:string;
+                      ponDp18form:number;
+                      dp19:number;
+                      dp19Esp:string;
+                      calfDp19form:string;
+                      ponDp19form:number;
+                      dp20:number;
+                      dp20Esp:string;
+                      calfDp20form:string;
+                      ponDp20form:number;
+                      mir1:number;
+                      mir1Esp:string;
+                      ponMir1form:number;
+                      mir2:number;
+                      mir2Esp:string;
+                      ponMir2form:number;
+                      mir3:number;
+                      mir3Esp:string;
+                      ponMir3form:number;
+                      mir4:number;
+                      mir4Esp:string;
+                      ponMir4form:number;
+                      mir5:number;
+                      mir5Esp:string;
+                      ponMir5form:number;
+                      mir6:number;
+                      mir6Esp:string;
+                      ponMir6form:number;
+                      mir7:number;
+                      mir7Esp:string;
+                      ponMir7form:number;
+                      mir8:number;
+                      mir8Esp:string;
+                      ponMir8form:number;
+                      mir9:number;
+                      mir9Esp:string;
+                      ponMir9form:number;
+                      mir10:number;
+                      mir10Esp:string;
+                      ponMir10form:number;
+                      mir11:number;
+                      mir11Esp:string;
+                      ponMir11form:number;
+                      mir12:number;
+                      mir12Esp:string;
+                      ponMir12form:number;
+                      mir13:number;
+                      mir13Esp:string;
+                      ponMir13form:number;
+                      mir14:number;
+                      mir14Esp:string;
+                      ponMir14form:number;
+                      mir15:number;
+                      mir15Esp:string;
+                      ponMir15form:number;
+                      mir16:number;
+                      mir16Esp:string;
+                      ponMir16form:number;
+                      mir17:number;
+                      mir17Esp:string;
+                      ponMir17form:number;
+                      mir18:number;
+                      mir18Esp:string;
+                      ponMir18form:number;
+                      mir19:number;
+                      mir19Esp:string;
+                      ponMir19form:number;
+                      mir20:number;
+                      mir20Esp:string;
+                      ponMir20form:number;
+                      mir21:number;
+                      mir21Esp:string;
+                      ponMir21form:number;
+                      mir22:number;
+                      mir22Esp:string;
+                      ponMir22form:number;
+                      mir23:number;
+                      mir23Esp:string;
+                      ponMir23form:number;
+                      mir24:number;
+                      mir24Esp:string;
+                      ponMir24form:number;
+                      mir25:number;
+                      mir25Esp:string;
+                      ponMir25form:number;
+                      mir26:number;
+                      mir26Esp:string;
+                      ponMir26form:number;
+                      fDp:string;
+                      fMir:string;
+                      aoDp:string;
+                      aoMir:string;
+                      calDp:number;
+                      calMir:number;
+                      CalTot:number;
+                      }> = [ ]
+  public value: Date;
+
+
+  public format = "yyyy-MM-dd";
   public position: TabPosition = "top";
   public dep: string;
   public pp: string;
@@ -37,67 +296,28 @@ export class CreceFormualarioComponent implements OnInit {
   public ColorFin: BadgeThemeColor = "secondary";
   public Size: BadgeSize = "medium";
   public badgeAlign: BadgeAlign = { vertical: "bottom", horizontal: "end" };
+  //-------------------------DECELARACION DE VARIABLES PARA LA UI KENDO GRID --------------------
+  public gridItems: Observable<GridDataResult>;
+  public pageSize: number = 10;
+  public skip: number = 0;
+  public sortDescriptor: SortDescriptor[] = [];
+  public filterTerm: number = null;
+  public gridView: any[];
+  public mySelection: string[] = [];
+
+
 
   // -------VARIABLES PARA CALCULO DE LA PRIMER PREGUNTA----------
-  public Contador1si: any;
-  public Contador2si: any;
-  public Contador3si: any;
-  public Contador4si: any;
-  public Contador5si: any;
-  public Contador6si: any;
-  public Contador7si: any;
-  public Contador8si: any;
-  public Contador9si: any;
-  public Contador10si: any;
-  public Contador11si: any;
-  public Contador12si: any;
-  public Contador13si: any;
-  public Contador14si: any;
-  public Contador15si: any;
-  public Contador16si: any;
-  public Contador17si: any;
-  public Contador18si: any;
-  public Contador19si: any;
-  public Contador20si: any;
-  public Contador21si: any;
-  public Contador22si: any;
-
-  public Contador1no: any;
-  public Contador2no: any;
-  public Contador3no: any;
-  public Contador4no: any;
-  public Contador5no: any;
-  public Contador6no: any;
-  public Contador7no: any;
-  public Contador8no: any;
-  public Contador9no: any;
-  public Contador10no: any;
-  public Contador11no: any;
-  public Contador12no: any;
-  public Contador13no: any;
-  public Contador14no: any;
-  public Contador15no: any;
-  public Contador16no: any;
-  public Contador17no: any;
-  public Contador18no: any;
-  public Contador19no: any;
-  public Contador20no: any;
-  public Contador21no: any;
-  public Contador22no: any;
-
-
-
-
-
-  public TotalSi: number;
-
+  public Dp1Calf: number = 0;
+  public year: number;
+  public depModelo: string;
   public contador: number = 0;
-
   public CalfDp1: number;
   public TotalDp: number;
   public TotalMir: number;
   public CalProm: number;
-
+  public PonDp2: number = 0;
+  public PonDp3: number = 0;
   public CalGlob: number;
   public Dp4Calf: any;
   public CalfDp4: string = "";
@@ -360,10 +580,417 @@ export class CreceFormualarioComponent implements OnInit {
         console.log(error);
       })
   }
+  //-------------------------------------------------------------------------------------------------------------
+  //-------------------------------------Metodo para Obetner  los CRECES---------------------------------
+  //-------------------------------------------------------------------------------------------------------------
+
+  // obtenerCreces2() {
+  //   this.CrecePlaneacionService.getListCrece().subscribe(_data => {
+  //    this.listCreces = _data.$values;
+  //     console.log(_data.$values);
+
+
+  //   }, error => {
+  //     console.log(error);
+  //   })
+  // }
+  obtenerCreces() {
+    this.CrecePlaneacionService.getListCrece().pipe(
+      map(response => response.$values)
+    ).
+    subscribe(_data => {
+      _data = _data.map(_cres=>{
+        const{id,
+          email,
+          revision,
+          pp,
+          dependencia,
+          fecha,
+          ano,
+          depPar,
+          claveNombre,
+          depResPp,
+          depParPp,
+          fechaADx,
+          intro,
+          analisisInvolucrados,
+          defProblema,
+          evoProblema,
+          estActualProblema,
+          expAtencion,
+          defObjetivos,
+          analisisCorrespon,
+          selecAlterna,
+          estructuraAnalitica,
+          justObj,
+          identificacionCuanPob,
+          idenficacionAreaInfluencia,
+          relOtrosPP,
+          elementosPEB,
+          mir,
+          evoPp,
+          glosario,
+          dp1,
+          dp2,
+          dp3,
+          dp4,
+          dp4Esp,
+          calfDp4form,
+          ponDp4form,
+          dp5,
+          dp5Esp,
+          calfDp5form,
+          ponDp5form,
+          dp6,
+          dp6Esp,
+          calfDp6form,
+          ponDp6form,
+          dp7,
+          dp7Esp,
+          calfDp7form,
+          ponDp7form,
+          dp8,
+          dp8Esp,
+          calfDp8form,
+          ponDp8form,
+          dp9,
+          dp9Esp,
+          calfDp9form,
+          ponDp9form,
+          dp10,
+          dp10Esp,
+          calfDp10form,
+          ponDp10form,
+          dp11,
+          dp11Esp,
+          calfDp11form,
+          ponDp11form,
+          dp12,
+          dp12Esp,
+          calfDp12form,
+          ponDp12form,
+          dp13,
+          dp13Esp,
+          calfDp13form,
+          ponDp13form,
+          dp14,
+          dp14Esp,
+          calfDp14form,
+          ponDp14form,
+          dp15,
+          dp15Esp,
+          calfDp15form,
+          ponDp15form,
+          dp16,
+          dp16Esp,
+          calfDp16form,
+          ponDp16form,
+          dp17,
+          dp17Esp,
+          calfDp17form,
+          ponDp17form,
+          dp18,
+          dp18Esp,
+          calfDp18form,
+          ponDp18form,
+          dp19,
+          dp19Esp,
+          calfDp19form,
+          ponDp19form,
+          dp20,
+          dp20Esp,
+          calfDp20form,
+          ponDp20form,
+          mir1,
+          mir1Esp,
+          ponMir1form,
+          mir2,
+          mir2Esp,
+          ponMir2form,
+          mir3,
+          mir3Esp,
+          ponMir3form,
+          mir4,
+          mir4Esp,
+          ponMir4form,
+          mir5,
+          mir5Esp,
+          ponMir5form,
+          mir6,
+          mir6Esp,
+          ponMir6form,
+          mir7,
+          mir7Esp,
+          ponMir7form,
+          mir8,
+          mir8Esp,
+          ponMir8form,
+          mir9,
+          mir9Esp,
+          ponMir9form,
+          mir10,
+          mir10Esp,
+          ponMir10form,
+          mir11,
+          mir11Esp,
+          ponMir11form,
+          mir12,
+          mir12Esp,
+          ponMir12form,
+          mir13,
+          mir13Esp,
+          ponMir13form,
+          mir14,
+          mir14Esp,
+          ponMir14form,
+          mir15,
+          mir15Esp,
+          ponMir15form,
+          mir16,
+          mir16Esp,
+          ponMir16form,
+          mir17,
+          mir17Esp,
+          ponMir17form,
+          mir18,
+          mir18Esp,
+          ponMir18form,
+          mir19,
+          mir19Esp,
+          ponMir19form,
+          mir20,
+          mir20Esp,
+          ponMir20form,
+          mir21,
+          mir21Esp,
+          ponMir21form,
+          mir22,
+          mir22Esp,
+          ponMir22form,
+          mir23,
+          mir23Esp,
+          ponMir23form,
+          mir24,
+          mir24Esp,
+          ponMir24form,
+          mir25,
+          mir25Esp,
+          ponMir25form,
+          mir26,
+          mir26Esp,
+          ponMir26form,
+          fDp,
+          fMir,
+          aoDp,
+          aoMir,
+          calDp,
+          calMir,
+          calTot,
+                 } =_cres;
+          return{
+            id:id,
+            email: email,
+            revision:revision,
+            pp:pp,
+            dependencia:dependencia,
+            fecha:fecha,
+            ano:ano,
+            depPar:depPar,
+            claveNombre:claveNombre,
+            depResPp:depResPp,
+            depParPp:depParPp,
+            fechaADx:fechaADx,
+            intro:intro,
+            analisisInvolucrados:analisisInvolucrados,
+            defProblema:defProblema,
+            evoProblema:evoProblema,
+            estActualProblema:estActualProblema,
+            expAtencion:expAtencion,
+            defObjetivos:defObjetivos,
+            analisisCorrespon:analisisCorrespon,
+            selecAlterna:selecAlterna,
+            estructuraAnalitica:estructuraAnalitica,
+            justObj:justObj,
+            identificacionCuanPob:identificacionCuanPob,
+            identificacionAreaInfluencia:idenficacionAreaInfluencia,
+            relOtrosPP:relOtrosPP,
+            elementosPEB:elementosPEB,
+            mir:mir,
+            evoPp:evoPp,
+            glosario:glosario,
+            dp1:dp1,
+            dp2:dp2,
+            dp3:dp3,
+            dp4:dp4,
+            dp4Esp:dp4Esp,
+            calDp4form:calfDp4form,
+            ponDp4form:ponDp4form,
+            dp5:dp5,
+            dp5Esp:dp5Esp,
+            calDp5form:calfDp5form,
+            ponDp5form:ponDp5form,
+            dp6:dp6,
+            dp6Esp:dp6Esp,
+            calDp6form:calfDp6form,
+            ponDp6form:ponDp6form,
+            dp7:dp7,
+            dp7Esp:dp7Esp,
+            calDp7form:calfDp7form,
+            ponDp7form:ponDp7form,
+            dp8:dp8,
+            dp8Esp:dp8Esp,
+            calDp8form:calfDp8form,
+            ponDp8form:ponDp8form,
+            dp9:dp9,
+            dp9Esp:dp9Esp,
+            calDp9form:calfDp9form,
+            ponDp9form:ponDp9form,
+            dp10:dp10,
+            dp10Esp:dp10Esp,
+            calDp10form:calfDp10form,
+            ponDp10form:ponDp10form,
+            dp11:dp11,
+            dp11Esp:dp11Esp,
+            calDp11form:calfDp11form,
+            ponDp11form:ponDp11form,
+            dp12:dp12,
+            dp12Esp:dp12Esp,
+            calDp12form:calfDp12form,
+            ponDp12form:ponDp12form,
+            dp13:dp13,
+            dp13Esp:dp13Esp,
+            calDp13form:calfDp13form,
+            ponDp13form:ponDp13form,
+            dp14:dp14,
+            dp14Esp:dp14Esp,
+            calDp14form:calfDp14form,
+            ponDp14form:ponDp14form,
+            dp15:dp15,
+            dp15Esp:dp15Esp,
+            calDp15form:calfDp15form,
+            ponDp15form:ponDp15form,
+            dp16:dp16,
+            dp16Esp:dp16Esp,
+            calDp16form:calfDp16form,
+            ponDp16form:ponDp16form,
+            dp17:dp17,
+            dp17Esp:dp17Esp,
+            calDp17form:calfDp17form,
+            ponDp17form:ponDp17form,
+            dp18:dp18,
+            dp18Esp:dp18Esp,
+            calDp18form:calfDp18form,
+            ponDp18form:ponDp18form,
+            dp19:dp19,
+            dp19Esp:dp19Esp,
+            calDp19form:calfDp19form,
+            ponDp19form:ponDp19form,
+            dp20:dp20,
+            dp20Esp:dp20Esp,
+            calDp20form:calfDp20form,
+            ponDp20form:ponDp20form,
+            mir1:mir1,
+            mir1Esp:mir1Esp,
+            ponMir1form:ponMir1form,
+            mir2:mir2,
+            mir2Esp:mir2Esp,
+            ponMir2form:ponMir2form,
+            mir3:mir3,
+            mir3Esp:mir3Esp,
+            ponMir3form:ponMir3form,
+            mir4:mir4,
+            mir4Esp:mir4Esp,
+            ponMir4form:ponMir4form,
+            mir5:mir5,
+            mir5Esp:mir5Esp,
+            ponMir5form:ponMir5form,
+            mir6:mir6,
+            mir6Esp:mir6Esp,
+            ponMir6form:ponMir6form,
+            mir7:mir7,
+            mir7Esp:mir7Esp,
+            ponMir7form:ponMir7form,
+            mir8:mir8,
+            mir8Esp:mir8Esp,
+            ponMir8form:ponMir8form,
+            mir9:mir9,
+            mir9Esp:mir9Esp,
+            ponMir9form:ponMir9form,
+            mir10:mir10,
+            mir10Esp:mir10Esp,
+            ponMir10form:ponMir10form,
+            mir11:mir11,
+            mir11Esp:mir11Esp,
+            ponMir11form:ponMir11form,
+            mir12:mir12,
+            mir12Esp:mir12Esp,
+            ponMir12form:ponMir11form,
+            mir13:mir13,
+            mir13Esp:mir13Esp,
+            ponMir13form:ponMir13form,
+            mir14:mir14,
+            mir14Esp:mir14Esp,
+            ponMir14form:ponMir14form,
+            mir15:mir15,
+            mir15Esp:mir15Esp,
+            ponMir15form:ponMir15form,
+            mir16:mir16,
+            mir16Esp:mir16Esp,
+            ponMir16form:ponMir16form,
+            mir17:mir17,
+            mir17Esp:mir17Esp,
+            ponMir17form:ponMir17form,
+            mir18:mir18,
+            mir18Esp:mir18Esp,
+            ponMir18form:ponMir18form,
+            mir19:mir19,
+            mir19Esp:mir19Esp,
+            ponMir19form:ponMir19form,
+            mir20:mir20,
+            mir20Esp:mir20Esp,
+            ponMir20form:ponMir20form,
+            mir21:mir21,
+            mir21Esp:mir21Esp,
+            ponMir21form:ponMir21form,
+            mir22:mir22,
+            mir22Esp:mir22Esp,
+            ponMir22form:ponMir22form,
+            mir23:mir23,
+            mir23Esp:mir23Esp,
+            ponMir23form:ponMir23form,
+            mir24:mir24,
+            mir24Esp:mir24Esp,
+            ponMir24form:ponMir24form,
+            mir25:mir25,
+            mir25Esp:mir25Esp,
+            ponMir25form:ponMir25form,
+            mir26:mir26,
+            mir26Esp:mir26Esp,
+            ponMir26form:ponMir26form,
+            fDp:fDp,
+            fMir:fMir,
+            aoDp:aoDp,
+            aoMir:aoMir,
+            calDp:calDp,
+            calMir:calMir,
+            calTot:calTot,
+
+          }
+      });
+     this.creces = _data;
+      console.log(_data);
+      console.log(this.creces);
+
+
+    }, error => {
+      console.log(error);
+    })
+  }
+
 
 
   //-------------------------------------------------------------------------------------------------------------
-  //-------------------------------------Metodo para registrar las Inscripciones---------------------------------
+  //-------------------------------------Metodo para registrar los CRECES---------------------------------
   //-------------------------------------------------------------------------------------------------------------
   GuardarCrece() {
     const crece: any = {
@@ -401,6 +1028,8 @@ export class CreceFormualarioComponent implements OnInit {
 
       //Evaluacion Dp
       Dp1: this.form.get('Dp1')?.value,
+      Dp2: this.form.get('Dp2')?.value,
+      Dp3: this.form.get('Dp3')?.value,
       Dp4: this.form.get('Dp4')?.value,// calificacion en los intervalos [0,3,9]
       Dp4Esp: this.form.get('Dp4Esp')?.value, // Respuesta Especifica de la pregunta
       CalfDp4form: this.form.get('CalfDp4form')?.value, //Respuesta Generica
@@ -469,76 +1098,342 @@ export class CreceFormualarioComponent implements OnInit {
       Dp20Esp: this.form.get('Dp20Esp')?.value,
       CalfDp20form: this.form.get('CalfDp20form')?.value,
       ponDp20form: this.form.get('ponDp20form')?.value,
-      //MIr
+      //MIR
       Mir1: this.form.get('Mir1')?.value,
       Mir1Esp: this.form.get('Mir1Esp')?.value,
+      ponMir1form: this.form.get('ponMir1form')?.value,
       Mir2: this.form.get('Mir2')?.value,
       Mir2Esp: this.form.get('Mir2Esp')?.value,
+      ponMir2form: this.form.get('ponMir2form')?.value,
       Mir3: this.form.get('Mir3')?.value,
       Mir3Esp: this.form.get('Mir3Esp')?.value,
+      ponMir3form: this.form.get('ponMir3form')?.value,
       Mir4: this.form.get('Mir4')?.value,
       Mir4Esp: this.form.get('Mir4Esp')?.value,
+      ponMir4form: this.form.get('ponMir4form')?.value,
       Mir5: this.form.get('Mir5')?.value,
       Mir5Esp: this.form.get('Mir5Esp')?.value,
+      ponMir5form: this.form.get('ponMir5form')?.value,
       Mir6: this.form.get('Mir6')?.value,
       Mir6Esp: this.form.get('Mir6Esp')?.value,
+      ponMir6form: this.form.get('ponMir6form')?.value,
       Mir7: this.form.get('Mir7')?.value,
       Mir7Esp: this.form.get('Mir7Esp')?.value,
+      ponMir7form: this.form.get('ponMir7form')?.value,
       Mir8: this.form.get('Mir8')?.value,
       Mir8Esp: this.form.get('Mir8Esp')?.value,
+      ponMir8form: this.form.get('ponMir8form')?.value,
       Mir9: this.form.get('Mir9')?.value,
       Mir9Esp: this.form.get('Mir9Esp')?.value,
+      ponMir9form: this.form.get('ponMir9form')?.value,
       Mir10: this.form.get('Mir10')?.value,
       Mir10Esp: this.form.get('Mir10Esp')?.value,
+      ponMir10form: this.form.get('ponMir10form')?.value,
       Mir11: this.form.get('Mir11')?.value,
       Mir11Esp: this.form.get('Mir11Esp')?.value,
+      ponMir11form: this.form.get('ponMir11form')?.value,
       Mir12: this.form.get('Mir12')?.value,
       Mir12Esp: this.form.get('Mir12Esp')?.value,
+      ponMir12form: this.form.get('ponMir12form')?.value,
       Mir13: this.form.get('Mir13')?.value,
       Mir13Esp: this.form.get('Mir13Esp')?.value,
+      ponMir13form: this.form.get('ponMir13form')?.value,
       Mir14: this.form.get('Mir14')?.value,
       Mir14Esp: this.form.get('Mir14Esp')?.value,
+      ponMir14form: this.form.get('ponMir14form')?.value,
       Mir15: this.form.get('Mir15')?.value,
       Mir15Esp: this.form.get('Mir15Esp')?.value,
+      ponMir15form: this.form.get('ponMir15form')?.value,
       Mir16: this.form.get('Mir16')?.value,
       Mir16Esp: this.form.get('Mir16Esp')?.value,
+      ponMir16form: this.form.get('ponMir16form')?.value,
       Mir17: this.form.get('Mir17')?.value,
       Mir17Esp: this.form.get('Mir17Esp')?.value,
+      ponMir17form: this.form.get('ponMir17form')?.value,
       Mir18: this.form.get('Mir18')?.value,
       Mir18Esp: this.form.get('Mir18Esp')?.value,
+      ponMir18form: this.form.get('ponMir18form')?.value,
       Mir19: this.form.get('Mir19')?.value,
       Mir19Esp: this.form.get('Mir19Esp')?.value,
+      ponMir19form: this.form.get('ponMir19form')?.value,
       Mir20: this.form.get('Mir20')?.value,
       Mir20Esp: this.form.get('Mir20Esp')?.value,
+      ponMir20form: this.form.get('ponMir20form')?.value,
       Mir21: this.form.get('Mir21')?.value,
       Mir21Esp: this.form.get('Mir21Esp')?.value,
+      ponMir21form: this.form.get('ponMir21form')?.value,
       Mir22: this.form.get('Mir22')?.value,
       Mir22Esp: this.form.get('Mir22Esp')?.value,
+      ponMir22form: this.form.get('ponMir22form')?.value,
       Mir23: this.form.get('Mir23')?.value,
       Mir23Esp: this.form.get('Mir23Esp')?.value,
+      ponMir23form: this.form.get('ponMir23form')?.value,
       Mir24: this.form.get('Mir24')?.value,
       Mir24Esp: this.form.get('Mir24Esp')?.value,
+      ponMir24form: this.form.get('ponMir24form')?.value,
       Mir25: this.form.get('Mir25')?.value,
       Mir25Esp: this.form.get('Mir25Esp')?.value,
+      ponMir25form: this.form.get('ponMir25form')?.value,
       Mir26: this.form.get('Mir26')?.value,
       Mir26Esp: this.form.get('Mir26Esp')?.value,
+      ponMir26form: this.form.get('ponMir26form')?.value,
       //Fortalezas
       FMir: this.form.get('FMir')?.value,
       FDp: this.form.get('FDp')?.value,
       //Areas de Oportunidad
       AoMir: this.form.get('AoMir')?.value,
       AoDp: this.form.get('AoDp')?.value,
+      //Totales
+      CalDp: this.TotalDp,
+      CalMir: this.TotalMir,
+      CalTot: this.CalProm,
 
 
     }
-    this.CrecePlaneacionService.saveCrece(crece).subscribe(_data => {
-      this.toastr.success('El Crece del PP ' + crece.Pp + ' fue registrado con exito!', 'Crece Registrado');
-      this.form.reset();
+    if (this.id == undefined) {
+// Agregamos una nuevo crece
+      this.CrecePlaneacionService.saveCrece(crece).subscribe(_data => {
+        this.toastr.success('El Crece del PP ' + crece.Pp + ' fue registrado con exito!', 'Crece Registrado');
+        this.obtenerCreces();
+        console.log(this.form.value);
+        if (this.form.valid) {
+          this.form.value;
+
+          console.log("Form Submitted!");
+          this.form.reset();
+        }
+
+      }, error => {
+        this.toastr.error('Opss.. ocurrio un error', 'Error')
+        console.log(error);
+        console.log(this.form.value);
+      })
+    }
+    else{
+      crece.id = this.id
+// Editamos usuario
+      this.CrecePlaneacionService.updateCrece(this.id,crece).subscribe(_data => {
+        this.form.reset();
+        this.accion = 'Elaborando';
+        this.id = undefined;
+        this.toastr.info('El usuario fue actualizada con exito!', 'Crece  Actualizado');
+        this.obtenerCreces();
+      }, error => {
+        console.log(error);
+      })
+
+    }
+  }
+//-----------------------------------------------------------------------------------------
+  //-------------------------ELIMINAR CRECE-------------------------------------------------
+  //-----------------------------------------------------------------------------------------
+
+  eliminarCrece(id: number) {
+    this.CrecePlaneacionService.deleteCrece(id).subscribe(_data => {
+      this.toastr.error('El crece fue eliminado con exito!','Usuario eliminado');
+      this.obtenerCreces();
     }, error => {
-      this.toastr.error('Opss.. ocurrio un error', 'Error')
       console.log(error);
     })
+
   }
+//-----------------------------------------------------------------------------------------
+  //--------------------------EDITAR UN CRECE ---------------------------------------------
+  //-----------------------------------------------------------------------------------------
+  editarCrece(crece: any) {
+    this.accion = 'Actualizando';
+    this.id = crece.id;
+
+    this.form.patchValue({
+      Email: crece.email,
+      Revision: crece.revision,
+      Pp: crece.pp,
+      Dependencia: crece.dependencia,
+      Fecha: crece.fecha,
+      Ano: crece.ano,
+      DepPar: crece.depPar,
+      // Elementos
+      ClaveNombre: crece.clavenombre,
+      DepResPp: crece.depResPp,
+      DepParPp: crece.depParPp,
+      FechaADx: crece.fechaADx,
+      Intro: crece.intro,
+      AnalisisInvolucrados: crece.analisisInvolucrados,
+      DefProblema: crece.defProblema,
+      // AnalisisProblema:['',Validators.required],
+      EvoProblema: crece.evoProblema,
+      EstActualProblema: crece.estActualProblema,
+      ExpAtencion: crece.expAtencion,
+      DefObjetivos: crece.defObjetivos,
+      AnalisisCorrespon: crece.analisisCorrespon,
+      SelecAlterna: crece.selecAlterna,
+      EstructuraAnalitica: crece.estructuraAnalitica,
+      JustObj: crece.justObj,
+      IdentificacionCuanPob: crece.identificacionCuanPob,
+      IdenficacionAreaInfluencia: crece.idenficacionAreaInfluencia,
+      RelOtrosPP: crece.relOtrosPP,
+      ElementosPEB: crece.elementosPEB,
+      MIR: crece.mir,
+      EvoPp: crece.evoPp,
+      Glosario: crece.glosario,
+      Dp1: crece.dp1,
+      Dp2: crece.dp2,
+      Dp3: crece.dp3,
+      Dp4: crece.dp4,
+      Dp4Esp: crece.dp4Esp,
+      CalfDp4form: crece.calfDp4form,
+      ponDp4form: crece.ponDp4form,
+      Dp5: crece.dp5,
+      Dp5Esp: crece.dp5Esp,
+      CalfDp5form: crece.calfDp5form,
+      ponDp5form: crece.ponDp5form,
+      Dp6: crece.dp6,
+      Dp6Esp: crece.dp6Esp,
+      CalfDp6form: crece.calfDp6form,
+      ponDp6form: crece.ponDp6form,
+      Dp7: crece.dp7,
+      Dp7Esp: crece.dp7Esp,
+      CalfDp7form: crece.calfDp7form,
+      ponDp7form: crece.ponDp7form,
+      Dp8: crece.dp8,
+      Dp8Esp: crece.dp8Esp,
+      CalfDp8form: crece.calfDp8form,
+      ponDp8form: crece.ponDp8form,
+      Dp9: crece.dp9,
+      Dp9Esp: crece.dp9Esp,
+      CalfDp9form: crece.calfDp9form,
+      ponDp9form: crece.ponDp9form,
+      Dp10: crece.dp10,
+      Dp10Esp: crece.dp10Esp,
+      CalfDp10form: crece.calfDp10form,
+      ponDp10form: crece.ponDp10form,
+      Dp11: crece.dp11,
+      Dp11Esp: crece.dp11Esp,
+      CalfDp11form: crece.calfDp11form,
+      ponDp11form: crece.ponDp11form,
+      Dp12: crece.dp12,
+      Dp12Esp: crece.dp12Esp,
+      CalfDp12form: crece.calfDp12form,
+      ponDp12form: crece.ponDp12form,
+      Dp13: crece.dp13,
+      Dp13Esp: crece.dp13Esp,
+      CalfDp13form: crece.calfDp13form,
+      ponDp13form: crece.ponDp13form,
+      Dp14: crece.dp14,
+      Dp14Esp: crece.dp14Esp,
+      CalfDp14form: crece.calfDp14form,
+      ponDp14form: crece.ponDp14form,
+      Dp15: crece.dp15,
+      Dp15Esp: crece.dp15Esp,
+      CalfDp15form: crece.calfDp15form,
+      ponDp15form: crece.ponDp15form,
+      Dp16: crece.dp16,
+      Dp16Esp: crece.dp16Esp,
+      CalfDp16form: crece.calfDp16form,
+      ponDp16form: crece.ponDp16form,
+      Dp17: crece.dp17,
+      Dp17Esp: crece.dp17Esp,
+      CalfDp17form: crece.calfDp17form,
+      ponDp17form: crece.ponDp17form,
+      Dp18: crece.dp18,
+      Dp18Esp: crece.dp18Esp,
+      CalfDp18form: crece.calfDp18form,
+      ponDp18form: crece.ponDp18form,
+      Dp19: crece.dp19,
+      Dp19Esp: crece.dp19Esp,
+      CalfDp19form: crece.calfDp19form,
+      ponDp19form: crece.ponDp19form,
+      Dp20: crece.dp20,
+      Dp20Esp: crece.dp20Esp,
+      CalfDp20form: crece.calfDp20form,
+      ponDp20form: crece.ponDp20form,
+      Mir1: crece.mir1,
+      Mir1Esp: crece.mir1Esp,
+      ponMir1form: crece.ponMir1form,
+      Mir2: crece.mir2,
+      Mir2Esp: crece.mir2Esp ,
+      ponMir2form: crece.ponMir2form,
+      Mir3:crece.mir3 ,
+      Mir3Esp: crece.mir3Esp ,
+      ponMir3form: crece.ponMir3form,
+      Mir4:crece.mir4 ,
+      Mir4Esp: crece.mir4Esp ,
+      ponMir4form: crece.ponMir4form,
+      Mir5:crece.mir5 ,
+      Mir5Esp: crece.mir5Esp ,
+      ponMir5form: crece.ponMir5form,
+      Mir6:crece.mir6,
+      Mir6Esp: crece.mir6Esp,
+      ponMir6form: crece.ponMir6form,
+      Mir7:crece.mir7,
+      Mir7Esp: crece.mir7Esp,
+      ponMir7form: crece.ponMir7form,
+      Mir8:crece.mir8,
+      Mir8Esp: crece.mir8Esp ,
+      ponMir8form: crece.ponMir8form,
+      Mir9:crece.mir9 ,
+      Mir9Esp: crece.mir9Esp ,
+      ponMir9form: crece.ponMir9form,
+      Mir10:crece.mir10,
+      Mir10Esp: crece.mir10Esp,
+      ponMir10form: crece.ponMir10form,
+      Mir11:crece.mir11,
+      Mir11Esp: crece.mir11Esp ,
+      ponMir11form: crece.ponMir11form,
+      Mir12:crece.mir12,
+      Mir12Esp: crece.mir12Esp ,
+      ponMir12form: crece.ponMir12form,
+      Mir13:crece.mir13 ,
+      Mir13Esp: crece.mir13Esp ,
+      ponMir13form: crece.ponMir13form,
+      Mir14:crece.mir14,
+      Mir14Esp: crece.mir14Esp ,
+      ponMir14form: crece.ponMir14form,
+      Mir15:crece.mir15 ,
+      Mir15Esp: crece.mir15Esp ,
+      ponMir15form: crece.ponMir15form,
+      Mir16:crece.mir16 ,
+      Mir16Esp: crece.mir16Esp ,
+      ponMir16form: crece.ponMir16form,
+      Mir17:crece.mir17,
+      Mir17Esp: crece.mir17Esp ,
+      ponMir17form: crece.ponMir17form,
+      Mir18:crece.mir18,
+      Mir18Esp: crece.mir18Esp ,
+      ponMir18form: crece.ponMir18form,
+      Mir19:crece.mir19 ,
+      Mir19Esp: crece.mir19Esp ,
+      ponMir19form: crece.ponMir19form,
+      Mir20:crece.mir20 ,
+      Mir20Esp: crece.mir20Esp ,
+      ponMir20form: crece.ponMir20form,
+      Mir21:crece.mir3,
+      Mir21Esp: crece.mir3Esp ,
+      ponMir21form: crece.ponMir21form,
+      Mir22:crece.mir22,
+      Mir22Esp: crece.mir22Esp ,
+      ponMir22form: crece.ponMir22form,
+      Mir23:crece.mir23 ,
+      Mir23Esp: crece.mir23Esp ,
+      ponMir23form: crece.ponMir23form,
+      Mir24:crece.mir24 ,
+      Mir24Esp: crece.mir24Esp ,
+      ponMir24form: crece.ponMir24form,
+      Mir25:crece.mir25 ,
+      Mir25Esp: crece.mir25Esp,
+      ponMir25form: crece.ponMir25form,
+      Mir26:crece.mir26 ,
+      Mir26Esp: crece.mir26Esp ,
+      ponMir26form: crece.ponMir26form,
+      FMir: crece.fMir,
+      FDp: crece.fDp,
+      AoMir: crece.aoMir,
+      AoDp: crece.aoDp,
+
+    })
+  }
+
+
   //-----------------------------------------------------------------------------------------
   //--------------------------CONSTRUCTOR DONDE SE ESTABLECE EL FORM-------------------------
   //-----------------------------------------------------------------------------------------
@@ -548,7 +1443,9 @@ export class CreceFormualarioComponent implements OnInit {
     private _depService: DependenciasService,
     private CrecePlaneacionService: CrecePlaneacionService,
     private _catPpService: CatPpService,
-    private loginServices: LoginService) {
+    private loginServices: LoginService,
+    private intl: IntlService,
+    ) {
     this.form = this.fb.group({
       Email: [this.loginServices.getTokenDecoded().email, Validators.required],
       Revision: ['Entrega 2023', Validators.required],
@@ -557,6 +1454,7 @@ export class CreceFormualarioComponent implements OnInit {
       Fecha: ['', Validators.required],
       Ano: ['', Validators.required],
       DepPar: ['', Validators.required],
+      // Elementos
       ClaveNombre: ['', Validators.required],
       DepResPp: ['', Validators.required],
       DepParPp: ['', Validators.required],
@@ -581,6 +1479,8 @@ export class CreceFormualarioComponent implements OnInit {
       EvoPp: ['', Validators.required],
       Glosario: ['', Validators.required],
       Dp1: ['', Validators.required],
+      Dp2: ['', Validators.required],
+      Dp3: ['', Validators.required],
       Dp4: ['', Validators.required],
       Dp4Esp: ['', Validators.required],
       CalfDp4form: ['', Validators.required],
@@ -738,19 +1638,28 @@ export class CreceFormualarioComponent implements OnInit {
     console.log(pp);
 
 
+
   }
 
   ngOnInit(): void {
+
     this.obtenerDependencias();
     this.getUsuario();
     this.obtenerPp();
     this.MethodTotalDp();
     this.MethodTotalMir();
     this.MethodTotalCal();
+    this.CalculoDp();
+    this.RespuestaDp2();
+    this.RespuestaDp3();
+    this.RespuestaDp4();
+    this.RespuestaDp4();
+    this.creces;
+    this.fecha = this.parse(this.model);
+
     // this.respuestaGenericaDp4();
     // this.ponderacionDp4();
     //this.Elemento2Calculo();
-
   }
   //------------------------------------------------------------------------
   //------------------METODOS PARA LIMPIAR LOS CAMPOS-----------------------
@@ -898,20 +1807,6 @@ export class CreceFormualarioComponent implements OnInit {
   public clearValue50(): void {
     this.textAreaValueAODP = "";
   }
-
-  // public Elemento1Calculo(): void {
-  //   while(this.contador < 10)
-  //   {
-  //     this.contador += 1;
-  //     if(this.contador== 5)
-  //     {
-  //       break;
-  //     }
-  //     console.log(this.contador + " ");
-  //   }
-  //   console.log("\n");
-  // }
-
   //------------------------------KENDO UI GAUGE -----------------------------------------
   public colors = [
     {
@@ -933,65 +1828,121 @@ export class CreceFormualarioComponent implements OnInit {
       color: "#02FA27",
     },
   ];
-
-
   //---------------------------------------------------------------------------------------
   //-------------------------CALCULO DE LA PRIMER PREGUNTA---------------------------------
   //---------------------------------------------------------------------------------------
-  public Elemento2Calculo(): void {
-    this.Contador1si = this.form.get('ClaveNombre')?.value
-    this.Contador2si = this.form.get('DepResPp')?.value
-    this.Contador3si = this.form.get('DepParPp')?.value
-    this.Contador1no = this.form.get('ClaveNombre')?.value
-    this.Contador2no = this.form.get('DepResPp')?.value
-    this.Contador3no = this.form.get('DepParPp')?.value
-
-
-    if (this.Contador1no === "0" && this.Contador2no === "0") {
-      this.TotalSi = 0;
-    } else if (this.Contador1si === "1" && this.Contador2no === "0") {
-      this.TotalSi = 1;
+  public CalculoDp(): void {
+    this.elementos = [
+      this.checked1,
+      this.checked2,
+      this.checked3,
+      this.checked4,
+      this.checked5,
+      this.checked6,
+      this.checked7,
+      this.checked8,
+      this.checked9,
+      this.checked10,
+      this.checked11,
+      this.checked12,
+      this.checked13,
+      this.checked14,
+      this.checked15,
+      this.checked16,
+      this.checked17,
+      this.checked18,
+      this.checked19,
+      this.checked20,
+      this.checked21,
+      this.checked22
+    ];
+    this.elementosTrue = this.elementos.filter(element => element == true)
+    this.elementosFalse = this.elementos.filter(element => element == false)
+    //var length = this.elementos.length;
+    // for (var i = 0; i < this.elementos.length; i++) {
+    //   this.elementos[i];
+    // }
+    this.countElementsSi = this.elementosTrue.length;
+    if (this.countElementsSi == 0) {
+      this.Dp1Calf = 0
     }
-    else if (this.Contador1no === "0" && this.Contador2si === "1") {
-      this.TotalSi = 1;
-    } else if (this.Contador1si === "1" && this.Contador2si === "1") {
-      this.TotalSi = 2;
+    else if (this.countElementsSi == 1) {
+      this.Dp1Calf = 0
     }
-    //Tres Preguntas
-    else if (this.Contador1no === "0" && this.Contador2no === "0" && this.Contador3no === "0") {
-      this.TotalSi = 0;
+    else if (this.countElementsSi == 2) {
+      this.Dp1Calf = 0
     }
-    else if (this.Contador1si === "1" && this.Contador2no === "0" && this.Contador3no === "0") {
-      this.TotalSi = 1;
+    else if (this.countElementsSi == 3) {
+      this.Dp1Calf = 0
     }
-    else if (this.Contador1si === "1" && this.Contador2si === "1" && this.Contador3no === "0") {
-      this.TotalSi = 2;
+    else if (this.countElementsSi == 4) {
+      this.Dp1Calf = 0
     }
-    else if (this.Contador1si === "1" && this.Contador2no === "0" && this.Contador3si === "1") {
-      this.TotalSi = 2;
+    else if (this.countElementsSi == 5) {
+      this.Dp1Calf = 0
     }
-    else if (this.Contador1no === "0" && this.Contador2si === "1" && this.Contador3si === "1") {
-      this.TotalSi = 2;
+    else if (this.countElementsSi == 6) {
+      this.Dp1Calf = 0
     }
-    else if (this.Contador1no === "0" && this.Contador2no === "0" && this.Contador3si === "1") {
-      this.TotalSi = 1;
+    else if (this.countElementsSi == 7) {
+      this.Dp1Calf = 0
     }
-    else if (this.Contador1no === "0" && this.Contador2si === "1" && this.Contador3no === "0") {
-      this.TotalSi = 1;
+    else if (this.countElementsSi == 8) {
+      this.Dp1Calf = 0
     }
-    else if (this.Contador1si === "1" && this.Contador2si === "1"  && this.Contador3si === "1") {
-      this.TotalSi = 3;
+    else if (this.countElementsSi == 9) {
+      this.Dp1Calf = 0
     }
-
-
-
-
-
-    console.log(this.form.value);
+    else if (this.countElementsSi == 10) {
+      this.Dp1Calf = 0
+    }
+    else if (this.countElementsSi == 11) {
+      this.Dp1Calf = 0
+    }
+    else if (this.countElementsSi == 12) {
+      this.Dp1Calf = 0
+    }
+    else if (this.countElementsSi == 13) {
+      this.Dp1Calf = 2
+    }
+    else if (this.countElementsSi == 14) {
+      this.Dp1Calf = 2
+    }
+    else if (this.countElementsSi == 15) {
+      this.Dp1Calf = 2
+    }
+    else if (this.countElementsSi == 16) {
+      this.Dp1Calf = 2
+    }
+    else if (this.countElementsSi == 17) {
+      this.Dp1Calf = 2
+    }
+    else if (this.countElementsSi == 18) {
+      this.Dp1Calf = 2
+    }
+    else if (this.countElementsSi == 19) {
+      this.Dp1Calf = 2
+    }
+    else if (this.countElementsSi == 20) {
+      this.Dp1Calf = 2
+    }
+    else if (this.countElementsSi == 21) {
+      this.Dp1Calf = 2
+    }
+    else if (this.countElementsSi == 22) {
+      this.Dp1Calf = 4
+    }
+    else if (this.countElementsSi == undefined) {
+      this.Dp1Calf = null;
+    }
+    console.log(this.elementos);
+    console.log(this.elementosTrue);
+    console.log(this.checked1);
+    console.log(this.checked2);
+    console.log(this.checked3);
+    console.log(this.countElementsSi);
   }
-  public TotDp1(): void {
 
-  }
   //
   //--------------------------------------------------------------------------------------------------------------------------------------
   //METODOS PARA DETERMINAR LA SUMA DE LAS PONDERACIONES
@@ -1007,7 +1958,7 @@ export class CreceFormualarioComponent implements OnInit {
     background: ""
   };
   public MethodTotalDp(): any {
-    this.TotalDp = this.PonDp4 + this.PonDp5 + this.PonDp6 + this.PonDp7 + this.PonDp8 + this.PonDp9 + this.PonDp10 + this.PonDp11 + this.PonDp12 + this.PonDp13 + this.PonDp14 + this.PonDp15 + this.PonDp16 + this.PonDp17 + this.PonDp18 + this.PonDp19 + this.PonDp20;
+    this.TotalDp = this.Dp1Calf + this.PonDp2 + this.PonDp3 + this.PonDp4 + this.PonDp5 + this.PonDp6 + this.PonDp7 + this.PonDp8 + this.PonDp9 + this.PonDp10 + this.PonDp11 + this.PonDp12 + this.PonDp13 + this.PonDp14 + this.PonDp15 + this.PonDp16 + this.PonDp17 + this.PonDp18 + this.PonDp19 + this.PonDp20;
     this.CalGlob = this.TotalDp + this.TotalMir;
     this.CalProm = this.CalGlob / 2;
     switch (this.TotalDp) {
@@ -1160,6 +2111,36 @@ export class CreceFormualarioComponent implements OnInit {
   //     this.PonDp4 = 0;
   //   }
   // }
+  //******************************PREGUNTA 1******************************************
+  public RespuestaDp2(): void {
+    if (this.year == 2021 || this.year == 2022) {
+      this.PonDp2 = 4;
+    }
+    else if (this.year == 2019) {
+      this.PonDp2 = 2;
+    }
+    else if (this.year == undefined) {
+      this.PonDp2 = null;
+    }
+    // else{
+    //   this.PonDp2 = 0;
+    // }
+  }
+  public RespuestaDp3(): void {
+    if (this.depModelo == "Si") {
+      this.PonDp3 = 2;
+    }
+    else if (this.depModelo == "Parcialmente") {
+      this.PonDp3 = 1;
+    }
+    else if (this.depModelo == "No") {
+      this.PonDp3 = 0;
+    }
+    else if (this.depModelo == undefined) {
+      this.PonDp3 = null;
+    }
+
+  }
   //******************************PREGUNTA 4******************************************
   public RespuestaDp4(): void {
     if (this.Dp4Calf == 9) {
@@ -1180,7 +2161,6 @@ export class CreceFormualarioComponent implements OnInit {
         + "\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
       this.PonDp4 = 0;
     }
-
   }
   //******************************PREGUNTA 5******************************************
   public RespuestaDp5(): void {
@@ -2070,4 +3050,43 @@ export class CreceFormualarioComponent implements OnInit {
     "Parcialmente",
     "No"
   ];
+   // A simple method for the string-to-date conversion
+   private parse(json) {
+    Object.keys(json).map((key) => {
+      const date = new Date(json[key]);
+      if (!isNaN(date.getTime())) {
+        json[key] = date;
+      }
+    });
+
+    return json;
+  }
+  private parseExact(json) {
+    Object.keys(json).map(key => {
+      const date = this.intl.parseDate(json[key], 'yyyy-MM-dd');
+      if (date) { json[key] = date; }
+    });
+
+    return json;
+}
+// public parseObjectDates(target: any): any {
+//   const result = Object.assign({}, target);
+
+//   Object.keys(result).forEach((key) => {
+//     const date = new Date(result[key]);
+//     if (!isNaN(date.getTime())) {
+//       result[key] = date;
+//     }
+//   });
+
+//   return result;
+// }
+
+  public handleChange(value: Date) {
+    // Update the JSON birthDate string date
+    this.model.value = this.intl.formatDate(value, "yyyy-MM-dd");
+
+    this.output = JSON.stringify(this.model);
+    this.fecha = this.parseExact(this.model);
+  }
 }

@@ -1,5 +1,6 @@
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from "@angular/common";
 
 //Modulos
 import { AppComponent } from './app.component';
@@ -79,6 +80,7 @@ import { PruebaFirebaseComponent } from './Views/Administracion/prueba-firebase/
 import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
 import { IndicatorsModule } from "@progress/kendo-angular-indicators";
 import { GaugesModule } from "@progress/kendo-angular-gauges";
+import { ListBoxModule } from "@progress/kendo-angular-listbox";
 //firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
@@ -93,6 +95,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { PaisesComponent } from './Views/Administracion/Mapas/paises/paises.component';
 import { APGComponent } from './Views/Administracion/ConsumirApis/apg/apg.component';
 import { MapaComponent } from './Views/Administracion/BienesServicios/mapa/mapa.component';
+import { FiltersPipe } from './pipes/filters.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -155,11 +158,13 @@ export function tokenGetter() {
     PaisesComponent,
     APGComponent,
     MapaComponent,
+    FiltersPipe,
 
 
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -187,6 +192,7 @@ export function tokenGetter() {
     DateInputsModule,
     IndicatorsModule,
     GaugesModule,
+    ListBoxModule,
     TooltipsModule,
     IntlModule,
     JwtModule.forRoot({

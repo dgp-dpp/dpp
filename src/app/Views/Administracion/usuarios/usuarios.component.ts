@@ -105,7 +105,7 @@ export class UsuariosComponent implements OnInit {
       email: usuario.email,
       rol:usuario.rol,
       pass: usuario.pass,
-      area: usuario.area
+      area: usuario.area,
     })
   }
 
