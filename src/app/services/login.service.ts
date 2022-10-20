@@ -26,6 +26,7 @@ export class LoginService {
    //Almacenar el valor de Login
    setLocalStorage(data):  void
    {
+
       localStorage.setItem('token',data);
    }
   //  //Recuperar el valor del login
@@ -45,7 +46,10 @@ export class LoginService {
 
    removeLocalStorage():void
    {
+     //window.localStorage.removeItem('token');
      localStorage.removeItem('token');
+
+     //window.sessionStorage.clear();
    }
 
    //

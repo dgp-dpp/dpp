@@ -32,6 +32,7 @@ export class MapaComponent implements OnInit {
 public kmlUrl= "https://www.inegi.org.mx/kml/11.kml";
 public kmlUrl2= "https://www.inegi.org.mx/kml/11.kml";
 public kmlVialidades ="https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/pdf/VIALIDADES.kml";
+public kmlTest = "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/kml/westcampus.kml";
 public iconMap  ={
   iconUrl: "https://raw.githubusercontent.com/cabarronc/dpp/master/src/assets/Icons/local_hospital_black_24dp.svg"
   // iconUrl:"https://github.com/cabarronc/dpp/blob/master/src/assets/Icons/building_hospital_medical_icon_226547.ico?raw=true"

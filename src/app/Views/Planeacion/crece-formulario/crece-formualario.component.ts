@@ -16,6 +16,8 @@ import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { IntlService } from "@progress/kendo-angular-intl";
+import { formatDate } from '@progress//kendo-angular-intl';
+
 export interface JsonModel {
   value: string;
 }
@@ -34,7 +36,7 @@ export class CreceFormualarioComponent implements OnInit {
    filterPp = this.loginServices.getTokenDecoded().email;
 
   public fecha: Fecha;
-  public model: JsonModel = JSON.parse('{"value": "2022-09-26" }');
+  public model: JsonModel = JSON.parse('{"value": "" }');
   public output: string = JSON.stringify(this.model);
   id: number | undefined;
 
@@ -63,8 +65,34 @@ export class CreceFormualarioComponent implements OnInit {
   public checked20: boolean = false;
   public checked21: boolean = false;
   public checked22: boolean = false;
-
-
+  //VARIABLES OUT FORM
+  public NombrePp: string;
+  public ListDepPar: string;
+  public Dp1Res:string;
+  public Dp2Res:string;
+  public Dp3Res:string;
+  public ClaveNombreInforme:string;
+  public DepResPpInforme:string;
+  public DepParPpInforme:string;
+  public FechaADxInforme:string;
+  public IntroInforme:string;
+  public AnalisisInvolucradosInforme:string;
+  public DefProblemaInforme:string;
+  public EvoProblemaInforme:string;
+  public EstActualProblemaInforme:string;
+  public ExpAtencionInforme:string;
+  public DefObjetivosInforme:string;
+  public AnalisisCorresponInforme:string;
+  public SelecAlternaInforme:string;
+  public EstructuraAnaliticaInforme:string;
+  public JustObjInforme:string;
+  public IdentificacionCuanPobInforme:string;
+  public IdentificacionAreaInfluenciaInforme:string;
+  public RelOtrosPPInforme:string;
+  public ElementosPEBInforme:string;
+  public MirInforme:string;
+  public EvoPpInforme:string;
+  public GlosarioInforme:string;
 
   public Elements: string[] = [
     "element1",
@@ -79,7 +107,6 @@ export class CreceFormualarioComponent implements OnInit {
   public countElementsNo: number;
 
   public animation = true;
-
 
 
 
@@ -102,7 +129,7 @@ export class CreceFormualarioComponent implements OnInit {
                       revision:string;
                       pp:string;
                       dependencia:string;
-                      fecha:any;
+                      fecha:string;
                       ano:number;
                       depPar:string;
                       claveNombre:boolean;
@@ -823,71 +850,71 @@ export class CreceFormualarioComponent implements OnInit {
             dp3:dp3,
             dp4:dp4,
             dp4Esp:dp4Esp,
-            calDp4form:calfDp4form,
+            calfDp4form:calfDp4form,
             ponDp4form:ponDp4form,
             dp5:dp5,
             dp5Esp:dp5Esp,
-            calDp5form:calfDp5form,
+            calfDp5form:calfDp5form,
             ponDp5form:ponDp5form,
             dp6:dp6,
             dp6Esp:dp6Esp,
-            calDp6form:calfDp6form,
+            calfDp6form:calfDp6form,
             ponDp6form:ponDp6form,
             dp7:dp7,
             dp7Esp:dp7Esp,
-            calDp7form:calfDp7form,
+            calfDp7form:calfDp7form,
             ponDp7form:ponDp7form,
             dp8:dp8,
             dp8Esp:dp8Esp,
-            calDp8form:calfDp8form,
+            calfDp8form:calfDp8form,
             ponDp8form:ponDp8form,
             dp9:dp9,
             dp9Esp:dp9Esp,
-            calDp9form:calfDp9form,
+            calfDp9form:calfDp9form,
             ponDp9form:ponDp9form,
             dp10:dp10,
             dp10Esp:dp10Esp,
-            calDp10form:calfDp10form,
+            calfDp10form:calfDp10form,
             ponDp10form:ponDp10form,
             dp11:dp11,
             dp11Esp:dp11Esp,
-            calDp11form:calfDp11form,
+            calfDp11form:calfDp11form,
             ponDp11form:ponDp11form,
             dp12:dp12,
             dp12Esp:dp12Esp,
-            calDp12form:calfDp12form,
+            calfDp12form:calfDp12form,
             ponDp12form:ponDp12form,
             dp13:dp13,
             dp13Esp:dp13Esp,
-            calDp13form:calfDp13form,
+            calfDp13form:calfDp13form,
             ponDp13form:ponDp13form,
             dp14:dp14,
             dp14Esp:dp14Esp,
-            calDp14form:calfDp14form,
+            calfDp14form:calfDp14form,
             ponDp14form:ponDp14form,
             dp15:dp15,
             dp15Esp:dp15Esp,
-            calDp15form:calfDp15form,
+            calfDp15form:calfDp15form,
             ponDp15form:ponDp15form,
             dp16:dp16,
             dp16Esp:dp16Esp,
-            calDp16form:calfDp16form,
+            calfDp16form:calfDp16form,
             ponDp16form:ponDp16form,
             dp17:dp17,
             dp17Esp:dp17Esp,
-            calDp17form:calfDp17form,
+            calfDp17form:calfDp17form,
             ponDp17form:ponDp17form,
             dp18:dp18,
             dp18Esp:dp18Esp,
-            calDp18form:calfDp18form,
+            calfDp18form:calfDp18form,
             ponDp18form:ponDp18form,
             dp19:dp19,
             dp19Esp:dp19Esp,
-            calDp19form:calfDp19form,
+            calfDp19form:calfDp19form,
             ponDp19form:ponDp19form,
             dp20:dp20,
             dp20Esp:dp20Esp,
-            calDp20form:calfDp20form,
+            calfDp20form:calfDp20form,
             ponDp20form:ponDp20form,
             mir1:mir1,
             mir1Esp:mir1Esp,
@@ -986,22 +1013,413 @@ export class CreceFormualarioComponent implements OnInit {
       console.log(error);
     })
   }
+  GetNombrePp(){
+    if(this.pp == "E001"){
+      this.NombrePp = "Acceso a la información pública del Estado de Guanajuato";
+      this.ListDepPar = "";
+    }
+    else if(this.pp == "E002"){
+      this.NombrePp ="Sistema Integral de Transparencia, Acceso a la Información Pública y Archivos";
+    }
+    else if(this.pp == "E003"){
+      this.NombrePp ="Actividades artísticas y culturales";
+      this.ListDepPar = "IEC, MIQ, FORUM";
+    }
+    else if(this.pp == "E004"){
+      this.NombrePp ="Adaptación al cambio climático";
+    }
+    else if(this.pp == "E005"){
+      this.NombrePp ="Promoción de la convivencia escolar pacífica";
+    }
+    else if(this.pp == "E006"){
+      this.NombrePp ="Atención ciudadana";
+      this.ListDepPar = "GTOMX";
+    }
+    else if(this.pp == "E007"){
+      this.NombrePp ="Atención integral a las personas con discapacidad";
+    }
+    else if(this.pp == "E008"){
+      this.NombrePp ="Atención integral a niñas, niños y adolescentes";
+      this.ListDepPar ="DIF, PEPNNA";
+    }
+    else if(this.pp == "E009"){
+      this.NombrePp ="Atención integral para adultos mayores";
+    }
+    else if(this.pp == "E010"){
+      this.NombrePp ="Reconstrucción del tejido social";
+      this.ListDepPar ="SDSH, DIF";
+    }
+    else if(this.pp == "E012"){
+      this.NombrePp ="Servicios de salud con oportunidad y calidad";
+    }
+    else if(this.pp == "E014"){
+      this.NombrePp ="Certeza jurídica en los procesos conciliatorios de los conflictos derivados del acto médico";
+    }
+    else if(this.pp == "E015"){
+      this.NombrePp ="Certeza jurídica para la población guanajuatense";
+      this.ListDepPar = "DIF";
+    }
+    else if(this.pp == "E016"){
+      this.NombrePp ="Certeza jurídica y derechos de los adultos y adolescentes internos";
+    }
+    else if(this.pp == "E017"){
+      this.NombrePp ="Cobertura de Educación Media Superior y Superior";
+      this.ListDepPar ="CECYTEG, UVEG, ITESG, UPGTO, UPB, UTNG, SABES, UPJR, ITSUR, UTSMA, UPPE, EPRR, ITESI, UTL, ITESP, CONALEP, ITESS, UTSOE, UTS, ITESA, UTLB";
+    }
+    else if(this.pp == "E018"){
+      this.NombrePp ="Cobertura en Educación Básica";
 
+    }
+    else if(this.pp == "E020"){
+      this.NombrePp ="Comercialización internacional";
+    }
+    else if(this.pp == "E021"){
+      this.NombrePp ="Conectividad digital";
+    }
+    else if(this.pp == "E022"){
+      this.NombrePp ="Confianza en el Instituto Electoral del Estado de Guanajuato";
+    }
+    else if(this.pp == "E024"){
+      this.NombrePp ="Alianza a favor de la educación para adultos";
+    }
+    else if(this.pp == "E026"){
+      this.NombrePp ="Empresa Limpia";
+    }
+    else if(this.pp == "E027"){
+      this.NombrePp ="Derrama económica por turismo";
+    }
+    else if(this.pp == "E028"){
+      this.NombrePp ="Desarrollo y atención integral de las juventudes";
+    }
+    else if(this.pp == "E030"){
+      this.NombrePp ="Efectividad del sector de procuración de justicia";
+    }
+    else if(this.pp == "E031"){
+      this.NombrePp ="Eficacia en la operatividad policial";
+    }
+    else if(this.pp == "E032"){
+      this.NombrePp ="Eficiencia de la justicia laboral";
+    }
+    else if(this.pp == "E035"){
+      this.NombrePp ="Extensión del conocimiento, arte y cultura";
+    }
+    else if(this.pp == "E036"){
+      this.NombrePp ="Divulgación de la ciencia y la tecnología";
+    }
+    else if(this.pp == "E037"){
+      this.NombrePp ="Fortalecimiento de la gobernabilidad en el Estado";
+    }
+    else if(this.pp == "E038"){
+      this.NombrePp ="Competencias para el trabajo";
+    }
+    else if(this.pp == "E039"){
+      this.NombrePp ="Sustentabilidad energética";
+    }
+    else if(this.pp == "E040"){
+      this.NombrePp ="Investigación, desarrollo tecnológico e innovación de la Universidad de Guanajuato";
+    }
+    else if(this.pp == "E041"){
+      this.NombrePp ="Justicia ambiental";
+    }
+    else if(this.pp == "E042"){
+      this.NombrePp ="Mitigación de emisiones de gas efecto invernadero";
+    }
+    else if(this.pp == "E044"){
+      this.NombrePp ="Participación de la sociedad en la prevención de delitos";
+    }
+    else if(this.pp == "E045"){
+      this.NombrePp ="Acceso equitativo y oportunidades de desarrollo para mujeres y hombres";
+    }
+    else if(this.pp == "E046"){
+      this.NombrePp ="Poder Legislativo";
+    }
+    else if(this.pp == "E047"){
+      this.NombrePp ="Práctica competitiva y deportiva";
+    }
+    else if(this.pp == "E049"){
+      this.NombrePp ="Procuraduría de los Derechos Humanos";
+    }
+    else if(this.pp == "E050"){
+      this.NombrePp ="Prevención y atención oportuna de emergencias y desastres";
+    }
+    else if(this.pp == "E051"){
+      this.NombrePp ="Gestión integral de recursos hídricos";
+    }
+    else if(this.pp == "E053"){
+      this.NombrePp ="Regularización de la tenencia de la tierra";
+    }
+    else if(this.pp == "E054"){
+      this.NombrePp ="Rehabilitación de niños y adolescentes en conflicto";
+    }
+    else if(this.pp == "E056"){
+      this.NombrePp ="Servicio de impartición de justicia y solución de controversias";
+    }
+    else if(this.pp == "E057"){
+      this.NombrePp ="Trayectoria en Nivel Básico, Media Superior y Superior";
+    }
+    else if(this.pp == "E058"){
+      this.NombrePp ="Tribunal de Justicia Administrativa del Estado de Guanajuato";
+    }
+    else if(this.pp == "E059"){
+      this.NombrePp ="Tribunal Estatal Electoral de Guanajuato";
+    }
+    else if(this.pp == "E060"){
+      this.NombrePp ="Unidad de Televisión de Guanajuato";
+    }
+    else if(this.pp == "E061"){
+      this.NombrePp ="Valores en familia";
+    }
+    else if(this.pp == "E062"){
+      this.NombrePp ="Competencias en Educación Básica";
+    }
+    else if(this.pp == "E063"){
+      this.NombrePp ="Formación científica y tecnológica";
+    }
+    else if(this.pp == "E064"){
+      this.NombrePp ="Prevención en salud";
+    }
+    else if(this.pp == "E066"){
+      this.NombrePp ="Cobertura Educativa de la Universidad de Guanajuato";
+    }
+    else if(this.pp == "E067"){
+      this.NombrePp ="Trayectoria Académica Consolidada";
+    }
+    else if(this.pp == "E068"){
+      this.NombrePp ="Vinculación del estudiante con los sectores económico y social";
+    }
+    else if(this.pp == "G001"){
+      this.NombrePp ="Fortalecimiento institucional de la inspección y vigilancia para la administración sustentable del territorio";
+    }
+    else if(this.pp == "E068"){
+      this.NombrePp ="Vinculación del estudiante con los sectores económico y social";
+    }
+    else if(this.pp == "E068"){
+      this.NombrePp ="Vinculación del estudiante con los sectores económico y social";
+    }
+    else if(this.pp == "E068"){
+      this.NombrePp ="Vinculación del estudiante con los sectores económico y social";
+    }
+    else if(this.pp == "M003"){
+      this.NombrePp ="Gestión de la Hacienda Pública orientada a Resultados";
+      this.dep = "SFIA"
+    }
+
+}
 
 
   //-------------------------------------------------------------------------------------------------------------
   //-------------------------------------Metodo para registrar los CRECES---------------------------------
   //-------------------------------------------------------------------------------------------------------------
   GuardarCrece() {
+    if(this.pp == "E001"){
+      this.NombrePp = "Acceso a la información pública del Estado de Guanajuato";
+
+    }
+    else if(this.pp == "E002"){
+      this.NombrePp ="otra cias";
+
+    }
+
+  //------------------------------------------------ RESPUESTAS DE LAS TRES PRIMERAS PR4EGUNTAS--------------------------------------------------
+
+    if(this.Dp1Calf == 4){
+      this.Dp1Res = "El Diagnóstico Particular contiene todos los apartados solicitados en la Guía para la elaboración del Diagnóstico Particular. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
+    }
+    else if(this.Dp1Calf == 2){
+      this.Dp1Res = "El Diagnóstico Particular contiene más del 80% de los apartados, es necesario revisar el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
+      +"\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
+      +"\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
+    }
+    else if(this.Dp1Calf == 0){
+      this.Dp1Res = "El Diagnóstico Particular contiene menos del 80% de los apartados, es necesario revisar la Guía para la elaboración del Diagnóstico Particular, así cómo el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
+      "\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
+      "\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
+    }
+    else if(this.PonDp2 == 4){
+      this.Dp2Res = "La fecha de actualización corresponde al año 2022, por lo que el Diagnóstico Particular se considera vigente para el siguiente ejercicio fiscal."
+    }
+    else if(this.PonDp2 == 2){
+      this.Dp2Res = "La fecha de actualización es anterior a 2022, por lo que el Diagnóstico Particular no se considera vigente para el siguiente ejercicio fiscal, de acuerdo con el artículo 20 de los Lineamientos Generales de Gestión para Resultados. Es necesario actualizar este diagnóstico y entregar de manera formal a la brevedad."
+    }
+    else if(this.PonDp2 == 0){
+      this.Dp2Res = "El Diagnóstico Particular no se considera vigente para el siguiente ejercicio fiscal, de acuerdo con el artículo 20 de los Lineamientos Generales de Gestión para Resultados, por lo que se requiere actualización de manera urgente. Es necesario actualizar este diagnóstico y entregar de manera formal a la brevedad."
+    }
+    else if(this.PonDp3 == 2){
+      this.Dp3Res = "En el Diagnóstico Particular se indican todas las dependencias que participan en el programa."
+    }
+    else if(this.PonDp3 == 1){
+      this.Dp3Res = "En el Diagnóstico Particular no se identifican todas las dependencias que participan en el programa, se solicita actualizar la información."
+    }
+    else if(this.PonDp3 == 0){
+      this.Dp3Res = "En el Diagnóstico Particular no se identifican las dependencias que participan en el programa, se solicita actualizar la información."
+    }
+    else if(this.checked1 == false){
+      this.ClaveNombreInforme = "No"
+    }
+    else if(this.checked1 == true){
+      this.ClaveNombreInforme = "Si"
+    }
+    else if(this.checked2 == false){
+      this.DepResPpInforme = "No"
+    }
+    else if(this.checked2 == true){
+      this.DepResPpInforme = "Si"
+    }
+    else if(this.checked3 == false){
+       this.DepParPpInforme = "No"
+    }
+    else if(this.checked3 == true){
+      this.ClaveNombreInforme = "Si"
+    }
+    else if(this.checked4 == false){
+      this.FechaADxInforme = "No"
+    }
+    else if(this.checked4 == true){
+      this.FechaADxInforme = "Si"
+    }
+    else if(this.checked5 == false){
+      this.IntroInforme = "No"
+    }
+    else if(this.checked5 == true){
+      this.IntroInforme = "Si"
+    }
+    else if(this.checked6 == false){
+      this.AnalisisInvolucradosInforme = "No"
+    }
+    else if(this.checked6 == true){
+      this.AnalisisInvolucradosInforme= "Si"
+    }
+    else if(this.checked7 == false){
+      this.DefProblemaInforme = "No"
+    }
+    else if(this.checked7 == true){
+      this.DefProblemaInforme = "Si"
+    }
+    else if(this.checked8 == false){
+      this.EvoProblemaInforme = "No"
+    }
+    else if(this.checked8 == true){
+      this.EvoProblemaInforme = "Si"
+    }
+    else if(this.checked9 == false){
+      this.EstActualProblemaInforme = "No"
+    }
+    else if(this.checked9 == true){
+      this.EstActualProblemaInforme= "Si"
+    }
+    else if(this.checked10 == false){
+      this.ExpAtencionInforme = "No"
+    }
+    else if(this.checked10 == true){
+      this.ExpAtencionInforme = "Si"
+    }
+    else if(this.checked11 == false){
+      this.DefObjetivosInforme = "No"
+    }
+    else if(this.checked11 == true){
+      this.DefObjetivosInforme = "Si"
+    }
+    else if(this.checked12 == false){
+      this.AnalisisCorresponInforme = "No"
+    }
+    else if(this.checked12 == true){
+      this.AnalisisCorresponInforme = "Si"
+    }
+    else if(this.checked13 == false){
+      this.SelecAlternaInforme = "No"
+    }
+    else if(this.checked13 == true){
+      this.SelecAlternaInforme = "Si"
+    }
+    else if(this.checked14 == false){
+      this.EstructuraAnaliticaInforme = "No"
+    }
+    else if(this.checked14 == true){
+      this.EstructuraAnaliticaInforme = "Si"
+    }
+    else if(this.checked15 == false){
+      this.JustObjInforme= "No"
+    }
+    else if(this.checked15 == true){
+      this.JustObjInforme = "Si"
+    }
+    else if(this.checked16 == false){
+      this.IdentificacionCuanPobInforme = "No"
+    }
+    else if(this.checked16 == true){
+      this.IdentificacionCuanPobInforme = "Si"
+    }
+    else if(this.checked17 == false){
+      this.IdentificacionAreaInfluenciaInforme = "No"
+   }
+   else if(this.checked17 == true){
+    this.IdentificacionAreaInfluenciaInforme = "Si"
+   }
+    else if(this.checked18 == false){
+      this.RelOtrosPPInforme = "No"
+    }
+    else if(this.checked18 == true){
+      this.RelOtrosPPInforme = "Si"
+    }
+    else if(this.checked19 == false){
+      this.ElementosPEBInforme = "No"
+    }
+    else if(this.checked19 == true){
+      this.ElementosPEBInforme = "Si"
+    }
+    else if(this.checked20 == false){
+      this.MirInforme = "No"
+    }
+    else if(this.checked20 == true){
+      this.MirInforme = "Si"
+    }
+    else if(this.checked21 == false){
+      this.EvoProblemaInforme = "No"
+    }
+    else if(this.checked21 == true){
+      this.EvoProblemaInforme = "Si"
+    }
+    else if(this.checked22 == false){
+      this.GlosarioInforme = "No"
+    }
+    else if(this.checked22 == true){
+      this.GlosarioInforme = "Si"
+    }
+
+
     const crece: any = {
       Email: this.form.get('Email')?.value,
       Revision: this.form.get('Revision')?.value,
       Pp: this.form.get('Pp')?.value,
+      NombrePp: this.NombrePp,
+      ListDepPar: this.ListDepPar,
       Dependencia: this.form.get('Dependencia')?.value,
       Fecha: this.form.get('Fecha')?.value,
       Ano: this.form.get('Ano')?.value,
       DepPar: this.form.get('DepPar')?.value,
       //Elementos
+      ClaveNombreInforme: this.ClaveNombreInforme,
+      DepResPpInforme: this.DepResPpInforme,
+      DepParPpInforme: this.DepParPpInforme,
+      FechaADxInforme: this.FechaADxInforme,
+      IntroInforme: this.IntroInforme,
+      AnalisisInvolucradosInforme: this.AnalisisInvolucradosInforme,
+      DefProblemaInforme: this.DefProblemaInforme,
+      EvoProblemaInforme: this.EvoProblemaInforme,
+      EstActualProblemaInforme: this.EstActualProblemaInforme,
+      ExpAtencionInforme: this.ExpAtencionInforme,
+      DefObjetivosInforme: this.DefObjetivosInforme,
+      AnalisisCorresponInforme: this.AnalisisCorresponInforme,
+      SelecAlternaInforme: this.SelecAlternaInforme,
+      EstructuraAnaliticaInforme: this.EstructuraAnaliticaInforme,
+      JustObjInforme: this.JustObjInforme,
+      IdentificacionCuanPobInforme: this.IdentificacionCuanPobInforme,
+      IdentificacionAreaInfluenciaInforme: this.IdentificacionAreaInfluenciaInforme,
+      RelOtrosPPInforme: this.RelOtrosPPInforme,
+      ElementosPEBInforme: this.ElementosPEBInforme,
+      MirInforme: this.MirInforme,
+      EvoPpInforme: this.EvoProblemaInforme,
+      GlosarioInforme: this.GlosarioInforme,
       ClaveNombre: this.form.get('ClaveNombre')?.value,
       DepResPp: this.form.get('DepResPp')?.value,
       DepParPp: this.form.get('DepParPp')?.value,
@@ -1028,8 +1446,11 @@ export class CreceFormualarioComponent implements OnInit {
 
       //Evaluacion Dp
       Dp1: this.form.get('Dp1')?.value,
+      Dp1Res:this.Dp1Res,
       Dp2: this.form.get('Dp2')?.value,
+      Dp2Res:this.Dp2Res,
       Dp3: this.form.get('Dp3')?.value,
+      Dp3Res:this.Dp3Res,
       Dp4: this.form.get('Dp4')?.value,// calificacion en los intervalos [0,3,9]
       Dp4Esp: this.form.get('Dp4Esp')?.value, // Respuesta Especifica de la pregunta
       CalfDp4form: this.form.get('CalfDp4form')?.value, //Respuesta Generica
@@ -1190,18 +1611,19 @@ export class CreceFormualarioComponent implements OnInit {
 
 
     }
+
     if (this.id == undefined) {
 // Agregamos una nuevo crece
       this.CrecePlaneacionService.saveCrece(crece).subscribe(_data => {
-        this.toastr.success('El Crece del PP ' + crece.Pp + ' fue registrado con exito!', 'Crece Registrado');
+        this.toastr.success('El Crece del PP ' + crece.NombrePp + ' fue registrado con exito!', 'Crece Registrado');
         this.obtenerCreces();
         console.log(this.form.value);
-        if (this.form.valid) {
-          this.form.value;
+        // if (this.form.valid) {
+        //   this.form.value;
 
-          console.log("Form Submitted!");
-          this.form.reset();
-        }
+        //   console.log("Form Submitted!");
+        //   this.form.reset();
+        // }
 
       }, error => {
         this.toastr.error('Opss.. ocurrio un error', 'Error')
@@ -1253,7 +1675,7 @@ export class CreceFormualarioComponent implements OnInit {
       Ano: crece.ano,
       DepPar: crece.depPar,
       // Elementos
-      ClaveNombre: crece.clavenombre,
+      ClaveNombre: crece.claveNombre,
       DepResPp: crece.depResPp,
       DepParPp: crece.depParPp,
       FechaADx: crece.fechaADx,
@@ -1430,7 +1852,9 @@ export class CreceFormualarioComponent implements OnInit {
       AoMir: crece.aoMir,
       AoDp: crece.aoDp,
 
+
     })
+    console.log(this.form.value);
   }
 
 
@@ -1655,7 +2079,8 @@ export class CreceFormualarioComponent implements OnInit {
     this.RespuestaDp4();
     this.RespuestaDp4();
     this.creces;
-    this.fecha = this.parse(this.model);
+    this.fecha = this.parseExact(this.model);
+    console.log(this.fecha);
 
     // this.respuestaGenericaDp4();
     // this.ponderacionDp4();
@@ -3063,7 +3488,7 @@ export class CreceFormualarioComponent implements OnInit {
   }
   private parseExact(json) {
     Object.keys(json).map(key => {
-      const date = this.intl.parseDate(json[key], 'yyyy-MM-dd');
+      const date = this.intl.parseDate(json[key], 'yyyy-MM-ddTHH:mm:ssZ');
       if (date) { json[key] = date; }
     });
 
@@ -3084,7 +3509,7 @@ export class CreceFormualarioComponent implements OnInit {
 
   public handleChange(value: Date) {
     // Update the JSON birthDate string date
-    this.model.value = this.intl.formatDate(value, "yyyy-MM-dd");
+    this.model.value = this.intl.formatDate(value, "yyyy-MM-ddTHH:mm:ssZ");
 
     this.output = JSON.stringify(this.model);
     this.fecha = this.parseExact(this.model);

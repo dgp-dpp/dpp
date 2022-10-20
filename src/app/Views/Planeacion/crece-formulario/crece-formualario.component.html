@@ -1,9 +1,6 @@
 <app-home></app-home>
 
 <section id="sectiondefault">
-
-
-
   <form class="k-form" [formGroup]="form" (ngSubmit)="GuardarCrece()">
     <div id="total">
       <strong>
@@ -18,7 +15,7 @@
             </span>
           </strong>
           <span>
-            <font color="yellow">{{pp}}</font>
+            <font color="yellow">{{pp}} </font>
           </span>
         </ng-template>
       </kendo-circulargauge>
@@ -27,7 +24,7 @@
       <div class="container-fluid">
         <h1> Bienvenido: <strong>{{Nombre}}</strong></h1>Usted esta {{accion}} el Crece del Programa Presupuestario
         <strong>
-          <font color="yellow">{{pp}}</font>
+          <font color="yellow">{{pp}} - {{NombrePp}}</font>
         </strong> de <strong>
           <font color="yellow">{{dep}}</font>
         </strong>
@@ -71,15 +68,15 @@
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Programa Presupuestario" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" formControlName="Pp" [valuePrimitive]="true"
-                            placeholder="Programa Presupuestario" [(ngModel)]="pp" [data]="ProgramaPresupuestario"
-                            textField="text" valueField="text">
+                            placeholder="Programa Presupuestario" [(ngModel)]="pp" (click)="GetNombrePp()" [data]="ProgramaPresupuestario"
+                            textField="text" valueField="text"  >
                           </kendo-dropdownlist>
                         </kendo-floatinglabel>
                       </div>
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Dependencia" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" [(ngModel)]="selectedValue"
-                            formControlName="Dependencia" [(ngModel)]="dep" [valuePrimitive]="true" [data]="listDep"
+                            formControlName="Dependencia" [(ngModel)]="dep"  [valuePrimitive]="true" [data]="listDep"
                             textField="text" valueField="text">
                           </kendo-dropdownlist>
                         </kendo-floatinglabel>
@@ -106,7 +103,9 @@
                       {{value}}
                       <kendo-formfield showHints="initial" showErrors="initial">
                         <kendo-floatinglabel text="Fecha" style="font-weight: bold;">
-                          <kendo-datepicker   style="font-weight: normal;" [(ngModel)]="fecha.value" (valueChange)="handleChange($event)" [format]="format" format="yyyy-MM-dd" formControlName="Fecha">
+                          <kendo-datepicker style="font-weight: normal;" name="date" [(ngModel)]="fecha.value"
+                            click="GuardarCrece()" (valueChange)="handleChange($event)" format="yyyy-MM-dd"
+                            formControlName="Fecha">
                           </kendo-datepicker>
                         </kendo-floatinglabel>
                         <kendo-formhint align="start"> use Alt+↓ para abrir el calendario, ← y → para navegar, ↑ para
@@ -172,21 +171,25 @@
                                     <div class="row">
                                       <div class="col-md-6">
                                         <div class="input-group">
-                                            <div class="input-group-text bg-gray">
-                                              <i class="fa fa-search"></i>
+                                          <div class="input-group-text bg-gray">
+                                            <i class="fa fa-search"></i>
 
-                                            </div>
-                                            <input type="text" name ="filterPp"class="form-control" placeholder="buscar..." [(ngModel)]="filterPp" [ngModelOptions]="{standalone: true}">
+                                          </div>
+                                          <input type="text" name="filterPp" class="form-control"
+                                            placeholder="buscar..." [(ngModel)]="filterPp"
+                                            [ngModelOptions]="{standalone: true}">
 
                                         </div>
                                       </div>
                                       <div class="col-md-6">
                                         <div class="input-group">
-                                            <div class="input-group-text bg-gray">
-                                              <i class="fa fa-search"></i>
+                                          <div class="input-group-text bg-gray">
+                                            <i class="fa fa-search"></i>
 
-                                            </div>
-                                            <input type="text" name ="filterPp"class="form-control" placeholder="buscar por Pp" [(ngModel)]="filterPp" [ngModelOptions]="{standalone: true}">
+                                          </div>
+                                          <input type="text" name="filterPp" class="form-control"
+                                            placeholder="buscar por Pp" [(ngModel)]="filterPp"
+                                            [ngModelOptions]="{standalone: true}">
 
                                         </div>
                                       </div>
@@ -194,10 +197,10 @@
                                     <table class="table table-striped">
                                       <thead>
                                         <tr>
-                                        <th>Programa</th>
-                                        <th>Email</th>
-                                        <th>Revision</th>
-                                        <th>Fecha</th>
+                                          <th>Programa</th>
+                                          <th>Email</th>
+                                          <th>Revision</th>
+                                          <th>Fecha</th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -206,7 +209,9 @@
                                           <td>{{ crece.pp }}</td>
                                           <td>{{ crece.email }}</td>
                                           <td>{{ crece.revision}}</td>
-                                          <td>{{ crece.fecha }}</td>
+                                          <td>{{ crece.fecha.toString() }}</td>
+                                          <td>{{ crece.claveNombre }}</td>
+
                                           <td>
                                             <i (click)="editarCrece(crece)" class="far fa-edit text-info"></i>
                                           </td>
@@ -214,12 +219,26 @@
                                             <i (click)="eliminarCrece(crece.id)"
                                               class="far fa-trash-alt text-danger"></i>
                                           </td>
+                                          <td>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                              data-bs-target="#exampleModal" ></button>
+                                          </td>
                                         </tr>
 
                                       </tbody>
                                     </table>
+                                    <script>
+                                      var myModal = document.getElementById('myModal')
+                                      var myInput = document.getElementById('myInput')
+
+                                      myModal.addEventListener('shown.bs.modal', function () {
+                                        myInput.focus()
+                                      })
+                                    </script>
+
+
                                   </div>
-                              </div>
+                                </div>
                               </div>
 
 
@@ -587,7 +606,9 @@
 
                 <ng-template kendoPanelBarContent>
                   <kendo-card width="auto" style="padding: 1rem; align-content: center;">
-                    <kendo-tabstrip [scrollable]="settings" (tabSelect)="onTabSelect($event)" [tabPosition]="position">
+
+                    <kendo-tabstrip [keepTabContent]="false" [scrollable]="settings" (tabSelect)="onTabSelect($event)"
+                      [tabPosition]="position">
                       <!-- Seccion 3.1 General -->
                       <kendo-tabstrip-tab [selected]="true">
                         <ng-template kendoTabTitle>
@@ -688,7 +709,7 @@
                       </kendo-tabstrip-tab>
 
                       <!-- Seccion 3.2 Introduccion -->
-                      <kendo-tabstrip-tab>
+                      <kendo-tabstrip-tab title="02. Introducción">
                         <ng-template kendoTabTitle>
                           <strong> 02. Introducción</strong>
                         </ng-template>
@@ -4242,5 +4263,28 @@
       </div>
 
     </fieldset>
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-fullscreen-sm-down">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel">Descripcion del Punto</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal"
+             aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+           <!-- <a *ngFor="let marcador of marcadores" > -->
+
+           <!-- </a> -->
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary"
+             data-bs-dismiss="modal">Cerrar</button>
+           <button type="button" class="btn btn-primary">Guardar Cambios</button>
+         </div>
+       </div>
+     </div>
+   </div>
   </form>
 </section>

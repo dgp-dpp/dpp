@@ -27,7 +27,9 @@ private myApiUrl = '/BackEndApi/api/Crece'
   }
 
   saveCrece(crece: any): Observable<any> {
-    return this.http.post(this.myAppUrl + this.myApiUrl, crece);
+    return this.http.post(this.myAppUrl + this.myApiUrl, crece,{responseType: 'text'}).pipe(tap((data) => {
+      console.log(data)
+    }));
   }
 
   updateCrece(id: number, crece: any): Observable<any> {
