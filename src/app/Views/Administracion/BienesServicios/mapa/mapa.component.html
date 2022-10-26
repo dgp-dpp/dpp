@@ -1,5 +1,5 @@
 <app-home></app-home>
-<div style="padding: 4rem;">
+<div style="padding: 2.5rem;">
   <kendo-tabstrip [scrollable]="settings" (tabSelect)="onTabSelect($event)" [tabPosition]="position">
     <!-- My Maps -->
     <kendo-tabstrip-tab [selected]="true">
@@ -26,16 +26,26 @@
       </ng-template>
       <ng-template kendoTabContent>
         <div class="container-fluid" style="background-color: rgb(204, 198, 198);">
-          <div style="padding: 4rem; align-items: center;">
-            <button kendoButton type="button" icon="marker-pin" (click)=" AddMarkers()">Ver Marcadores</button>
-            <button kendoButton type="button" icon="marker-pin" data-bs-toggle="modal" data-bs-target="#ModalAtlasIeca">Ver Atlas IECA</button>
+          <div style="padding: 1.5rem; align-items: center;">
+            <span class="material-icons-two-tone">
+              </span>
+            <button kendoButton type="button"  icon="plus-outline" (click)="AddUnidadesMedicas()">Ver Unidades Medicas</button>
+            &nbsp;
+            <button kendoButton type="button" icon="marker-pin" (click)="AddUnidadesCapacitacion()">Ver Unidades de Capacitacion</button>
+            &nbsp;
+            <button kendoButton type="button" icon="globe" data-bs-toggle="modal" data-bs-target="#ModalAtlasIeca">Ver Atlas IECA</button>
             <google-map width="900px" style="color:0xffffff" height="700px" [zoom]="zoom" [center]="center"
               [options]="options" [FitBounds]="true">
               <map-marker-clusterer [imagePath]="markerClustererImagePath">
                 <map-marker #marker="mapMarker" (mapClick)="openInfoWindow(marker, infoWindow)"
-                  *ngFor="let marcador of marcadores" [position]="marcador.position" [FitBounds]="true"
-                  [icon]="marcador.icon">
+                  *ngFor="let unidad of unidadesMedicas" [position]="unidad.position" [FitBounds]="true"
+                  [icon]="unidad.icon">
                   <map-info-window #infoWindow="mapInfoWindow">
+                    <div class="card" style="width: 18rem;">
+                      <!-- <img src="..." class="card-img-top" alt="..."> -->
+                      <div class="card-body">
+                        <h5 class="card-title"> <b>Unidad:</b>{{unidad.unidad}}<br></h5>
+                        <p class="card-text"><b>Domicilio:</b>{{unidad.domicilio}}<br></p>
                     <form class="k-form" [formGroup]="form" (ngSubmit)="GuardarMarcador()">
                       <fieldset class="k-form-fieldset">
                         <div class="container-fluid">
@@ -43,8 +53,10 @@
                             <div class="col-sm-4">
                               <kendo-floatinglabel text="Marcador Id" style="font-weight: bold;">
                                 <kendo-textbox style="font-weight: normal;" formControlName="marcador_id"
-                                  fillMode="outline" [readonly]="true" [ngModel]="marcador.id">
+                                  fillMode="outline" [readonly]="true"  [ngModel]="unidad.id">
+                               <kendo-button type="button" (click)="GuardarMarcador"></kendo-button>
                                 </kendo-textbox>
+                                {{unidad.id}}
                               </kendo-floatinglabel>
 
                             </div>
@@ -54,24 +66,50 @@
                       <pre>{{ form.value | json }}</pre>
                     </form>
 
-                    <b>Id:</b>{{marcador.id}}<br>
-                    <b>Cve Mun:</b>{{marcador.cve_mun}}<br>
-                    <b>Municipio:</b> {{marcador.municipio}}<br>
-                    <b>Unidad:</b>{{marcador.unidad}}<br>
-                    <b>Domicilio:</b>{{marcador.domicilio}}<br>
-                    <b>Programa Presupuestario:</b>{{marcador.pp}}<br>
-                    <b>P/G:</b>{{marcador.pg}}<br>
-                    <b>Icono:</b><a target="_blank" href='{{marcador.icon}}'>Prueba este link</a>
+                    <b>Id:</b>{{unidad.id}}<br>
+                    <b>Cve Mun:</b>{{unidad.cve_mun}}<br>
+                    <b>Municipio:</b> {{unidad.municipio}}<br>
+                    <b>Programa Presupuestario:</b>{{unidad.pp}}<br>
+                    <b>P/G:</b>{{unidad.pg}}<br>
+                    <b>Icono:</b><a target="_blank" href='{{unidad.icon}}'>Prueba este link</a>
                     <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                       Ver Detalle
                     </button><br>
+                    </div>
+                    </div>
                   </map-info-window>
                 </map-marker>
+                 <!-- Marcadores de las Unidades de Capacitacion del IECA -->
+                <map-marker #marker="mapMarker" (mapClick)="openInfoWindow(marker, infoWindow)"
+                *ngFor="let unidadCapacitacion of unidadesCapacitacion" [position]="unidadCapacitacion.position" [FitBounds]="true"
+                [icon]="unidadCapacitacion.icon">
+                <map-info-window #infoWindow="mapInfoWindow">
+                  <div class="card" style="width: 18rem;">
+                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <div class="card-body">
+                      <h5 class="card-title">{{unidadCapacitacion.unidad}}</h5>
+                      <p class="card-text">{{unidadCapacitacion.direccion}}<br></p>
+                      <b>Id:</b>{{unidadCapacitacion.id}}<br>
+                      <b>Municipio:</b>{{unidadCapacitacion.mun}}<br>
+                      <b>Telefono:</b>{{unidadCapacitacion.telefono}}<br>
+                      <b>Director:</b>{{unidadCapacitacion.director}}<br>
+                      <b>Municipio Atendido:</b>{{unidadCapacitacion.mun_atendi}}<br>
+                      <b>Programa :</b>{{unidadCapacitacion.pg}}<br>
+                      <b>Tipo Unidad:</b>{{unidadCapacitacion.tipo_unida}}<br>
+                      <b>Costo Total:</b>{{unidadCapacitacion.costo_tota}}<br>
+                      <br>
+                      <a target="_blank" href='{{unidadCapacitacion.urlPdf}}' class="btn btn-primary"> Ver Detalles</a>
+                    </div>
+                  </div>
+                </map-info-window>
+              </map-marker>
               </map-marker-clusterer>
+
+
               <map-polyline [path]="vertices"></map-polyline>
               <map-kml-layer [url]="kmlUrl"></map-kml-layer>
               <map-kml-layer [url]="kmlVialidades"></map-kml-layer>
-              <map-kml-layer [url]="kmlTest"></map-kml-layer>
+              <!-- <map-kml-layer [url]="kmlTest"></map-kml-layer> -->
               <!-- <map-kml-layer [url]="kmlUrl2"></map-kml-layer> -->
               <!-- <map-marker [position] = position2></map-marker> -->
             </google-map>

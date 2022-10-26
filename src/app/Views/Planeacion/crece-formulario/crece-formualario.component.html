@@ -117,7 +117,7 @@
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Año de Actualizacion" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" [data]="listYear" formControlName="Ano"
-                            value="" [(ngModel)]="year" (click)="RespuestaDp2()" #Ano required>
+                            value="" [(ngModel)]="year" (click)="RespuestaDp2()" (click)="GetNombrePp()" #Ano required>
                             <ng-template kendoDropDownListPrefixTemplate>
                               <button
                                 title="Esta etiqueta nos sirve para identificar a que versión corresponde la calificación."
@@ -130,7 +130,7 @@
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Dep/Ent Participantes" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" [(ngModel)]="depModelo"
-                            (click)="RespuestaDp3()" [data]="listDepPar" formControlName="DepPar" value="" #DepPar
+                            (click)="RespuestaDp3()" [data]="listDepPar" (click)="GetNombrePp()" formControlName="DepPar" value="" #DepPar
                             required>
                             <ng-template kendoDropDownListPrefixTemplate>
                               <button title="" kendoButton fillMode="clear" icon="edit"></button>
@@ -285,7 +285,7 @@
                                         <div style="padding-left:10.8rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked1" [ngModelOptions]="{standalone: true}"
-                                            formControlName="ClaveNombre" kendoCheckBox />
+                                            formControlName="ClaveNombre" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -299,7 +299,7 @@
                                         <div style="padding-left:7.1rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked2" [ngModelOptions]="{standalone: true}"
-                                            formControlName="DepResPp" kendoCheckBox />
+                                            formControlName="DepResPp" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -313,7 +313,7 @@
                                         <div style="padding-left:1rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked3" [ngModelOptions]="{standalone: true}"
-                                            formControlName="DepParPp" kendoCheckBox />
+                                            formControlName="DepParPp" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -327,7 +327,7 @@
                                         <div style="padding-left:9.7rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked4" [ngModelOptions]="{standalone: true}"
-                                            formControlName="FechaADx" kendoCheckBox />
+                                            formControlName="FechaADx" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -340,7 +340,7 @@
                                         <div style="padding-left:23.55rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked5" [ngModelOptions]="{standalone: true}"
-                                            formControlName="Intro" kendoCheckBox />
+                                            formControlName="Intro" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -353,7 +353,7 @@
                                         <div style="padding-left:19.15rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked6" [ngModelOptions]="{standalone: true}"
-                                            formControlName="AnalisisInvolucrados" kendoCheckBox />
+                                            formControlName="AnalisisInvolucrados" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -366,7 +366,7 @@
                                         <div style="padding-left:13.68rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked7" [ngModelOptions]="{standalone: true}"
-                                            formControlName="DefProblema" kendoCheckBox />
+                                            formControlName="DefProblema" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -379,7 +379,7 @@
                                         <div style="padding-left:19.28rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked8" [ngModelOptions]="{standalone: true}"
-                                            formControlName="EvoProblema" kendoCheckBox />
+                                            formControlName="EvoProblema" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -392,7 +392,7 @@
                                         <div style="padding-left:17.9rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked9" [ngModelOptions]="{standalone: true}"
-                                            formControlName="EstActualProblema" kendoCheckBox />
+                                            formControlName="EstActualProblema" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -405,7 +405,7 @@
                                         <div style="padding-left:18.3rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked10" [ngModelOptions]="{standalone: true}"
-                                            formControlName="ExpAtencion" kendoCheckBox />
+                                            formControlName="ExpAtencion" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -418,7 +418,7 @@
                                         <div style="padding-left:17.8rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked11" [ngModelOptions]="{standalone: true}"
-                                            formControlName="DefObjetivos" kendoCheckBox />
+                                            formControlName="DefObjetivos" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -434,7 +434,7 @@
                                         <div style="padding-left:15.9rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked12" [ngModelOptions]="{standalone: true}"
-                                            formControlName="AnalisisCorrespon" kendoCheckBox />
+                                            formControlName="AnalisisCorrespon" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -447,7 +447,7 @@
                                         <div style="padding-left:18.5rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked13" [ngModelOptions]="{standalone: true}"
-                                            formControlName="SelecAlterna" kendoCheckBox />
+                                            formControlName="SelecAlterna" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -460,7 +460,7 @@
                                         <div style="padding-left:15.0rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked14" [ngModelOptions]="{standalone: true}"
-                                            formControlName="EstructuraAnalitica" kendoCheckBox />
+                                            formControlName="EstructuraAnalitica" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -474,7 +474,7 @@
                                         <div style="padding-left:9.70rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked15" [ngModelOptions]="{standalone: true}"
-                                            formControlName="JustObj" kendoCheckBox />
+                                            formControlName="JustObj" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -488,7 +488,7 @@
                                         <div style="padding-left:10.60rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked16" [ngModelOptions]="{standalone: true}"
-                                            formControlName="IdentificacionCuanPob" kendoCheckBox />
+                                            formControlName="IdentificacionCuanPob" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -502,7 +502,7 @@
                                         <div style="padding-left:13.1rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked17" [ngModelOptions]="{standalone: true}"
-                                            formControlName="IdenficacionAreaInfluencia" kendoCheckBox />
+                                            formControlName="IdenficacionAreaInfluencia" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -516,7 +516,7 @@
                                         <div style="padding-left:10.6rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked18" [ngModelOptions]="{standalone: true}"
-                                            formControlName="RelOtrosPP" kendoCheckBox />
+                                            formControlName="RelOtrosPP" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -530,7 +530,7 @@
                                         <div style="padding-left:5rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked19" [ngModelOptions]="{standalone: true}"
-                                            formControlName="ElementosPEB" kendoCheckBox />
+                                            formControlName="ElementosPEB" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -543,7 +543,7 @@
                                         <div style="padding-left:26.65rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked20" [ngModelOptions]="{standalone: true}"
-                                            formControlName="MIR" kendoCheckBox />
+                                            formControlName="MIR" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -556,7 +556,7 @@
                                         <div style="padding-left:13.1rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked21" [ngModelOptions]="{standalone: true}"
-                                            formControlName="EvoPp" kendoCheckBox />
+                                            formControlName="EvoPp" (click)="Anexo()" kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -569,7 +569,7 @@
                                         <div style="padding-left:20.1rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked22" [ngModelOptions]="{standalone: true}"
-                                            formControlName="Glosario" kendoCheckBox />
+                                            formControlName="Glosario" kendoCheckBox  (click)="Anexo()" />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -634,7 +634,7 @@
                                           resizable="auto" name="Dp1" flow="horizontal">
                                           <kendo-textarea-suffix>
                                             <button kendoButton type="button" class="suffix-clear-button"
-                                              (click)="CalculoDp()" fillMode="clear" icon="edit">Ponderacion</button>
+                                              (click)="CalculoDp()"  fillMode="clear" icon="edit">Ponderacion</button>
                                           </kendo-textarea-suffix>
                                         </kendo-textarea>
                                         <kendo-formhint style="font-weight: normal;" align="start">1 DP Ponderacion
@@ -661,7 +661,7 @@
                                           resizable="auto" name="Dp2" flow="horizontal">
                                           <kendo-textarea-suffix>
                                             <button kendoButton type="button" class="suffix-clear-button"
-                                              (click)="RespuestaDp2()" fillMode="clear" icon="edit">Ponderacion</button>
+                                              (click)="RespuestaDp2()" (click)="Anexo()" fillMode="clear" icon="edit">Ponderacion</button>
                                           </kendo-textarea-suffix>
                                         </kendo-textarea>
                                         <kendo-formhint style="font-weight: normal;" align="start">1 DP Ponderacion
@@ -688,7 +688,7 @@
                                           resizable="auto" name="Dp3" flow="horizontal">
                                           <kendo-textarea-suffix>
                                             <button kendoButton type="button" class="suffix-clear-button"
-                                              (click)="RespuestaDp3()" fillMode="clear" icon="edit">Ponderacion</button>
+                                              (click)="RespuestaDp3()" (click)="ResPreg123()"  fillMode="clear" icon="edit">Ponderacion</button>
 
                                           </kendo-textarea-suffix>
                                         </kendo-textarea>

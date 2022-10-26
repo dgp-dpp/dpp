@@ -9,14 +9,21 @@ import { UrlApi } from '../helpers/urlapi';
 export class MapabienesService {
 
   private myAppUrl = UrlApi;
-   private myApiUrl = '/BackEndApi/api/Marcador'
+   private myApiUrlUM = '/BackEndApi/api/Marcador';
+   private myApiUrlUC = '/BackEndApi/api/UnidadesCapacitacion';
    baseURL: string;
   constructor(private httpClient: HttpClient) {
     // this.baseURL="https://restcountries.com/v2/regionalbloc/eu";
 
   }
-  getAll(): Observable<any>{
-    return this.httpClient.get<any>(this.myAppUrl+this.myApiUrl+"/GetListMarcador")
+  getUnidadesMedicas(): Observable<any>{
+    return this.httpClient.get<any>(this.myAppUrl+this.myApiUrlUM+"/GetListMarcador")
+     .pipe(tap((data) => {
+       console.log(data)
+    }));
+  }
+  getUnidadesCapacitacionService(): Observable<any>{
+    return this.httpClient.get<any>(this.myAppUrl+this.myApiUrlUC+"/GetListUnidadesCapacitacion")
      .pipe(tap((data) => {
        console.log(data)
     }));

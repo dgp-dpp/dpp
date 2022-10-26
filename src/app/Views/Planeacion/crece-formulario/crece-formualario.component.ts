@@ -33,7 +33,7 @@ export interface Fecha {
   styleUrls: ['./crece-formualario.component.css']
 })
 export class CreceFormualarioComponent implements OnInit {
-   filterPp = this.loginServices.getTokenDecoded().email;
+  filterPp = this.loginServices.getTokenDecoded().email;
 
   public fecha: Fecha;
   public model: JsonModel = JSON.parse('{"value": "" }');
@@ -66,33 +66,33 @@ export class CreceFormualarioComponent implements OnInit {
   public checked21: boolean = false;
   public checked22: boolean = false;
   //VARIABLES OUT FORM
-  public NombrePp: string;
-  public ListDepPar: string;
-  public Dp1Res:string;
-  public Dp2Res:string;
-  public Dp3Res:string;
-  public ClaveNombreInforme:string;
-  public DepResPpInforme:string;
-  public DepParPpInforme:string;
-  public FechaADxInforme:string;
-  public IntroInforme:string;
-  public AnalisisInvolucradosInforme:string;
-  public DefProblemaInforme:string;
-  public EvoProblemaInforme:string;
-  public EstActualProblemaInforme:string;
-  public ExpAtencionInforme:string;
-  public DefObjetivosInforme:string;
-  public AnalisisCorresponInforme:string;
-  public SelecAlternaInforme:string;
-  public EstructuraAnaliticaInforme:string;
-  public JustObjInforme:string;
-  public IdentificacionCuanPobInforme:string;
-  public IdentificacionAreaInfluenciaInforme:string;
-  public RelOtrosPPInforme:string;
-  public ElementosPEBInforme:string;
-  public MirInforme:string;
-  public EvoPpInforme:string;
-  public GlosarioInforme:string;
+  public NombrePp: string="";
+  public ListDepPar: string="";
+  public Dp1Res: string;
+  public Dp2Res: string;
+  public Dp3Res: string;
+  public ClaveNombreInforme: string;
+  public DepResPpInforme: string;
+  public DepParPpInforme: string;
+  public FechaADxInforme: string;
+  public IntroInforme: string;
+  public AnalisisInvolucradosInforme: string;
+  public DefProblemaInforme: string;
+  public EvoProblemaInforme: string;
+  public EstActualProblemaInforme: string;
+  public ExpAtencionInforme: string;
+  public DefObjetivosInforme: string;
+  public AnalisisCorresponInforme: string;
+  public SelecAlternaInforme: string;
+  public EstructuraAnaliticaInforme: string;
+  public JustObjInforme: string;
+  public IdentificacionCuanPobInforme: string;
+  public IdenficacionAreaInfluenciaInforme: string;
+  public RelOtrosPPInforme: string;
+  public ElementosPEBInforme: string;
+  public MirInforme: string;
+  public EvoPpInforme: string;
+  public GlosarioInforme: string;
 
   public Elements: string[] = [
     "element1",
@@ -124,193 +124,194 @@ export class CreceFormualarioComponent implements OnInit {
   Rol: string;
   public ProgramaPresupuestario: Array<{ value: number; text: string }> = [];
   listCreces: any[] = [];
-  public creces:Array<{id:number;
-                      email:string;
-                      revision:string;
-                      pp:string;
-                      dependencia:string;
-                      fecha:string;
-                      ano:number;
-                      depPar:string;
-                      claveNombre:boolean;
-                      depResPp:boolean;
-                      depParPp:boolean;
-                      fechaADx:boolean;
-                      intro:boolean;
-                      analisisInvolucrados:boolean;
-                      defProblema:boolean;
-                      evoProblema:boolean;
-                      estActualProblema:boolean;
-                      expAtencion:boolean;
-                      defObjetivos:boolean;
-                      analisisCorrespon:boolean;
-                      selecAlterna:boolean;
-                      estructuraAnalitica:boolean;
-                      justObj:boolean;
-                      identificacionCuanPob:boolean;
-                      identificacionAreaInfluencia:boolean;
-                      relOtrosPP:boolean;
-                      elementosPEB:boolean;
-                      mir:boolean;
-                      evoPp:boolean;
-                      glosario:boolean;
-                      dp1:number;
-                      dp2:number;
-                      dp3:number;
-                      dp4:number;
-                      dp4Esp:string;
-                      calDp4form:string;
-                      ponDp4form:number;
-                      dp5:number;
-                      dp5Esp:string;
-                      calDp5form:string;
-                      ponDp5form:number;
-                      dp6:number;
-                      dp6Esp:string;
-                      calfDp6form:string;
-                      ponDp6form:number;
-                      dp7:number;
-                      dp7Esp:string;
-                      calfDp7form:string;
-                      ponDp7form:number;
-                      dp8:number;
-                      dp8Esp:string;
-                      calfDp8form:string;
-                      ponDp8form:number;
-                      dp9:number;
-                      dp9Esp:string;
-                      calfDp9form:string;
-                      ponDp9form:number;
-                      dp10:number;
-                      dp10Esp:string;
-                      calfDp10form:string;
-                      ponDp10form:number;
-                      dp11:number;
-                      dp11Esp:string;
-                      calfDp11form:string;
-                      ponDp11form:number;
-                      dp12:number;
-                      dp12Esp:string;
-                      calfDp12form:string;
-                      ponDp12form:number;
-                      dp13:number;
-                      dp13Esp:string;
-                      calfDp13form:string;
-                      ponDp13form:number;
-                      dp14:number;
-                      dp14Esp:string;
-                      calfDp14form:string;
-                      ponDp14form:number;
-                      dp15:number;
-                      dp15Esp:string;
-                      calfDp15form:string;
-                      ponDp15form:number;
-                      dp16:number;
-                      dp16Esp:string;
-                      calfDp16form:string;
-                      ponDp16form:number;
-                      dp17:number;
-                      dp17Esp:string;
-                      calfDp17form:string;
-                      ponDp17form:number;
-                      dp18:number;
-                      dp18Esp:string;
-                      calfDp18form:string;
-                      ponDp18form:number;
-                      dp19:number;
-                      dp19Esp:string;
-                      calfDp19form:string;
-                      ponDp19form:number;
-                      dp20:number;
-                      dp20Esp:string;
-                      calfDp20form:string;
-                      ponDp20form:number;
-                      mir1:number;
-                      mir1Esp:string;
-                      ponMir1form:number;
-                      mir2:number;
-                      mir2Esp:string;
-                      ponMir2form:number;
-                      mir3:number;
-                      mir3Esp:string;
-                      ponMir3form:number;
-                      mir4:number;
-                      mir4Esp:string;
-                      ponMir4form:number;
-                      mir5:number;
-                      mir5Esp:string;
-                      ponMir5form:number;
-                      mir6:number;
-                      mir6Esp:string;
-                      ponMir6form:number;
-                      mir7:number;
-                      mir7Esp:string;
-                      ponMir7form:number;
-                      mir8:number;
-                      mir8Esp:string;
-                      ponMir8form:number;
-                      mir9:number;
-                      mir9Esp:string;
-                      ponMir9form:number;
-                      mir10:number;
-                      mir10Esp:string;
-                      ponMir10form:number;
-                      mir11:number;
-                      mir11Esp:string;
-                      ponMir11form:number;
-                      mir12:number;
-                      mir12Esp:string;
-                      ponMir12form:number;
-                      mir13:number;
-                      mir13Esp:string;
-                      ponMir13form:number;
-                      mir14:number;
-                      mir14Esp:string;
-                      ponMir14form:number;
-                      mir15:number;
-                      mir15Esp:string;
-                      ponMir15form:number;
-                      mir16:number;
-                      mir16Esp:string;
-                      ponMir16form:number;
-                      mir17:number;
-                      mir17Esp:string;
-                      ponMir17form:number;
-                      mir18:number;
-                      mir18Esp:string;
-                      ponMir18form:number;
-                      mir19:number;
-                      mir19Esp:string;
-                      ponMir19form:number;
-                      mir20:number;
-                      mir20Esp:string;
-                      ponMir20form:number;
-                      mir21:number;
-                      mir21Esp:string;
-                      ponMir21form:number;
-                      mir22:number;
-                      mir22Esp:string;
-                      ponMir22form:number;
-                      mir23:number;
-                      mir23Esp:string;
-                      ponMir23form:number;
-                      mir24:number;
-                      mir24Esp:string;
-                      ponMir24form:number;
-                      mir25:number;
-                      mir25Esp:string;
-                      ponMir25form:number;
-                      mir26:number;
-                      mir26Esp:string;
-                      ponMir26form:number;
-                      fDp:string;
-                      fMir:string;
-                      aoDp:string;
-                      aoMir:string;
-                      calDp:number;
-                      calMir:number;
-                      CalTot:number;
-                      }> = [ ]
+  public creces: Array<{
+    id: number;
+    email: string;
+    revision: string;
+    pp: string;
+    dependencia: string;
+    fecha: string;
+    ano: number;
+    depPar: string;
+    claveNombre: boolean;
+    depResPp: boolean;
+    depParPp: boolean;
+    fechaADx: boolean;
+    intro: boolean;
+    analisisInvolucrados: boolean;
+    defProblema: boolean;
+    evoProblema: boolean;
+    estActualProblema: boolean;
+    expAtencion: boolean;
+    defObjetivos: boolean;
+    analisisCorrespon: boolean;
+    selecAlterna: boolean;
+    estructuraAnalitica: boolean;
+    justObj: boolean;
+    identificacionCuanPob: boolean;
+    identificacionAreaInfluencia: boolean;
+    relOtrosPP: boolean;
+    elementosPEB: boolean;
+    mir: boolean;
+    evoPp: boolean;
+    glosario: boolean;
+    dp1: number;
+    dp2: number;
+    dp3: number;
+    dp4: number;
+    dp4Esp: string;
+    calDp4form: string;
+    ponDp4form: number;
+    dp5: number;
+    dp5Esp: string;
+    calDp5form: string;
+    ponDp5form: number;
+    dp6: number;
+    dp6Esp: string;
+    calfDp6form: string;
+    ponDp6form: number;
+    dp7: number;
+    dp7Esp: string;
+    calfDp7form: string;
+    ponDp7form: number;
+    dp8: number;
+    dp8Esp: string;
+    calfDp8form: string;
+    ponDp8form: number;
+    dp9: number;
+    dp9Esp: string;
+    calfDp9form: string;
+    ponDp9form: number;
+    dp10: number;
+    dp10Esp: string;
+    calfDp10form: string;
+    ponDp10form: number;
+    dp11: number;
+    dp11Esp: string;
+    calfDp11form: string;
+    ponDp11form: number;
+    dp12: number;
+    dp12Esp: string;
+    calfDp12form: string;
+    ponDp12form: number;
+    dp13: number;
+    dp13Esp: string;
+    calfDp13form: string;
+    ponDp13form: number;
+    dp14: number;
+    dp14Esp: string;
+    calfDp14form: string;
+    ponDp14form: number;
+    dp15: number;
+    dp15Esp: string;
+    calfDp15form: string;
+    ponDp15form: number;
+    dp16: number;
+    dp16Esp: string;
+    calfDp16form: string;
+    ponDp16form: number;
+    dp17: number;
+    dp17Esp: string;
+    calfDp17form: string;
+    ponDp17form: number;
+    dp18: number;
+    dp18Esp: string;
+    calfDp18form: string;
+    ponDp18form: number;
+    dp19: number;
+    dp19Esp: string;
+    calfDp19form: string;
+    ponDp19form: number;
+    dp20: number;
+    dp20Esp: string;
+    calfDp20form: string;
+    ponDp20form: number;
+    mir1: number;
+    mir1Esp: string;
+    ponMir1form: number;
+    mir2: number;
+    mir2Esp: string;
+    ponMir2form: number;
+    mir3: number;
+    mir3Esp: string;
+    ponMir3form: number;
+    mir4: number;
+    mir4Esp: string;
+    ponMir4form: number;
+    mir5: number;
+    mir5Esp: string;
+    ponMir5form: number;
+    mir6: number;
+    mir6Esp: string;
+    ponMir6form: number;
+    mir7: number;
+    mir7Esp: string;
+    ponMir7form: number;
+    mir8: number;
+    mir8Esp: string;
+    ponMir8form: number;
+    mir9: number;
+    mir9Esp: string;
+    ponMir9form: number;
+    mir10: number;
+    mir10Esp: string;
+    ponMir10form: number;
+    mir11: number;
+    mir11Esp: string;
+    ponMir11form: number;
+    mir12: number;
+    mir12Esp: string;
+    ponMir12form: number;
+    mir13: number;
+    mir13Esp: string;
+    ponMir13form: number;
+    mir14: number;
+    mir14Esp: string;
+    ponMir14form: number;
+    mir15: number;
+    mir15Esp: string;
+    ponMir15form: number;
+    mir16: number;
+    mir16Esp: string;
+    ponMir16form: number;
+    mir17: number;
+    mir17Esp: string;
+    ponMir17form: number;
+    mir18: number;
+    mir18Esp: string;
+    ponMir18form: number;
+    mir19: number;
+    mir19Esp: string;
+    ponMir19form: number;
+    mir20: number;
+    mir20Esp: string;
+    ponMir20form: number;
+    mir21: number;
+    mir21Esp: string;
+    ponMir21form: number;
+    mir22: number;
+    mir22Esp: string;
+    ponMir22form: number;
+    mir23: number;
+    mir23Esp: string;
+    ponMir23form: number;
+    mir24: number;
+    mir24Esp: string;
+    ponMir24form: number;
+    mir25: number;
+    mir25Esp: string;
+    ponMir25form: number;
+    mir26: number;
+    mir26Esp: string;
+    ponMir26form: number;
+    fDp: string;
+    fMir: string;
+    aoDp: string;
+    aoMir: string;
+    calDp: number;
+    calMir: number;
+    CalTot: number;
+  }> = []
   public value: Date;
 
 
@@ -625,766 +626,953 @@ export class CreceFormualarioComponent implements OnInit {
     this.CrecePlaneacionService.getListCrece().pipe(
       map(response => response.$values)
     ).
-    subscribe(_data => {
-      _data = _data.map(_cres=>{
-        const{id,
-          email,
-          revision,
-          pp,
-          dependencia,
-          fecha,
-          ano,
-          depPar,
-          claveNombre,
-          depResPp,
-          depParPp,
-          fechaADx,
-          intro,
-          analisisInvolucrados,
-          defProblema,
-          evoProblema,
-          estActualProblema,
-          expAtencion,
-          defObjetivos,
-          analisisCorrespon,
-          selecAlterna,
-          estructuraAnalitica,
-          justObj,
-          identificacionCuanPob,
-          idenficacionAreaInfluencia,
-          relOtrosPP,
-          elementosPEB,
-          mir,
-          evoPp,
-          glosario,
-          dp1,
-          dp2,
-          dp3,
-          dp4,
-          dp4Esp,
-          calfDp4form,
-          ponDp4form,
-          dp5,
-          dp5Esp,
-          calfDp5form,
-          ponDp5form,
-          dp6,
-          dp6Esp,
-          calfDp6form,
-          ponDp6form,
-          dp7,
-          dp7Esp,
-          calfDp7form,
-          ponDp7form,
-          dp8,
-          dp8Esp,
-          calfDp8form,
-          ponDp8form,
-          dp9,
-          dp9Esp,
-          calfDp9form,
-          ponDp9form,
-          dp10,
-          dp10Esp,
-          calfDp10form,
-          ponDp10form,
-          dp11,
-          dp11Esp,
-          calfDp11form,
-          ponDp11form,
-          dp12,
-          dp12Esp,
-          calfDp12form,
-          ponDp12form,
-          dp13,
-          dp13Esp,
-          calfDp13form,
-          ponDp13form,
-          dp14,
-          dp14Esp,
-          calfDp14form,
-          ponDp14form,
-          dp15,
-          dp15Esp,
-          calfDp15form,
-          ponDp15form,
-          dp16,
-          dp16Esp,
-          calfDp16form,
-          ponDp16form,
-          dp17,
-          dp17Esp,
-          calfDp17form,
-          ponDp17form,
-          dp18,
-          dp18Esp,
-          calfDp18form,
-          ponDp18form,
-          dp19,
-          dp19Esp,
-          calfDp19form,
-          ponDp19form,
-          dp20,
-          dp20Esp,
-          calfDp20form,
-          ponDp20form,
-          mir1,
-          mir1Esp,
-          ponMir1form,
-          mir2,
-          mir2Esp,
-          ponMir2form,
-          mir3,
-          mir3Esp,
-          ponMir3form,
-          mir4,
-          mir4Esp,
-          ponMir4form,
-          mir5,
-          mir5Esp,
-          ponMir5form,
-          mir6,
-          mir6Esp,
-          ponMir6form,
-          mir7,
-          mir7Esp,
-          ponMir7form,
-          mir8,
-          mir8Esp,
-          ponMir8form,
-          mir9,
-          mir9Esp,
-          ponMir9form,
-          mir10,
-          mir10Esp,
-          ponMir10form,
-          mir11,
-          mir11Esp,
-          ponMir11form,
-          mir12,
-          mir12Esp,
-          ponMir12form,
-          mir13,
-          mir13Esp,
-          ponMir13form,
-          mir14,
-          mir14Esp,
-          ponMir14form,
-          mir15,
-          mir15Esp,
-          ponMir15form,
-          mir16,
-          mir16Esp,
-          ponMir16form,
-          mir17,
-          mir17Esp,
-          ponMir17form,
-          mir18,
-          mir18Esp,
-          ponMir18form,
-          mir19,
-          mir19Esp,
-          ponMir19form,
-          mir20,
-          mir20Esp,
-          ponMir20form,
-          mir21,
-          mir21Esp,
-          ponMir21form,
-          mir22,
-          mir22Esp,
-          ponMir22form,
-          mir23,
-          mir23Esp,
-          ponMir23form,
-          mir24,
-          mir24Esp,
-          ponMir24form,
-          mir25,
-          mir25Esp,
-          ponMir25form,
-          mir26,
-          mir26Esp,
-          ponMir26form,
-          fDp,
-          fMir,
-          aoDp,
-          aoMir,
-          calDp,
-          calMir,
-          calTot,
-                 } =_cres;
-          return{
-            id:id,
+      subscribe(_data => {
+        _data = _data.map(_cres => {
+          const { id,
+            email,
+            revision,
+            pp,
+            dependencia,
+            fecha,
+            ano,
+            depPar,
+            claveNombre,
+            depResPp,
+            depParPp,
+            fechaADx,
+            intro,
+            analisisInvolucrados,
+            defProblema,
+            evoProblema,
+            estActualProblema,
+            expAtencion,
+            defObjetivos,
+            analisisCorrespon,
+            selecAlterna,
+            estructuraAnalitica,
+            justObj,
+            identificacionCuanPob,
+            idenficacionAreaInfluencia,
+            relOtrosPP,
+            elementosPEB,
+            mir,
+            evoPp,
+            glosario,
+            dp1,
+            dp2,
+            dp3,
+            dp4,
+            dp4Esp,
+            calfDp4form,
+            ponDp4form,
+            dp5,
+            dp5Esp,
+            calfDp5form,
+            ponDp5form,
+            dp6,
+            dp6Esp,
+            calfDp6form,
+            ponDp6form,
+            dp7,
+            dp7Esp,
+            calfDp7form,
+            ponDp7form,
+            dp8,
+            dp8Esp,
+            calfDp8form,
+            ponDp8form,
+            dp9,
+            dp9Esp,
+            calfDp9form,
+            ponDp9form,
+            dp10,
+            dp10Esp,
+            calfDp10form,
+            ponDp10form,
+            dp11,
+            dp11Esp,
+            calfDp11form,
+            ponDp11form,
+            dp12,
+            dp12Esp,
+            calfDp12form,
+            ponDp12form,
+            dp13,
+            dp13Esp,
+            calfDp13form,
+            ponDp13form,
+            dp14,
+            dp14Esp,
+            calfDp14form,
+            ponDp14form,
+            dp15,
+            dp15Esp,
+            calfDp15form,
+            ponDp15form,
+            dp16,
+            dp16Esp,
+            calfDp16form,
+            ponDp16form,
+            dp17,
+            dp17Esp,
+            calfDp17form,
+            ponDp17form,
+            dp18,
+            dp18Esp,
+            calfDp18form,
+            ponDp18form,
+            dp19,
+            dp19Esp,
+            calfDp19form,
+            ponDp19form,
+            dp20,
+            dp20Esp,
+            calfDp20form,
+            ponDp20form,
+            mir1,
+            mir1Esp,
+            ponMir1form,
+            mir2,
+            mir2Esp,
+            ponMir2form,
+            mir3,
+            mir3Esp,
+            ponMir3form,
+            mir4,
+            mir4Esp,
+            ponMir4form,
+            mir5,
+            mir5Esp,
+            ponMir5form,
+            mir6,
+            mir6Esp,
+            ponMir6form,
+            mir7,
+            mir7Esp,
+            ponMir7form,
+            mir8,
+            mir8Esp,
+            ponMir8form,
+            mir9,
+            mir9Esp,
+            ponMir9form,
+            mir10,
+            mir10Esp,
+            ponMir10form,
+            mir11,
+            mir11Esp,
+            ponMir11form,
+            mir12,
+            mir12Esp,
+            ponMir12form,
+            mir13,
+            mir13Esp,
+            ponMir13form,
+            mir14,
+            mir14Esp,
+            ponMir14form,
+            mir15,
+            mir15Esp,
+            ponMir15form,
+            mir16,
+            mir16Esp,
+            ponMir16form,
+            mir17,
+            mir17Esp,
+            ponMir17form,
+            mir18,
+            mir18Esp,
+            ponMir18form,
+            mir19,
+            mir19Esp,
+            ponMir19form,
+            mir20,
+            mir20Esp,
+            ponMir20form,
+            mir21,
+            mir21Esp,
+            ponMir21form,
+            mir22,
+            mir22Esp,
+            ponMir22form,
+            mir23,
+            mir23Esp,
+            ponMir23form,
+            mir24,
+            mir24Esp,
+            ponMir24form,
+            mir25,
+            mir25Esp,
+            ponMir25form,
+            mir26,
+            mir26Esp,
+            ponMir26form,
+            fDp,
+            fMir,
+            aoDp,
+            aoMir,
+            calDp,
+            calMir,
+            calTot,
+          } = _cres;
+          return {
+            id: id,
             email: email,
-            revision:revision,
-            pp:pp,
-            dependencia:dependencia,
-            fecha:fecha,
-            ano:ano,
-            depPar:depPar,
-            claveNombre:claveNombre,
-            depResPp:depResPp,
-            depParPp:depParPp,
-            fechaADx:fechaADx,
-            intro:intro,
-            analisisInvolucrados:analisisInvolucrados,
-            defProblema:defProblema,
-            evoProblema:evoProblema,
-            estActualProblema:estActualProblema,
-            expAtencion:expAtencion,
-            defObjetivos:defObjetivos,
-            analisisCorrespon:analisisCorrespon,
-            selecAlterna:selecAlterna,
-            estructuraAnalitica:estructuraAnalitica,
-            justObj:justObj,
-            identificacionCuanPob:identificacionCuanPob,
-            identificacionAreaInfluencia:idenficacionAreaInfluencia,
-            relOtrosPP:relOtrosPP,
-            elementosPEB:elementosPEB,
-            mir:mir,
-            evoPp:evoPp,
-            glosario:glosario,
-            dp1:dp1,
-            dp2:dp2,
-            dp3:dp3,
-            dp4:dp4,
-            dp4Esp:dp4Esp,
-            calfDp4form:calfDp4form,
-            ponDp4form:ponDp4form,
-            dp5:dp5,
-            dp5Esp:dp5Esp,
-            calfDp5form:calfDp5form,
-            ponDp5form:ponDp5form,
-            dp6:dp6,
-            dp6Esp:dp6Esp,
-            calfDp6form:calfDp6form,
-            ponDp6form:ponDp6form,
-            dp7:dp7,
-            dp7Esp:dp7Esp,
-            calfDp7form:calfDp7form,
-            ponDp7form:ponDp7form,
-            dp8:dp8,
-            dp8Esp:dp8Esp,
-            calfDp8form:calfDp8form,
-            ponDp8form:ponDp8form,
-            dp9:dp9,
-            dp9Esp:dp9Esp,
-            calfDp9form:calfDp9form,
-            ponDp9form:ponDp9form,
-            dp10:dp10,
-            dp10Esp:dp10Esp,
-            calfDp10form:calfDp10form,
-            ponDp10form:ponDp10form,
-            dp11:dp11,
-            dp11Esp:dp11Esp,
-            calfDp11form:calfDp11form,
-            ponDp11form:ponDp11form,
-            dp12:dp12,
-            dp12Esp:dp12Esp,
-            calfDp12form:calfDp12form,
-            ponDp12form:ponDp12form,
-            dp13:dp13,
-            dp13Esp:dp13Esp,
-            calfDp13form:calfDp13form,
-            ponDp13form:ponDp13form,
-            dp14:dp14,
-            dp14Esp:dp14Esp,
-            calfDp14form:calfDp14form,
-            ponDp14form:ponDp14form,
-            dp15:dp15,
-            dp15Esp:dp15Esp,
-            calfDp15form:calfDp15form,
-            ponDp15form:ponDp15form,
-            dp16:dp16,
-            dp16Esp:dp16Esp,
-            calfDp16form:calfDp16form,
-            ponDp16form:ponDp16form,
-            dp17:dp17,
-            dp17Esp:dp17Esp,
-            calfDp17form:calfDp17form,
-            ponDp17form:ponDp17form,
-            dp18:dp18,
-            dp18Esp:dp18Esp,
-            calfDp18form:calfDp18form,
-            ponDp18form:ponDp18form,
-            dp19:dp19,
-            dp19Esp:dp19Esp,
-            calfDp19form:calfDp19form,
-            ponDp19form:ponDp19form,
-            dp20:dp20,
-            dp20Esp:dp20Esp,
-            calfDp20form:calfDp20form,
-            ponDp20form:ponDp20form,
-            mir1:mir1,
-            mir1Esp:mir1Esp,
-            ponMir1form:ponMir1form,
-            mir2:mir2,
-            mir2Esp:mir2Esp,
-            ponMir2form:ponMir2form,
-            mir3:mir3,
-            mir3Esp:mir3Esp,
-            ponMir3form:ponMir3form,
-            mir4:mir4,
-            mir4Esp:mir4Esp,
-            ponMir4form:ponMir4form,
-            mir5:mir5,
-            mir5Esp:mir5Esp,
-            ponMir5form:ponMir5form,
-            mir6:mir6,
-            mir6Esp:mir6Esp,
-            ponMir6form:ponMir6form,
-            mir7:mir7,
-            mir7Esp:mir7Esp,
-            ponMir7form:ponMir7form,
-            mir8:mir8,
-            mir8Esp:mir8Esp,
-            ponMir8form:ponMir8form,
-            mir9:mir9,
-            mir9Esp:mir9Esp,
-            ponMir9form:ponMir9form,
-            mir10:mir10,
-            mir10Esp:mir10Esp,
-            ponMir10form:ponMir10form,
-            mir11:mir11,
-            mir11Esp:mir11Esp,
-            ponMir11form:ponMir11form,
-            mir12:mir12,
-            mir12Esp:mir12Esp,
-            ponMir12form:ponMir11form,
-            mir13:mir13,
-            mir13Esp:mir13Esp,
-            ponMir13form:ponMir13form,
-            mir14:mir14,
-            mir14Esp:mir14Esp,
-            ponMir14form:ponMir14form,
-            mir15:mir15,
-            mir15Esp:mir15Esp,
-            ponMir15form:ponMir15form,
-            mir16:mir16,
-            mir16Esp:mir16Esp,
-            ponMir16form:ponMir16form,
-            mir17:mir17,
-            mir17Esp:mir17Esp,
-            ponMir17form:ponMir17form,
-            mir18:mir18,
-            mir18Esp:mir18Esp,
-            ponMir18form:ponMir18form,
-            mir19:mir19,
-            mir19Esp:mir19Esp,
-            ponMir19form:ponMir19form,
-            mir20:mir20,
-            mir20Esp:mir20Esp,
-            ponMir20form:ponMir20form,
-            mir21:mir21,
-            mir21Esp:mir21Esp,
-            ponMir21form:ponMir21form,
-            mir22:mir22,
-            mir22Esp:mir22Esp,
-            ponMir22form:ponMir22form,
-            mir23:mir23,
-            mir23Esp:mir23Esp,
-            ponMir23form:ponMir23form,
-            mir24:mir24,
-            mir24Esp:mir24Esp,
-            ponMir24form:ponMir24form,
-            mir25:mir25,
-            mir25Esp:mir25Esp,
-            ponMir25form:ponMir25form,
-            mir26:mir26,
-            mir26Esp:mir26Esp,
-            ponMir26form:ponMir26form,
-            fDp:fDp,
-            fMir:fMir,
-            aoDp:aoDp,
-            aoMir:aoMir,
-            calDp:calDp,
-            calMir:calMir,
-            calTot:calTot,
+            revision: revision,
+            pp: pp,
+            dependencia: dependencia,
+            fecha: fecha,
+            ano: ano,
+            depPar: depPar,
+            claveNombre: claveNombre,
+            depResPp: depResPp,
+            depParPp: depParPp,
+            fechaADx: fechaADx,
+            intro: intro,
+            analisisInvolucrados: analisisInvolucrados,
+            defProblema: defProblema,
+            evoProblema: evoProblema,
+            estActualProblema: estActualProblema,
+            expAtencion: expAtencion,
+            defObjetivos: defObjetivos,
+            analisisCorrespon: analisisCorrespon,
+            selecAlterna: selecAlterna,
+            estructuraAnalitica: estructuraAnalitica,
+            justObj: justObj,
+            identificacionCuanPob: identificacionCuanPob,
+            identificacionAreaInfluencia: idenficacionAreaInfluencia,
+            relOtrosPP: relOtrosPP,
+            elementosPEB: elementosPEB,
+            mir: mir,
+            evoPp: evoPp,
+            glosario: glosario,
+            dp1: dp1,
+            dp2: dp2,
+            dp3: dp3,
+            dp4: dp4,
+            dp4Esp: dp4Esp,
+            calfDp4form: calfDp4form,
+            ponDp4form: ponDp4form,
+            dp5: dp5,
+            dp5Esp: dp5Esp,
+            calfDp5form: calfDp5form,
+            ponDp5form: ponDp5form,
+            dp6: dp6,
+            dp6Esp: dp6Esp,
+            calfDp6form: calfDp6form,
+            ponDp6form: ponDp6form,
+            dp7: dp7,
+            dp7Esp: dp7Esp,
+            calfDp7form: calfDp7form,
+            ponDp7form: ponDp7form,
+            dp8: dp8,
+            dp8Esp: dp8Esp,
+            calfDp8form: calfDp8form,
+            ponDp8form: ponDp8form,
+            dp9: dp9,
+            dp9Esp: dp9Esp,
+            calfDp9form: calfDp9form,
+            ponDp9form: ponDp9form,
+            dp10: dp10,
+            dp10Esp: dp10Esp,
+            calfDp10form: calfDp10form,
+            ponDp10form: ponDp10form,
+            dp11: dp11,
+            dp11Esp: dp11Esp,
+            calfDp11form: calfDp11form,
+            ponDp11form: ponDp11form,
+            dp12: dp12,
+            dp12Esp: dp12Esp,
+            calfDp12form: calfDp12form,
+            ponDp12form: ponDp12form,
+            dp13: dp13,
+            dp13Esp: dp13Esp,
+            calfDp13form: calfDp13form,
+            ponDp13form: ponDp13form,
+            dp14: dp14,
+            dp14Esp: dp14Esp,
+            calfDp14form: calfDp14form,
+            ponDp14form: ponDp14form,
+            dp15: dp15,
+            dp15Esp: dp15Esp,
+            calfDp15form: calfDp15form,
+            ponDp15form: ponDp15form,
+            dp16: dp16,
+            dp16Esp: dp16Esp,
+            calfDp16form: calfDp16form,
+            ponDp16form: ponDp16form,
+            dp17: dp17,
+            dp17Esp: dp17Esp,
+            calfDp17form: calfDp17form,
+            ponDp17form: ponDp17form,
+            dp18: dp18,
+            dp18Esp: dp18Esp,
+            calfDp18form: calfDp18form,
+            ponDp18form: ponDp18form,
+            dp19: dp19,
+            dp19Esp: dp19Esp,
+            calfDp19form: calfDp19form,
+            ponDp19form: ponDp19form,
+            dp20: dp20,
+            dp20Esp: dp20Esp,
+            calfDp20form: calfDp20form,
+            ponDp20form: ponDp20form,
+            mir1: mir1,
+            mir1Esp: mir1Esp,
+            ponMir1form: ponMir1form,
+            mir2: mir2,
+            mir2Esp: mir2Esp,
+            ponMir2form: ponMir2form,
+            mir3: mir3,
+            mir3Esp: mir3Esp,
+            ponMir3form: ponMir3form,
+            mir4: mir4,
+            mir4Esp: mir4Esp,
+            ponMir4form: ponMir4form,
+            mir5: mir5,
+            mir5Esp: mir5Esp,
+            ponMir5form: ponMir5form,
+            mir6: mir6,
+            mir6Esp: mir6Esp,
+            ponMir6form: ponMir6form,
+            mir7: mir7,
+            mir7Esp: mir7Esp,
+            ponMir7form: ponMir7form,
+            mir8: mir8,
+            mir8Esp: mir8Esp,
+            ponMir8form: ponMir8form,
+            mir9: mir9,
+            mir9Esp: mir9Esp,
+            ponMir9form: ponMir9form,
+            mir10: mir10,
+            mir10Esp: mir10Esp,
+            ponMir10form: ponMir10form,
+            mir11: mir11,
+            mir11Esp: mir11Esp,
+            ponMir11form: ponMir11form,
+            mir12: mir12,
+            mir12Esp: mir12Esp,
+            ponMir12form: ponMir11form,
+            mir13: mir13,
+            mir13Esp: mir13Esp,
+            ponMir13form: ponMir13form,
+            mir14: mir14,
+            mir14Esp: mir14Esp,
+            ponMir14form: ponMir14form,
+            mir15: mir15,
+            mir15Esp: mir15Esp,
+            ponMir15form: ponMir15form,
+            mir16: mir16,
+            mir16Esp: mir16Esp,
+            ponMir16form: ponMir16form,
+            mir17: mir17,
+            mir17Esp: mir17Esp,
+            ponMir17form: ponMir17form,
+            mir18: mir18,
+            mir18Esp: mir18Esp,
+            ponMir18form: ponMir18form,
+            mir19: mir19,
+            mir19Esp: mir19Esp,
+            ponMir19form: ponMir19form,
+            mir20: mir20,
+            mir20Esp: mir20Esp,
+            ponMir20form: ponMir20form,
+            mir21: mir21,
+            mir21Esp: mir21Esp,
+            ponMir21form: ponMir21form,
+            mir22: mir22,
+            mir22Esp: mir22Esp,
+            ponMir22form: ponMir22form,
+            mir23: mir23,
+            mir23Esp: mir23Esp,
+            ponMir23form: ponMir23form,
+            mir24: mir24,
+            mir24Esp: mir24Esp,
+            ponMir24form: ponMir24form,
+            mir25: mir25,
+            mir25Esp: mir25Esp,
+            ponMir25form: ponMir25form,
+            mir26: mir26,
+            mir26Esp: mir26Esp,
+            ponMir26form: ponMir26form,
+            fDp: fDp,
+            fMir: fMir,
+            aoDp: aoDp,
+            aoMir: aoMir,
+            calDp: calDp,
+            calMir: calMir,
+            calTot: calTot,
 
           }
-      });
-     this.creces = _data;
-      console.log(_data);
-      console.log(this.creces);
+        });
+        this.creces = _data;
+        console.log(_data);
+        console.log(this.creces);
 
 
-    }, error => {
-      console.log(error);
-    })
+      }, error => {
+        console.log(error);
+      })
   }
-  GetNombrePp(){
-    if(this.pp == "E001"){
+  GetNombrePp() {
+    if (this.pp == "E001") {
       this.NombrePp = "Acceso a la información pública del Estado de Guanajuato";
-      this.ListDepPar = "";
+      this.ListDepPar = "IACIP";
+      this.dep = "IACIP";
     }
-    else if(this.pp == "E002"){
-      this.NombrePp ="Sistema Integral de Transparencia, Acceso a la Información Pública y Archivos";
+    else if (this.pp == "E002") {
+      this.NombrePp = "Sistema Integral de Transparencia, Acceso a la Información Pública y Archivos";
+      this.ListDepPar = "UTAPE";
     }
-    else if(this.pp == "E003"){
-      this.NombrePp ="Actividades artísticas y culturales";
+    else if (this.pp == "E003") {
+      this.NombrePp = "Actividades artísticas y culturales";
       this.ListDepPar = "IEC, MIQ, FORUM";
     }
-    else if(this.pp == "E004"){
-      this.NombrePp ="Adaptación al cambio climático";
+    else if (this.pp == "E004") {
+      this.NombrePp = "Adaptación al cambio climático";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E005"){
-      this.NombrePp ="Promoción de la convivencia escolar pacífica";
+    else if (this.pp == "E005") {
+      this.NombrePp = "Promoción de la convivencia escolar pacífica";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E006"){
-      this.NombrePp ="Atención ciudadana";
+    else if (this.pp == "E006") {
+      this.NombrePp = "Atención ciudadana";
       this.ListDepPar = "GTOMX";
     }
-    else if(this.pp == "E007"){
-      this.NombrePp ="Atención integral a las personas con discapacidad";
+    else if (this.pp == "E007") {
+      this.NombrePp = "Atención integral a las personas con discapacidad";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E008"){
-      this.NombrePp ="Atención integral a niñas, niños y adolescentes";
-      this.ListDepPar ="DIF, PEPNNA";
+    else if (this.pp == "E008") {
+      this.NombrePp = "Atención integral a niñas, niños y adolescentes";
+      this.ListDepPar = "DIF, PEPNNA";
     }
-    else if(this.pp == "E009"){
-      this.NombrePp ="Atención integral para adultos mayores";
+    else if (this.pp == "E009") {
+      this.NombrePp = "Atención integral para adultos mayores";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E010"){
-      this.NombrePp ="Reconstrucción del tejido social";
-      this.ListDepPar ="SDSH, DIF";
+    else if (this.pp == "E010") {
+      this.NombrePp = "Reconstrucción del tejido social";
+      this.ListDepPar = "SDSH, DIF";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E012"){
-      this.NombrePp ="Servicios de salud con oportunidad y calidad";
+    else if (this.pp == "E012") {
+      this.NombrePp = "Servicios de salud con oportunidad y calidad";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E014"){
-      this.NombrePp ="Certeza jurídica en los procesos conciliatorios de los conflictos derivados del acto médico";
+    else if (this.pp == "E014") {
+      this.NombrePp = "Certeza jurídica en los procesos conciliatorios de los conflictos derivados del acto médico";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E015"){
-      this.NombrePp ="Certeza jurídica para la población guanajuatense";
+    else if (this.pp == "E015") {
+      this.NombrePp = "Certeza jurídica para la población guanajuatense";
       this.ListDepPar = "DIF";
     }
-    else if(this.pp == "E016"){
-      this.NombrePp ="Certeza jurídica y derechos de los adultos y adolescentes internos";
+    else if (this.pp == "E016") {
+      this.NombrePp = "Certeza jurídica y derechos de los adultos y adolescentes internos";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E017"){
-      this.NombrePp ="Cobertura de Educación Media Superior y Superior";
-      this.ListDepPar ="CECYTEG, UVEG, ITESG, UPGTO, UPB, UTNG, SABES, UPJR, ITSUR, UTSMA, UPPE, EPRR, ITESI, UTL, ITESP, CONALEP, ITESS, UTSOE, UTS, ITESA, UTLB";
+    else if (this.pp == "E017") {
+      this.NombrePp = "Cobertura de Educación Media Superior y Superior";
+      this.ListDepPar = "CECYTEG, UVEG, ITESG, UPGTO, UPB, UTNG, SABES, UPJR, ITSUR, UTSMA, UPPE, EPRR, ITESI, UTL, ITESP, CONALEP, ITESS, UTSOE, UTS, ITESA, UTLB";
     }
-    else if(this.pp == "E018"){
-      this.NombrePp ="Cobertura en Educación Básica";
+    else if (this.pp == "E018") {
+      this.NombrePp = "Cobertura en Educación Básica";
+      this.ListDepPar ="";
 
     }
-    else if(this.pp == "E020"){
-      this.NombrePp ="Comercialización internacional";
+    else if (this.pp == "E020") {
+      this.NombrePp = "Comercialización internacional";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E021"){
-      this.NombrePp ="Conectividad digital";
+    else if (this.pp == "E021") {
+      this.NombrePp = "Conectividad digital";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E022"){
-      this.NombrePp ="Confianza en el Instituto Electoral del Estado de Guanajuato";
+    else if (this.pp == "E022") {
+      this.NombrePp = "Confianza en el Instituto Electoral del Estado de Guanajuato";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E024"){
-      this.NombrePp ="Alianza a favor de la educación para adultos";
+    else if (this.pp == "E024") {
+      this.NombrePp = "Alianza a favor de la educación para adultos";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E026"){
-      this.NombrePp ="Empresa Limpia";
+    else if (this.pp == "E026") {
+      this.NombrePp = "Empresa Limpia";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E027"){
-      this.NombrePp ="Derrama económica por turismo";
+    else if (this.pp == "E027") {
+      this.NombrePp = "Derrama económica por turismo";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E028"){
-      this.NombrePp ="Desarrollo y atención integral de las juventudes";
+    else if (this.pp == "E028") {
+      this.NombrePp = "Desarrollo y atención integral de las juventudes";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E030"){
-      this.NombrePp ="Efectividad del sector de procuración de justicia";
+    else if (this.pp == "E030") {
+      this.NombrePp = "Efectividad del sector de procuración de justicia";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E031"){
-      this.NombrePp ="Eficacia en la operatividad policial";
+    else if (this.pp == "E031") {
+      this.NombrePp = "Eficacia en la operatividad policial";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E032"){
-      this.NombrePp ="Eficiencia de la justicia laboral";
+    else if (this.pp == "E032") {
+      this.NombrePp = "Eficiencia de la justicia laboral";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E035"){
-      this.NombrePp ="Extensión del conocimiento, arte y cultura";
+    else if (this.pp == "E035") {
+      this.NombrePp = "Extensión del conocimiento, arte y cultura";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E036"){
-      this.NombrePp ="Divulgación de la ciencia y la tecnología";
+    else if (this.pp == "E036") {
+      this.NombrePp = "Divulgación de la ciencia y la tecnología";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E037"){
-      this.NombrePp ="Fortalecimiento de la gobernabilidad en el Estado";
+    else if (this.pp == "E037") {
+      this.NombrePp = "Fortalecimiento de la gobernabilidad en el Estado";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E038"){
-      this.NombrePp ="Competencias para el trabajo";
+    else if (this.pp == "E038") {
+      this.NombrePp = "Competencias para el trabajo";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E039"){
-      this.NombrePp ="Sustentabilidad energética";
+    else if (this.pp == "E039") {
+      this.NombrePp = "Sustentabilidad energética";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E040"){
-      this.NombrePp ="Investigación, desarrollo tecnológico e innovación de la Universidad de Guanajuato";
+    else if (this.pp == "E040") {
+      this.NombrePp = "Investigación, desarrollo tecnológico e innovación de la Universidad de Guanajuato";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E041"){
-      this.NombrePp ="Justicia ambiental";
+    else if (this.pp == "E041") {
+      this.NombrePp = "Justicia ambiental";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E042"){
-      this.NombrePp ="Mitigación de emisiones de gas efecto invernadero";
+    else if (this.pp == "E042") {
+      this.NombrePp = "Mitigación de emisiones de gas efecto invernadero";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E044"){
-      this.NombrePp ="Participación de la sociedad en la prevención de delitos";
+    else if (this.pp == "E044") {
+      this.NombrePp = "Participación de la sociedad en la prevención de delitos";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E045"){
-      this.NombrePp ="Acceso equitativo y oportunidades de desarrollo para mujeres y hombres";
+    else if (this.pp == "E045") {
+      this.NombrePp = "Acceso equitativo y oportunidades de desarrollo para mujeres y hombres";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E046"){
-      this.NombrePp ="Poder Legislativo";
+    else if (this.pp == "E046") {
+      this.NombrePp = "Poder Legislativo";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E047"){
-      this.NombrePp ="Práctica competitiva y deportiva";
+    else if (this.pp == "E047") {
+      this.NombrePp = "Práctica competitiva y deportiva";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E049"){
-      this.NombrePp ="Procuraduría de los Derechos Humanos";
+    else if (this.pp == "E049") {
+      this.NombrePp = "Procuraduría de los Derechos Humanos";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E050"){
-      this.NombrePp ="Prevención y atención oportuna de emergencias y desastres";
+    else if (this.pp == "E050") {
+      this.NombrePp = "Prevención y atención oportuna de emergencias y desastres";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E051"){
-      this.NombrePp ="Gestión integral de recursos hídricos";
+    else if (this.pp == "E051") {
+      this.NombrePp = "Gestión integral de recursos hídricos";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E053"){
-      this.NombrePp ="Regularización de la tenencia de la tierra";
+    else if (this.pp == "E053") {
+      this.NombrePp = "Regularización de la tenencia de la tierra";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E054"){
-      this.NombrePp ="Rehabilitación de niños y adolescentes en conflicto";
+    else if (this.pp == "E054") {
+      this.NombrePp = "Rehabilitación de niños y adolescentes en conflicto";
+      this.ListDepPar ="";
     }
-    else if(this.pp == "E056"){
-      this.NombrePp ="Servicio de impartición de justicia y solución de controversias";
+    else if (this.pp == "E056") {
+      this.NombrePp = "Servicio de impartición de justicia y solución de controversias";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E057"){
-      this.NombrePp ="Trayectoria en Nivel Básico, Media Superior y Superior";
+    else if (this.pp == "E057") {
+      this.NombrePp = "Trayectoria en Nivel Básico, Media Superior y Superior";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E058"){
-      this.NombrePp ="Tribunal de Justicia Administrativa del Estado de Guanajuato";
+    else if (this.pp == "E058") {
+      this.NombrePp = "Tribunal de Justicia Administrativa del Estado de Guanajuato";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E059"){
-      this.NombrePp ="Tribunal Estatal Electoral de Guanajuato";
+    else if (this.pp == "E059") {
+      this.NombrePp = "Tribunal Estatal Electoral de Guanajuato";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E060"){
-      this.NombrePp ="Unidad de Televisión de Guanajuato";
+    else if (this.pp == "E060") {
+      this.NombrePp = "Unidad de Televisión de Guanajuato";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E061"){
-      this.NombrePp ="Valores en familia";
+    else if (this.pp == "E061") {
+      this.NombrePp = "Valores en familia";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E062"){
-      this.NombrePp ="Competencias en Educación Básica";
+    else if (this.pp == "E062") {
+      this.NombrePp = "Competencias en Educación Básica";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E063"){
-      this.NombrePp ="Formación científica y tecnológica";
+    else if (this.pp == "E063") {
+      this.NombrePp = "Formación científica y tecnológica";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E064"){
-      this.NombrePp ="Prevención en salud";
+    else if (this.pp == "E064") {
+      this.NombrePp = "Prevención en salud";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E066"){
-      this.NombrePp ="Cobertura Educativa de la Universidad de Guanajuato";
+    else if (this.pp == "E066") {
+      this.NombrePp = "Cobertura Educativa de la Universidad de Guanajuato";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E067"){
-      this.NombrePp ="Trayectoria Académica Consolidada";
+    else if (this.pp == "E067") {
+      this.NombrePp = "Trayectoria Académica Consolidada";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E068"){
-      this.NombrePp ="Vinculación del estudiante con los sectores económico y social";
+    else if (this.pp == "E068") {
+      this.NombrePp = "Vinculación del estudiante con los sectores económico y social";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "G001"){
-      this.NombrePp ="Fortalecimiento institucional de la inspección y vigilancia para la administración sustentable del territorio";
+    else if (this.pp == "G001") {
+      this.NombrePp = "Fortalecimiento institucional de la inspección y vigilancia para la administración sustentable del territorio";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E068"){
-      this.NombrePp ="Vinculación del estudiante con los sectores económico y social";
+    else if (this.pp == "G005") {
+      this.NombrePp = "Fomento y vigilancia del cumplimiento del trabajo decente";
+      this.ListDepPar = "";
     }
-    else if(this.pp == "E068"){
-      this.NombrePp ="Vinculación del estudiante con los sectores económico y social";
+    else if (this.pp == "G006") {
+      this.NombrePp = "Mejoramiento de las condiciones ambientales";
+      this.ListDepPar = "SMAOT";
     }
-    else if(this.pp == "E068"){
-      this.NombrePp ="Vinculación del estudiante con los sectores económico y social";
+    else if (this.pp == "K003") {
+      this.NombrePp = "Sistemas de Abastecimiento de Agua con Calidad";
+      this.ListDepPar = "CEAG";
     }
-    else if(this.pp == "M003"){
-      this.NombrePp ="Gestión de la Hacienda Pública orientada a Resultados";
-      this.dep = "SFIA"
+    else if (this.pp == "K004") {
+      this.NombrePp = "Infraestructura para el Desarrollo";
+      this.ListDepPar = "SICOM, SDAyR";
+    }
+    else if (this.pp == "K005") {
+      this.NombrePp = "Logística para los negocios  ";
+      this.ListDepPar = "SDES, GPI";
+    }
+    else if (this.pp == "K006") {
+      this.NombrePp = "Sistema de Plantas de Tratamiento de Aguas Residuales";
+      this.ListDepPar = "CEAG";
+    }
+    else if (this.pp == "M001") {
+      this.NombrePp = "Gestión de los ingresos públicos";
+      this.ListDepPar = "SFIA";
+    }
+    else if (this.pp == "M003") {
+      this.NombrePp = "Gestión de la Hacienda Pública orientada a Resultados";
+      this.ListDepPar = "SFIA";
+    }
+    else if (this.pp == "M004") {
+      this.NombrePp = "Administración de los Recursos Humanos, Materiales y Tecnológicos del Estado";
+      this.ListDepPar = "SFIA";
+    }
+    else if (this.pp == "O005") {
+      this.NombrePp = "Sistema Estatal Anticorrupción";
+      this.ListDepPar = "SESEA";
+    }
+    else if (this.pp == "O006") {
+      this.NombrePp = "Consolidación del Control Interno de la Administración Pública Estatal";
+      this.ListDepPar = "STRC";
+    }
+    else if (this.pp == "P003") {
+      this.NombrePp = "Desarrollo regional, urbano y ordenamiento ecológico territorial";
+      this.ListDepPar = "SMAOT, IPLANEG, COVEG, SDSH";
+    }
+    else if (this.pp == "P004") {
+      this.NombrePp = "Gestión de centros escolares de Educación Básica";
+      this.ListDepPar = "SEG";
+    }
+    else if (this.pp == "P005") {
+      this.NombrePp = "Gestión de centros escolares de Educación Media Superior y Superior";
+      this.ListDepPar = "SEG, ITESP, CECYTEG, CONALEP, EPRR, ITESI, ITESG, ITESS, ITSUR, SABES, UPB, UPGTO, UPJR, UPPE, UTL, UTNG, UTS, UTSMA, UTSOE, UVEG, UTLB, ITESA";
+    }
+    else if (this.pp == "P006") {
+      this.NombrePp = "Gestión integral de la biodiversidad";
+      this.ListDepPar = "SMAOT";
+    }
+    else if (this.pp == "P010") {
+      this.NombrePp = "Sistema integral de movilidad";
+      this.ListDepPar = "SICOM,IPLANEG, SSP, SG";
+    }
+    else if (this.pp == "P011") {
+      this.NombrePp = "Sistema estatal de información y evaluación del desarrollo";
+      this.ListDepPar = "IPLANEG, SDSH";
+    }
+    else if (this.pp == "P012") {
+      this.NombrePp = "Sistema estatal de planeación";
+      this.ListDepPar = "IPLANEG";
+    }
+    else if (this.pp == "P014") {
+      this.NombrePp = "Fortalecimiento del sistema estatal de seguridad pública";
+      this.ListDepPar = "SG";
+    }
+    else if (this.pp == "P018") {
+      this.NombrePp = "Sistema de gestión social y participación ciudadana";
+      this.ListDepPar = "IPLANEG";
+    }
+    else if (this.pp == "R005") {
+      this.NombrePp = "Certeza jurídica en el actuar del Poder Ejecutivo";
+      this.ListDepPar = "CGJ";
+    }
+    else if (this.pp == "R006") {
+      this.NombrePp = "Coordinación de la Gestión Gubernamental";
+      this.ListDepPar = "JEGAPE";
+    }
+    else if (this.pp == "R007") {
+      this.NombrePp = "Comunicación social";
+      this.ListDepPar = "CGCS";
+    }
+    else if (this.pp == "R008") {
+      this.NombrePp = "Asesoría y representación jurídica para guiar el actuar de la Administración Pública Estatal";
+      this.ListDepPar = "SFIA";
+    }
+    else if (this.pp == "R009") {
+      this.NombrePp = "Garantizar el otorgamiento y pago de seguros y prestaciones de los afiliados del ISSEG";
+      this.ListDepPar = "ISSEG";
+    }
+    else if (this.pp == "S003") {
+      this.NombrePp = "Impulso al combate a la pobreza con el mejoramiento de la situación familiar";
+      this.ListDepPar = "SDSH, DIF, INGUDIS";
+    }
+    else if (this.pp == "S006") {
+      this.NombrePp = "Asistencia y orientación alimentaria";
+      this.ListDepPar = "DIF";
+    }
+    else if (this.pp == "S008") {
+      this.NombrePp = "Atención integral al migrante y su familia";
+      this.ListDepPar = "SMEI";
+    }
+    else if (this.pp == "S010") {
+      this.NombrePp = "Cadena de valor y fortalecimiento de la productividad";
+      this.ListDepPar = "SDES, FOFIES, FOGIM, STyRC";
+    }
+    else if (this.pp == "S011") {
+      this.NombrePp = "Campo sustentable en el uso del agua";
+      this.ListDepPar = "SDAYR";
+    }
+    else if (this.pp == "S016") {
+      this.NombrePp = "Investigación, desarrollo tecnológico, transferencia de tecnología e innovación";
+      this.ListDepPar = "IDEA GTO, UTNG, ITESS, UTL";
+    }
+    else if (this.pp == "S018") {
+      this.NombrePp = "Capital humano";
+      this.ListDepPar = "SDES, IECA";
+    }
+    else if (this.pp == "S019") {
+      this.NombrePp = "Impulso a la infraestructura y servicios para el desarrollo comunitario y regional";
+      this.ListDepPar = "SDSH";
+    }
+    else if (this.pp == "S021") {
+      this.NombrePp = "Fomento a las Actividades Agroalimentarias";
+      this.ListDepPar = "SDAYR, XONOTLI";
+    }
+    else if (this.pp == "S022") {
+      this.NombrePp = "Fortalecimiento de las Unidades de Producción Familiar";
+      this.ListDepPar = "SDAYR";
     }
 
-}
 
+
+  }
+
+  ResPreg123() {
+
+    //------------------------------------------------ RESPUESTAS DE LAS TRES PRIMERAS PR4EGUNTAS--------------------------------------------------
+
+    if (this.Dp1Calf== 4) {
+      this.Dp1Res = "El Diagnóstico Particular contiene todos los apartados solicitados en la Guía para la elaboración del Diagnóstico Particular. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
+    }
+    else if (this.Dp1Calf== 2) {
+      this.Dp1Res = "El Diagnóstico Particular contiene más del 80% de los apartados, es necesario revisar el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
+        + "\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
+        + "\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
+    }
+    else if (this.Dp1Calf== 0) {
+      this.Dp1Res = "El Diagnóstico Particular contiene menos del 80% de los apartados, es necesario revisar la Guía para la elaboración del Diagnóstico Particular, así cómo el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
+      "\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
+      "\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
+    }
+
+    if (this.PonDp2== 4) {
+      this.Dp2Res = "La fecha de actualización corresponde al año 2022, por lo que el Diagnóstico Particular se considera vigente para el siguiente ejercicio fiscal."
+    }
+    else if (this.PonDp2== 2) {
+      this.Dp2Res = "La fecha de actualización es anterior a 2022, por lo que el Diagnóstico Particular no se considera vigente para el siguiente ejercicio fiscal, de acuerdo con el artículo 20 de los Lineamientos Generales de Gestión para Resultados. Es necesario actualizar este diagnóstico y entregar de manera formal a la brevedad."
+    }
+    else if (this.PonDp2== 0) {
+      this.Dp2Res = "El Diagnóstico Particular no se considera vigente para el siguiente ejercicio fiscal, de acuerdo con el artículo 20 de los Lineamientos Generales de Gestión para Resultados, por lo que se requiere actualización de manera urgente. Es necesario actualizar este diagnóstico y entregar de manera formal a la brevedad."
+    }
+
+    if (this.PonDp3== 2) {
+      this.Dp3Res = "En el Diagnóstico Particular se indican todas las dependencias que participan en el programa."
+    }
+    else if (this.PonDp3== 1) {
+      this.Dp3Res = "En el Diagnóstico Particular no se identifican todas las dependencias que participan en el programa, se solicita actualizar la información."
+    }
+    else if (this.PonDp3== 0) {
+      this.Dp3Res = "En el Diagnóstico Particular no se identifican las dependencias que participan en el programa, se solicita actualizar la información."
+    }
+    console.log(this.Dp1Res)
+    console.log(this.Dp2Res)
+    console.log(this.Dp3Res)
+  }
+  Anexo(){
+    if (this.checked1== false) {
+      this.ClaveNombreInforme = "No"
+    }
+    else if (this.checked1== true) {
+      this.ClaveNombreInforme = "Si"
+    }
+
+    if (this.checked2== false) {
+      this.DepResPpInforme = "No"
+    }
+    else if (this.checked2== true) {
+      this.DepResPpInforme = "Si"
+    }
+    if (this.checked3== false) {
+      this.DepParPpInforme = "No"
+    }
+    else if (this.checked3== true) {
+      this.ClaveNombreInforme = "Si"
+    }
+     if (this.checked4== false) {
+      this.FechaADxInforme = "No"
+    }
+    else if (this.checked4== true) {
+      this.FechaADxInforme = "Si"
+    }
+    if (this.checked5== false) {
+      this.IntroInforme = "No"
+    }
+    else if (this.checked5== true) {
+      this.IntroInforme = "Si"
+    }
+    if (this.checked6== false) {
+      this.AnalisisInvolucradosInforme = "No"
+    }
+    else if (this.checked6== true) {
+      this.AnalisisInvolucradosInforme = "Si"
+    }
+    if (this.checked7== false) {
+      this.DefProblemaInforme = "No"
+    }
+    else if (this.checked7== true) {
+      this.DefProblemaInforme = "Si"
+    }
+    if (this.checked8== false) {
+      this.EvoProblemaInforme = "No"
+    }
+    else if (this.checked8== true) {
+      this.EvoProblemaInforme= "Si"
+    }
+    if (this.checked9== false) {
+      this.EstActualProblemaInforme = "No"
+    }
+    else if (this.checked9 == true) {
+      this.EstActualProblemaInforme = "Si"
+    }
+    if (this.checked10 == false) {
+      this.ExpAtencionInforme = "No"
+    }
+    else if (this.checked10 == true) {
+      this.ExpAtencionInforme = "Si"
+    }
+    if (this.checked11 == false) {
+      this.DefObjetivosInforme = "No"
+    }
+    else if (this.checked11 == true) {
+      this.DefObjetivosInforme = "Si"
+    }
+    if (this.checked12 == false) {
+      this.AnalisisCorresponInforme = "No"
+    }
+    else if (this.checked12 == true) {
+      this.AnalisisCorresponInforme = "Si"
+    }
+    if (this.checked13 == false) {
+      this.SelecAlternaInforme = "No"
+    }
+    else if (this.checked13 == true) {
+      this.SelecAlternaInforme = "Si"
+    }
+    if (this.checked14 == false) {
+      this.EstructuraAnaliticaInforme = "No"
+    }
+    else if (this.checked14 == true) {
+      this.EstructuraAnaliticaInforme = "Si"
+    }
+    if (this.checked15 == false) {
+      this.JustObjInforme = "No"
+    }
+    else if (this.checked15 == true) {
+      this.JustObjInforme = "Si"
+    }
+    if (this.checked16 == false) {
+      this.IdentificacionCuanPobInforme = "No"
+    }
+    else if (this.checked16 == true) {
+      this.IdentificacionCuanPobInforme = "Si"
+    }
+    if (this.checked17 == false) {
+      this.IdenficacionAreaInfluenciaInforme = "No"
+    }
+    else if (this.checked17 == true) {
+      this.IdenficacionAreaInfluenciaInforme = "Si"
+    }
+    if (this.checked18 == false) {
+      this.RelOtrosPPInforme = "No"
+    }
+    else if (this.checked18 == true) {
+      this.RelOtrosPPInforme = "Si"
+    }
+     if (this.checked19 == false) {
+      this.ElementosPEBInforme = "No"
+    }
+    else if (this.checked19 == true) {
+      this.ElementosPEBInforme = "Si"
+    }
+    if (this.checked20 == false) {
+      this.MirInforme = "No"
+    }
+    else if (this.checked20 == true) {
+      this.MirInforme = "Si"
+    }
+    if (this.checked21 == false) {
+      this.EvoProblemaInforme = "No"
+    }
+    else if (this.checked21 == true) {
+      this.EvoProblemaInforme = "Si"
+    }
+    if (this.checked22 == false) {
+      this.GlosarioInforme = "No"
+    }
+    else if (this.checked22 == true) {
+      this.GlosarioInforme = "Si"
+    }
+
+
+
+  }
 
   //-------------------------------------------------------------------------------------------------------------
   //-------------------------------------Metodo para registrar los CRECES---------------------------------
   //-------------------------------------------------------------------------------------------------------------
   GuardarCrece() {
-    if(this.pp == "E001"){
-      this.NombrePp = "Acceso a la información pública del Estado de Guanajuato";
 
-    }
-    else if(this.pp == "E002"){
-      this.NombrePp ="otra cias";
 
-    }
-
-  //------------------------------------------------ RESPUESTAS DE LAS TRES PRIMERAS PR4EGUNTAS--------------------------------------------------
-
-    if(this.Dp1Calf == 4){
-      this.Dp1Res = "El Diagnóstico Particular contiene todos los apartados solicitados en la Guía para la elaboración del Diagnóstico Particular. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
-    }
-    else if(this.Dp1Calf == 2){
-      this.Dp1Res = "El Diagnóstico Particular contiene más del 80% de los apartados, es necesario revisar el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
-      +"\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
-      +"\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
-    }
-    else if(this.Dp1Calf == 0){
-      this.Dp1Res = "El Diagnóstico Particular contiene menos del 80% de los apartados, es necesario revisar la Guía para la elaboración del Diagnóstico Particular, así cómo el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
-      "\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
-      "\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
-    }
-    else if(this.PonDp2 == 4){
-      this.Dp2Res = "La fecha de actualización corresponde al año 2022, por lo que el Diagnóstico Particular se considera vigente para el siguiente ejercicio fiscal."
-    }
-    else if(this.PonDp2 == 2){
-      this.Dp2Res = "La fecha de actualización es anterior a 2022, por lo que el Diagnóstico Particular no se considera vigente para el siguiente ejercicio fiscal, de acuerdo con el artículo 20 de los Lineamientos Generales de Gestión para Resultados. Es necesario actualizar este diagnóstico y entregar de manera formal a la brevedad."
-    }
-    else if(this.PonDp2 == 0){
-      this.Dp2Res = "El Diagnóstico Particular no se considera vigente para el siguiente ejercicio fiscal, de acuerdo con el artículo 20 de los Lineamientos Generales de Gestión para Resultados, por lo que se requiere actualización de manera urgente. Es necesario actualizar este diagnóstico y entregar de manera formal a la brevedad."
-    }
-    else if(this.PonDp3 == 2){
-      this.Dp3Res = "En el Diagnóstico Particular se indican todas las dependencias que participan en el programa."
-    }
-    else if(this.PonDp3 == 1){
-      this.Dp3Res = "En el Diagnóstico Particular no se identifican todas las dependencias que participan en el programa, se solicita actualizar la información."
-    }
-    else if(this.PonDp3 == 0){
-      this.Dp3Res = "En el Diagnóstico Particular no se identifican las dependencias que participan en el programa, se solicita actualizar la información."
-    }
-    else if(this.checked1 == false){
-      this.ClaveNombreInforme = "No"
-    }
-    else if(this.checked1 == true){
-      this.ClaveNombreInforme = "Si"
-    }
-    else if(this.checked2 == false){
-      this.DepResPpInforme = "No"
-    }
-    else if(this.checked2 == true){
-      this.DepResPpInforme = "Si"
-    }
-    else if(this.checked3 == false){
-       this.DepParPpInforme = "No"
-    }
-    else if(this.checked3 == true){
-      this.ClaveNombreInforme = "Si"
-    }
-    else if(this.checked4 == false){
-      this.FechaADxInforme = "No"
-    }
-    else if(this.checked4 == true){
-      this.FechaADxInforme = "Si"
-    }
-    else if(this.checked5 == false){
-      this.IntroInforme = "No"
-    }
-    else if(this.checked5 == true){
-      this.IntroInforme = "Si"
-    }
-    else if(this.checked6 == false){
-      this.AnalisisInvolucradosInforme = "No"
-    }
-    else if(this.checked6 == true){
-      this.AnalisisInvolucradosInforme= "Si"
-    }
-    else if(this.checked7 == false){
-      this.DefProblemaInforme = "No"
-    }
-    else if(this.checked7 == true){
-      this.DefProblemaInforme = "Si"
-    }
-    else if(this.checked8 == false){
-      this.EvoProblemaInforme = "No"
-    }
-    else if(this.checked8 == true){
-      this.EvoProblemaInforme = "Si"
-    }
-    else if(this.checked9 == false){
-      this.EstActualProblemaInforme = "No"
-    }
-    else if(this.checked9 == true){
-      this.EstActualProblemaInforme= "Si"
-    }
-    else if(this.checked10 == false){
-      this.ExpAtencionInforme = "No"
-    }
-    else if(this.checked10 == true){
-      this.ExpAtencionInforme = "Si"
-    }
-    else if(this.checked11 == false){
-      this.DefObjetivosInforme = "No"
-    }
-    else if(this.checked11 == true){
-      this.DefObjetivosInforme = "Si"
-    }
-    else if(this.checked12 == false){
-      this.AnalisisCorresponInforme = "No"
-    }
-    else if(this.checked12 == true){
-      this.AnalisisCorresponInforme = "Si"
-    }
-    else if(this.checked13 == false){
-      this.SelecAlternaInforme = "No"
-    }
-    else if(this.checked13 == true){
-      this.SelecAlternaInforme = "Si"
-    }
-    else if(this.checked14 == false){
-      this.EstructuraAnaliticaInforme = "No"
-    }
-    else if(this.checked14 == true){
-      this.EstructuraAnaliticaInforme = "Si"
-    }
-    else if(this.checked15 == false){
-      this.JustObjInforme= "No"
-    }
-    else if(this.checked15 == true){
-      this.JustObjInforme = "Si"
-    }
-    else if(this.checked16 == false){
-      this.IdentificacionCuanPobInforme = "No"
-    }
-    else if(this.checked16 == true){
-      this.IdentificacionCuanPobInforme = "Si"
-    }
-    else if(this.checked17 == false){
-      this.IdentificacionAreaInfluenciaInforme = "No"
-   }
-   else if(this.checked17 == true){
-    this.IdentificacionAreaInfluenciaInforme = "Si"
-   }
-    else if(this.checked18 == false){
-      this.RelOtrosPPInforme = "No"
-    }
-    else if(this.checked18 == true){
-      this.RelOtrosPPInforme = "Si"
-    }
-    else if(this.checked19 == false){
-      this.ElementosPEBInforme = "No"
-    }
-    else if(this.checked19 == true){
-      this.ElementosPEBInforme = "Si"
-    }
-    else if(this.checked20 == false){
-      this.MirInforme = "No"
-    }
-    else if(this.checked20 == true){
-      this.MirInforme = "Si"
-    }
-    else if(this.checked21 == false){
-      this.EvoProblemaInforme = "No"
-    }
-    else if(this.checked21 == true){
-      this.EvoProblemaInforme = "Si"
-    }
-    else if(this.checked22 == false){
-      this.GlosarioInforme = "No"
-    }
-    else if(this.checked22 == true){
-      this.GlosarioInforme = "Si"
-    }
 
 
     const crece: any = {
@@ -1414,7 +1602,7 @@ export class CreceFormualarioComponent implements OnInit {
       EstructuraAnaliticaInforme: this.EstructuraAnaliticaInforme,
       JustObjInforme: this.JustObjInforme,
       IdentificacionCuanPobInforme: this.IdentificacionCuanPobInforme,
-      IdentificacionAreaInfluenciaInforme: this.IdentificacionAreaInfluenciaInforme,
+      IdenficacionAreaInfluenciaInforme: this.IdenficacionAreaInfluenciaInforme,
       RelOtrosPPInforme: this.RelOtrosPPInforme,
       ElementosPEBInforme: this.ElementosPEBInforme,
       MirInforme: this.MirInforme,
@@ -1446,11 +1634,11 @@ export class CreceFormualarioComponent implements OnInit {
 
       //Evaluacion Dp
       Dp1: this.form.get('Dp1')?.value,
-      Dp1Res:this.Dp1Res,
+      Dp1Res: this.Dp1Res,
       Dp2: this.form.get('Dp2')?.value,
-      Dp2Res:this.Dp2Res,
+      Dp2Res: this.Dp2Res,
       Dp3: this.form.get('Dp3')?.value,
-      Dp3Res:this.Dp3Res,
+      Dp3Res: this.Dp3Res,
       Dp4: this.form.get('Dp4')?.value,// calificacion en los intervalos [0,3,9]
       Dp4Esp: this.form.get('Dp4Esp')?.value, // Respuesta Especifica de la pregunta
       CalfDp4form: this.form.get('CalfDp4form')?.value, //Respuesta Generica
@@ -1613,11 +1801,12 @@ export class CreceFormualarioComponent implements OnInit {
     }
 
     if (this.id == undefined) {
-// Agregamos una nuevo crece
+      // Agregamos una nuevo crece
       this.CrecePlaneacionService.saveCrece(crece).subscribe(_data => {
         this.toastr.success('El Crece del PP ' + crece.NombrePp + ' fue registrado con exito!', 'Crece Registrado');
         this.obtenerCreces();
         console.log(this.form.value);
+        console.log(crece);
         // if (this.form.valid) {
         //   this.form.value;
 
@@ -1631,10 +1820,10 @@ export class CreceFormualarioComponent implements OnInit {
         console.log(this.form.value);
       })
     }
-    else{
+    else {
       crece.id = this.id
-// Editamos usuario
-      this.CrecePlaneacionService.updateCrece(this.id,crece).subscribe(_data => {
+      // Editamos usuario
+      this.CrecePlaneacionService.updateCrece(this.id, crece).subscribe(_data => {
         this.form.reset();
         this.accion = 'Elaborando';
         this.id = undefined;
@@ -1646,20 +1835,20 @@ export class CreceFormualarioComponent implements OnInit {
 
     }
   }
-//-----------------------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------------------
   //-------------------------ELIMINAR CRECE-------------------------------------------------
   //-----------------------------------------------------------------------------------------
 
   eliminarCrece(id: number) {
     this.CrecePlaneacionService.deleteCrece(id).subscribe(_data => {
-      this.toastr.error('El crece fue eliminado con exito!','Usuario eliminado');
+      this.toastr.error('El crece fue eliminado con exito!', 'Usuario eliminado');
       this.obtenerCreces();
     }, error => {
       console.log(error);
     })
 
   }
-//-----------------------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------------------
   //--------------------------EDITAR UN CRECE ---------------------------------------------
   //-----------------------------------------------------------------------------------------
   editarCrece(crece: any) {
@@ -1773,79 +1962,79 @@ export class CreceFormualarioComponent implements OnInit {
       Mir1Esp: crece.mir1Esp,
       ponMir1form: crece.ponMir1form,
       Mir2: crece.mir2,
-      Mir2Esp: crece.mir2Esp ,
+      Mir2Esp: crece.mir2Esp,
       ponMir2form: crece.ponMir2form,
-      Mir3:crece.mir3 ,
-      Mir3Esp: crece.mir3Esp ,
+      Mir3: crece.mir3,
+      Mir3Esp: crece.mir3Esp,
       ponMir3form: crece.ponMir3form,
-      Mir4:crece.mir4 ,
-      Mir4Esp: crece.mir4Esp ,
+      Mir4: crece.mir4,
+      Mir4Esp: crece.mir4Esp,
       ponMir4form: crece.ponMir4form,
-      Mir5:crece.mir5 ,
-      Mir5Esp: crece.mir5Esp ,
+      Mir5: crece.mir5,
+      Mir5Esp: crece.mir5Esp,
       ponMir5form: crece.ponMir5form,
-      Mir6:crece.mir6,
+      Mir6: crece.mir6,
       Mir6Esp: crece.mir6Esp,
       ponMir6form: crece.ponMir6form,
-      Mir7:crece.mir7,
+      Mir7: crece.mir7,
       Mir7Esp: crece.mir7Esp,
       ponMir7form: crece.ponMir7form,
-      Mir8:crece.mir8,
-      Mir8Esp: crece.mir8Esp ,
+      Mir8: crece.mir8,
+      Mir8Esp: crece.mir8Esp,
       ponMir8form: crece.ponMir8form,
-      Mir9:crece.mir9 ,
-      Mir9Esp: crece.mir9Esp ,
+      Mir9: crece.mir9,
+      Mir9Esp: crece.mir9Esp,
       ponMir9form: crece.ponMir9form,
-      Mir10:crece.mir10,
+      Mir10: crece.mir10,
       Mir10Esp: crece.mir10Esp,
       ponMir10form: crece.ponMir10form,
-      Mir11:crece.mir11,
-      Mir11Esp: crece.mir11Esp ,
+      Mir11: crece.mir11,
+      Mir11Esp: crece.mir11Esp,
       ponMir11form: crece.ponMir11form,
-      Mir12:crece.mir12,
-      Mir12Esp: crece.mir12Esp ,
+      Mir12: crece.mir12,
+      Mir12Esp: crece.mir12Esp,
       ponMir12form: crece.ponMir12form,
-      Mir13:crece.mir13 ,
-      Mir13Esp: crece.mir13Esp ,
+      Mir13: crece.mir13,
+      Mir13Esp: crece.mir13Esp,
       ponMir13form: crece.ponMir13form,
-      Mir14:crece.mir14,
-      Mir14Esp: crece.mir14Esp ,
+      Mir14: crece.mir14,
+      Mir14Esp: crece.mir14Esp,
       ponMir14form: crece.ponMir14form,
-      Mir15:crece.mir15 ,
-      Mir15Esp: crece.mir15Esp ,
+      Mir15: crece.mir15,
+      Mir15Esp: crece.mir15Esp,
       ponMir15form: crece.ponMir15form,
-      Mir16:crece.mir16 ,
-      Mir16Esp: crece.mir16Esp ,
+      Mir16: crece.mir16,
+      Mir16Esp: crece.mir16Esp,
       ponMir16form: crece.ponMir16form,
-      Mir17:crece.mir17,
-      Mir17Esp: crece.mir17Esp ,
+      Mir17: crece.mir17,
+      Mir17Esp: crece.mir17Esp,
       ponMir17form: crece.ponMir17form,
-      Mir18:crece.mir18,
-      Mir18Esp: crece.mir18Esp ,
+      Mir18: crece.mir18,
+      Mir18Esp: crece.mir18Esp,
       ponMir18form: crece.ponMir18form,
-      Mir19:crece.mir19 ,
-      Mir19Esp: crece.mir19Esp ,
+      Mir19: crece.mir19,
+      Mir19Esp: crece.mir19Esp,
       ponMir19form: crece.ponMir19form,
-      Mir20:crece.mir20 ,
-      Mir20Esp: crece.mir20Esp ,
+      Mir20: crece.mir20,
+      Mir20Esp: crece.mir20Esp,
       ponMir20form: crece.ponMir20form,
-      Mir21:crece.mir3,
-      Mir21Esp: crece.mir3Esp ,
+      Mir21: crece.mir3,
+      Mir21Esp: crece.mir3Esp,
       ponMir21form: crece.ponMir21form,
-      Mir22:crece.mir22,
-      Mir22Esp: crece.mir22Esp ,
+      Mir22: crece.mir22,
+      Mir22Esp: crece.mir22Esp,
       ponMir22form: crece.ponMir22form,
-      Mir23:crece.mir23 ,
-      Mir23Esp: crece.mir23Esp ,
+      Mir23: crece.mir23,
+      Mir23Esp: crece.mir23Esp,
       ponMir23form: crece.ponMir23form,
-      Mir24:crece.mir24 ,
-      Mir24Esp: crece.mir24Esp ,
+      Mir24: crece.mir24,
+      Mir24Esp: crece.mir24Esp,
       ponMir24form: crece.ponMir24form,
-      Mir25:crece.mir25 ,
+      Mir25: crece.mir25,
       Mir25Esp: crece.mir25Esp,
       ponMir25form: crece.ponMir25form,
-      Mir26:crece.mir26 ,
-      Mir26Esp: crece.mir26Esp ,
+      Mir26: crece.mir26,
+      Mir26Esp: crece.mir26Esp,
       ponMir26form: crece.ponMir26form,
       FMir: crece.fMir,
       FDp: crece.fDp,
@@ -1869,7 +2058,7 @@ export class CreceFormualarioComponent implements OnInit {
     private _catPpService: CatPpService,
     private loginServices: LoginService,
     private intl: IntlService,
-    ) {
+  ) {
     this.form = this.fb.group({
       Email: [this.loginServices.getTokenDecoded().email, Validators.required],
       Revision: ['Entrega 2023', Validators.required],
@@ -3475,8 +3664,8 @@ export class CreceFormualarioComponent implements OnInit {
     "Parcialmente",
     "No"
   ];
-   // A simple method for the string-to-date conversion
-   private parse(json) {
+  // A simple method for the string-to-date conversion
+  private parse(json) {
     Object.keys(json).map((key) => {
       const date = new Date(json[key]);
       if (!isNaN(date.getTime())) {
@@ -3493,19 +3682,19 @@ export class CreceFormualarioComponent implements OnInit {
     });
 
     return json;
-}
-// public parseObjectDates(target: any): any {
-//   const result = Object.assign({}, target);
+  }
+  // public parseObjectDates(target: any): any {
+  //   const result = Object.assign({}, target);
 
-//   Object.keys(result).forEach((key) => {
-//     const date = new Date(result[key]);
-//     if (!isNaN(date.getTime())) {
-//       result[key] = date;
-//     }
-//   });
+  //   Object.keys(result).forEach((key) => {
+  //     const date = new Date(result[key]);
+  //     if (!isNaN(date.getTime())) {
+  //       result[key] = date;
+  //     }
+  //   });
 
-//   return result;
-// }
+  //   return result;
+  // }
 
   public handleChange(value: Date) {
     // Update the JSON birthDate string date
