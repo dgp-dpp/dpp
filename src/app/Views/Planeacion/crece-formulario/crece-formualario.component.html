@@ -98,7 +98,7 @@
                       <p></p>
                       <!-- Selected value is: {{ fecha | kendoDate: "yyyy-MM-ddThh:mm:ss" }}<br>
                       Selected value is: {{ fecha | json }} -->
-                      <p>Form model: {{ fecha | json }}</p>
+                      <!-- <p>Form model: {{ fecha | json }}</p>
                       <p>Model: {{ output }}</p>
                       {{value}}
                       <kendo-formfield showHints="initial" showErrors="initial">
@@ -111,7 +111,7 @@
                         <kendo-formhint align="start"> use Alt+↓ para abrir el calendario, ← y → para navegar, ↑ para
                           incrementar y ↓ para disminuir el valor</kendo-formhint>
                         <kendo-formerror>Error: Fecha requerida</kendo-formerror>
-                      </kendo-formfield>
+                      </kendo-formfield> -->
 
                       <p></p>
                       <div style="width: auto;">
@@ -200,7 +200,8 @@
                                           <th>Programa</th>
                                           <th>Email</th>
                                           <th>Revision</th>
-                                          <th>Fecha</th>
+                                          <th>Clave</th>
+
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -209,7 +210,6 @@
                                           <td>{{ crece.pp }}</td>
                                           <td>{{ crece.email }}</td>
                                           <td>{{ crece.revision}}</td>
-                                          <td>{{ crece.fecha.toString() }}</td>
                                           <td>{{ crece.claveNombre }}</td>
 
                                           <td>
