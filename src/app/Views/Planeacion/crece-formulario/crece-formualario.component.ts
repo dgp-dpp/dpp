@@ -17,6 +17,8 @@ import { GridDataResult } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { IntlService } from "@progress/kendo-angular-intl";
 import { formatDate } from '@progress//kendo-angular-intl';
+import * as htmlDocx from 'html-docx-js/dist/html-docx';
+import { saveAs } from 'file-saver';
 
 export interface JsonModel {
   value: string;
@@ -1066,7 +1068,7 @@ export class CreceFormualarioComponent implements OnInit {
       this.ListDepPar ="SDSH";
     }
     else if (this.pp == "E012") {
-      this.NombrePp = "Servicios de salud con oportunidad y calidad";
+      this.NombrePp = "Atención Médica";
       this.ListDepPar = "ISAPEG";
       this.dep = "ISAPEG";
     }
@@ -1281,7 +1283,7 @@ export class CreceFormualarioComponent implements OnInit {
       this.dep = "UG";
     }
     else if (this.pp == "E067") {
-      this.NombrePp = "Trayectoria Académica Consolidada";
+      this.NombrePp = "Trayectoria Estudiantil Consolidada";
       this.ListDepPar = "UG";
       this.dep = "UG";
     }
@@ -1326,7 +1328,7 @@ export class CreceFormualarioComponent implements OnInit {
       this.dep = "CEAG";
     }
     else if (this.pp == "M001") {
-      this.NombrePp = "Gestión de los ingresos públicos";
+      this.NombrePp = "Gestión y Control de los Ingresos Públicos del Estado";
       this.ListDepPar = "SFIA";
       this.dep = "SFIA";
     }
@@ -1431,7 +1433,7 @@ export class CreceFormualarioComponent implements OnInit {
       this.dep = "DIF";
     }
     else if (this.pp == "S008") {
-      this.NombrePp = "Atención integral al migrante y su familia";
+      this.NombrePp = "Atención integral al migrante y su familia e internacionalización de Guanajuato";
       this.ListDepPar = "SMEI";
       this.dep = "SMEI";
     }
@@ -1483,13 +1485,11 @@ export class CreceFormualarioComponent implements OnInit {
       this.Dp1Res = "El Diagnóstico Particular contiene todos los apartados solicitados en la Guía para la elaboración del Diagnóstico Particular. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
     }
     else if (this.Dp1Calf== 2) {
-      this.Dp1Res = "El Diagnóstico Particular contiene más del 80% de los apartados, es necesario revisar el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
-        + "\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
+      this.Dp1Res = "El Diagnóstico Particular contiene más del 80% de los apartados, es necesario revisar el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados.Es importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
         + "\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
     }
     else if (this.Dp1Calf== 0) {
-      this.Dp1Res = "El Diagnóstico Particular contiene menos del 80% de los apartados, es necesario revisar la Guía para la elaboración del Diagnóstico Particular, así cómo el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
-      "\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
+      this.Dp1Res = "El Diagnóstico Particular contiene menos del 80% de los apartados, es necesario revisar la Guía para la elaboración del Diagnóstico Particular, así cómo el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados. Es importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
       "\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
     }
 
@@ -2336,7 +2336,11 @@ export class CreceFormualarioComponent implements OnInit {
 
     });
     console.log(pp);
-
+//   let tituloArchivo="titulo";
+//  let htmlDocument = '<!DOCTYPE html><html><head><meta charset="utf-8"><title></title>';
+//  htmlDocument = htmlDocument + '</head><body><h1>simire</h1></body></html>';
+//  const converted = htmlDocx.asBlob(htmlDocument);
+//  saveAs(converted, tituloArchivo + '.doxc');
 
 
   }
@@ -2817,7 +2821,7 @@ export class CreceFormualarioComponent implements OnInit {
     if (this.year == 2021 || this.year == 2022) {
       this.PonDp2 = 4;
     }
-    else if (this.year == 2019) {
+    else if (this.year == 2019 || this.year == 2020) {
       this.PonDp2 = 2;
     }
     else if (this.year == undefined) {
@@ -2890,11 +2894,6 @@ export class CreceFormualarioComponent implements OnInit {
       this.textAreaValueDp6 = "Sin recomendaciones";
       this.CalfDp6 = "En lo que respecta a la problemática presentada, el problema o situación inicial se expresa de manera clara.";
       this.PonDp6 = 10;
-    }
-    else if (this.Dp6Calf == 6) {
-      this.textAreaValueDp6 = "";
-      this.CalfDp6 = "No Aplica";
-      this.PonDp6 = 5;
     }
     else if (this.Dp6Calf == 3) {
       this.textAreaValueDp6 = "";
