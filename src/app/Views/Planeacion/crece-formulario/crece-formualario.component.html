@@ -68,15 +68,15 @@
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Programa Presupuestario" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" formControlName="Pp" [valuePrimitive]="true"
-                            placeholder="Programa Presupuestario" [(ngModel)]="pp" (click)="GetNombrePp()" [data]="ProgramaPresupuestario"
-                            textField="text" valueField="text"  >
+                            placeholder="Programa Presupuestario" [(ngModel)]="pp" (click)="GetNombrePp()"
+                            [data]="ProgramaPresupuestario" textField="text" valueField="text">
                           </kendo-dropdownlist>
                         </kendo-floatinglabel>
                       </div>
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Dependencia" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" [(ngModel)]="selectedValue"
-                            formControlName="Dependencia" [(ngModel)]="dep"  [valuePrimitive]="true" [data]="listDep"
+                            formControlName="Dependencia" [(ngModel)]="dep" [valuePrimitive]="true" [data]="listDep"
                             textField="text" valueField="text">
                           </kendo-dropdownlist>
                         </kendo-floatinglabel>
@@ -98,7 +98,7 @@
                       <p></p>
                       <!-- Selected value is: {{ fecha | kendoDate: "yyyy-MM-ddThh:mm:ss" }}<br>
                       Selected value is: {{ fecha | json }} -->
-                      <p>Form model: {{ fecha | json }}</p>
+                      <!-- <p>Form model: {{ fecha | json }}</p>
                       <p>Model: {{ output }}</p>
                       {{value}}
                       <kendo-formfield showHints="initial" showErrors="initial">
@@ -111,7 +111,7 @@
                         <kendo-formhint align="start"> use Alt+↓ para abrir el calendario, ← y → para navegar, ↑ para
                           incrementar y ↓ para disminuir el valor</kendo-formhint>
                         <kendo-formerror>Error: Fecha requerida</kendo-formerror>
-                      </kendo-formfield>
+                      </kendo-formfield> -->
 
                       <p></p>
                       <div style="width: auto;">
@@ -130,8 +130,8 @@
                       <div style="width: auto;">
                         <kendo-floatinglabel text="Dep/Ent Participantes" style="font-weight: bold;">
                           <kendo-dropdownlist style="font-weight: normal;" [(ngModel)]="depModelo"
-                            (click)="RespuestaDp3()" [data]="listDepPar" (click)="GetNombrePp()" formControlName="DepPar" value="" #DepPar
-                            required>
+                            (click)="RespuestaDp3()" [data]="listDepPar" (click)="GetNombrePp()"
+                            formControlName="DepPar" value="" #DepPar required>
                             <ng-template kendoDropDownListPrefixTemplate>
                               <button title="" kendoButton fillMode="clear" icon="edit"></button>
                               <kendo-textbox-separator></kendo-textbox-separator>
@@ -200,7 +200,8 @@
                                           <th>Programa</th>
                                           <th>Email</th>
                                           <th>Revision</th>
-                                          <th>Fecha</th>
+                                          <th>Clave</th>
+
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -209,7 +210,6 @@
                                           <td>{{ crece.pp }}</td>
                                           <td>{{ crece.email }}</td>
                                           <td>{{ crece.revision}}</td>
-                                          <td>{{ crece.fecha.toString() }}</td>
                                           <td>{{ crece.claveNombre }}</td>
 
                                           <td>
@@ -221,7 +221,7 @@
                                           </td>
                                           <td>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                              data-bs-target="#exampleModal" ></button>
+                                              data-bs-target="#exampleModal"></button>
                                           </td>
                                         </tr>
 
@@ -502,7 +502,8 @@
                                         <div style="padding-left:13.1rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked17" [ngModelOptions]="{standalone: true}"
-                                            formControlName="IdenficacionAreaInfluencia" (click)="Anexo()" kendoCheckBox />
+                                            formControlName="IdenficacionAreaInfluencia" (click)="Anexo()"
+                                            kendoCheckBox />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -569,7 +570,7 @@
                                         <div style="padding-left:20.1rem;">
                                           <input type="checkbox" size="large" #select [indeterminate]="false"
                                             [(ngModel)]="checked22" [ngModelOptions]="{standalone: true}"
-                                            formControlName="Glosario" kendoCheckBox  (click)="Anexo()" />
+                                            formControlName="Glosario" kendoCheckBox (click)="Anexo()" />
                                         </div>
                                       </kendo-label>
                                     </div>
@@ -634,7 +635,7 @@
                                           resizable="auto" name="Dp1" flow="horizontal">
                                           <kendo-textarea-suffix>
                                             <button kendoButton type="button" class="suffix-clear-button"
-                                              (click)="CalculoDp()"  fillMode="clear" icon="edit">Ponderacion</button>
+                                              (click)="CalculoDp()" fillMode="clear" icon="edit">Ponderacion</button>
                                           </kendo-textarea-suffix>
                                         </kendo-textarea>
                                         <kendo-formhint style="font-weight: normal;" align="start">1 DP Ponderacion
@@ -661,7 +662,8 @@
                                           resizable="auto" name="Dp2" flow="horizontal">
                                           <kendo-textarea-suffix>
                                             <button kendoButton type="button" class="suffix-clear-button"
-                                              (click)="RespuestaDp2()" (click)="Anexo()" fillMode="clear" icon="edit">Ponderacion</button>
+                                              (click)="RespuestaDp2()" (click)="Anexo()" fillMode="clear"
+                                              icon="edit">Ponderacion</button>
                                           </kendo-textarea-suffix>
                                         </kendo-textarea>
                                         <kendo-formhint style="font-weight: normal;" align="start">1 DP Ponderacion
@@ -688,7 +690,8 @@
                                           resizable="auto" name="Dp3" flow="horizontal">
                                           <kendo-textarea-suffix>
                                             <button kendoButton type="button" class="suffix-clear-button"
-                                              (click)="RespuestaDp3()" (click)="ResPreg123()"  fillMode="clear" icon="edit">Ponderacion</button>
+                                              (click)="RespuestaDp3()" (click)="ResPreg123()" fillMode="clear"
+                                              icon="edit">Ponderacion</button>
 
                                           </kendo-textarea-suffix>
                                         </kendo-textarea>
@@ -893,244 +896,253 @@
                           <strong>04. Identificación/Definición del problema</strong>
                         </ng-template>
                         <ng-template kendoTabContent>
-                          <div class="content" style="width: 700px;">
+                          <div class="container-fluid">
                             <p> </p>
-                            <!--6 Dp  &nbsp; -->
-                            <kendo-formfield orientation="vertical" showErros="initial"
-                              style="background-color: darkgray;">
-                              <ul class="k-radio-list k-list-vertical">
-                                <li class="k-radio-item" style="padding-left: 1rem;">
-                                  <kendo-label class="k-radio-label" style="font-weight: bold;">6.-¿El DP explica
-                                    claramente el problema que se pretende atender? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                  </kendo-label>
-                                  <input required type="radio" class="custom-size" name="Dp6" value="9" #9
-                                    formControlName="Dp6" (click)="MethodTotalDp()" [(ngModel)]="Dp6Calf"
-                                    (click)="RespuestaDp6()" kendoRadioButton />
-                                  <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
-                                </li>
-                                <li class="k-radio-item" style="padding-left: 1rem;">
-                                  <input required type="radio" class="custom-size" name="Dp6" value="6" #6
-                                    formControlName="Dp6" (click)="MethodTotalDp()" [(ngModel)]="Dp6Calf"
-                                    (click)="RespuestaDp6()" kendoRadioButton />
-                                  <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
-                                    redacción)</kendo-label>
-                                </li>
-                                <li class="k-radio-item" style="padding-left: 1rem;">
-                                  <input required type="radio" class="custom-size" name="Dp6" value="3" #No
-                                    formControlName="Dp6" (click)="MethodTotalDp()" [(ngModel)]="Dp6Calf"
-                                    (click)="RespuestaDp6()" kendoRadioButton />
-                                  <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
-                                </li>
-                              </ul>
-                              <kendo-formerror>Error: Campo requerido </kendo-formerror>
-                            </kendo-formfield>
-                            <p> </p>
-                            <!-- 6Dp Especifica &nbsp; -->
-                            <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica, en
-                              caso de que la calificación sea 9 documentar "Sin recomendaciones".
-                            </kendo-label>
-                            <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                              <kendo-textarea style="font-weight: normal;" resizable="auto" flow="horizontal"
-                                [(ngModel)]="textAreaValueDp6" formControlName="Dp6Esp">
-                                <kendo-textarea-suffix>
-                                  <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="close" (click)="clearValue6()"></button>
-                                  <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="RespuestaDp6()">Sin recomendaciones</button>
-                                </kendo-textarea-suffix>
-                              </kendo-textarea>
-                              <kendo-formhint style="font-weight: normal;" align="start">6 DP RE</kendo-formhint>
-                              <kendo-formerror>Error: es requerido</kendo-formerror>
-                            </kendo-formfield>
-                            <p> </p>
-                            <!-- ----------------6Dp Generica &nbsp; --------->
-                            <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                              <kendo-textarea formControlName="CalfDp6form" [(ngModel)]="CalfDp6" [readonly]="true"
-                                resizable="auto" name="CalfDp6" flow="horizontal">
-                                <kendo-textarea-suffix>
-                                  <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="RespuestaDp6()">Respuesta Generica</button>
-                                </kendo-textarea-suffix>
-                              </kendo-textarea>
-                              <kendo-formhint style="font-weight: normal;" align="start">6 DP Generica
-                              </kendo-formhint>
-                              <kendo-formerror>Error: es requerido</kendo-formerror>
-                            </kendo-formfield>
-                            <!--------------------- 6Dp Ponderacion -------->
-                            <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                              <kendo-textarea formControlName="ponDp6form" [readonly]="true" [(ngModel)]="PonDp6"
-                                resizable="auto" name="PonDp6" flow="horizontal">
-                                <kendo-textarea-suffix>
-                                  <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
-                                    (click)="RespuestaDp6()">Ponderacion</button>
-                                </kendo-textarea-suffix>
-                              </kendo-textarea>
-                              <kendo-formhint style="font-weight: normal;" align="start">6 DP Ponderacion
-                              </kendo-formhint>
-                              <kendo-formerror>Error: es requerido</kendo-formerror>
-                            </kendo-formfield>
-                            <p> </p>
-                            <!--7 Dp  &nbsp; -->
-                            <kendo-formfield orientation="vertical" showErros="initial"
-                              style="background-color: darkgray;">
-                              <ul class="k-radio-list k-list-vertical">
-                                <li class="k-radio-item" style="padding-left: 1rem;">
-                                  <kendo-label class="k-radio-label" style="font-weight: bold;">7.- ¿Las causas se
-                                    encuentran documentadas cualitativa y cuantitativamente de tal forma
-                                    que se identifica su relación con el problema? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                  </kendo-label>
-                                  <input required type="radio" class="custom-size" name="Dp7" value="9" #9
-                                    formControlName="Dp7" (click)="MethodTotalDp()" [(ngModel)]="Dp7Calf"
-                                    (click)="RespuestaDp7()" kendoRadioButton />
-                                  <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
-                                </li>
-                                <li class="k-radio-item" style="padding-left: 1rem;">
-                                  <input required type="radio" class="custom-size" name="Dp7" value="6" #6
-                                    formControlName="Dp7" (click)="MethodTotalDp()" [(ngModel)]="Dp7Calf"
-                                    (click)="RespuestaDp7()" kendoRadioButton />
-                                  <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
-                                    redacción)</kendo-label>
-                                </li>
-                                <li class="k-radio-item" style="padding-left: 1rem;">
-                                  <input required type="radio" class="custom-size" name="Dp7" value="3" #No
-                                    formControlName="Dp7" (click)="MethodTotalDp()" [(ngModel)]="Dp7Calf"
-                                    (click)="RespuestaDp7()" kendoRadioButton />
-                                  <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
-                                </li>
-                              </ul>
-                              <kendo-formerror>Error: Campo requerido </kendo-formerror>
-                            </kendo-formfield>
-                            <p> </p>
-                            <!-- 7Dp Especifica &nbsp; -->
-                            <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica, en
-                              caso de que la calificación sea 9 documentar "Sin recomendaciones".
-                            </kendo-label>
-                            <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                              <kendo-textarea style="font-weight: normal;" resizable="auto" flow="horizontal"
-                                [(ngModel)]="textAreaValueDp7" formControlName="Dp7Esp">
-                                <kendo-textarea-suffix>
-                                  <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="close" (click)="clearValue7()"></button>
-                                  <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="RespuestaDp7()">Sin recomendaciones</button>
-                                </kendo-textarea-suffix>
-                              </kendo-textarea>
-                              <kendo-formhint style="font-weight: normal;" align="start">7 DP RE</kendo-formhint>
-                              <kendo-formerror>Error: es requerido</kendo-formerror>
-                            </kendo-formfield>
-                            <p> </p>
-                            <!-- ----------------7Dp Generica &nbsp; --------->
-                            <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                              <kendo-textarea formControlName="CalfDp7form" [(ngModel)]="CalfDp7" [readonly]="true"
-                                resizable="auto" name="CalfDp7" flow="horizontal">
-                                <kendo-textarea-suffix>
-                                  <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="RespuestaDp7()">Respuesta Generica</button>
-                                </kendo-textarea-suffix>
-                              </kendo-textarea>
-                              <kendo-formhint style="font-weight: normal;" align="start">7 DP Generica
-                              </kendo-formhint>
-                              <kendo-formerror>Error: es requerido</kendo-formerror>
-                            </kendo-formfield>
-                            <!--------------------- 7Dp Ponderacion -------->
-                            <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                              <kendo-textarea formControlName="ponDp7form" [readonly]="true" [(ngModel)]="PonDp7"
-                                resizable="auto" name="PonDp5" flow="horizontal">
-                                <kendo-textarea-suffix>
-                                  <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
-                                    (click)="RespuestaDp7()">Ponderacion</button>
-                                </kendo-textarea-suffix>
-                              </kendo-textarea>
-                              <kendo-formhint style="font-weight: normal;" align="start">7 DP Ponderacion
-                              </kendo-formhint>
-                              <kendo-formerror>Error: es requerido</kendo-formerror>
-                            </kendo-formfield>
 
-                            <p> </p>
-                            <!--8 Dp  &nbsp; -->
-                            <kendo-formfield orientation="vertical" showErros="initial"
-                              style="background-color: darkgray;">
-                              <ul class="k-radio-list k-list-vertical">
-                                <li class="k-radio-item" style="padding-left: 1rem;">
-                                  <kendo-label class="k-radio-label" style="font-weight: bold;">8.- ¿El árbol de
-                                    problemas expresa correctamente las relaciones
-                                    causales?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                  </kendo-label>
-                                  <input required type="radio" class="custom-size" name="Dp8" value="9" #9
-                                    formControlName="Dp8" (click)="MethodTotalDp()" [(ngModel)]="Dp8Calf"
-                                    (click)="RespuestaDp8()" kendoRadioButton />
-                                  <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
-                                </li>
-                                <li class="k-radio-item" style="padding-left: 1rem;">
-                                  <input required type="radio" class="custom-size" name="Dp8" value="6" #6
-                                    formControlName="Dp8" (click)="MethodTotalDp()" [(ngModel)]="Dp8Calf"
-                                    (click)="RespuestaDp8()" kendoRadioButton />
-                                  <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
-                                    redacción)</kendo-label>
-                                </li>
-                                <li class="k-radio-item" style="padding-left: 1rem;">
-                                  <input required type="radio" class="custom-size" name="Dp8" value="3" #No
-                                    formControlName="Dp8" (click)="MethodTotalDp()" [(ngModel)]="Dp8Calf"
-                                    (click)="RespuestaDp8()" kendoRadioButton />
-                                  <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
-                                </li>
-                              </ul>
-                              <kendo-formerror>Error: Campo requerido </kendo-formerror>
-                            </kendo-formfield>
-                            <p> </p>
-                            <!-- 8Dp Especifica &nbsp; -->
-                            <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica, en
-                              caso de que la calificación sea 9 documentar "Sin recomendaciones".
-                            </kendo-label>
-                            <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                              <kendo-textarea style="font-weight: normal;" resizable="auto" flow="horizontal"
-                                [(ngModel)]="textAreaValueDp8" formControlName="Dp8Esp">
-                                <kendo-textarea-suffix>
-                                  <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="close" (click)="clearValue8()"></button>
-                                  <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="RespuestaDp8()">Sin recomendaciones</button>
-                                </kendo-textarea-suffix>
-                              </kendo-textarea>
-                              <kendo-formhint style="font-weight: normal;" align="start">8 DP RE</kendo-formhint>
-                              <kendo-formerror>Error: es requerido</kendo-formerror>
-                            </kendo-formfield>
-                            <p> </p>
-                            <!-- ----------------8Dp Generica &nbsp; --------->
-                            <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                              <kendo-textarea formControlName="CalfDp8form" [(ngModel)]="CalfDp8" [readonly]="true"
-                                resizable="auto" name="CalfDp8" flow="horizontal">
-                                <kendo-textarea-suffix>
-                                  <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
-                                    icon="edit" (click)="RespuestaDp8()">Respuesta Generica</button>
-                                </kendo-textarea-suffix>
-                              </kendo-textarea>
-                              <kendo-formhint style="font-weight: normal;" align="start">8 DP Generica
-                              </kendo-formhint>
-                              <kendo-formerror>Error: es requerido</kendo-formerror>
-                            </kendo-formfield>
-                            <!--------------------- 8Dp Ponderacion -------->
-                            <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
-                              <kendo-textarea formControlName="ponDp8form" [readonly]="true" [(ngModel)]="PonDp8"
-                                resizable="auto" name="PonDp8" flow="horizontal">
-                                <kendo-textarea-suffix>
-                                  <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
-                                    (click)="RespuestaDp8()">Ponderacion</button>
-                                </kendo-textarea-suffix>
-                              </kendo-textarea>
-                              <kendo-formhint style="font-weight: normal;" align="start">8 DP Ponderacion
-                              </kendo-formhint>
-                              <kendo-formerror>Error: es requerido</kendo-formerror>
-                            </kendo-formfield>
+                              <div class="col-md-6">
 
-                            <p> </p>
+                                <!--6 Dp  &nbsp; -->
+                                <kendo-formfield orientation="vertical" showErros="initial"
+                                  style="background-color: darkgray;">
+                                  <ul class="k-radio-list k-list-vertical">
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-label class="k-radio-label" style="font-weight: bold;">6.-¿El DP explica
+                                        claramente el problema que se pretende atender? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </kendo-label>
+                                      <input required type="radio" class="custom-size" name="Dp6" value="9" #9
+                                        formControlName="Dp6" (click)="MethodTotalDp()" [(ngModel)]="Dp6Calf"
+                                        (click)="RespuestaDp6()" kendoRadioButton />
+                                      <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
+                                    </li>
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <input required type="radio" class="custom-size" name="Dp6" value="3" #No
+                                        formControlName="Dp6" (click)="MethodTotalDp()" [(ngModel)]="Dp6Calf"
+                                        (click)="RespuestaDp6()" kendoRadioButton />
+                                      <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
+                                    </li>
+                                  </ul>
+                                  <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                </kendo-formfield>
+                                <p> </p>
+                                <!-- 6Dp Especifica &nbsp; -->
+                                <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica,
+                                  en
+                                  caso de que la calificación sea 9 documentar "Sin recomendaciones".
+                                </kendo-label>
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea style="font-weight: normal;" resizable="auto" flow="horizontal"
+                                    [(ngModel)]="textAreaValueDp6" formControlName="Dp6Esp">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                        icon="close" (click)="clearValue6()"></button>
+                                      <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                        icon="edit" (click)="RespuestaDp6()">Sin recomendaciones</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">6 DP RE</kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
+                                <p> </p>
+                                <!-- ----------------6Dp Generica &nbsp; --------->
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea formControlName="CalfDp6form" [(ngModel)]="CalfDp6" [readonly]="true"
+                                    resizable="auto" name="CalfDp6" flow="horizontal">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                        icon="edit" (click)="RespuestaDp6()">Respuesta Generica</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">6 DP Generica
+                                  </kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
+                                <!--------------------- 6Dp Ponderacion -------->
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea formControlName="ponDp6form" [readonly]="true" [(ngModel)]="PonDp6"
+                                    resizable="auto" name="PonDp6" flow="horizontal">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                                        (click)="RespuestaDp6()">Ponderacion</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">6 DP Ponderacion
+                                  </kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
+
+                              <p> </p>
+
+                                <!--7 Dp  &nbsp; -->
+                                <kendo-formfield orientation="vertical" showErros="initial"
+                                  style="background-color: darkgray;">
+                                  <ul class="k-radio-list k-list-vertical">
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-label class="k-radio-label" style="font-weight: bold;">7.- ¿Las causas se
+                                        encuentran documentadas cualitativa y cuantitativamente de tal forma
+                                        que se identifica su relación con el problema? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </kendo-label>
+                                      <input required type="radio" class="custom-size" name="Dp7" value="9" #9
+                                        formControlName="Dp7" (click)="MethodTotalDp()" [(ngModel)]="Dp7Calf"
+                                        (click)="RespuestaDp7()" kendoRadioButton />
+                                      <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
+                                    </li>
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <input required type="radio" class="custom-size" name="Dp7" value="6" #6
+                                        formControlName="Dp7" (click)="MethodTotalDp()" [(ngModel)]="Dp7Calf"
+                                        (click)="RespuestaDp7()" kendoRadioButton />
+                                      <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
+                                        redacción)</kendo-label>
+                                    </li>
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <input required type="radio" class="custom-size" name="Dp7" value="3" #No
+                                        formControlName="Dp7" (click)="MethodTotalDp()" [(ngModel)]="Dp7Calf"
+                                        (click)="RespuestaDp7()" kendoRadioButton />
+                                      <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
+                                    </li>
+                                  </ul>
+                                  <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                </kendo-formfield>
+                                <p> </p>
+                                <!-- 7Dp Especifica &nbsp; -->
+                                <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica,
+                                  en
+                                  caso de que la calificación sea 9 documentar "Sin recomendaciones".
+                                </kendo-label>
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea style="font-weight: normal;" resizable="auto" flow="horizontal"
+                                    [(ngModel)]="textAreaValueDp7" formControlName="Dp7Esp">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                        icon="close" (click)="clearValue7()"></button>
+                                      <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                        icon="edit" (click)="RespuestaDp7()">Sin recomendaciones</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">7 DP RE</kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
+                                <p> </p>
+                                <!-- ----------------7Dp Generica &nbsp; --------->
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea formControlName="CalfDp7form" [(ngModel)]="CalfDp7" [readonly]="true"
+                                    resizable="auto" name="CalfDp7" flow="horizontal">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                        icon="edit" (click)="RespuestaDp7()">Respuesta Generica</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">7 DP Generica
+                                  </kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
+                                <!--------------------- 7Dp Ponderacion -------->
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea formControlName="ponDp7form" [readonly]="true" [(ngModel)]="PonDp7"
+                                    resizable="auto" name="PonDp5" flow="horizontal">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                                        (click)="RespuestaDp7()">Ponderacion</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">7 DP Ponderacion
+                                  </kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
+
+                              <p> </p>
+
+                                <!--8 Dp  &nbsp; -->
+                                <kendo-formfield orientation="vertical" showErros="initial"
+                                  style="background-color: darkgray;">
+                                  <ul class="k-radio-list k-list-vertical">
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <kendo-label class="k-radio-label" style="font-weight: bold;">8.- ¿El árbol de
+                                        problemas expresa correctamente las relaciones
+                                        causales?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                      </kendo-label>
+                                      <input required type="radio" class="custom-size" name="Dp8" value="9" #9
+                                        formControlName="Dp8" (click)="MethodTotalDp()" [(ngModel)]="Dp8Calf"
+                                        (click)="RespuestaDp8()" kendoRadioButton />
+                                      <kendo-label class="k-radio-label" [for]="9">9.- Si</kendo-label>
+                                    </li>
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <input required type="radio" class="custom-size" name="Dp8" value="6" #6
+                                        formControlName="Dp8" (click)="MethodTotalDp()" [(ngModel)]="Dp8Calf"
+                                        (click)="RespuestaDp8()" kendoRadioButton />
+                                      <kendo-label class="k-radio-label" [for]="6">6. Parcialmente (claridad de la
+                                        redacción)</kendo-label>
+                                    </li>
+                                    <li class="k-radio-item" style="padding-left: 1rem;">
+                                      <input required type="radio" class="custom-size" name="Dp8" value="3" #No
+                                        formControlName="Dp8" (click)="MethodTotalDp()" [(ngModel)]="Dp8Calf"
+                                        (click)="RespuestaDp8()" kendoRadioButton />
+                                      <kendo-label class="k-radio-label" [for]="3">3 No</kendo-label>
+                                    </li>
+                                  </ul>
+                                  <kendo-formerror>Error: Campo requerido </kendo-formerror>
+                                </kendo-formfield>
+                                <p> </p>
+                                <!-- 8Dp Especifica &nbsp; -->
+                                <kendo-label class="k-radio-label" style="font-weight: bold;">Recomendación especifica,
+                                  en
+                                  caso de que la calificación sea 9 documentar "Sin recomendaciones".
+                                </kendo-label>
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea style="font-weight: normal;" resizable="auto" flow="horizontal"
+                                    [(ngModel)]="textAreaValueDp8" formControlName="Dp8Esp">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                        icon="close" (click)="clearValue8()"></button>
+                                      <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                        icon="edit" (click)="RespuestaDp8()">Sin recomendaciones</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">8 DP RE</kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
+                                <p> </p>
+                                <!-- ----------------8Dp Generica &nbsp; --------->
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea formControlName="CalfDp8form" [(ngModel)]="CalfDp8" [readonly]="true"
+                                    resizable="auto" name="CalfDp8" flow="horizontal">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" class="suffix-clear-button" fillMode="clear"
+                                        icon="edit" (click)="RespuestaDp8()">Respuesta Generica</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">8 DP Generica
+                                  </kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
+                                <!--------------------- 8Dp Ponderacion -------->
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                  <kendo-textarea formControlName="ponDp8form" [readonly]="true" [(ngModel)]="PonDp8"
+                                    resizable="auto" name="PonDp8" flow="horizontal">
+                                    <kendo-textarea-suffix>
+                                      <button kendoButton type="button" suffix-clear-button fillMode="clear" icon="edit"
+                                        (click)="RespuestaDp8()">Ponderacion</button>
+                                    </kendo-textarea-suffix>
+                                  </kendo-textarea>
+                                  <kendo-formhint style="font-weight: normal;" align="start">8 DP Ponderacion
+                                  </kendo-formhint>
+                                  <kendo-formerror>Error: es requerido</kendo-formerror>
+                                </kendo-formfield>
+
+                                <p> </p>
+                              </div>
 
                           </div>
                         </ng-template>
@@ -4263,28 +4275,25 @@
       </div>
 
     </fieldset>
-     <!-- Modal -->
-     <div class="modal fade" id="exampleModal" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-fullscreen-sm-down">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h5 class="modal-title" id="exampleModalLabel">Descripcion del Punto</h5>
-           <button type="button" class="btn-close" data-bs-dismiss="modal"
-             aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-           <!-- <a *ngFor="let marcador of marcadores" > -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Descripcion del Punto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- <a *ngFor="let marcador of marcadores" > -->
 
-           <!-- </a> -->
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-secondary"
-             data-bs-dismiss="modal">Cerrar</button>
-           <button type="button" class="btn btn-primary">Guardar Cambios</button>
-         </div>
-       </div>
-     </div>
-   </div>
+            <!-- </a> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
 </section>

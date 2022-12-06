@@ -17,6 +17,8 @@ import { GridDataResult } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { IntlService } from "@progress/kendo-angular-intl";
 import { formatDate } from '@progress//kendo-angular-intl';
+import * as htmlDocx from 'html-docx-js/dist/html-docx';
+import { saveAs } from 'file-saver';
 
 export interface JsonModel {
   value: string;
@@ -1023,364 +1025,452 @@ export class CreceFormualarioComponent implements OnInit {
     else if (this.pp == "E002") {
       this.NombrePp = "Sistema Integral de Transparencia, Acceso a la Información Pública y Archivos";
       this.ListDepPar = "UTAPE";
+      this.dep = "UTAPE";
     }
     else if (this.pp == "E003") {
       this.NombrePp = "Actividades artísticas y culturales";
       this.ListDepPar = "IEC, MIQ, FORUM";
+      this.dep = "IEC";
     }
     else if (this.pp == "E004") {
       this.NombrePp = "Adaptación al cambio climático";
-      this.ListDepPar ="";
+      this.ListDepPar ="SMAOT";
+      this.dep = "SMAOT";
     }
     else if (this.pp == "E005") {
       this.NombrePp = "Promoción de la convivencia escolar pacífica";
-      this.ListDepPar ="";
+      this.ListDepPar ="SEG";
+      this.dep = "SEG";
     }
     else if (this.pp == "E006") {
       this.NombrePp = "Atención ciudadana";
-      this.ListDepPar = "GTOMX";
+      this.ListDepPar = "Ofi. Sec. Part., GTOMX";
+      this.dep = "Ofi. Sec. Part.";
     }
     else if (this.pp == "E007") {
       this.NombrePp = "Atención integral a las personas con discapacidad";
-      this.ListDepPar ="";
+      this.ListDepPar ="INGUDIS";
+      this.dep = "INGUDIS";
     }
     else if (this.pp == "E008") {
       this.NombrePp = "Atención integral a niñas, niños y adolescentes";
-      this.ListDepPar = "DIF, PEPNNA";
+      this.ListDepPar = "SEG, DIF, PEPNNA";
+      this.dep = "SG";
     }
     else if (this.pp == "E009") {
       this.NombrePp = "Atención integral para adultos mayores";
-      this.ListDepPar ="";
+      this.ListDepPar ="DIF";
+      this.dep = "DIF";
     }
     else if (this.pp == "E010") {
       this.NombrePp = "Reconstrucción del tejido social";
       this.ListDepPar = "SDSH, DIF";
-      this.ListDepPar ="";
+      this.ListDepPar ="SDSH";
     }
     else if (this.pp == "E012") {
-      this.NombrePp = "Servicios de salud con oportunidad y calidad";
-      this.ListDepPar = "";
+      this.NombrePp = "Atención Médica";
+      this.ListDepPar = "ISAPEG";
+      this.dep = "ISAPEG";
     }
     else if (this.pp == "E014") {
       this.NombrePp = "Certeza jurídica en los procesos conciliatorios de los conflictos derivados del acto médico";
-      this.ListDepPar = "";
+      this.ListDepPar = "CECAMED";
+      this.dep = "CECAMED";
     }
     else if (this.pp == "E015") {
       this.NombrePp = "Certeza jurídica para la población guanajuatense";
-      this.ListDepPar = "DIF";
+      this.ListDepPar = "SG, DIF";
+      this.dep = "SG";
     }
     else if (this.pp == "E016") {
       this.NombrePp = "Certeza jurídica y derechos de los adultos y adolescentes internos";
-      this.ListDepPar = "";
+      this.ListDepPar = "SSP";
+      this.dep = "SSP";
     }
     else if (this.pp == "E017") {
       this.NombrePp = "Cobertura de Educación Media Superior y Superior";
-      this.ListDepPar = "CECYTEG, UVEG, ITESG, UPGTO, UPB, UTNG, SABES, UPJR, ITSUR, UTSMA, UPPE, EPRR, ITESI, UTL, ITESP, CONALEP, ITESS, UTSOE, UTS, ITESA, UTLB";
+      this.ListDepPar = "SEG,CECYTEG, UVEG, ITESG, UPGTO, UPB, UTNG, SABES, UPJR, ITSUR, UTSMA, UPPE, EPRR, ITESI, UTL, ITESP, CONALEP, ITESS, UTSOE, UTS, ITESA, UTLB";
+      this.dep = "SEG";
     }
     else if (this.pp == "E018") {
       this.NombrePp = "Cobertura en Educación Básica";
-      this.ListDepPar ="";
-
+      this.ListDepPar ="SEG, SICOM";
+      this.dep = "SEG";
     }
     else if (this.pp == "E020") {
       this.NombrePp = "Comercialización internacional";
-      this.ListDepPar ="";
+      this.ListDepPar ="COFOCE";
+      this.dep = "COFOCE";
     }
     else if (this.pp == "E021") {
       this.NombrePp = "Conectividad digital";
-      this.ListDepPar = "";
+      this.ListDepPar = "SICOM";
+      this.dep = "SICOM";
     }
     else if (this.pp == "E022") {
       this.NombrePp = "Confianza en el Instituto Electoral del Estado de Guanajuato";
-      this.ListDepPar = "";
+      this.ListDepPar = "IEEG";
+      this.dep = "IEEG";
     }
     else if (this.pp == "E024") {
       this.NombrePp = "Alianza a favor de la educación para adultos";
-      this.ListDepPar = "";
+      this.ListDepPar = "INAEBA, SEG";
+      this.dep = "INAEBA";
     }
     else if (this.pp == "E026") {
       this.NombrePp = "Empresa Limpia";
-      this.ListDepPar = "";
+      this.ListDepPar = "PAOT";
+      this.dep = "PAOT";
     }
     else if (this.pp == "E027") {
       this.NombrePp = "Derrama económica por turismo";
-      this.ListDepPar ="";
+      this.ListDepPar ="SECTUR";
+      this.dep = "SECTUR";
     }
     else if (this.pp == "E028") {
       this.NombrePp = "Desarrollo y atención integral de las juventudes";
-      this.ListDepPar ="";
+      this.ListDepPar ="JUVENTUDES GTO";
+      this.dep = "JUVENTUDES GTO";
     }
     else if (this.pp == "E030") {
       this.NombrePp = "Efectividad del sector de procuración de justicia";
-      this.ListDepPar ="";
+      this.ListDepPar ="FGEG, SEG, DIF";
+      this.dep = "FGEG";
     }
     else if (this.pp == "E031") {
       this.NombrePp = "Eficacia en la operatividad policial";
-      this.ListDepPar ="";
+      this.ListDepPar ="SSP, CECCEG, INFOSPE";
+      this.dep = "SSP";
     }
     else if (this.pp == "E032") {
       this.NombrePp = "Eficiencia de la justicia laboral";
-      this.ListDepPar ="";
+      this.ListDepPar ="SG";
+      this.dep = "SG";
     }
     else if (this.pp == "E035") {
       this.NombrePp = "Extensión del conocimiento, arte y cultura";
-      this.ListDepPar = "";
+      this.ListDepPar = "UG";
+      this.dep = "UG";
     }
     else if (this.pp == "E036") {
       this.NombrePp = "Divulgación de la ciencia y la tecnología";
-      this.ListDepPar = "";
+      this.ListDepPar = "IDEA GTO, SEG, UVEG, UTL";
+      this.dep = "IDEA GTO";
     }
     else if (this.pp == "E037") {
       this.NombrePp = "Fortalecimiento de la gobernabilidad en el Estado";
-      this.ListDepPar = "";
+      this.ListDepPar = "SG";
+      this.dep = "SG";
     }
     else if (this.pp == "E038") {
       this.NombrePp = "Competencias para el trabajo";
-      this.ListDepPar = "";
+      this.ListDepPar = "SEG, ITESP, UTNG, UTL, ITESI, SABES, ITSUR, UTSOE, CONALEP, EPRR, UPGTO, ITESG, ITESS, UPPE, UPJR, UPB, UTSMA, UTS, CECYTEG, UVEG, UTLB";
+      this.dep = "SEG";
     }
     else if (this.pp == "E039") {
       this.NombrePp = "Sustentabilidad energética";
-      this.ListDepPar = "";
+      this.ListDepPar = "IDEA GTO";
+      this.dep = "IDEA GTO";
     }
     else if (this.pp == "E040") {
       this.NombrePp = "Investigación, desarrollo tecnológico e innovación de la Universidad de Guanajuato";
-      this.ListDepPar = "";
+      this.ListDepPar = "UG";
+      this.dep = "UG";
     }
     else if (this.pp == "E041") {
       this.NombrePp = "Justicia ambiental";
-      this.ListDepPar = "";
+      this.ListDepPar = "PAOT";
+      this.dep = "PAOT";
     }
     else if (this.pp == "E042") {
       this.NombrePp = "Mitigación de emisiones de gas efecto invernadero";
-      this.ListDepPar = "";
+      this.ListDepPar = "SMAOT";
+      this.dep = "SMAOT";
     }
     else if (this.pp == "E044") {
       this.NombrePp = "Participación de la sociedad en la prevención de delitos";
-      this.ListDepPar = "";
+      this.ListDepPar = "SSP";
+      this.dep = "SSP";
     }
     else if (this.pp == "E045") {
       this.NombrePp = "Acceso equitativo y oportunidades de desarrollo para mujeres y hombres";
-      this.ListDepPar = "";
+      this.ListDepPar = "IMUG";
+      this.dep = "IMUG";
     }
     else if (this.pp == "E046") {
       this.NombrePp = "Poder Legislativo";
-      this.ListDepPar = "";
+      this.ListDepPar = "P. Legislativo";
+      this.dep = "P. Legislativo";
     }
     else if (this.pp == "E047") {
       this.NombrePp = "Práctica competitiva y deportiva";
-      this.ListDepPar ="";
+      this.ListDepPar ="CODE";
+      this.dep = "CODE";
     }
     else if (this.pp == "E049") {
       this.NombrePp = "Procuraduría de los Derechos Humanos";
-      this.ListDepPar = "";
+      this.ListDepPar = "PDH";
+      this.dep = "PDH";
     }
     else if (this.pp == "E050") {
       this.NombrePp = "Prevención y atención oportuna de emergencias y desastres";
-      this.ListDepPar = "";
+      this.ListDepPar = "SSP";
+      this.dep = "SSP";
     }
     else if (this.pp == "E051") {
       this.NombrePp = "Gestión integral de recursos hídricos";
-      this.ListDepPar = "";
+      this.ListDepPar = "CEAG";
+      this.dep = "CEAG";
     }
     else if (this.pp == "E053") {
       this.NombrePp = "Regularización de la tenencia de la tierra";
-      this.ListDepPar ="";
+      this.ListDepPar ="SG";
+      this.dep = "SG";
     }
     else if (this.pp == "E054") {
       this.NombrePp = "Rehabilitación de niños y adolescentes en conflicto";
-      this.ListDepPar ="";
+      this.ListDepPar ="DIF";
+      this.dep = "DIF";
     }
     else if (this.pp == "E056") {
       this.NombrePp = "Servicio de impartición de justicia y solución de controversias";
-      this.ListDepPar = "";
+      this.ListDepPar = "P. Judicial";
+      this.dep = "P. Judicial";
     }
     else if (this.pp == "E057") {
       this.NombrePp = "Trayectoria en Nivel Básico, Media Superior y Superior";
-      this.ListDepPar = "";
+      this.ListDepPar = "SEG, ITESP, CONALEP, ITESG, ITESS, UPB, UPGTO, UTNG, UPJR, UTSMA, UVEG, UTSOE, EPRR, UPPE, UTS, ITESI, UTL, ITSUR, CECYTEG, ITESA, SABES, JUVENTUDES GTO, UTLB";
+      this.dep = "SEG";
     }
     else if (this.pp == "E058") {
       this.NombrePp = "Tribunal de Justicia Administrativa del Estado de Guanajuato";
-      this.ListDepPar = "";
+      this.ListDepPar = "TJA";
+      this.dep = "TJA";
     }
     else if (this.pp == "E059") {
       this.NombrePp = "Tribunal Estatal Electoral de Guanajuato";
-      this.ListDepPar = "";
+      this.ListDepPar = "TEEG";
+      this.dep = "TEEG";
     }
     else if (this.pp == "E060") {
       this.NombrePp = "Unidad de Televisión de Guanajuato";
-      this.ListDepPar = "";
+      this.ListDepPar = "UTEG";
+      this.dep = "UTEG";
     }
     else if (this.pp == "E061") {
       this.NombrePp = "Valores en familia";
-      this.ListDepPar = "";
+      this.ListDepPar = "DIF";
+      this.dep = "DIF";
     }
     else if (this.pp == "E062") {
       this.NombrePp = "Competencias en Educación Básica";
-      this.ListDepPar = "";
+      this.ListDepPar = "SEG";
+      this.dep = "SEG";
     }
     else if (this.pp == "E063") {
       this.NombrePp = "Formación científica y tecnológica";
-      this.ListDepPar = "";
+      this.ListDepPar = "IDEA GTO";
+      this.dep = "IDEA GTO";
     }
     else if (this.pp == "E064") {
       this.NombrePp = "Prevención en salud";
-      this.ListDepPar = "";
+      this.ListDepPar = "ISAPEG";
+      this.dep = "ISAPEG";
     }
     else if (this.pp == "E066") {
       this.NombrePp = "Cobertura Educativa de la Universidad de Guanajuato";
-      this.ListDepPar = "";
+      this.ListDepPar = "UG";
+      this.dep = "UG";
     }
     else if (this.pp == "E067") {
-      this.NombrePp = "Trayectoria Académica Consolidada";
-      this.ListDepPar = "";
+      this.NombrePp = "Trayectoria Estudiantil Consolidada";
+      this.ListDepPar = "UG";
+      this.dep = "UG";
     }
     else if (this.pp == "E068") {
       this.NombrePp = "Vinculación del estudiante con los sectores económico y social";
-      this.ListDepPar = "";
+      this.ListDepPar = "UG";
+      this.dep = "UG";
     }
     else if (this.pp == "G001") {
       this.NombrePp = "Fortalecimiento institucional de la inspección y vigilancia para la administración sustentable del territorio";
-      this.ListDepPar = "";
+      this.ListDepPar = "PAOT";
+      this.dep = "PAOT";
     }
     else if (this.pp == "G005") {
       this.NombrePp = "Fomento y vigilancia del cumplimiento del trabajo decente";
-      this.ListDepPar = "";
+      this.ListDepPar = "SG";
+      this.dep = "SG";
     }
     else if (this.pp == "G006") {
       this.NombrePp = "Mejoramiento de las condiciones ambientales";
       this.ListDepPar = "SMAOT";
+      this.dep = "SMAOT";
     }
     else if (this.pp == "K003") {
       this.NombrePp = "Sistemas de Abastecimiento de Agua con Calidad";
       this.ListDepPar = "CEAG";
+      this.dep = "CEAG";
     }
     else if (this.pp == "K004") {
       this.NombrePp = "Infraestructura para el Desarrollo";
       this.ListDepPar = "SICOM, SDAyR";
+      this.dep = "SICOM";
     }
     else if (this.pp == "K005") {
       this.NombrePp = "Logística para los negocios  ";
       this.ListDepPar = "SDES, GPI";
+      this.dep = "SDES";
     }
     else if (this.pp == "K006") {
       this.NombrePp = "Sistema de Plantas de Tratamiento de Aguas Residuales";
       this.ListDepPar = "CEAG";
+      this.dep = "CEAG";
     }
     else if (this.pp == "M001") {
-      this.NombrePp = "Gestión de los ingresos públicos";
+      this.NombrePp = "Gestión y Control de los Ingresos Públicos del Estado";
       this.ListDepPar = "SFIA";
+      this.dep = "SFIA";
     }
     else if (this.pp == "M003") {
       this.NombrePp = "Gestión de la Hacienda Pública orientada a Resultados";
       this.ListDepPar = "SFIA";
+      this.dep = "SFIA";
     }
     else if (this.pp == "M004") {
       this.NombrePp = "Administración de los Recursos Humanos, Materiales y Tecnológicos del Estado";
       this.ListDepPar = "SFIA";
+      this.dep = "SFIA";
     }
     else if (this.pp == "O005") {
       this.NombrePp = "Sistema Estatal Anticorrupción";
       this.ListDepPar = "SESEA";
+      this.dep = "SESEA";
     }
     else if (this.pp == "O006") {
       this.NombrePp = "Consolidación del Control Interno de la Administración Pública Estatal";
       this.ListDepPar = "STRC";
+      this.dep = "STRC";
     }
     else if (this.pp == "P003") {
       this.NombrePp = "Desarrollo regional, urbano y ordenamiento ecológico territorial";
       this.ListDepPar = "SMAOT, IPLANEG, COVEG, SDSH";
+      this.dep = "SMAOT";
     }
     else if (this.pp == "P004") {
       this.NombrePp = "Gestión de centros escolares de Educación Básica";
       this.ListDepPar = "SEG";
+      this.dep = "SEG";
     }
     else if (this.pp == "P005") {
       this.NombrePp = "Gestión de centros escolares de Educación Media Superior y Superior";
       this.ListDepPar = "SEG, ITESP, CECYTEG, CONALEP, EPRR, ITESI, ITESG, ITESS, ITSUR, SABES, UPB, UPGTO, UPJR, UPPE, UTL, UTNG, UTS, UTSMA, UTSOE, UVEG, UTLB, ITESA";
+      this.dep = "SEG";
     }
     else if (this.pp == "P006") {
       this.NombrePp = "Gestión integral de la biodiversidad";
       this.ListDepPar = "SMAOT";
+      this.dep = "SMAOT";
     }
     else if (this.pp == "P010") {
       this.NombrePp = "Sistema integral de movilidad";
       this.ListDepPar = "SICOM,IPLANEG, SSP, SG";
+      this.dep = "SICOM";
     }
     else if (this.pp == "P011") {
       this.NombrePp = "Sistema estatal de información y evaluación del desarrollo";
       this.ListDepPar = "IPLANEG, SDSH";
+      this.dep = "IPLANEG";
     }
     else if (this.pp == "P012") {
       this.NombrePp = "Sistema estatal de planeación";
       this.ListDepPar = "IPLANEG";
+      this.dep = "IPLANEG";
     }
     else if (this.pp == "P014") {
       this.NombrePp = "Fortalecimiento del sistema estatal de seguridad pública";
       this.ListDepPar = "SG";
+      this.dep = "SG";
     }
     else if (this.pp == "P018") {
       this.NombrePp = "Sistema de gestión social y participación ciudadana";
       this.ListDepPar = "IPLANEG";
+      this.dep = "IPLANEG";
     }
     else if (this.pp == "R005") {
       this.NombrePp = "Certeza jurídica en el actuar del Poder Ejecutivo";
       this.ListDepPar = "CGJ";
+      this.dep = "CGJ";
     }
     else if (this.pp == "R006") {
       this.NombrePp = "Coordinación de la Gestión Gubernamental";
       this.ListDepPar = "JEGAPE";
+      this.dep = "JEPAPE";
     }
     else if (this.pp == "R007") {
       this.NombrePp = "Comunicación social";
       this.ListDepPar = "CGCS";
+      this.dep = "CGCS";
     }
     else if (this.pp == "R008") {
       this.NombrePp = "Asesoría y representación jurídica para guiar el actuar de la Administración Pública Estatal";
       this.ListDepPar = "SFIA";
+      this.dep = "SFIA";
     }
     else if (this.pp == "R009") {
       this.NombrePp = "Garantizar el otorgamiento y pago de seguros y prestaciones de los afiliados del ISSEG";
       this.ListDepPar = "ISSEG";
+      this.dep = "ISSEG";
     }
     else if (this.pp == "S003") {
       this.NombrePp = "Impulso al combate a la pobreza con el mejoramiento de la situación familiar";
       this.ListDepPar = "SDSH, DIF, INGUDIS";
+      this.dep = "SDSH";
     }
     else if (this.pp == "S006") {
       this.NombrePp = "Asistencia y orientación alimentaria";
       this.ListDepPar = "DIF";
+      this.dep = "DIF";
     }
     else if (this.pp == "S008") {
-      this.NombrePp = "Atención integral al migrante y su familia";
+      this.NombrePp = "Atención integral al migrante y su familia e internacionalización de Guanajuato";
       this.ListDepPar = "SMEI";
+      this.dep = "SMEI";
     }
     else if (this.pp == "S010") {
       this.NombrePp = "Cadena de valor y fortalecimiento de la productividad";
       this.ListDepPar = "SDES, FOFIES, FOGIM, STyRC";
+      this.dep = "SDES";
     }
     else if (this.pp == "S011") {
       this.NombrePp = "Campo sustentable en el uso del agua";
       this.ListDepPar = "SDAYR";
+      this.dep = "SDAYR";
     }
     else if (this.pp == "S016") {
       this.NombrePp = "Investigación, desarrollo tecnológico, transferencia de tecnología e innovación";
       this.ListDepPar = "IDEA GTO, UTNG, ITESS, UTL";
+      this.dep = "IDEA GTO";
     }
     else if (this.pp == "S018") {
       this.NombrePp = "Capital humano";
       this.ListDepPar = "SDES, IECA";
+      this.dep = "SDES";
     }
     else if (this.pp == "S019") {
       this.NombrePp = "Impulso a la infraestructura y servicios para el desarrollo comunitario y regional";
       this.ListDepPar = "SDSH";
+      this.dep = "SDSH";
     }
     else if (this.pp == "S021") {
       this.NombrePp = "Fomento a las Actividades Agroalimentarias";
       this.ListDepPar = "SDAYR, XONOTLI";
+      this.dep = "SDAYR";
     }
     else if (this.pp == "S022") {
       this.NombrePp = "Fortalecimiento de las Unidades de Producción Familiar";
       this.ListDepPar = "SDAYR";
+      this.dep = "SDAYR";
     }
 
 
@@ -1395,13 +1485,11 @@ export class CreceFormualarioComponent implements OnInit {
       this.Dp1Res = "El Diagnóstico Particular contiene todos los apartados solicitados en la Guía para la elaboración del Diagnóstico Particular. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
     }
     else if (this.Dp1Calf== 2) {
-      this.Dp1Res = "El Diagnóstico Particular contiene más del 80% de los apartados, es necesario revisar el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
-        + "\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
+      this.Dp1Res = "El Diagnóstico Particular contiene más del 80% de los apartados, es necesario revisar el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados.Es importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
         + "\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
     }
     else if (this.Dp1Calf== 0) {
-      this.Dp1Res = "El Diagnóstico Particular contiene menos del 80% de los apartados, es necesario revisar la Guía para la elaboración del Diagnóstico Particular, así cómo el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados."
-      "\nEs importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
+      this.Dp1Res = "El Diagnóstico Particular contiene menos del 80% de los apartados, es necesario revisar la Guía para la elaboración del Diagnóstico Particular, así cómo el Anexo I, donde se indican las secciones en las que hace falta integrar información. Sin embargo, la calidad del contenido se valora por separado para cada uno de los apartados. Es importante considerar que la actualización del Diagnóstico Particular debe realizarse de manera anual y debe contener todos los apartados, ya que estos forman parte de la justificación del Programa presupuestario."
       "\nSi bien la entrega del Diagnóstico se formalizó, es necesario documentar todas las secciones y volver a entregar a la brevedad."
     }
 
@@ -1446,7 +1534,7 @@ export class CreceFormualarioComponent implements OnInit {
       this.DepParPpInforme = "No"
     }
     else if (this.checked3== true) {
-      this.ClaveNombreInforme = "Si"
+      this.DepParPpInforme = "Si"
     }
      if (this.checked4== false) {
       this.FechaADxInforme = "No"
@@ -1582,7 +1670,7 @@ export class CreceFormualarioComponent implements OnInit {
       NombrePp: this.NombrePp,
       ListDepPar: this.ListDepPar,
       Dependencia: this.form.get('Dependencia')?.value,
-      Fecha: this.form.get('Fecha')?.value,
+      //Fecha: this.form.get('Fecha')?.value,
       Ano: this.form.get('Ano')?.value,
       DepPar: this.form.get('DepPar')?.value,
       //Elementos
@@ -1860,7 +1948,6 @@ export class CreceFormualarioComponent implements OnInit {
       Revision: crece.revision,
       Pp: crece.pp,
       Dependencia: crece.dependencia,
-      Fecha: crece.fecha,
       Ano: crece.ano,
       DepPar: crece.depPar,
       // Elementos
@@ -2064,7 +2151,7 @@ export class CreceFormualarioComponent implements OnInit {
       Revision: ['Entrega 2023', Validators.required],
       Pp: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]],
       Dependencia: ['', Validators.required],
-      Fecha: ['', Validators.required],
+      // Fecha: ['', Validators.required],
       Ano: ['', Validators.required],
       DepPar: ['', Validators.required],
       // Elementos
@@ -2249,7 +2336,11 @@ export class CreceFormualarioComponent implements OnInit {
 
     });
     console.log(pp);
-
+//   let tituloArchivo="titulo";
+//  let htmlDocument = '<!DOCTYPE html><html><head><meta charset="utf-8"><title></title>';
+//  htmlDocument = htmlDocument + '</head><body><h1>simire</h1></body></html>';
+//  const converted = htmlDocx.asBlob(htmlDocument);
+//  saveAs(converted, tituloArchivo + '.doxc');
 
 
   }
@@ -2730,7 +2821,7 @@ export class CreceFormualarioComponent implements OnInit {
     if (this.year == 2021 || this.year == 2022) {
       this.PonDp2 = 4;
     }
-    else if (this.year == 2019) {
+    else if (this.year == 2019 || this.year == 2020) {
       this.PonDp2 = 2;
     }
     else if (this.year == undefined) {
@@ -2770,8 +2861,7 @@ export class CreceFormualarioComponent implements OnInit {
     }
     else if (this.Dp4Calf == 3) {
       this.textAreaValueDp4 = "";
-      this.CalfDp4 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa."
-        + "\nEste apartado comprende un resumen ejecutivo del resto del documento."
+      this.CalfDp4 = "La introducción del Diagnóstico no contiene los elementos necesarios que permitan identificar la problemática, su atención o la justificación del programa. Este apartado comprende un resumen ejecutivo del resto del documento."
         + "\nEsta recomendación se incluirá en el plan de mejora continua del Programa, su atención se considera deseable, pero no urgente.";
       this.PonDp4 = 0;
     }
@@ -2804,11 +2894,6 @@ export class CreceFormualarioComponent implements OnInit {
       this.textAreaValueDp6 = "Sin recomendaciones";
       this.CalfDp6 = "En lo que respecta a la problemática presentada, el problema o situación inicial se expresa de manera clara.";
       this.PonDp6 = 10;
-    }
-    else if (this.Dp6Calf == 6) {
-      this.textAreaValueDp6 = "";
-      this.CalfDp6 = "No Aplica";
-      this.PonDp6 = 5;
     }
     else if (this.Dp6Calf == 3) {
       this.textAreaValueDp6 = "";
