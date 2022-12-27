@@ -46,7 +46,7 @@ export class FormularioPacComponent implements OnInit {
 
   obtenerCursos() {
     this._cursosService.getListCursos().pipe(
-      map(response =>response.$values)
+      map(response =>response)
     ).subscribe(_data => {
       _data = _data.map(_curso=>{
         const {idCurso, nombreCurso} = _curso;
@@ -69,7 +69,7 @@ export class FormularioPacComponent implements OnInit {
 
   obtenerDependencias() {
     this._depService.GetListDep().pipe(
-      map(response =>response.$values)
+      map(response =>response)
      ).subscribe(_data =>{
        _data = _data.map(_dep=>{
         const {idDependencia, siglaDependencia} = _dep;
@@ -170,7 +170,7 @@ export class FormularioPacComponent implements OnInit {
 
   public loadGridItems(): void {
    this._inscripcionService.GetListInscripcion().pipe(
-      map(response =>response.$values)
+      map(response =>response)
     ).subscribe(_data => {
       _data =_data.map(_par=>{
         const {idInscripcion,sigla,nombre,rfc,email,puesto,ur,curso,bloque,emailAlterno}=_par;

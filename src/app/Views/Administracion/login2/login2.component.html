@@ -1,9 +1,15 @@
-<section id="login" class="mb-5 mt-5">
+
+<section id="inicio" class="mb-5 mt-5">
 <div class="container">
   <div class="row" style="width: 100%;">
-      <div class="col-lg-4 offset-lg-4">
-          <div class="card text-center" style="padding: 20px;">
-              <h3>Login</h3>
+      <div class="col-lg-5 offset-lg-3">
+          <div class="text-center bg" style="padding: 30px;">
+            <div class="col-lg-4 offset-lg-4">
+              <img src="https://github.com/cabarronc/dpp/blob/master/src/assets/Images/SitioDpp/logo%20gto.png?raw=true" width="80px" height="80px">
+              </div>
+            <h3> Sistema del Uso de la Información del Desempeño</h3>
+              <br>
+
               <app-loading *ngIf="loading"></app-loading>
               <form [formGroup]="login" (ngSubmit)=log() style="padding: 10px;">
                   <div class="form-group" style="text-align: start;">
@@ -23,7 +29,7 @@
                   </div>
                   <br>
                   <div class="form-group">
-                      <button class="btn btn-primary mr-2 btn-login" [disabled]="login.invalid" type="submit">Aceptar</button>
+                      <button class="btn btn-success mr-2 btn-login" [disabled]="login.invalid" type="submit">Login</button>
                   </div>
               </form>
           </div>
@@ -31,4 +37,5 @@
   </div>
 </div>
 </section>
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

@@ -19,6 +19,9 @@ import { IntlService } from "@progress/kendo-angular-intl";
 import { formatDate } from '@progress//kendo-angular-intl';
 import * as htmlDocx from 'html-docx-js/dist/html-docx';
 import { saveAs } from 'file-saver';
+import { toJSON } from '@progress/kendo-angular-grid/dist/es2015/filtering/operators/filter-operator.base';
+
+
 
 export interface JsonModel {
   value: string;
@@ -41,6 +44,13 @@ export class CreceFormualarioComponent implements OnInit {
   public model: JsonModel = JSON.parse('{"value": "" }');
   public output: string = JSON.stringify(this.model);
   id: number | undefined;
+  public maskvalue ="";
+  public mask:string  = "00/00/0000";
+
+  public userData: { FechaEntrega: string } = {
+    FechaEntrega: this.maskvalue,
+  };
+  public includeLiterals = true;
 
   accion = 'Elaborando';
   // public model: JsonModel = JSON.parse('{ "fecha": "2017-06-30" }');
@@ -67,6 +77,8 @@ export class CreceFormualarioComponent implements OnInit {
   public checked20: boolean = false;
   public checked21: boolean = false;
   public checked22: boolean = false;
+  public checked23: boolean = false;
+  public checked24: boolean = false;
   //VARIABLES OUT FORM
   public NombrePp: string="";
   public ListDepPar: string="";
@@ -95,6 +107,10 @@ export class CreceFormualarioComponent implements OnInit {
   public MirInforme: string;
   public EvoPpInforme: string;
   public GlosarioInforme: string;
+  public ImpactopresupuestarioInforme: string;
+  public FuentesFinanciamientoInforme: string;
+
+  public calfMir1form: string;
 
   public Elements: string[] = [
     "element1",
@@ -132,10 +148,12 @@ export class CreceFormualarioComponent implements OnInit {
     revision: string;
     pp: string;
     dependencia: string;
+    fechaEntrega:string
     fecha: string;
     ano: number;
     depPar: string;
     claveNombre: boolean;
+    nombrePp:string;
     depResPp: boolean;
     depParPp: boolean;
     fechaADx: boolean;
@@ -151,12 +169,14 @@ export class CreceFormualarioComponent implements OnInit {
     estructuraAnalitica: boolean;
     justObj: boolean;
     identificacionCuanPob: boolean;
-    identificacionAreaInfluencia: boolean;
+    idenficacionAreaInfluencia: boolean;
     relOtrosPP: boolean;
     elementosPEB: boolean;
     mir: boolean;
     evoPp: boolean;
     glosario: boolean;
+    fuente:boolean;
+    impactoPp:boolean;
     dp1: number;
     dp2: number;
     dp3: number;
@@ -231,81 +251,107 @@ export class CreceFormualarioComponent implements OnInit {
     mir1: number;
     mir1Esp: string;
     ponMir1form: number;
+    //calfMir1form: string;
     mir2: number;
     mir2Esp: string;
     ponMir2form: number;
+    //calfMir2form: string;
     mir3: number;
     mir3Esp: string;
     ponMir3form: number;
+    //calfMir3form: string;
     mir4: number;
     mir4Esp: string;
     ponMir4form: number;
+    //calfMir4form: string;
     mir5: number;
     mir5Esp: string;
     ponMir5form: number;
+    //calfMir5form: string;
     mir6: number;
     mir6Esp: string;
     ponMir6form: number;
+    //calfMir6form: string;
     mir7: number;
     mir7Esp: string;
     ponMir7form: number;
+    //calfMir7form: string;
     mir8: number;
     mir8Esp: string;
     ponMir8form: number;
+    //calfMir8form: string;
     mir9: number;
     mir9Esp: string;
     ponMir9form: number;
+    //calfMir9form: string;
     mir10: number;
     mir10Esp: string;
     ponMir10form: number;
+    //calfMir10form: string;
     mir11: number;
     mir11Esp: string;
     ponMir11form: number;
+    //calfMir11form: string;
     mir12: number;
     mir12Esp: string;
     ponMir12form: number;
+    //calfMir12form: string;
     mir13: number;
     mir13Esp: string;
     ponMir13form: number;
+    //calfMir13form: string;
     mir14: number;
     mir14Esp: string;
     ponMir14form: number;
+    //calfMir14form: string;
     mir15: number;
     mir15Esp: string;
     ponMir15form: number;
+    //calfMir15form: string;
     mir16: number;
     mir16Esp: string;
     ponMir16form: number;
+    //calfMir16form: string;
     mir17: number;
     mir17Esp: string;
     ponMir17form: number;
+    //calfMir17form: string;
     mir18: number;
     mir18Esp: string;
     ponMir18form: number;
+    //calfMir18form: string;
     mir19: number;
     mir19Esp: string;
     ponMir19form: number;
+    //calfMir19form: string;
     mir20: number;
     mir20Esp: string;
     ponMir20form: number;
+    //calfMir20form: string;
     mir21: number;
     mir21Esp: string;
     ponMir21form: number;
+    //calfMir21form: string;
     mir22: number;
     mir22Esp: string;
     ponMir22form: number;
+    //calfMir22form: string;
     mir23: number;
     mir23Esp: string;
     ponMir23form: number;
+    //calfMir23form: string;
     mir24: number;
     mir24Esp: string;
     ponMir24form: number;
+    //calfMir24form: string;
     mir25: number;
     mir25Esp: string;
     ponMir25form: number;
+    //calfMir25form: string;
     mir26: number;
     mir26Esp: string;
     ponMir26form: number;
+    //calfMir26form: string;
     fDp: string;
     fMir: string;
     aoDp: string;
@@ -314,7 +360,7 @@ export class CreceFormualarioComponent implements OnInit {
     calMir: number;
     CalTot: number;
   }> = []
-  public value: Date;
+  // public value: Date;
 
 
   public format = "yyyy-MM-dd";
@@ -566,10 +612,10 @@ export class CreceFormualarioComponent implements OnInit {
   //  ---------------OBTENER PROGRAMAS PRESUPUESTARIOS---------------
   obtenerPp() {
     this._catPpService.getListPp().pipe(
-      map(response => response.$values)
+      map(response => response)
     ).subscribe(
       _data => {
-        _data = _data.map(_pp => {
+        _data = _data?.map(_pp => {
           const { idPp, clavePp } = _pp;
           return {
             value: idPp,
@@ -592,7 +638,7 @@ export class CreceFormualarioComponent implements OnInit {
   //---------------OBTENER DEPENDENCIAS--------------------
   obtenerDependencias() {
     this._depService.GetListDep().pipe(
-      map(response => response.$values)
+      map(response => response)
     ).subscribe(_data => {
       _data = _data.map(_dep => {
         const { idDependencia, siglaDependencia } = _dep;
@@ -626,7 +672,7 @@ export class CreceFormualarioComponent implements OnInit {
   // }
   obtenerCreces() {
     this.CrecePlaneacionService.getListCrece().pipe(
-      map(response => response.$values)
+      map(response => response)
     ).
       subscribe(_data => {
         _data = _data.map(_cres => {
@@ -639,6 +685,8 @@ export class CreceFormualarioComponent implements OnInit {
             ano,
             depPar,
             claveNombre,
+            fechaEntrega,
+            nombrePp,
             depResPp,
             depParPp,
             fechaADx,
@@ -660,6 +708,8 @@ export class CreceFormualarioComponent implements OnInit {
             mir,
             evoPp,
             glosario,
+            fuente,
+            impactoPp,
             dp1,
             dp2,
             dp3,
@@ -823,10 +873,11 @@ export class CreceFormualarioComponent implements OnInit {
             revision: revision,
             pp: pp,
             dependencia: dependencia,
-            fecha: fecha,
+            fechaEntrega: fechaEntrega,
             ano: ano,
             depPar: depPar,
             claveNombre: claveNombre,
+            nombrePp:nombrePp,
             depResPp: depResPp,
             depParPp: depParPp,
             fechaADx: fechaADx,
@@ -842,12 +893,14 @@ export class CreceFormualarioComponent implements OnInit {
             estructuraAnalitica: estructuraAnalitica,
             justObj: justObj,
             identificacionCuanPob: identificacionCuanPob,
-            identificacionAreaInfluencia: idenficacionAreaInfluencia,
+            idenficacionAreaInfluencia: idenficacionAreaInfluencia,
             relOtrosPP: relOtrosPP,
             elementosPEB: elementosPEB,
             mir: mir,
             evoPp: evoPp,
             glosario: glosario,
+            fuente:fuente,
+            impactoPp:impactoPp,
             dp1: dp1,
             dp2: dp2,
             dp3: dp3,
@@ -1318,7 +1371,7 @@ export class CreceFormualarioComponent implements OnInit {
       this.dep = "SICOM";
     }
     else if (this.pp == "K005") {
-      this.NombrePp = "Logística para los negocios  ";
+      this.NombrePp = "Logística para los negocios";
       this.ListDepPar = "SDES, GPI";
       this.dep = "SDES";
     }
@@ -1650,6 +1703,18 @@ export class CreceFormualarioComponent implements OnInit {
     else if (this.checked22 == true) {
       this.GlosarioInforme = "Si"
     }
+    if (this.checked23 == false) {
+      this.ImpactopresupuestarioInforme = "No"
+    }
+    else if (this.checked23 == true) {
+      this.ImpactopresupuestarioInforme = "Si"
+    }
+    if (this.checked24 == false) {
+      this.FuentesFinanciamientoInforme = "No"
+    }
+    else if (this.checked24 == true) {
+      this.FuentesFinanciamientoInforme = "Si"
+    }
 
 
 
@@ -1670,7 +1735,7 @@ export class CreceFormualarioComponent implements OnInit {
       NombrePp: this.NombrePp,
       ListDepPar: this.ListDepPar,
       Dependencia: this.form.get('Dependencia')?.value,
-      //Fecha: this.form.get('Fecha')?.value,
+      FechaEntrega: this.form.get('FechaEntrega')?.value,
       Ano: this.form.get('Ano')?.value,
       DepPar: this.form.get('DepPar')?.value,
       //Elementos
@@ -1696,6 +1761,8 @@ export class CreceFormualarioComponent implements OnInit {
       MirInforme: this.MirInforme,
       EvoPpInforme: this.EvoProblemaInforme,
       GlosarioInforme: this.GlosarioInforme,
+      ImpactoPresupuestarioInforme: this.ImpactopresupuestarioInforme,
+      FuentesFinanciamientoInforme: this.FuentesFinanciamientoInforme,
       ClaveNombre: this.form.get('ClaveNombre')?.value,
       DepResPp: this.form.get('DepResPp')?.value,
       DepParPp: this.form.get('DepParPp')?.value,
@@ -1719,6 +1786,9 @@ export class CreceFormualarioComponent implements OnInit {
       MIR: this.form.get('MIR')?.value,
       EvoPp: this.form.get('EvoPp')?.value,
       Glosario: this.form.get('Glosario')?.value,
+      ImpactoPp:this.form.get('ImpactoPp')?.value,
+      Fuente: this.form.get('Fuente')?.value,
+
 
       //Evaluacion Dp
       Dp1: this.form.get('Dp1')?.value,
@@ -1799,6 +1869,7 @@ export class CreceFormualarioComponent implements OnInit {
       Mir1: this.form.get('Mir1')?.value,
       Mir1Esp: this.form.get('Mir1Esp')?.value,
       ponMir1form: this.form.get('ponMir1form')?.value,
+      //CalfMir1form: this.calfMir1form,
       Mir2: this.form.get('Mir2')?.value,
       Mir2Esp: this.form.get('Mir2Esp')?.value,
       ponMir2form: this.form.get('ponMir2form')?.value,
@@ -1886,6 +1957,7 @@ export class CreceFormualarioComponent implements OnInit {
       CalTot: this.CalProm,
 
 
+
     }
 
     if (this.id == undefined) {
@@ -1893,6 +1965,7 @@ export class CreceFormualarioComponent implements OnInit {
       this.CrecePlaneacionService.saveCrece(crece).subscribe(_data => {
         this.toastr.success('El Crece del PP ' + crece.NombrePp + ' fue registrado con exito!', 'Crece Registrado');
         this.obtenerCreces();
+        this.form.reset();
         console.log(this.form.value);
         console.log(crece);
         // if (this.form.valid) {
@@ -1912,12 +1985,13 @@ export class CreceFormualarioComponent implements OnInit {
       crece.id = this.id
       // Editamos usuario
       this.CrecePlaneacionService.updateCrece(this.id, crece).subscribe(_data => {
-        this.form.reset();
+
         this.accion = 'Elaborando';
         this.id = undefined;
-        this.toastr.info('El usuario fue actualizada con exito!', 'Crece  Actualizado');
+        this.toastr.info('El CRECE' + crece.NombrePp +'fue actualizada con exito!', 'Crece  Actualizado');
         this.obtenerCreces();
       }, error => {
+        this.toastr.error("no a completado");
         console.log(error);
       })
 
@@ -1942,6 +2016,10 @@ export class CreceFormualarioComponent implements OnInit {
   editarCrece(crece: any) {
     this.accion = 'Actualizando';
     this.id = crece.id;
+    this.NombrePp = crece.nombrePp;
+    this.CalProm = crece.calTot;
+    this.TotalDp = crece.calDp;
+    this.TotalMir = crece.calMir;
 
     this.form.patchValue({
       Email: crece.email,
@@ -1950,8 +2028,10 @@ export class CreceFormualarioComponent implements OnInit {
       Dependencia: crece.dependencia,
       Ano: crece.ano,
       DepPar: crece.depPar,
+      FechaEntrega: crece.fechaEntrega,
       // Elementos
       ClaveNombre: crece.claveNombre,
+      NombrePp: crece.nombrePp,
       DepResPp: crece.depResPp,
       DepParPp: crece.depParPp,
       FechaADx: crece.fechaADx,
@@ -1974,6 +2054,8 @@ export class CreceFormualarioComponent implements OnInit {
       MIR: crece.mir,
       EvoPp: crece.evoPp,
       Glosario: crece.glosario,
+      Fuente:crece.fuente,
+      ImpactoPp:crece.impactoPp,
       Dp1: crece.dp1,
       Dp2: crece.dp2,
       Dp3: crece.dp3,
@@ -2127,10 +2209,15 @@ export class CreceFormualarioComponent implements OnInit {
       FDp: crece.fDp,
       AoMir: crece.aoMir,
       AoDp: crece.aoDp,
+      TotalDp: crece.calDp,
+      CalProm:crece.calTot,
+      TotalMir:crece.calMir
 
 
     })
     console.log(this.form.value);
+    console.log(this.NombrePp);
+    console.log(this.CalProm);
   }
 
 
@@ -2148,12 +2235,15 @@ export class CreceFormualarioComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       Email: [this.loginServices.getTokenDecoded().email, Validators.required],
-      Revision: ['Entrega 2023', Validators.required],
+      Revision: ['', Validators.required],
       Pp: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]],
+      FechaEntrega:[this.userData.FechaEntrega,Validators.required],
+      NombrePp:[this.NombrePp,Validators.required],
       Dependencia: ['', Validators.required],
       // Fecha: ['', Validators.required],
       Ano: ['', Validators.required],
       DepPar: ['', Validators.required],
+
       // Elementos
       ClaveNombre: ['', Validators.required],
       DepResPp: ['', Validators.required],
@@ -2178,6 +2268,8 @@ export class CreceFormualarioComponent implements OnInit {
       MIR: ['', Validators.required],
       EvoPp: ['', Validators.required],
       Glosario: ['', Validators.required],
+      ImpactoPp: ['', Validators.required],
+      Fuente: ['', Validators.required],
       Dp1: ['', Validators.required],
       Dp2: ['', Validators.required],
       Dp3: ['', Validators.required],
@@ -2331,6 +2423,10 @@ export class CreceFormualarioComponent implements OnInit {
       FDp: ['', Validators.required],
       AoMir: ['', Validators.required],
       AoDp: ['', Validators.required],
+      CalTot:[this.CalProm,Validators.required],
+      CalDp: [this.TotalDp,Validators.required],
+      CalMir: [this.TotalMir,Validators.required],
+
 
 
 
@@ -2359,8 +2455,9 @@ export class CreceFormualarioComponent implements OnInit {
     this.RespuestaDp4();
     this.RespuestaDp4();
     this.creces;
-    this.fecha = this.parseExact(this.model);
-    console.log(this.fecha);
+
+    //this.fecha = this.parseExact(this.model);
+    //console.log(this.fecha);
 
     // this.respuestaGenericaDp4();
     // this.ponderacionDp4();
@@ -2559,7 +2656,9 @@ export class CreceFormualarioComponent implements OnInit {
       this.checked19,
       this.checked20,
       this.checked21,
-      this.checked22
+      this.checked22,
+      this.checked23,
+      this.checked24
     ];
     this.elementosTrue = this.elementos.filter(element => element == true)
     this.elementosFalse = this.elementos.filter(element => element == false)
@@ -2635,6 +2734,12 @@ export class CreceFormualarioComponent implements OnInit {
       this.Dp1Calf = 2
     }
     else if (this.countElementsSi == 22) {
+      this.Dp1Calf = 4
+    }
+    else if (this.countElementsSi == 23) {
+      this.Dp1Calf = 4
+    }
+    else if (this.countElementsSi == 24) {
       this.Dp1Calf = 4
     }
     else if (this.countElementsSi == undefined) {
@@ -3175,7 +3280,6 @@ export class CreceFormualarioComponent implements OnInit {
       this.textAreaValueDp20 = "";
       this.CalfDp20 = "No aplica";
       this.PonDp20 = 1;
-
     }
     else if (this.Dp20Calf == 3) {
       this.textAreaValueDp20 = "";

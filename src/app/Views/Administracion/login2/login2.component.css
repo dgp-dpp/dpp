@@ -1,0 +1,8 @@
+.bg {
+
+font-family: var(--bs-font-sans-serif);
+background: linear-gradient(to right, #79b9ee, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background-image: url("https://github.com/cabarronc/dpp/blob/master/src/assets/Images/SitioDpp/logo%20gto.png?raw=true");
+/* background-color:rgb(182, 182, 184); */
+color:#ffffff;
+}

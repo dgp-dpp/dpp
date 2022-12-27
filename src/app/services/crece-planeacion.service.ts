@@ -33,6 +33,8 @@ private myApiUrl = '/BackEndApi/api/Crece'
   }
 
   updateCrece(id: number, crece: any): Observable<any> {
-    return this.http.put(this.myAppUrl + this.myApiUrl +"/" +id, crece);
+    return this.http.put(this.myAppUrl + this.myApiUrl +"/" +id, crece,{responseType: 'text'}).pipe(tap((data) => {
+      console.log(data)
+    }));
   }
 }

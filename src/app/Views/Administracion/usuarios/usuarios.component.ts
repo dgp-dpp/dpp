@@ -18,8 +18,8 @@ export class UsuariosComponent implements OnInit {
 
   obtenerUsuarios() {
     this._usuariosServices.getListUsuario().subscribe(_data => {
-     this.listUsuarios = _data.$values
-      console.log(_data.$values);
+     this.listUsuarios = _data
+      console.log(_data);
 
 
     }, error => {
