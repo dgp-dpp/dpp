@@ -39,7 +39,7 @@ export interface Fecha {
 })
 export class CreceFormualarioComponent implements OnInit {
   filterPp = this.loginServices.getTokenDecoded().email;
-
+   public p :number;
   public fecha: Fecha;
   public model: JsonModel = JSON.parse('{"value": "" }');
   public output: string = JSON.stringify(this.model);
@@ -2455,6 +2455,7 @@ export class CreceFormualarioComponent implements OnInit {
     this.RespuestaDp4();
     this.RespuestaDp4();
     this.creces;
+
 
     //this.fecha = this.parseExact(this.model);
     //console.log(this.fecha);

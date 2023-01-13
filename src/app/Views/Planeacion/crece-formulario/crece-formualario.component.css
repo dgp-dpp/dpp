@@ -78,6 +78,9 @@ kendo-listbox {
 kendo-listbox:nth-of-type(1) {
   margin-right: 8px;
 }
+.my-pagination /deep/ .ngx-pagination .current {
+  background: rgb(44, 62, 163);
 
+}
 
 

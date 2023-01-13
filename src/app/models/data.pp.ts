@@ -1,11 +1,12 @@
-export const pp = 
+export const pp =
     [
         {
             IdPP: 1,
             IdEje: 7,
             Eje: "Poderes y Autónomos",
             PP: "E001",
-            NombrePP: "Acceso a la información pública del Estado de Guanajuato"
+            NombrePP: "Acceso a la información pública del Estado de Guanajuato",
+            PlandeMejora:"https://docs.google.com/spreadsheets/d/14D_K9mV8PlpBdk90mg-s3E1yv9EW0ukvPv5e4BrhWD4/edit?usp=share_link"
         },
         {
             IdPP: 2,
@@ -638,7 +639,6 @@ export const pp =
             NombrePP: "Fortalecimiento de las Unidades de Producción Familiar"
         }
     ]
- 
 
-        
-        
+
+

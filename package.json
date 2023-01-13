@@ -61,6 +61,7 @@
     "jspdf": "^2.5.1",
     "ng2-pdf-viewer": "^7.0.2",
     "ngx-cookie-service": "^13.1.2",
+    "ngx-pagination": "^5.1.1",
     "ngx-toastr": "^14.2.1",
     "popper.js": "^1.16.1",
     "rxjs": "~7.4.0",
