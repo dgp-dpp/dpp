@@ -82,9 +82,11 @@
                         <kendo-floatinglabel text="Fecha de Entrega" style="font-weight: bold;">
                           <kendo-formfield showHints="initial">
                             <div class="col-md-12 d-flex flex-column" style="padding-top: 1rem;">
-                              <kendo-maskedtextbox [maskOnFocus]="true" style="font-weight: normal;"  [includeLiterals]="includeLiterals" placeholder="DD/MM/YYYY" [mask]="mask" [value]="maskvalue" formControlName="FechaEntrega" fillMode="solid">
+                              <kendo-maskedtextbox [maskOnFocus]="true" style="font-weight: normal;"
+                                [includeLiterals]="includeLiterals" placeholder="DD/MM/YYYY" [mask]="mask"
+                                [value]="maskvalue" formControlName="FechaEntrega" fillMode="solid">
 
-                              <!-- <kendo-textbox style="font-weight: normal;" formControlName="FechaEntrega"
+                                <!-- <kendo-textbox style="font-weight: normal;" formControlName="FechaEntrega"
                                 [clearButton]="true" placeholder="MM/DD/YYYY" fillMode="outline"> -->
                                 <!-- <ng-template kendoTextBoxPrefixTemplate>
                                   <button
@@ -97,7 +99,7 @@
                             </div>
                             <kendo-formhint style="font-weight: normal;">Fecha de entrega del diagnostico
                               por parte de la Dependencia. Formato </kendo-formhint>
-                            <kendo-formerror>Error:  Formato incorrecto </kendo-formerror>
+                            <kendo-formerror>Error: Formato incorrecto </kendo-formerror>
 
                           </kendo-formfield>
                         </kendo-floatinglabel>
@@ -197,7 +199,7 @@
                         <kendo-tabstrip-tab [selected]="true">
                           <ng-template kendoTabTitle>
                             <strong>
-                              TABLERO DE CONTROL
+                              Tablero de Control
                             </strong>
                           </ng-template>
                           <ng-template kendoTabContent>
@@ -226,7 +228,7 @@
 
                                           </div>
                                           <input type="text" name="filterPp" class="form-control"
-                                            placeholder="buscar por Pp" [(ngModel)]="filterPp"
+                                            placeholder="buscar por Pp" [(ngModel)]="filterclavepp"
                                             [ngModelOptions]="{standalone: true}">
 
                                         </div>
@@ -246,7 +248,8 @@
                                       </thead>
                                       <tbody>
                                         <i class="fas fa-redo" (click)="obtenerCreces()"></i>
-                                        <tr *ngFor="let crece of creces | filters:'email':filterPp | paginate: { itemsPerPage: 5, currentPage: p }">
+                                        <tr
+                                          *ngFor="let crece of creces | filters:'email':filterPp | filters:'pp': filterclavepp | paginate: { itemsPerPage: 5, currentPage: p }">
                                           <td>{{ crece.pp }}</td>
                                           <td>{{ crece.nombrePp }}</td>
                                           <td>{{ crece.email }}</td>
@@ -254,11 +257,12 @@
 
 
                                           <td>
-                                            <i (click)="editarCrece(crece)" class="far fa-edit text-info"></i>
+                                            <i (click)="editarCrece(crece)" class="far fa-edit text-info"
+                                              style="cursor:pointer"></i>
                                           </td>
                                           <td>
-                                            <i (click)="eliminarCrece(crece.id)"
-                                              class="far fa-trash-alt text-danger"></i>
+                                            <i (click)="eliminarCrece(crece.id)" class="far fa-trash-alt text-danger"
+                                              style="cursor:pointer"></i>
                                           </td>
                                           <td>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -268,8 +272,8 @@
 
                                       </tbody>
                                     </table>
-                                    <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="Anterior"
-                                    nextLabel="Siguiente"></pagination-controls>
+                                    <pagination-controls class="my-pagination" (pageChange)="p = $event"
+                                      previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
                                     <script>
                                       var myModal = document.getElementById('myModal')
                                       var myInput = document.getElementById('myInput')
@@ -287,6 +291,53 @@
 
 
 
+                            </div>
+
+                          </ng-template>
+                        </kendo-tabstrip-tab>
+                        <kendo-tabstrip-tab [selected]="false">
+                          <ng-template kendoTabTitle>
+                            <strong>
+                              Desempeño
+                            </strong>
+                          </ng-template>
+                          <ng-template kendoTabContent>
+                            <div class="container-fluid">
+                              <div class="col-lg-12">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h5 class="titulo">GRAFICO DE DESEMPEÑO </h5>
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <button kendoButton (click)="exportChart()">Exportar como Imagen</button>
+                                        <kendo-chart [categoryAxis]="{ categories: categories }"
+                                          [title]="{ text: 'Graficos de Desempeño' }">
+                                          <kendo-chart-category-axis>
+                                            <kendo-chart-category-axis-item [categories]="categories">
+                                            </kendo-chart-category-axis-item>
+                                          </kendo-chart-category-axis>
+                                          <kendo-chart-legend position="top" orientation="horizontal">
+                                          </kendo-chart-legend>
+                                          <kendo-chart-tooltip [shared]="true"></kendo-chart-tooltip>
+                                          <kendo-chart-series>
+                                            <kendo-chart-series-item
+                                              *ngFor="let grafico of graficos | filters:'pp': filterclavepp "
+                                              type="radarLine" name="Analisis de Corresponsabilidad" [name]="grafico.pp"
+                                              [data]="grafico.data"  >
+                                            </kendo-chart-series-item>
+
+                                          </kendo-chart-series>
+                                          <kendo-chart-value-axis>
+                                            <kendo-chart-value-axis-item [labels]="{ format: 'p' }">
+                                            </kendo-chart-value-axis-item>
+                                          </kendo-chart-value-axis>
+                                          <kendo-chart-legend position="bottom"></kendo-chart-legend>
+                                        </kendo-chart>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
 
                           </ng-template>
@@ -830,7 +881,7 @@
                                   <kendo-formerror>Error: es requerido</kendo-formerror>
                                 </kendo-formfield>
                                 <!----------------4Dp Generica &nbsp; --------->
-                                 <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
+                                <kendo-formfield style="width: auto;" showHints="initial" showErrors="initial">
                                   <kendo-textarea formControlName="CalfDp4form" [(ngModel)]="CalfDp4" [readonly]="true"
                                     resizable="auto" name="CalfDp4" flow="horizontal">
                                     <kendo-textarea-suffix>
@@ -2263,7 +2314,7 @@
                                   <div class="row pt-lg-0">
                                     <div class="col-md-1 d-flex flex-column"
                                       style="padding-top: 1rem; margin-left: 1rem;">
-                                      <input required type="radio" class="custom-size" name="Dp18" value="3" #No
+                                      <input required type="radio" class="custom-size" name="Dp18" value="3" #3
                                         formControlName="Dp18" (click)="MethodTotalDp()" [(ngModel)]="Dp18Calf"
                                         (click)="RespuestaDp18()" kendoRadioButton />
                                     </div>
@@ -2372,7 +2423,7 @@
                                 <div class="row pt-lg-0">
                                   <div class="col-md-1 d-flex flex-column"
                                     style="padding-top: 1rem; margin-left: 1rem;">
-                                    <input required type="radio" class="custom-size" name="Dp19" value="3" #No
+                                    <input required type="radio" class="custom-size" name="Dp19" value="3" #3
                                       formControlName="Dp19" (click)="MethodTotalDp()" [(ngModel)]="Dp19Calf"
                                       (click)="RespuestaDp19()" kendoRadioButton />
                                   </div>
@@ -5039,8 +5090,23 @@
           </div>
           <div class="modal-body">
             <div class="container-fluid" style="background-color: rgb(204, 198, 198);">
-            <h4><p>Enlace para ir a ver los creces <a href="https://drive.google.com/drive/folders/1-0O_0pR9Ob2yQrJh8Jkd1DbDTTKJeIGN?usp=share_link" target="_blank">Lista de Creces</a>.</p>
-            <a href="https://drive.google.com/drive/folders/1-0O_0pR9Ob2yQrJh8Jkd1DbDTTKJeIGN?usp=share_link" ></a></h4>
+              <h4>
+                <p>Enlace para ir a ver los creces <a
+                    href="https://drive.google.com/drive/folders/1-CsnqevfOI4uiAHNW6UZ_SuZtVNexa9K"
+                    target="_blank">Lista de Creces</a>.</p>
+                <a href="https://drive.google.com/drive/folders/1-0O_0pR9Ob2yQrJh8Jkd1DbDTTKJeIGN?usp=share_link"></a>
+              </h4>
+              <h4>
+                <p>Enlace Script Graficos <a
+                    href="https://docs.google.com/spreadsheets/d/16Nocgw9TM5XSVtGam6VykE_QhALJDfBXSF5DyfPvyp8/edit#gid=0"
+                    target="_blank">Ejecutar comando</a>.</p>
+              </h4>
+              <h4>
+                <p>Enlace Script PMC <a
+                    href="https://docs.google.com/spreadsheets/d/1sL7uokVTA87k065lwVH2fTLuyeY30lbP1PjsLCqVAoI/edit#gid=0"
+                    target="_blank">Ejecutar comando</a>.</p>
+              </h4>
+
             </div>
 
           </div>

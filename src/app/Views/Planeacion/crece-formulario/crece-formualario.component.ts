@@ -6,6 +6,7 @@ import { empty, map, Observable } from 'rxjs';
 
 import { pp } from 'src/app/models/data.pp';
 import { CatPpService } from 'src/app/services/cat-pp.service';
+import {GraficosService} from 'src/app/services/graficos.service'
 import { DependenciasService } from 'src/app/services/dependencias.service';
 import { LoginService } from 'src/app/services/login.service';
 import { CrecePlaneacionService } from 'src/app/services/crece-planeacion.service'
@@ -18,8 +19,11 @@ import { SortDescriptor } from '@progress/kendo-data-query';
 import { IntlService } from "@progress/kendo-angular-intl";
 import { formatDate } from '@progress//kendo-angular-intl';
 import * as htmlDocx from 'html-docx-js/dist/html-docx';
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 import { toJSON } from '@progress/kendo-angular-grid/dist/es2015/filtering/operators/filter-operator.base';
+import { AxisLabelContentArgs } from '@progress/kendo-angular-charts';
+import { ChartComponent } from "@progress/kendo-angular-charts";
+import { saveAs } from "@progress/kendo-file-saver";
 
 
 
@@ -32,14 +36,55 @@ export interface Fecha {
 
 
 
+
 @Component({
   selector: 'app-crece-formualario',
   templateUrl: './crece-formualario.component.html',
   styleUrls: ['./crece-formualario.component.css']
 })
 export class CreceFormualarioComponent implements OnInit {
+  public grafico: Observable<any>;
+  @ViewChild("chart")
+  public categories: any[] = [
+    "avAnalisisCorresponsabilidad","avAnalisisInvolucrados","avAnalisisProblema","avCobertura","avEstructuraAnalitica","avGeneral","avIdentificacionProblema","avIndicadores","avIntroduccion","avJustificacionObjetivos","avLineaEstrategica","avMIR","avMedios","avObjetivo","avPadron","avRelacionPp","avSeleccionAlternativa","avSupuestos"
+  ];
+  // public categories : number[] =[2000,2001,2002,2003,2004,2005, 2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018];
+  private chart: ChartComponent;
+  public graficos: Array<{ pp: string; data:{avGeneral:number,
+    avIntroduccion: number,
+    avAnalisisInvolucrados:number,
+    avIdentificacionProblema: number,
+    avAnalisisProblema: number,
+    avAnalisisCorresponsabilidad: number,
+    avSeleccionAlternativa: number,
+    avEstructuraAnalitica: number,
+    avJustificacionObjetivos: number,
+    avRelacionPp:number,
+    avMIR: number,
+    avCobertura: number,
+    avPadron: number,
+    avLineaEstrategica: number,
+    avObjetivo: number,
+    avIndicadores: number,
+    avMedios: number,
+    avSupuestos: number}}> = [];
+    // public graficos: any[] = [];
+
+
+  // public labelContent(e: AxisLabelContentArgs): string {
+  //   return `${e.dataItem.time.substring(0, 2)}h`;
+  // }
+
+
+
+
+
+
+
+
   filterPp = this.loginServices.getTokenDecoded().email;
-   public p :number;
+  public filterclavepp:string;
+  public p :number;
   public fecha: Fecha;
   public model: JsonModel = JSON.parse('{"value": "" }');
   public output: string = JSON.stringify(this.model);
@@ -601,6 +646,12 @@ export class CreceFormualarioComponent implements OnInit {
     console.log(this.loginServices.getTokenDecoded());
 
   }
+
+  public exportChart(): void {
+    this.chart.exportImage().then((dataURI) => {
+      saveAs(dataURI, "chart.png");
+    });
+  }
   public onTabSelect(e: SelectEvent): void {
     console.log(e);
   }
@@ -1007,7 +1058,7 @@ export class CreceFormualarioComponent implements OnInit {
             ponMir11form: ponMir11form,
             mir12: mir12,
             mir12Esp: mir12Esp,
-            ponMir12form: ponMir11form,
+            ponMir12form: ponMir12form,
             mir13: mir13,
             mir13Esp: mir13Esp,
             ponMir13form: ponMir13form,
@@ -2003,7 +2054,7 @@ export class CreceFormualarioComponent implements OnInit {
 
   eliminarCrece(id: number) {
     this.CrecePlaneacionService.deleteCrece(id).subscribe(_data => {
-      this.toastr.error('El crece fue eliminado con exito!', 'Usuario eliminado');
+      this.toastr.error('El crece fue eliminado con exito!', 'eliminado');
       this.obtenerCreces();
     }, error => {
       console.log(error);
@@ -2232,7 +2283,22 @@ export class CreceFormualarioComponent implements OnInit {
     private _catPpService: CatPpService,
     private loginServices: LoginService,
     private intl: IntlService,
+    private graficosService: GraficosService
   ) {
+
+    //graficos
+    this.graficosService.getGraficos().pipe(
+        map(response => response)
+      ).subscribe(_data => {
+        this.graficos = _data;
+        console.log(_data);
+        console.log(this.graficos);
+      },
+        error => {
+          console.log(error);
+        })
+
+
     this.form = this.fb.group({
       Email: [this.loginServices.getTokenDecoded().email, Validators.required],
       Revision: ['', Validators.required],
@@ -2440,6 +2506,13 @@ export class CreceFormualarioComponent implements OnInit {
 
 
   }
+
+
+  //----------------------------------------------------------------------------------------------------------------------------------
+  // ----------------------------------------------Graficos---------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------------------------------------------------
+
+
 
   ngOnInit(): void {
 
@@ -3244,9 +3317,9 @@ export class CreceFormualarioComponent implements OnInit {
       this.PonDp18 = 1;
     }
     else if (this.Dp18Calf == 3) {
-      this.textAreaValueDp18 = "No se identifican programas complementarios, por lo que es necesario revisar los instrumentos de desarrollo y Ley de Presupuesto para identificar otros programas relacionados."
-        + "\nEsta recomendación se integrará al plan de mejora continua del Programa.";
-      this.CalfDp18 = "";
+      this.textAreaValueDp18 = "";
+      this.CalfDp18 = "No se identifican programas complementarios, por lo que es necesario revisar los instrumentos de desarrollo y Ley de Presupuesto para identificar otros programas relacionados."
+      + "\nEsta recomendación se integrará al plan de mejora continua del Programa";
       this.PonDp18 = 0;
     }
   }

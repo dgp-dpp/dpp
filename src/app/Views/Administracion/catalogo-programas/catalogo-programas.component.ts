@@ -1,12 +1,15 @@
-import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ejes } from '../../../models/data-eje'
-import { pp } from '../../../models/data.pp'
-import { DataBindingDirective, GridDataResult, PageChangeEvent } from "@progress/kendo-angular-grid";
+import { Component, Input, OnInit, Pipe, PipeTransform, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ejes } from '../../../models/data-eje';
+import { pp } from '../../../models/data.pp';
+import {catpp} from '../../../models/data-cat-pp';
+import { ColumnMenuSettings, DataBindingDirective, GridDataResult, PageChangeEvent } from "@progress/kendo-angular-grid";
 import { SortDescriptor } from "@progress/kendo-data-query";
 import { PpService } from "../../../services/pp.service";
 import { Observable } from "rxjs";
 import { process } from '@progress/kendo-data-query';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-catalogo-programas',
@@ -15,33 +18,59 @@ import { ExcelExportData } from '@progress/kendo-angular-excel-export';
   providers: [PpService]
 })
 
-export class CatalogoProgramasComponent implements OnInit {
+export class CatalogoProgramasComponent implements OnInit{
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
   @Input() public value: any;
-  
+
+
+
+  public opened = false;
+  public windowTop = 100;
+  public windowLeft = 250;
+
+  public onClick(): void {
+    alert(this.gridItems);
+  }
+
+  public toggle(isOpened: boolean): void {
+    this.opened = isOpened;
+  }
+
+
+
+  public pdfURL;
+
   // Varaiable para establcer  el filtro
   public gridData: any[] = pp;
   public gridView: any[];
   public mySelection: string[] = [];
   //dropdownlist
-  public dropDownItems = ejes;
-  public defaultItem = { Eje: "Filtro por Eje", IdEje: null };
-  //Grid 
+  public dropDownItems = catpp;
+  public defaultItem = { PP: "Filtro por PP", IdPP: null };
+  //Grid
   public gridItems: Observable<GridDataResult>;
   public pageSize: number = 10;
   public skip: number = 0;
   public sortDescriptor: SortDescriptor[] = [];
   public filterTerm: number = null;
 
+  public menuSettings: ColumnMenuSettings = {
+    lock: true,
+    stick: true,
+    setColumnPosition: { expanded: true },
+  };
+
 
   constructor(private service: PpService) {
     this.loadGridItems();
     this.allData = this.allData.bind(this);
   }
-  // public pageChange(event: PageChangeEvent): void {
-  //   this.skip = event.skip;
-  //   this.loadGridItems();
-  // }
+
+
+   public pageChange(event: PageChangeEvent): void {
+     this.skip = event.skip;
+    this.loadGridItems();
+   }
   private loadGridItems(): void {
     this.gridItems = this.service.getPPs(
       this.skip,
@@ -56,15 +85,16 @@ export class CatalogoProgramasComponent implements OnInit {
   }
   // DropDownList para filtrar Grid por categoría de producto
   public handleFilterChange(item: {
-    Eje: string;
-    IdEje: number | null;
+    IdPP: number | null;
+    PP: string;
   }): void {
-    this.filterTerm = item.IdEje
+    this.filterTerm = item.IdPP
     this.skip = 0;
     this.loadGridItems();
   }
   ngOnInit(): void {
     this.gridView = this.gridData;
+
   }
   //pdf
   public onFilter(inputValue: string): void {

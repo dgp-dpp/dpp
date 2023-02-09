@@ -82,6 +82,9 @@ import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
 import { IndicatorsModule } from "@progress/kendo-angular-indicators";
 import { GaugesModule } from "@progress/kendo-angular-gauges";
 import { ListBoxModule } from "@progress/kendo-angular-listbox";
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { TypographyModule } from '@progress/kendo-angular-typography';
+import { ChartsModule } from '@progress/kendo-angular-charts';
 //firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
@@ -97,11 +100,12 @@ import { PaisesComponent } from './Views/Administracion/Mapas/paises/paises.comp
 import { APGComponent } from './Views/Administracion/ConsumirApis/apg/apg.component';
 import { MapaComponent } from './Views/Administracion/BienesServicios/mapa/mapa.component';
 import { FiltersPipe } from './pipes/filters.pipe';
+import { SafePipeModule } from 'safe-pipe';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
-
+import 'hammerjs';
 
 
 
@@ -124,6 +128,7 @@ export function tokenGetter() {
     PruebaspdfComponent,
     KendoComponent,
     CatalogoProgramasComponent,
+
     ChrtshighComponent,
     Login2Component,
     PruebaExcelComponent,
@@ -184,10 +189,12 @@ export function tokenGetter() {
     ButtonsModule,
     ProgressBarModule,
     IconsModule,
+    DialogsModule,
     AngularFireModule.initializeApp(environment.firebaseDb),
     AngularFireDatabaseModule,
     LabelModule,
     InputsModule,
+    SafePipeModule,
     LayoutModule,
     FloatingLabelModule,
     DateInputsModule,
@@ -196,6 +203,8 @@ export function tokenGetter() {
     GaugesModule,
     ListBoxModule,
     TooltipsModule,
+    TypographyModule,
+    ChartsModule,
     IntlModule,
     JwtModule.forRoot({
       config: {

@@ -1,9 +1,61 @@
 <app-home></app-home>
-<!-- <div class="container"> -->
-<!-- <div class="overflow-auto">   -->
-    <section id="sectiondefault">
+<section id="sectiondefault">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" style="padding-top: 40px; padding-bottom: 2.4rem;">
+        <kendo-card width="auto" style="padding-bottom: 2.5rem;">
+          <kendo-grid
+[data]="view | async"
+[height]="470"
+[pageable]="true"
+[sortable]="true"
+[pageSize]="gridState.take"
+[resizable]="true"
+[skip]="gridState.skip"
+[sort]="gridState.sort"
+[filterable]="true"
+[kendoGridBinding]="view | async"
+kendoGridSelectBy="clavePrograma"
+(edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+(save)="saveHandler($event)" (remove)="removeHandler($event)"
+(add)="addHandler($event)"
+>
+<ng-template kendoGridToolbarTemplate>
+  <button kendoGridAddCommand>Agregar</button>
+</ng-template>
 
-        <iframe title="prueba_informe_CRECE" style="align-content: center;  width: 100%;height: 900px;border: 0;" src="https://docs.google.com/spreadsheets/d/1nT33evDu1eXwIs9apUt3IhTA9KQdw8eFYhHNdvXYwq8/edit#gid=1737158945" frameborder="0" allowFullScreen="true"></iframe>
 
-    </section>
-<!-- </div> -->
+<kendo-grid-column field="eje" editor="text" title="Eje" [width]="50"></kendo-grid-column>
+<kendo-grid-column field="responsablePrograma" editor="text" title="Responsable Programa" [width]="150"></kendo-grid-column>
+<kendo-grid-column field="clavePrograma" editor="text" title="Clave Programa" [width]="100"></kendo-grid-column>
+<kendo-grid-column field="nombrePrograma"  url="text" title="Nombre Programa" [width]="250"></kendo-grid-column>
+<kendo-grid-column field="origen"  url="origen" title="Origen" [width]="150"></kendo-grid-column>
+<kendo-grid-column field="emisor"  url="text" title="Emisor" [width]="100"></kendo-grid-column>
+<kendo-grid-column field="recomendacion"  editor="text" title="Recomendacion" [width]="450"></kendo-grid-column>
+<kendo-grid-column field="descripcionOrigen"  url="linkpdf" title="Descripcion Origen" [width]="150"></kendo-grid-column>
+<kendo-grid-column field="claveAccion"  url="linkpdf" title="Clave Accion"  [width]="150"></kendo-grid-column>
+<kendo-grid-column field="accion"  url="linkpdf" title="Accion" [width]="150"></kendo-grid-column>
+<kendo-grid-column field="viaAtencion"  url="linkpdf" title="Via Atencion"  [width]="150"></kendo-grid-column>
+<!-- <kendo-grid-column field="origen" editor="text" title="Link Doc">
+  <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+
+    <strong>{{dataItem.linkdoc}}</strong>
+</ng-template>
+</kendo-grid-column> -->
+<kendo-grid-command-column title="Editar" [width]="85">
+  <ng-template kendoGridCellTemplate let-isNew="isNew">
+      <button kendoGridEditCommand  [primary]="true">Editar</button>
+      <button kendoGridRemoveCommand  [themeColor]="themeColor">Eliminar</button>
+      <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Actualizar' }}</button>
+      <button kendoGridCancelCommand>{{ isNew ? 'Descartar cambios' : 'Cancelar' }}</button>
+  </ng-template>
+</kendo-grid-command-column>
+</kendo-grid>
+<button kendoButton (click)="resetData()">Retablecer</button>
+
+
+        </kendo-card>
+      </div>
+  </div>
+</div>
+</section>

@@ -1,41 +1,21 @@
 <app-home>
 
 </app-home>
-<script>
 
-
-  var exampleModal = document.getElementById('exampleModal')
-  exampleModal.addEventListener('show.bs.modal', function (event) {
-    // Button that triggered the modal
-    var button = event.relatedTarget
-    // Extract info from data-bs-* attributes
-    var recipient = button.getAttribute('data-bs-whatever')
-    // If necessary, you could initiate an AJAX request here
-    // and then do the updating in a callback.
-    //
-    // Update the modal's content.
-    var modalTitle = exampleModal.querySelector('.modal-title')
-    var modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-    modalTitle.textContent = 'New message to ' + recipient
-    modalBodyInput.value = recipient
-  })
-
-      </script>
-
-<section id="sectionpp">
+<section id="sectionpp" >
+  <div kendoTypography variant="h2" fontWeight="bold" themeColor="dark" textAlign="left">Plan de Mejora Continua de los Programas Presupuestarios</div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
   <p>
 
-    <kendo-dropdownlist [data]="dropDownItems" [defaultItem]="defaultItem" textField="Eje" valueField="IdEje"
+    <kendo-dropdownlist [data]="dropDownItems" [defaultItem]="defaultItem" textField="PP" valueField="IdPP"
       (valueChange)="handleFilterChange($event)">
     </kendo-dropdownlist>
   </p>
-  <kendo-grid [data]="gridItems | async" [pageSize]="pageSize" [skip]="skip" [pageable]="true" [sortable]="true"
+  <kendo-grid  [data]="gridItems | async" [pageSize]="pageSize" [skip]="skip" [pageable]="true" [sortable]="true"
     [sort]="sortDescriptor" (sortChange)="handleSortChange($event)" [height]="500" [columnMenu]="true"
     [columnMenu]="{ filter: true}" [columnMenu]="{ sort: true }" [resizable]="true" [kendoGridBinding]="gridView"
-    kendoGridSelectBy="IdPP" [selectedKeys]="mySelection" [filterable]="true">
+    kendoGridSelectBy="IdPP" [selectedKeys]="mySelection" [filterable]="true" [columnMenu]="menuSettings">
     <ng-template kendoGridToolbarTemplate>
       <kendo-grid-spacer></kendo-grid-spacer>
       <button kendoGridExcelCommand type="button" icon="file-excel">
@@ -43,21 +23,39 @@
       </button>
       <button kendoGridPDFCommand icon="file-pdf">Exportar a PDF</button>
     </ng-template>
-    <kendo-grid-column [filterable]="false" [columnMenu]="false" field="IdPP" title="ID" [width]="15">
+    <kendo-grid-column [filterable]="true"  field="IdPP" title="ID"  [headerStyle]="{ 'background-color': ' #D2EDF0' }"   [width]="25">
     </kendo-grid-column>
-    <kendo-grid-column field="Eje" title="Nombre Eje" [width]="90">
+    <kendo-grid-column field="Eje" title="Nombre Eje" [headerStyle]="{ 'background-color': ' #D2EDF0' }"[width]="90">
     </kendo-grid-column>
-    <kendo-grid-column field="PP" title="Clave Pp" [width]="25">
+    <kendo-grid-column field="PP" title="Clave Pp" [headerStyle]="{ 'background-color': ' #D2EDF0' }" [width]="45">
     </kendo-grid-column>
-    <kendo-grid-column field="NombrePP" title="Nombre del Programa Presupuestario" [width]="140">
+    <kendo-grid-column field="NombrePP" title="Nombre del Programa Presupuestario"  [headerStyle]="{ 'background-color': ' #D2EDF0' }" [width]="140">
     </kendo-grid-column>
-    <kendo-grid-column field="PlandeMejora" title="Plan de Mejora" [width]="140">
+    <kendo-grid-column field="PlanMejora" title="Plan de Mejora" [width]="140" [headerStyle]="{ 'background-color': ' #D2EDF0' }">
       <ng-template kendoGridCellTemplate let-gridItems let-rowIndex="rowIndex">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-          data-bs-target="#exampleModal">Plan de Mejora Continua de {{gridItems.PP}}</button>
+        <button class="btn-primary" kendoButton *ngIf="!opened" (click)="toggle(true)">Plan de Mejora Continua de {{gridItems.PP}}</button>
+    <kendo-window *ngIf="opened"[(top)]="windowTop"
+    [(left)]="windowLeft" (close)="toggle(false)" [height]="200" [width]="300">
+      <kendo-window-titlebar>
+        <div class="k-window-title">Plan de Mejora Continua</div>
+        <button
+          kendoButton
+          (click)="onClick()"
+          icon="folder"
+          fillMode="flat"
+        ></button>
+        <button kendoWindowMaximizeAction></button>
+        <button kendoWindowMinimizeAction></button>
+        <button kendoWindowRestoreAction></button>
+        <button kendoWindowCloseAction></button>
+      </kendo-window-titlebar>
+      <p style="text-align: center;">Plan de  Mejora del Programa Presupuestario {{gridItems.PP}} </p>
 
-
-        <!-- <strong>{{gridItems.PlandeMejora}}</strong> -->
+      <!-- <iframe src="{{gridItems.PlandeMejora}}"  style="width:100%;height: 900px;"></iframe> -->
+      <iframe  [src]="gridItems.PlanMejora | safe: 'resourceUrl'" style="width:100%;height: 900px;"></iframe>
+    </kendo-window>
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">Plan de Mejora Continua de {{gridItems.PP}}</button> -->
       </ng-template>
     </kendo-grid-column>
 
