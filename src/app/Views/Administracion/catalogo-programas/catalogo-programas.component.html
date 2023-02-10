@@ -1,75 +1,113 @@
-<app-home></app-home>
-<section id="sectionpp">
-    <p>
-        <kendo-dropdownlist [data]="dropDownItems" [defaultItem]="defaultItem" textField="Eje" valueField="IdEje"
-        (valueChange)="handleFilterChange($event)">
-        </kendo-dropdownlist>
-    </p>
-    <kendo-grid [data]="gridItems | async" [pageSize]="pageSize"
-                [skip]="skip" 
-                [pageable]="true"
-                [sortable]="true" 
-                [sort]="sortDescriptor"
-                (sortChange)="handleSortChange($event)" 
-                [height]="500"
-                [columnMenu]="true"
-                [columnMenu]="{ filter: true}"
-                [columnMenu]="{ sort: true }"
-                [resizable]="true"
-                [kendoGridBinding]="gridView"
-                kendoGridSelectBy="IdPP"
-                [selectedKeys]="mySelection"
-                [filterable]="true">
-        <ng-template kendoGridToolbarTemplate>
-            <kendo-grid-spacer></kendo-grid-spacer>
-            <button kendoGridExcelCommand 
-                    type="button" 
-                    icon="file-excel">
-              Exportar a Excel
-            </button>
-            <button kendoGridPDFCommand icon="file-pdf">Exportar a PDF</button>
-          </ng-template>
-        <kendo-grid-column [filterable]="false" [columnMenu]="false" field="IdPP" title="ID" [width]="15">
-        </kendo-grid-column>
-        <kendo-grid-column field="Eje" title="Nombre Eje" [width]="90">
-        </kendo-grid-column>
-        <kendo-grid-column field="PP" title="PP" [width]="25">
-        </kendo-grid-column>
-        <kendo-grid-column field="NombrePP" title="Nombre PP" [width]="140">
-        </kendo-grid-column>
+<app-home>
 
-        <kendo-grid-pdf
-        fileName="Catalogo PP.pdf"
-        [allPages]="true"
-        paperSize="A4"
-        [repeatHeaders]="true"
-        [landscape]="true"
-      >
-    <kendo-grid-pdf-margin
-          top="3cm"
-          left="2cm"
-          right="2cm"
-          bottom="3cm"
-        ></kendo-grid-pdf-margin> 
-        <ng-template
-          kendoGridPDFTemplate
-          let-pageNum="pageNum"
-          let-totalPages="totalPages"
-        >
-          <div class="page-template">
-            <div class="header">
-              <div style="float: right">
-                Pagina {{ pageNum }} de {{ totalPages }}
-              </div>
-              Programas Presupuestarios 2022
+</app-home>
+
+<section id="sectionpp" >
+  <div kendoTypography variant="h2" fontWeight="bold" themeColor="dark" textAlign="left">Plan de Mejora Continua de los Programas Presupuestarios</div>
+  <div class="row">
+    <div class="col-md-9">
+  <p>
+
+    <kendo-dropdownlist [data]="dropDownItems" [defaultItem]="defaultItem" textField="PP" valueField="IdPP"
+      (valueChange)="handleFilterChange($event)">
+    </kendo-dropdownlist>
+  </p>
+  <kendo-grid  [data]="gridItems | async" [pageSize]="pageSize" [skip]="skip" [pageable]="true" [sortable]="true"
+    [sort]="sortDescriptor" (sortChange)="handleSortChange($event)" [height]="500" [columnMenu]="true"
+    [columnMenu]="{ filter: true}" [columnMenu]="{ sort: true }" [resizable]="true" [kendoGridBinding]="gridView"
+    kendoGridSelectBy="IdPP" [selectedKeys]="mySelection" [filterable]="true" [columnMenu]="menuSettings">
+    <ng-template kendoGridToolbarTemplate>
+      <kendo-grid-spacer></kendo-grid-spacer>
+      <button kendoGridExcelCommand type="button" icon="file-excel">
+        Exportar a Excel
+      </button>
+      <button kendoGridPDFCommand icon="file-pdf">Exportar a PDF</button>
+    </ng-template>
+    <kendo-grid-column [filterable]="true"  field="IdPP" title="ID"  [headerStyle]="{ 'background-color': ' #D2EDF0' }"   [width]="25">
+    </kendo-grid-column>
+    <kendo-grid-column field="Eje" title="Nombre Eje" [headerStyle]="{ 'background-color': ' #D2EDF0' }"[width]="90">
+    </kendo-grid-column>
+    <kendo-grid-column field="PP" title="Clave Pp" [headerStyle]="{ 'background-color': ' #D2EDF0' }" [width]="45">
+    </kendo-grid-column>
+    <kendo-grid-column field="NombrePP" title="Nombre del Programa Presupuestario"  [headerStyle]="{ 'background-color': ' #D2EDF0' }" [width]="140">
+    </kendo-grid-column>
+    <kendo-grid-column field="PlanMejora" title="Plan de Mejora" [width]="140" [headerStyle]="{ 'background-color': ' #D2EDF0' }">
+      <ng-template kendoGridCellTemplate let-gridItems let-rowIndex="rowIndex">
+        <button class="btn-primary" kendoButton *ngIf="!opened" (click)="toggle(true)">Plan de Mejora Continua de {{gridItems.PP}}</button>
+    <kendo-window *ngIf="opened"[(top)]="windowTop"
+    [(left)]="windowLeft" (close)="toggle(false)" [height]="200" [width]="300">
+      <kendo-window-titlebar>
+        <div class="k-window-title">Plan de Mejora Continua</div>
+        <button
+          kendoButton
+          (click)="onClick()"
+          icon="folder"
+          fillMode="flat"
+        ></button>
+        <button kendoWindowMaximizeAction></button>
+        <button kendoWindowMinimizeAction></button>
+        <button kendoWindowRestoreAction></button>
+        <button kendoWindowCloseAction></button>
+      </kendo-window-titlebar>
+      <p style="text-align: center;">Plan de  Mejora del Programa Presupuestario {{gridItems.PP}} </p>
+
+      <!-- <iframe src="{{gridItems.PlandeMejora}}"  style="width:100%;height: 900px;"></iframe> -->
+      <iframe  [src]="gridItems.PlanMejora | safe: 'resourceUrl'" style="width:100%;height: 900px;"></iframe>
+    </kendo-window>
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">Plan de Mejora Continua de {{gridItems.PP}}</button> -->
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-pdf fileName="Catalogo PP.pdf" [allPages]="true" paperSize="A4" [repeatHeaders]="true"
+      [landscape]="true">
+      <kendo-grid-pdf-margin top="3cm" left="2cm" right="2cm" bottom="3cm"></kendo-grid-pdf-margin>
+      <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+        <div class="page-template">
+          <div class="header">
+            <div style="float: right">
+              Pagina {{ pageNum }} de {{ totalPages }}
             </div>
-            <div class="footer">Pagina {{ pageNum }} de {{ totalPages }}</div>
+            Programas Presupuestarios 2022
           </div>
-        </ng-template>
-      </kendo-grid-pdf>
-      <kendo-grid-excel 
-      fileName="Programas_Presupuestarios_2022.xlsx"
-      [fetchData]="allData"
-      ></kendo-grid-excel>
-    </kendo-grid>
-</section> 
+          <div class="footer">Pagina {{ pageNum }} de {{ totalPages }}</div>
+        </div>
+      </ng-template>
+    </kendo-grid-pdf>
+    <kendo-grid-excel fileName="Programas_Presupuestarios_2023.xlsx" [fetchData]="allData"></kendo-grid-excel>
+
+
+
+  </kendo-grid>
+</div>
+</div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Plan de Mejora Continua</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="container-fluid" style="background-color: rgb(204, 198, 198);">
+
+            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTFjBal7IPbJH9WutlvenCTSmjwNrcYuj5Wr3zbzYIi8tfuv0GiGYmdv4EQEzcE3TYoNRrYhaPrN9ZW/pubhtml"  style="width:100%;height: 900px;"></iframe>
+
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

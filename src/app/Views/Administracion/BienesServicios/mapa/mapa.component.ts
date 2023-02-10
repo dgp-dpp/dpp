@@ -85,7 +85,7 @@ export class MapaComponent implements OnInit {
   //----------------------------Get UNIDADES MEDICAS----------------------------------------
   AddUnidadesMedicas() {
     this.mapabienesService.getUnidadesMedicas().pipe(
-      map(response => response.$values)
+      map(response => response)
     ).subscribe
       (_data => {
         _data = _data.map(_marcadores => {
@@ -113,7 +113,7 @@ export class MapaComponent implements OnInit {
   //-------------------------------------GET UNIDADES DE CAPACITACION --------------------------------------------
   AddUnidadesCapacitacion(){
     this.mapabienesService.getUnidadesCapacitacionService().pipe(
-      map(response => response.$values)
+      map(response => response)
     ).subscribe(
       _data =>{
         _data = _data.map(_unidadesCapacitacion=>{

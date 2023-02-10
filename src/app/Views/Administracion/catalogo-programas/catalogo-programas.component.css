@@ -5,6 +5,13 @@
     height: 90%;
 
 }
+.headerCustomClass {
+  color: #fff;
+}
+
+th.headerCustomClass {
+  justify-content: center;
+}
 @font-face {
     font-family: "DejaVu Sans";
     src: url("https://kendo.cdn.telerik.com/2018.2.620/styles/fonts/DejaVu/DejaVuSans.ttf") format("truetype");
@@ -25,7 +32,7 @@
     font-style: italic;
     src: url("https://kendo.cdn.telerik.com/2018.2.620/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
   }
-  
+
   .k-grid {
        font-family: "DejaVu Sans", "Arial", sans-serif;
   }
@@ -37,7 +44,7 @@
     top: 0;
     left: 0;
   }
-  
+
   .page-template .header {
     position: absolute;
     top: 30px;
@@ -46,7 +53,7 @@
     border-bottom: 1px solid #888;
     color: #888;
   }
-  
+
   .page-template .footer {
     position: absolute;
     bottom: 30px;
@@ -56,5 +63,6 @@
     text-align: center;
     color: #888;
   }
+
   @import "~@progress/kendo-theme-bootstrap/dist/all.scss";
   @import "~bootstrap/scss/bootstrap.scss";

@@ -24,7 +24,7 @@ export class PpService {
           logic: "and",
           filters: [
             {
-              field: "IdEje",
+              field: "IdPP",
               operator: "eq",
               value: filterTerm
             }

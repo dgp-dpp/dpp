@@ -43,7 +43,7 @@ public position2 ={
   }
    AddMarkers2(){
   this.paisesService.getAll().pipe(
-    map (response => response.$values)
+    map (response => response)
   ).subscribe
   (_data => {
     _data = _data.map(_paises =>{

@@ -29,7 +29,7 @@ h1{
   }
   #sectiondefault {
     margin: 0 auto;
-    height: 3200px;
+    height: 5200px;
     width: 100%;
     padding-top: 10px;
     padding-left: 15px;
@@ -78,6 +78,9 @@ kendo-listbox {
 kendo-listbox:nth-of-type(1) {
   margin-right: 8px;
 }
+.my-pagination /deep/ .ngx-pagination .current {
+  background: rgb(44, 62, 163);
 
+}
 
 

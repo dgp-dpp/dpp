@@ -34,8 +34,8 @@ export class CreceInformeComponent implements OnInit {
    getFiles(){
     this.service.getFiles().subscribe(
       _data=>{
-        this.files = _data.$values
-        console.log(_data.$values);
+        this.files = _data
+        console.log(_data);
       },
     error => {
       console.log(error);

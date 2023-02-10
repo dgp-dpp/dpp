@@ -1,7 +1,10 @@
 <div class="sticky-sm-top">
   <div class="header ">
 
-    <div class="title">Secretaria de Finanzas, Inversion y Administracion</div>
+    <div class="title">
+      MEJORA GTO
+    </div>
+
   </div>
 
   <!--Nav 1-->
@@ -10,7 +13,8 @@
 
     <div class="container-fluid">
 
-      <a class="navbar-brand" routerLink="/home" routerLinkActive="router-link-active">Sistema de Informacion DPP</a>
+      <a class="navbar-brand" routerLink="/carrusel" routerLinkActive="router-link-active"> <img src="https://github.com/cabarronc/dpp/blob/master/src/assets/Images/SitioDpp/Logo%20Finanzas%20transparente2.png?raw=true" width="192px" height="65px">
+       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,26 +85,47 @@
               <li><a class="dropdown-item" routerLink="/crece-formulario" routerLinkActive="router-link-active"><i
                     class="bi bi-clipboard-plus" style="color:rgb(52, 49, 179); font-size: 1.5rem;"></i> Formulario</a>
               </li>
-              <li><a class="dropdown-item" routerLink="/crece_preguntas" routerLinkActive="router-link-active"><i
-                    class="bi bi-clipboard-check" style="font-size: 1.5rem;"></i> Preguntas</a></li>
+
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <!-- <li><a class="dropdown-item" routerLink="/crece_preguntas" routerLinkActive="router-link-active"><i
+                    class="bi bi-clipboard-check" style="font-size: 1.5rem;"></i> Preguntas</a></li> -->
               <li><a class="dropdown-item" routerLink="/crece-respuestas" routerLinkActive="router-link-active"><i
                     class="bi bi-file-earmark-excel" style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i>
                   Respuestas</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
               <li><a class="dropdown-item" routerLink="/crece-informe" routerLinkActive="router-link-active"><i
                     class="bi bi-clipboard-plus" style="color:rgb(52, 49, 179); font-size: 1.5rem;"></i> Informe</a>
-              </li>
-              <li><a class="dropdown-item" routerLink="/crece-monitor-seguimiento"
-                  routerLinkActive="router-link-active"><i class="bi bi-file-earmark-excel"
-                    style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i> Monitor de Seguimiento</a></li>
-              <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i
-                    class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i> Tablero</a></li>
-              <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i
-                    class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i> Plan de Mejora</a>
               </li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" routerLink="/crece-monitor-seguimiento"
+                  routerLinkActive="router-link-active"><i class="bi bi-file-earmark-excel"
+                    style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i> Monitor de Seguimiento</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+              <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i
+                    class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i> Tablero</a></li>
+              <!-- <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i
+                    class="bi bi-clipboard-data" style="color:darkorange; font-size: 1.5rem;"></i> Plan de Mejora</a> -->
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" routerLink="/crece" routerLinkActive="router-link-active"><i
+                      class="bi bi-table" style="color:rgb(55, 160, 116); font-size: 1.5rem;"></i> Plan de Mejora Continua version Dinamica</a>
+              </li>
+
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" routerLink="/catalogo_pp" routerLinkActive="router-link-active"><i
+                class="bi bi-file-earmark-excel" style="color:rgb(55, 160, 116); font-size:1.5rem;"></i> PMC version Google Sheets</a></li>
+
 
             </ul>
           </li>
